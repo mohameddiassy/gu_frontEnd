@@ -25,6 +25,10 @@ import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utili
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { DetailUtilisateurComponent } from './detail-utilisateur/detail-utilisateur.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { GerantComponent } from './gerant/gerant.component';
+import { AjouterGerantComponent } from './ajouter-gerant/ajouter-gerant.component';
+import { ModifierGerantComponent } from './modifier-gerant/modifier-gerant.component';
+import { DetailGerantComponent } from './detail-gerant/detail-gerant.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -43,6 +47,11 @@ const routes: Routes = [
   { path: "ajouter-utilisateur", component: AjoutUtilisateurComponent },
   { path: "modifier-utilisateur", component: ModifierUtilisateurComponent },
   { path: "detail-utilisateur", component: DetailUtilisateurComponent },
+  { path: "gerant", component: GerantComponent },
+  { path: "ajouter-gerant", component: AjouterGerantComponent },
+  { path: "modifier-gerant", component: ModifierGerantComponent },
+  { path: "detail-gerant", component: DetailGerantComponent },
+
 
 ];
 @NgModule({
@@ -63,6 +72,10 @@ const routes: Routes = [
     AjouterUtilisateurComponent,
     ModifierUtilisateurComponent,
     DetailUtilisateurComponent,
+    GerantComponent,
+    AjouterGerantComponent,
+    ModifierGerantComponent,
+    DetailGerantComponent,
 
     AjoutUtilisateurComponent,
     NavigationComponent,
