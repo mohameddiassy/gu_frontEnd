@@ -1,37 +1,14 @@
 <p>Informations de l'entreprise</p>
-<div>
-    <div>
-        <input type="text" name="nom_entreprise"  placeholder="nom de l'entreprise" [(ngModel)]="infos_form.nom_entreprise" />
-    </div>
-    <div>
-        <input type="text" name="logo" placeholder="logo" [(ngModel)]="infos_form.logo">
-    </div>
-    <div>
-        <input type="text" name="description" placeholder="description" [(ngModel)]="infos_form.description">
-    </div>
-    <div>
-        <input type="text" name="adresse" placeholder="adresse" [(ngModel)]="infos_form.adresse">
-    </div>
-    <div>
-        <input type="text" name="email" placeholder="email" [(ngModel)]="infos_form.email">
-    </div>
-    <div>
-        <input type="text" name="telephone" placeholder="telephone" [(ngModel)]="infos_form.telephone">
-    </div>
-    <div>
-        <button (click)="inscrire()">Inscrire</button>
-    </div>
-</div>
 <div class="container mt-5">
-    <h2>Liste des produits</h2>
+    <h2>Liste des entreprises</h2>
     <hr>
 
     <br>
     <div class="bg-light shadow-lg rounded p-4">
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
-                <button class="btn btn-success"
-                    [routerLink]="['ajouter-produit']">Ajouter une entreprise</button>
+                <a class="btn btn-success"
+                    [routerLink]="['ajouter-entreprise']">Ajouter une entreprise</a>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
