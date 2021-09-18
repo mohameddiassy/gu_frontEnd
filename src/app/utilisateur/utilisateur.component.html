@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <h2>Liste des entreprises</h2>
+    <h2>Liste des utilisateurs</h2>
     <hr>
 
     <br>
@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
                 <button class="btn btn-success"
-                    [routerLink]="['ajouter-produit']">Ajouter une entreprise</button>
+                    [routerLink]="['ajouter-produit']">Ajouter un utilisateur</button>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
@@ -25,9 +25,9 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Prenom</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Gérant</th>
+                        <th scope="col">Téléphone</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -35,10 +35,9 @@
                     <tr>
                         <th scope="row">1</th>
                         <td><a [routerLink]="['detail-produit']"
-                                class="nav-item">META</a></td>
-                        <td>Dakar</td>
-                        <td><a [routerLink]="['detail-produit']"
                                 class="nav-item">Sara</a></td>
+                        <td>Diallo</td>
+                        <td>776765456</td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <a href="" class="btn btn-success">
