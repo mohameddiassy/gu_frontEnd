@@ -4,7 +4,6 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.css']
 })
 export class InscriptionComponent implements OnInit {
   infos_form:any={prenom:"",nom:"",email:"",telephone:"",profession:"",login:"",mot_de_passe:""}

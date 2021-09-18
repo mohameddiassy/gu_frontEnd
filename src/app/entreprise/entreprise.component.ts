@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-
 @Component({
   selector: 'app-entreprise',
   templateUrl: './entreprise.component.html',
   styleUrls: ['./entreprise.component.css']
 })
 export class EntrepriseComponent implements OnInit {
-  infos_form:any={}
+infos_form:any={}
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
