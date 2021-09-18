@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
+import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
   {path:"",component:AccueilComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:"ajout_utilisateur",component:AjoutUtilisateurComponent},
   {path:"inscription",component:InscriptionComponent},
   {path:"ajouter_produit",component:AjouterProduitComponent},
+  {path:"a-propos",component:AProposComponent}
 ];
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ const routes: Routes = [
     NavigationComponent,
     FooterComponent,
     InscriptionComponent,
-    AjouterProduitComponent
+    AjouterProduitComponent,
+    AProposComponent
   ],
   imports: [
     BrowserModule,
