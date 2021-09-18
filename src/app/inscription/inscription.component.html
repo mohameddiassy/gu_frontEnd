@@ -1,0 +1,36 @@
+<p>Ajouter un nouveau utilisateur de l'application</p>
+<div>
+    <!-- <div>
+        <select  name="entreprise" placeholder="nom" [(ngModel)]="infos_form.nom" >
+            </select>
+    </div> -->
+    <div>
+        <input type="text" name="nom" placeholder="nom" [(ngModel)]="infos_form.nom" />
+    </div>
+    <div>
+        <input type="text" name="prenom" placeholder="prenom" [(ngModel)]="infos_form.prenom">
+    </div>
+    <div>
+        <input type="text" name="email" placeholder="email" [(ngModel)]="infos_form.email">
+    </div>
+    <div>
+        <input type="text" name="telephone" placeholder="telephone" [(ngModel)]="infos_form.telephone">
+    </div>
+    <div>
+        <input type="text" name="profession" placeholder="profession" [(ngModel)]="infos_form.profession">
+    </div>
+    <div>
+        <input type="text" name="login" placeholder="login" [(ngModel)]="infos_form.login">
+    </div>
+    <div>
+        <input type="password" name="mot_de_passe" placeholder="mot_de_passe" [(ngModel)]="infos_form.mot_de_passe">
+    </div>
+  <div>
+        <input type="number" name="privilege" placeholder="privilege" [(ngModel)]="infos_form.privilege">
+    </div>
+
+
+    <div>
+        <button (click)="inscrire()">Inscrire</button>
+    </div>
+</div>

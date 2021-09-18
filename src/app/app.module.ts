@@ -12,16 +12,19 @@ import { ProduitComponent } from './produit/produit.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { AdminComponent } from './admin/admin.component';
 import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
-import { DetailProduitComponent } from './detail-produit/detail-produit.component';
-import { ModifieProduitComponent } from './modifie-produit/modifie-produit.component';
+import { FormsModule } from '@angular/forms';
 import { EntrepriseComponent } from './entreprise/entreprise.component';
-import { AjouterEntrepriseComponent } from './ajouter-entreprise/ajouter-entreprise.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ModifieProduitComponent } from './modifie-produit/modifie-produit.component';
+import { DetailProduitComponent } from './detail-produit/detail-produit.component';
 import { DetailEntrepriseComponent } from './detail-entreprise/detail-entreprise.component';
+import { AjouterEntrepriseComponent } from './ajouter-entreprise/ajouter-entreprise.component';
 import { ModifierEntrepriseComponent } from './modifier-entreprise/modifier-entreprise.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utilisateur.component';
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { DetailUtilisateurComponent } from './detail-utilisateur/detail-utilisateur.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -64,13 +67,19 @@ const routes: Routes = [
     AjoutUtilisateurComponent,
     NavigationComponent,
     FooterComponent,
+    InscriptionComponent,
+    AjouterProduitComponent,
+    AdminComponent,
+    EntrepriseComponent,
     ConnexionComponent,
     AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

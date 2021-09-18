@@ -1,1 +1,27 @@
-<p>ajout-utilisateur works!</p>
+<p>Ajouter un nouveau utilisateur de l'application</p>
+<div>
+    <div>
+        <input type="text" name="nom" [(ngModel)]="infos_form.nom" />
+    </div>
+    <div>
+        <input type="text" name="prenom" [(ngModel)]="infos_form.prenom">
+    </div>
+    <div>
+        <input type="text" name="email" [(ngModel)]="infos_form.email">
+    </div>
+    <div>
+        <input type="text" name="telephone" [(ngModel)]="infos_form.telephone">
+    </div>
+    <div>
+        <input type="text" name="profession" [(ngModel)]="infos_form.profession">
+    </div>
+ 
+  <div>
+        <input type="text" name="privilege" [(ngModel)]="infos_form.privilege">
+    </div>
+
+
+    <div>
+        <button (click)="inscrire()">Inscrire</button>
+    </div>
+</div>
