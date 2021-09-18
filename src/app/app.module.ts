@@ -14,6 +14,10 @@ import { AdminComponent } from './admin/admin.component';
 import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
 import { DetailProduitComponent } from './detail-produit/detail-produit.component';
 import { ModifieProduitComponent } from './modifie-produit/modifie-produit.component';
+import { EntrepriseComponent } from './entreprise/entreprise.component';
+import { AjouterEntrepriseComponent } from './ajouter-entreprise/ajouter-entreprise.component';
+import { DetailEntrepriseComponent } from './detail-entreprise/detail-entreprise.component';
+import { ModifierEntrepriseComponent } from './modifier-entreprise/modifier-entreprise.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -24,6 +28,10 @@ const routes: Routes = [
   { path: "detail-produit", component: DetailProduitComponent },
   { path: "ajouter-produit", component: AjouterProduitComponent },
   { path: "modifier-produit", component: ModifieProduitComponent },
+  { path: "entreprise", component: EntrepriseComponent },
+  { path: "detail-entreprise", component: DetailEntrepriseComponent },
+  { path: "ajouter-entreprise", component: AjouterEntrepriseComponent },
+  { path: "modifier-entreprise", component: ModifierEntrepriseComponent },
 ];
 @NgModule({
   declarations: [
@@ -35,12 +43,15 @@ const routes: Routes = [
     DetailProduitComponent,
     AjouterProduitComponent,
     ModifieProduitComponent,
+    EntrepriseComponent,
+    DetailEntrepriseComponent,
+    AjouterEntrepriseComponent,
+    ModifierEntrepriseComponent,
     AjoutUtilisateurComponent,
     NavigationComponent,
     FooterComponent,
     ConnexionComponent,
     AdminComponent,
-    ModifieProduitComponent,
   ],
   imports: [
     BrowserModule,
