@@ -8,25 +8,39 @@ import { AjoutUtilisateurComponent } from './ajout-utilisateur/ajout-utilisateur
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
-import { InscriptionComponent } from './inscription/inscription.component';
+import { ProduitComponent } from './produit/produit.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { AdminComponent } from './admin/admin.component';
 import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
+import { DetailProduitComponent } from './detail-produit/detail-produit.component';
+import { ModifieProduitComponent } from './modifie-produit/modifie-produit.component';
 
 const routes: Routes = [
-  {path:"",component:AccueilComponent},
-  {path:"accueil",component:AccueilComponent},
-  {path:"ajout_utilisateur",component:AjoutUtilisateurComponent},
-  {path:"inscription",component:InscriptionComponent},
-  {path:"ajouter_produit",component:AjouterProduitComponent},
+  { path: "", component: ConnexionComponent },
+  { path: "accueil", component: AccueilComponent },
+  { path: "admin", component: AdminComponent },
+  { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
+  { path: "produit", component: ProduitComponent },
+  { path: "detail-produit", component: DetailProduitComponent },
+  { path: "ajouter-produit", component: AjouterProduitComponent },
+  { path: "modifier-produit", component: ModifieProduitComponent },
 ];
 @NgModule({
   declarations: [
     AppComponent,
+    ConnexionComponent,
     AccueilComponent,
+    AdminComponent,
+    ProduitComponent,
+    DetailProduitComponent,
+    AjouterProduitComponent,
+    ModifieProduitComponent,
     AjoutUtilisateurComponent,
     NavigationComponent,
     FooterComponent,
-    InscriptionComponent,
-    AjouterProduitComponent
+    ConnexionComponent,
+    AdminComponent,
+    ModifieProduitComponent,
   ],
   imports: [
     BrowserModule,
