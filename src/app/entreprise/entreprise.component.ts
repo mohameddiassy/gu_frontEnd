@@ -15,5 +15,8 @@ export class EntrepriseComponent implements OnInit {
       this.data.les_entreprises=data
     })
   }
+  supprimer_entreprise(){
+    
+  }
 }
 

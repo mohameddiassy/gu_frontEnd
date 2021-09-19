@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -7,13 +8,24 @@ import { DataService } from '../data.service';
   styleUrls: ['./produit.component.css']
 })
 export class ProduitComponent implements OnInit {
-  constructor(public data:DataService) { }
+  id_entreprise:number=0
+  constructor(public data:DataService,private router:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.recevoir_produits()
+    
+    this.router.params.subscribe((params:any)=>{
+      this.id_entreprise=params["id_entreprise"];
+      if (this.id_entreprise) {
+        console.log("id_entreprise est present")
+        this.recevoir_produit_entreprise()
+      } else {
+        console.log("id_entreprise est absent")
+        
+      }
+    })
   }
-  recevoir_produits(){
-    this.data.requete_post("get_all_product.php",{recevoir_produits:true},(data:any)=>{
+  recevoir_produit_entreprise(){
+    this.data.requete_post("get_product_by_entreprise.php",{id_entreprise:this.id_entreprise},(data:any)=>{
       this.data.les_produits=data
     })
   }
@@ -21,7 +33,7 @@ export class ProduitComponent implements OnInit {
     this.data.requete_post("update_product_state.php",{id_produit:un_produit.id_produit},(data:any)=>{
       if(data.status){
         console.log("Suppression effectuée avec succés")
-        this.recevoir_produits()
+        this.recevoir_produit_entreprise()
       }else{
         console.log("Echec de suppression")
       }
