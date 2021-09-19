@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: "modifier-produit", component: ModifieProduitComponent },
   { path: "modifier-produit/:id_produit", component: ModifieProduitComponent },
   { path: "entreprise", component: EntrepriseComponent },
-  { path: "detail-entreprise", component: DetailEntrepriseComponent },
+  { path: "detail-entreprise/:id_entreprise", component: DetailEntrepriseComponent },
   { path: "ajouter-entreprise", component: AjouterEntrepriseComponent },
   { path: "modifier-entreprise", component: ModifierEntrepriseComponent },
   { path: "sorties", component: SortieComponent },

@@ -23,8 +23,24 @@ export class DataService {
       calback(data)
     })
   }
-  listeEntreprise()
-  {
-    return this.http.get(this.url+"get_all_entreprise.php")
+  chargement_image(event:any,page:string,parametres:any,calback:Function){
+    const fileList: FileList = event.target.files;
+    //check whether file is selected or not
+    if (fileList.length > 0) {
+        let formdata = new FormData();
+        for (const key in parametres) {
+          formdata.append(key,parametres[key])
+        }
+        for (let i = 0; i < fileList.length; i++) {
+          formdata.append('file[]', fileList[i]);
+        }
+        console.log("formdata= ",formdata)
+        this.http.post(this.url+page,formdata).subscribe((data:any)=>{
+          console.log("reponse= ",data)
+          calback(data)
+        })
+    }else{
+      console.log("Pas d'image sélectionnée")
+    }
   }
 }
