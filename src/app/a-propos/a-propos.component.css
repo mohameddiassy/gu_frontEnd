@@ -1,0 +1,98 @@
+:host{
+    --col-gray-light: #e6f6f7;
+    --col-gray-light-1: #f6fdfd;
+
+    font-size: 1rem;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+section.section-1{
+    background: linear-gradient(to bottom, var(--col-gray-light), var(--col-gray-light-1));
+    height: 380px;
+    padding: 1.5rem;
+}
+
+.title-section-1{
+    font-size: 2.7rem;
+    line-height: 1.7;
+}
+
+.short-description{
+    font-size: 1.1rem;
+    opacity: .7;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.button-container{
+    width: 100%;
+}
+
+.btn-black{
+    background: black;
+    color: white;
+    border-color: white;
+    margin-right: 1.5rem;
+}
+
+.btn-white{
+    background: white;
+    color: black;
+    border-color: #000;
+}
+
+section.section-2{
+    margin-top: 1.4rem;
+    padding: 2rem;
+}
+
+h1.title-section-2{
+    text-align: center;
+    font-size: 2.5rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+article.description{
+    opacity: .7;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    text-align: justify;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+
+.justify-content-around{
+    justify-content: space-around;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.btn{
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.5rem;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}

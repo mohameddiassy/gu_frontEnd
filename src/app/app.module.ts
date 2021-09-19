@@ -58,7 +58,7 @@ const routes: Routes = [
   { path: "ajouter-gerant", component: AjouterGerantComponent },
   { path: "modifier-gerant", component: ModifierGerantComponent },
   { path: "detail-gerant", component: DetailGerantComponent },
-
+  { path: "a-propos", component: AProposComponent },
 ];
 @NgModule({
   declarations: [
@@ -82,19 +82,16 @@ const routes: Routes = [
     AjouterGerantComponent,
     ModifierGerantComponent,
     DetailGerantComponent,
-
     AjoutUtilisateurComponent,
     NavigationComponent,
     FooterComponent,
     InscriptionComponent,
     AjouterProduitComponent,
-    AdminComponent,
+    AProposComponent,
     EntrepriseComponent,
     ConnexionComponent,
-    AdminComponent,
     SortieComponent,
     AjouterSortieComponent,
-    AProposComponent,
   ],
   imports: [
     BrowserModule,

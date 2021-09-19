@@ -43,13 +43,19 @@
                         <td class="text-right">
                             <div class="btn-group">
                                 <a [routerLink]="['/modifier-produit',un_produit.id_produit]" class="btn btn-success">
-                                    Modifier
+                                    <span class="material-icons">
+                                        edit
+                                        </span>
                                 </a>
                                 <a [routerLink]="['/ajouter-sortie',un_produit.id_produit]" class="btn btn-primary">
-                                    +
+                                    <span class="material-icons">
+                                        add
+                                        </span>
                                 </a>
                                 <button class="btn btn-danger" (click)="supprimer(un_produit)">
-                                    Sup
+                                    <span class="material-icons">
+                                        delete
+                                        </span>
                                 </button>
                             </div>
                         </td>

@@ -11,5 +11,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  message_texte(){
+    return "https://api.whatsapp.com/send?phone=+221778637918";
+  }
 }
