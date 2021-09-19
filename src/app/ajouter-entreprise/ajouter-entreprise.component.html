@@ -58,6 +58,13 @@
                     </div>
 
                 </form>
+                
+                <div *ngIf="succes" class="alert alert-success" role="alert">
+                    Entreprise ajouté avec succés!
+                </div>
+                <div *ngIf="echec" class="alert alert-danger" role="alert">
+                    Erreur d'ajout de l'entreprise!
+                </div>
                 <div class="mt-8">
                     <button type="button" class="col-md-2 btn btn-primary float-right" (click)="inscrire()">Inscrire</button>
                    </div>

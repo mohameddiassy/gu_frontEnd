@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ajouter-gerant.component.css']
 })
 export class AjouterGerantComponent implements OnInit {
-
+  
+  succes=false
+  echec=false
   constructor() { }
 
   ngOnInit(): void {

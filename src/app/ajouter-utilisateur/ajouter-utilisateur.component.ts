@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ajouter-utilisateur.component.css']
 })
 export class AjouterUtilisateurComponent implements OnInit {
-
+  
+  succes=false
+  echec=false
   constructor() { }
 
   ngOnInit(): void {

@@ -9,13 +9,16 @@ import { DataService } from '../data.service';
 })
 export class AjouterSortieComponent implements OnInit {
   sortie={quantite:"",id_produit:"",id_enregistreur:1}
+  
+  succes=false
+  echec=false
   constructor(public data:DataService,private router:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.router.params.subscribe((params:any)=>{
       this.sortie.id_produit=params["id_produit"]
       if(this.sortie.id_produit){
-        
+
         console.log("id_produit est renseigne")
       }else{
         console.log("pas de id_produit")
@@ -24,7 +27,12 @@ export class AjouterSortieComponent implements OnInit {
   }
   ajouter(){
     this.data.requete_post("add_sortie.php",{sortie:JSON.stringify(this.sortie)},(data:any)=>{
-
+      if (data.status) {
+        this.succes=true
+        this.sortie={quantite:"",id_produit:"",id_enregistreur:1}
+      } else {
+        this.echec=false
+      }
     })
   }
 

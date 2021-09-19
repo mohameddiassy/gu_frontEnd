@@ -9,6 +9,7 @@ import { DataService } from '../data.service';
 })
 export class ConnexionComponent implements OnInit {
   utilisateur:any={login:"",mot_de_passe:""}
+  echec_connexion=false
   constructor(public data:DataService,private route:Router) { }
 
   ngOnInit(): void {
@@ -22,6 +23,7 @@ export class ConnexionComponent implements OnInit {
         this.route.navigate(['/produit'])
       }else{
         console.log("Echec de connexion")
+        this.echec_connexion=true
       }
     })
   }
