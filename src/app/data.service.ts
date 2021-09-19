@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  url="http://192.168.1.8/gestionuniversel_back/"
+  url="https://logo.groupemeta.com/gestionuniversel_back/"
+  // url="http://192.168.1.8/gestionuniversel_back/"
   les_produits:any[]=[]
   les_sorties:any[]=[]
   utilisateur_connecte:any
