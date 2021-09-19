@@ -25,23 +25,26 @@ export class DataService {
     })
   }
   chargement_image(event:any,page:string,parametres:any,calback:Function){
-    const fileList: FileList = event.target.files;
-    //check whether file is selected or not
-    if (fileList.length > 0) {
-        let formdata = new FormData();
-        for (const key in parametres) {
-          formdata.append(key,parametres[key])
-        }
-        for (let i = 0; i < fileList.length; i++) {
-          formdata.append('file[]', fileList[i]);
-        }
-        console.log("formdata= ",formdata)
-        this.http.post(this.url+page,formdata).subscribe((data:any)=>{
-          console.log("reponse= ",data)
-          calback(data)
-        })
-    }else{
-      console.log("Pas d'image sélectionnée")
+    let formdata = new FormData();
+    for (const key in parametres) {
+      formdata.append(key,parametres[key])
     }
+    if (event) {
+      const fileList: FileList = event.target.files;
+      //check whether file is selected or not
+      if (fileList.length > 0) {
+          for (let i = 0; i < fileList.length; i++) {
+            formdata.append('file[]', fileList[i]);
+          }
+      }else{
+        console.log("Pas d'image sélectionnée")
+      }
+    }
+    console.log("formdata= ",formdata)
+    this.http.post(this.url+page,formdata).subscribe((data:any)=>{
+      console.log("reponse= ",data)
+      calback(data)
+    })
+    
   }
 }

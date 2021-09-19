@@ -1,13 +1,11 @@
 <div class="container mt-5">
     <h2>Liste des produits</h2>
-    <hr>
-
-    <br>
+    
     <div class="bg-light shadow-lg rounded p-4">
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
                 <button class="btn btn-success"
-                    [routerLink]="['/ajouter-produit']">Ajouter un produit</button>
+                    [routerLink]="['/ajouter-produit',id_entreprise]">Ajouter un produit</button>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
@@ -35,7 +33,7 @@
                 <tbody>
                     <tr *ngFor="let un_produit of data.les_produits">
                         <th scope="row">1</th>
-                        <td><a [routerLink]="['detail-produit']"
+                        <td><a [routerLink]="['/detail-produit']"
                                 class="nav-item">{{un_produit.nom_produit}}</a></td>
                         <td>{{un_produit.description}}</td>
                         <td>{{un_produit.stock}}</td>
