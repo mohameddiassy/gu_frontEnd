@@ -9,6 +9,7 @@ export class DataService {
   les_produits:any[]=[]
   les_sorties:any[]=[]
   utilisateur_connecte:any
+  les_entreprises:any[]=[]
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})
   requete_post(page:string,parametres:any,calback:Function){
@@ -20,5 +21,9 @@ export class DataService {
       console.log("reponse= ",data)
       calback(data)
     })
+  }
+  listeEntreprise()
+  {
+    return this.http.get(this.url+"get_all_entreprise.php")
   }
 }

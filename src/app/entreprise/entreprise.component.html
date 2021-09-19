@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
                 <a class="btn btn-success"
-                    [routerLink]="['ajouter-entreprise']">Ajouter une entreprise</a>
+                    [routerLink]="['/ajouter-entreprise']">Ajouter une entreprise</a>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
@@ -26,20 +26,24 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Gérant</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">nom_entreprise</th>
+                        <th scope="col">adresse</th>
+                        <th scope="col">email</th>
+                        <th scope="col">telephone</th>
+                        <th scope="col">ACTION</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
+                   
+                    <tr *ngFor="let item of data.les_entreprises">
+                        <td>{{item.id_entreprise}}</td>
+                        <th scope="row">{{item.nom_entreprise}}</th>
                         <td><a [routerLink]="['detail-produit']"
-                                class="nav-item">META</a></td>
-                        <td>Dakar</td>
+                                class="nav-item">{{item.adresse}}</a></td>
+                        <td>{{item.email}}</td>
                         <td><a [routerLink]="['detail-produit']"
-                                class="nav-item">Sara</a></td>
+                                class="nav-item">{{item.telephone}}</a></td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <a href="" class="btn btn-success">
