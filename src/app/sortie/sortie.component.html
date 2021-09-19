@@ -1,5 +1,5 @@
 <div class="container mt-5">
-    <h2>Liste des produits</h2>
+    <h2>Les Sorties</h2>
     <hr>
 
     <br>
@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
                 <button class="btn btn-success"
-                    [routerLink]="['/ajouter-produit']">Ajouter un produit</button>
+                    [routerLink]="['/ajouter-sortie']">Ajouter Sortie</button>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
@@ -26,27 +26,26 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Stock</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Quantité</th>
                         <th scope="col">Prix Unitaire</th>
+                        <th scope="col">Total</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let un_produit of data.les_produits">
+                    <tr *ngFor="let une_sortie of data.les_sorties">
                         <th scope="row">1</th>
-                        <td><a [routerLink]="['detail-produit']"
-                                class="nav-item">{{un_produit.nom_produit}}</a></td>
-                        <td>{{un_produit.description}}</td>
-                        <td>{{un_produit.stock}}</td>
-                        <td>{{un_produit.prix_unitaire}}</td>
+                        <td><a [routerLink]="['/detail-produit']"
+                                class="nav-item">{{une_sortie.nom_produit}}</a></td>
+                        <td>{{une_sortie.description}}</td>
+                        <td>{{une_sortie.quantite}}</td>
+                        <td>{{une_sortie.prix_unitaire}}</td>
+                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
                         <td class="text-right">
                             <div class="btn-group">
-                                <a [routerLink]="['/modifier-produit',un_produit.id_produit]" class="btn btn-success">
+                                <a [routerLink]="['/modifier-produit',une_sortie.id_produit]" class="btn btn-success">
                                     Modifier
-                                </a>
-                                <a [routerLink]="['/ajouter-sortie',un_produit.id_produit]" class="btn btn-primary">
-                                    +
                                 </a>
                                 <button class="btn btn-danger">
                                     Sup

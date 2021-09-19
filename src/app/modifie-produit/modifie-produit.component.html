@@ -3,7 +3,7 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title mt-5">Ajouter un Produit</h3>
+                    <h3 class="page-title mt-5">Modifier le produit {{produit.nom_produit}}</h3>
                 </div>
             </div>
         </div>
@@ -14,22 +14,28 @@
                     <div class="row formtype">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Libelle</label>
-                                <input type="text" class="form-control">
+                                <label>Nom Produit</label>
+                                <input type="text" class="form-control" name="nom_produit" [(ngModel)]="produit.nom_produit">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" class="form-control" name="description" [(ngModel)]="produit.description">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Quantité</label>
-                                <input type="number" class="form-control">
+                                <label>Stock</label>
+                                <input type="number" class="form-control" name="stock" [(ngModel)]="produit.stock">
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Prix Unitaire</label>
-                                <input type="number" class="form-control">
+                                <input type="text" class="form-control" name="prix_unitaire" [(ngModel)]="produit.prix_unitaire">
                             </div>
                         </div>
                     </div>
@@ -39,7 +45,7 @@
         </div>
         <div class="mt-4">
             <button type="button" class="col-md-2 btn btn-primary float-right"
-                ng-click="">Modifier</button>
+                (click)="modifier()">Modifier</button>
         </div>
     </div>
 </div>
