@@ -25,6 +25,8 @@ import { AjouterUtilisateurComponent } from './ajouter-utilisateur/ajouter-utili
 import { ModifierUtilisateurComponent } from './modifier-utilisateur/modifier-utilisateur.component';
 import { DetailUtilisateurComponent } from './detail-utilisateur/detail-utilisateur.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { SortieComponent } from './sortie/sortie.component';
+import { AjouterSortieComponent } from './ajouter-sortie/ajouter-sortie.component';
 import { GerantComponent } from './gerant/gerant.component';
 import { AjouterGerantComponent } from './ajouter-gerant/ajouter-gerant.component';
 import { ModifierGerantComponent } from './modifier-gerant/modifier-gerant.component';
@@ -32,17 +34,21 @@ import { DetailGerantComponent } from './detail-gerant/detail-gerant.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
-  { path: "accueil", component: AccueilComponent },
+  { path: "accueil", component: ConnexionComponent },
   { path: "admin", component: AdminComponent },
   { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
   { path: "produit", component: ProduitComponent },
   { path: "detail-produit", component: DetailProduitComponent },
   { path: "ajouter-produit", component: AjouterProduitComponent },
   { path: "modifier-produit", component: ModifieProduitComponent },
+  { path: "modifier-produit/:id_produit", component: ModifieProduitComponent },
   { path: "entreprise", component: EntrepriseComponent },
   { path: "detail-entreprise", component: DetailEntrepriseComponent },
   { path: "ajouter-entreprise", component: AjouterEntrepriseComponent },
   { path: "modifier-entreprise", component: ModifierEntrepriseComponent },
+  { path: "sorties", component: SortieComponent },
+  { path: "ajouter-sortie/:id_produit", component: AjouterSortieComponent },
+  { path: "ajouter-sortie", component: AjouterSortieComponent },
   { path: "utilisateur", component: UtilisateurComponent },
   { path: "ajouter-utilisateur", component: AjoutUtilisateurComponent },
   { path: "modifier-utilisateur", component: ModifierUtilisateurComponent },
@@ -51,7 +57,6 @@ const routes: Routes = [
   { path: "ajouter-gerant", component: AjouterGerantComponent },
   { path: "modifier-gerant", component: ModifierGerantComponent },
   { path: "detail-gerant", component: DetailGerantComponent },
-
 
 ];
 @NgModule({
@@ -86,6 +91,8 @@ const routes: Routes = [
     EntrepriseComponent,
     ConnexionComponent,
     AdminComponent,
+    SortieComponent,
+    AjouterSortieComponent,
   ],
   imports: [
     BrowserModule,
