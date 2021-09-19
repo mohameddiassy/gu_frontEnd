@@ -11,5 +11,5 @@ export class DetailGerantComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
 }
