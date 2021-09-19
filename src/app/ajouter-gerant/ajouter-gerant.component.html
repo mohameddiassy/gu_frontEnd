@@ -9,27 +9,60 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-4">
+
+            </div>
+            <div class="col-lg-8">
                 <form>
                     <div class="row formtype">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Prénom</label>
-                                <input type="text" class="form-control">
+                       <div class="col-md-8">
+                        <div class="form-group row">
+                            <label  class="col-lg-4 col-form-label">name</label>
+                                <input type="text" name="nom" placeholder="nom" [(ngModel)]="infos_form.nom" class="form-control">
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Nom</label>
-                                <input type="number" class="form-control">
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">prenom</label>
+                                <input type="text" name="prenom" placeholder="prenom" [(ngModel)]="infos_form.prenom" class="form-control">
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Téléphone</label>
-                                <input type="number" class="form-control">
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">email</label>
+                                <input type="text" name="email" placeholder="email" [(ngModel)]="infos_form.email"                                class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">telephone</label>    
+                                    <input type="text" name="telephone" placeholder="telephone" [(ngModel)]="infos_form.telephone"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">profession</label>
+                                <input type="text" name="profession" placeholder="profession" [(ngModel)]="infos_form.profession"     class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">login</label>
+                                <input type="text" name="login" placeholder="login" [(ngModel)]="infos_form.login" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">mot_de_passe</label>
+                                <input type="password" name="mot_de_passe" placeholder="mot_de_passe" [(ngModel)]="infos_form.mot_de_passe"           class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">privilege</label>
+                                <input type="number" name="privilege" placeholder="privilege" [(ngModel)]="infos_form.privilege"                                class="form-control">
                             </div>
                         </div>
                     </div>
@@ -46,7 +79,7 @@
         </div>
         <div class="mt-4">
             <button type="button" class="col-md-2 btn btn-primary float-right"
-                ng-click="">Ajouter</button>
+                (click)="inscrire()">Ajouter</button>
         </div>
     </div>
 </div>
