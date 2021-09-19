@@ -7,10 +7,13 @@ import { DataService } from '../data.service';
 })
 export class EntrepriseComponent implements OnInit {
   listeEntreprise : any;
-  constructor(private entrepriseService : DataService) { }
+
+  constructor(public data : DataService) { }
   
   ngOnInit(): void {
-  
+    this.data.requete_post("get_all_entreprise.php",{},(data:any)=>{
+      this.data.les_entreprises=data
+    })
   }
 }
 
