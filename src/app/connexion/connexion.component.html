@@ -16,18 +16,18 @@
                                 plateforme</p>
                             <div class="form-group mb-1">
                                 <input class="form-control" type="text"
-                                    placeholder="Login">
+                                    placeholder="Login" name="login" [(ngModel)]="utilisateur.login">
                             </div>
                             <div class="form-group mb-1">
                                 <input class="form-control" type="text"
-                                    placeholder="Password">
+                                    placeholder="Password"  name="mot_de_passe" [(ngModel)]="utilisateur.mot_de_passe">
                             </div>
                             <div class="form-group mt-3">
-                                <a [routerLink]="['produit']" class="col-12
+                                <a  class="col-12
                                     col-sm-12 col-md-12
                                     col-lg-12 btn
                                     btn-primary
-                                    btn-block">Login</a>
+                                    btn-block" (click)="connecter()"> Se connecter</a>
                             </div>
                             <div class="text-center mt-3">
                                 <a>Mot de passe
