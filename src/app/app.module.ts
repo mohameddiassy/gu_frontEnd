@@ -59,6 +59,8 @@ const routes: Routes = [
   { path: "modifier-gerant", component: ModifierGerantComponent },
   { path: "detail-gerant", component: DetailGerantComponent },
   { path: "a-propos", component: AProposComponent },
+  { path: "detail-gerant/:id_agent", component: DetailGerantComponent },
+
 ];
 @NgModule({
   declarations: [

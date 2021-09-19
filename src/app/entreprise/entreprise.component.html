@@ -30,6 +30,7 @@
                         <th scope="col">adresse</th>
                         <th scope="col">email</th>
                         <th scope="col">telephone</th>
+                        <th scope="col">Logo</th>
                         <th scope="col">ACTION</th>
 
                     </tr>
@@ -42,8 +43,11 @@
                         <td><a [routerLink]="['/detail-entreprise',item.id_entreprise]"
                                 class="nav-item">{{item.adresse}}</a></td>
                         <td>{{item.email}}</td>
+                      
                         <td><a [routerLink]="['detail-produit']"
                                 class="nav-item">{{item.telephone}}</a></td>
+                                
+                                <td><img class="img-fluid col-md-1" [src]="data.url+'/images/'+item.logo" /></td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <a href="" class="btn btn-success">

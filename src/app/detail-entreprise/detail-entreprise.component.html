@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let un_agents of data.les_agents">
-                        <th scope="row">{{un_agents.id_agent}}</th>
+                        <th scope="row">{{un_agents.id_personne}}</th>
                         <td>{{un_agents.prenom}}</td>
                         <td>{{un_agents.nom}}</td>
                         <td>{{un_agents.email}}</td>
@@ -56,14 +56,10 @@
                         <td>{{un_agents.profession}}</td>
                        <td class="text-right">
                             <div class="btn-group">
-                                <a href="" class="btn btn-success">
-
-                                    Edit |
-
+                                <a [routerLink]="['/detail-gerant',un_agents.id_personne]" class="btn btn-success">
                                     <span class="material-icons">
                                     edit
                                     </span>
-
                                 </a>
                                 <button class="btn btn-danger">
                                     <span class="material-icons">
