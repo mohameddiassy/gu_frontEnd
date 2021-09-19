@@ -1,1 +1,26 @@
-<p>accueil works!</p>
+<div class="main-container">
+    <section class="section-1 d-flex row">
+        <div class="col d-flex flex-column justify-content-center align-items-center">
+            <h1 class="title-section-1">Gérez votre stock facilement</h1>
+            <p class="short-description">Gérez le stock de vos magasins, boutiques, pharmacie ou boulangérie avec une seule et unique application accessible de partout</p>
+            <div class="button-container d-flex justify-content-center">
+                <button class="btn btn-black" [routerLink]="['/connexion']">Gérez Mon Entreprise</button>
+                <a class="btn btn-black" href="https://api.whatsapp.com/send?phone=+221778637918">Nous contacter</a>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+            <img src="../../assets/images/gestion-stock.png" alt="Gestion stock">
+        </div>
+    </section>
+    <section class="section-2">
+        <h1 class="title-section-2">Fonctionnalités de l'application</h1>
+        <article class="description">L'application est disponible sur toutes les plateforme (Ordinateur, téléphone) avec un niveau de sécurité et une fléxibilité incontournable</article>
+        <article>Une fois que votre magasins ou boutique est inscrit</article>
+        <ol>
+            <li>Vous pouvez manager votre équipe</li>
+            <li>Gérer votre stock</li>
+            <li>Suivre les sorties de votre stock</li>
+            <li>Personnaliser les informations de votre entreprise</li>
+        </ol>
+    </section>
+</div>

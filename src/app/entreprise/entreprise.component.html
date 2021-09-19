@@ -18,6 +18,13 @@
             </div>
         </div>
         <div class="table-responsive">
+            
+            <div *ngIf="succes" class="alert alert-success" role="alert">
+                Entreprise supprimée avec succés!
+            </div>
+            <div *ngIf="echec" class="alert alert-danger" role="alert">
+                Echec de suppression de l'entreprise!
+            </div>
             <table class="table table-stripped table
                 table-hover table-center mb-0 bg-light">
 
@@ -49,7 +56,7 @@
                                         edit
                                     </span>
                                 </a>
-                                <button (click)="supprimer_entreprise()" class="btn btn-danger">
+                                <button (click)="supprimer_entreprise(item)" class="btn btn-danger">
                                     <span class="material-icons">
                                         delete
                                     </span>

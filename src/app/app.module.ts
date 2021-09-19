@@ -34,8 +34,9 @@ import { DetailGerantComponent } from './detail-gerant/detail-gerant.component';
 import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
-  { path: "", component: ConnexionComponent },
-  { path: "accueil", component: ConnexionComponent },
+  { path: "", component: AccueilComponent },
+  { path: "accueil", component: AccueilComponent },
+  { path: "connexion", component: ConnexionComponent },
   { path: "admin", component: AdminComponent },
   { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
   { path: "produit/:id_entreprise", component: ProduitComponent },
