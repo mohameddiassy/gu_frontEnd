@@ -1,0 +1,45 @@
+<div>
+    <div class="main-wrapper login-body">
+
+        <div class="m-5">
+            <div class="col-12 col-sm-9 col-md-8 col-lg-7 m-auto bg-light
+                login-wrapper shadow-lg rounded">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img class="img-fluid" src="./assets/logo-2.png"
+                            alt="Logo">
+                    </div>
+                    <div class="col-md-6 login-right">
+                        <div class="login-right-wrap">
+                            <h1>Connexion</h1>
+                            <p class="account-subtitle">Accéder à la
+                                plateforme</p>
+                            <div *ngIf="echec_connexion" class="alert alert-danger" role="alert">
+                                Login ou mot de pass incorrect!
+                            </div>
+                            <div class="form-group mb-1">
+                                <input class="form-control" type="text"
+                                    placeholder="Login" name="login" [(ngModel)]="utilisateur.login">
+                            </div>
+                            <div class="form-group mb-1">
+                                <input class="form-control" type="text"
+                                    placeholder="Password"  name="mot_de_passe" [(ngModel)]="utilisateur.mot_de_passe">
+                            </div>
+                            <div class="form-group mt-3">
+                                <a  class="col-12
+                                    col-sm-12 col-md-12
+                                    col-lg-12 btn
+                                    btn-primary
+                                    btn-block" (click)="connecter()"> Se connecter</a>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a>Mot de passe
+                                    oublié</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

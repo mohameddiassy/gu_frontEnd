@@ -1,0 +1,78 @@
+<div>
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-title mt-5">Ajouter une entreprise</h3>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-4" >
+             la politique d'ajout des utilisateurs
+             <img class="img-fluid" src="./assets/new2.jpg"
+             alt="Logo">
+            </div>
+            <div class="col-8">
+                <form>
+                    <div class="row formtype">
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label  class="col-lg-4 col-form-label">nom_entreprise:</label>
+                                <input type="text" name="nom_entreprise"  placeholder="nom de l'entreprise" [(ngModel)]="infos_form.nom_entreprise"  class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label class="col-form-label">logo</label>
+                                <input type="text" name="logo" placeholder="logo" [(ngModel)]="infos_form.logo"   class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label class="col-form-label">description</label>
+                                <input type="text" name="description" placeholder="description" [(ngModel)]="infos_form.description"    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label class="col-form-label">adresse</label>
+                                <input type="text" name="adresse" placeholder="adresse" [(ngModel)]="infos_form.adresse"  class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label class="col-form-label">email</label>
+                                <input type="text" name="email" placeholder="email" [(ngModel)]="infos_form.email"   class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group row">
+                                <label class="col-form-label">telephone</label>
+                                <input type="text" name="telephone" placeholder="telephone" [(ngModel)]="infos_form.telephone" class="form-control">
+                            </div>
+                        </div>
+                  
+                    </div>
+
+                </form>
+                
+                <div *ngIf="succes" class="alert alert-success" role="alert">
+                    Entreprise ajouté avec succés!
+                </div>
+                <div *ngIf="echec" class="alert alert-danger" role="alert">
+                    Erreur d'ajout de l'entreprise!
+                </div>
+                <div class="mt-8">
+                    <button type="button" class="col-md-2 btn btn-primary float-right" (click)="inscrire()">Inscrire</button>
+                   </div>
+            </div>
+            
+        </div>
+     
+            
+            
+    </div>
+</div>
