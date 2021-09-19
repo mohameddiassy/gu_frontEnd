@@ -39,7 +39,7 @@
                     <tr *ngFor="let item of data.les_entreprises">
                         <td>{{item.id_entreprise}}</td>
                         <th scope="row">{{item.nom_entreprise}}</th>
-                        <td><a [routerLink]="['detail-produit']"
+                        <td><a [routerLink]="['/detail-entreprise',item.id_entreprise]"
                                 class="nav-item">{{item.adresse}}</a></td>
                         <td>{{item.email}}</td>
                         <td><a [routerLink]="['detail-produit']"

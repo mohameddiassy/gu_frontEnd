@@ -12,13 +12,14 @@ export class AjouterEntrepriseComponent implements OnInit {
   
   succes=false
   echec=false
+  event:any
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
   }
   inscrire(){
     console.log("les informations du formulaire sont: ",this.infos_form)
-    this.data.requete_post("info_entreprise.php",{utilisateur:JSON.stringify(this.infos_form)},(data:any)=>{
+    this.data.chargement_image(this.event ,"info_entreprise.php",{entreprise:JSON.stringify(this.infos_form)},(data:any)=>{
       if (data.status) {
         this.succes=true
         this.infos_form={}
@@ -26,6 +27,10 @@ export class AjouterEntrepriseComponent implements OnInit {
         this.echec=false
       }
     })
+  }
+  setevent(event:any){
+    this.event=event
+    console.log("event= ",event)
   }
 }
 
