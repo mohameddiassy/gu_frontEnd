@@ -23,6 +23,13 @@
                 </form>
             </div>
         </div>
+        
+        <div *ngIf="succes" class="alert alert-success" role="alert">
+            Utilisateur ajouté avec succés!
+        </div>
+        <div *ngIf="echec" class="alert alert-danger" role="alert">
+            Erreur d'ajout de l'utilisateur!
+        </div>
         <div class="mt-4">
             <button type="button" class="col-md-2 btn btn-primary float-right"
                 (click)="ajouter()">Ajouter Sortie</button>

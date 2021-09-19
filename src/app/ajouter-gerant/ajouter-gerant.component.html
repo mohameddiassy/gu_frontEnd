@@ -70,6 +70,13 @@
                 </form>
             </div>
         </div>
+        
+        <div *ngIf="succes" class="alert alert-success" role="alert">
+            Gérant ajouté avec succés!
+        </div>
+        <div *ngIf="echec" class="alert alert-danger" role="alert">
+            Erreur d'ajout d'un gérant!
+        </div>
         <div class="mt-4">
             <button type="button" class="col-md-2 btn btn-primary float-right"
                 (click)="inscrire()">Ajouter</button>

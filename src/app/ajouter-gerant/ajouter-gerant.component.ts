@@ -7,8 +7,12 @@ import { DataService } from '../data.service';
   styleUrls: ['./ajouter-gerant.component.css']
 })
 export class AjouterGerantComponent implements OnInit {
+
   infos_form:any={prenom:"",nom:"",email:"",telephone:"",profession:"",login:"",mot_de_passe:""}
   constructor(public data:DataService) { }
+  succes=false
+  echec=false
+
 
   ngOnInit(): void {
   }

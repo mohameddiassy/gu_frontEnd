@@ -31,6 +31,7 @@ import { GerantComponent } from './gerant/gerant.component';
 import { AjouterGerantComponent } from './ajouter-gerant/ajouter-gerant.component';
 import { ModifierGerantComponent } from './modifier-gerant/modifier-gerant.component';
 import { DetailGerantComponent } from './detail-gerant/detail-gerant.component';
+import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -93,6 +94,7 @@ const routes: Routes = [
     AdminComponent,
     SortieComponent,
     AjouterSortieComponent,
+    AProposComponent,
   ],
   imports: [
     BrowserModule,

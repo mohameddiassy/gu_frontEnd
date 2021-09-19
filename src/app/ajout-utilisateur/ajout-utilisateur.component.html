@@ -20,7 +20,12 @@
         <input type="text" name="privilege" [(ngModel)]="infos_form.privilege">
     </div>
 
-
+    <div *ngIf="succes" class="alert alert-success" role="alert">
+        Utilisateur ajouté avec succés!
+    </div>
+    <div *ngIf="echec" class="alert alert-danger" role="alert">
+        Erreur d'ajout de l'utilisateur!
+    </div>
     <div>
         <button (click)="inscrire()">Inscrire</button>
     </div>

@@ -8,13 +8,20 @@ import { DataService } from '../data.service';
 })
 export class AjouterProduitComponent implements OnInit {
   produit={nom_produit:"",description:"",stock:0,prix_unitaire:""}
+  
+  succes=false
+  echec=false
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
   }
   ajouter(){
     this.data.requete_post("add_product.php",{produit:JSON.stringify(this.produit)},(data:any)=>{
-
+      if (data.status) {
+        this.succes=true
+      } else {
+        this.echec=false
+      }
     })
   }
 }

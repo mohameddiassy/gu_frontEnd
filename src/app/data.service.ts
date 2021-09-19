@@ -5,9 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
+  // url="https://gu.groupemeta.com/"
   url="http://192.168.1.8/gestionuniversel_back/"
   les_produits:any[]=[]
   les_sorties:any[]=[]
+  utilisateur_connecte:any
   les_entreprises:any[]=[]
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})

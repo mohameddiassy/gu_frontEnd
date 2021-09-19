@@ -48,7 +48,7 @@
                                 <a [routerLink]="['/ajouter-sortie',un_produit.id_produit]" class="btn btn-primary">
                                     +
                                 </a>
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger" (click)="supprimer(un_produit)">
                                     Sup
                                 </button>
                             </div>
