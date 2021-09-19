@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
 })
 export class ProduitComponent implements OnInit {
   id_entreprise:number=0
-  constructor(public data:DataService,private router:ActivatedRoute) { }
+  constructor(public data:DataService,private router:ActivatedRoute,private route:Router) { }
 
   ngOnInit(): void {
     
@@ -39,5 +39,12 @@ export class ProduitComponent implements OnInit {
       }
     })
   }
-
+  ajouter_produit(){
+    console.log(this.data.utilisateur_connecte)
+    if(this.data.utilisateur_connecte){
+      this.route.navigate(["/ajouter-produit",this.data.utilisateur_connecte.id_personne])
+    }else{
+      this.route.navigate(["/connexion"])
+    }
+  }
 }

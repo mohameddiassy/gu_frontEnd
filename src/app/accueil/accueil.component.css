@@ -96,3 +96,6 @@ article.description{
 .btn:hover{
     transform: scale(1.1);
 }
+.image{
+    width: 300px;
+}

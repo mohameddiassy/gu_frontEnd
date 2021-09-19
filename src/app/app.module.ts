@@ -34,14 +34,14 @@ import { DetailGerantComponent } from './detail-gerant/detail-gerant.component';
 import { AProposComponent } from './a-propos/a-propos.component';
 
 const routes: Routes = [
-  { path: "", component: ConnexionComponent },
-  { path: "accueil", component: ConnexionComponent },
+  { path: "", component: AccueilComponent },
+  { path: "accueil", component: AccueilComponent },
   { path: "connexion", component: ConnexionComponent },
   { path: "admin", component: AdminComponent },
   { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
   { path: "produit/:id_entreprise", component: ProduitComponent },
   { path: "detail-produit", component: DetailProduitComponent },
-  { path: "ajouter-produit/:id_entreprise", component: AjouterProduitComponent },
+  { path: "ajouter-produit/:id_enregistreur", component: AjouterProduitComponent },
   { path: "modifier-produit", component: ModifieProduitComponent },
   { path: "modifier-produit/:id_produit", component: ModifieProduitComponent },
   { path: "entreprise", component: EntrepriseComponent },

@@ -18,7 +18,7 @@ export class ConnexionComponent implements OnInit {
     console.log(this.utilisateur)
     this.data.requete_post("get_utilisateur.php",{utilisateur:JSON.stringify(this.utilisateur)},(data:any)=>{
       if(data.status){
-        data.utilisateur_connecte=data.personne
+        this.data.utilisateur_connecte=data.personne
         console.log("Connexion effectuée avec succés")
         this.route.navigate(['/produit',data.personne.id_entreprise])
       }else{
