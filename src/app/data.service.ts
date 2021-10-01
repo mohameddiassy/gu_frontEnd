@@ -34,6 +34,8 @@ export class DataService {
     {nom:"Sel",id:3},
     {nom:"Levure",id:4},
   ]
+  closebool: boolean=false;
+  recherche_hautgauche=""
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})
   requete_post(page:string,parametres:any,calback:Function){
@@ -68,10 +70,10 @@ export class DataService {
       calback(data)
     })
   }
-  sendClick(item:any){
+  sendBasGaucheClick(item:any){
     this.subject.next(item)
   }
-  getClick():Observable<any>{
+  getBasGaucheClick():Observable<any>{
     return this.subject.asObservable()
   }
   sendCloseClick(){
@@ -79,5 +81,10 @@ export class DataService {
   }
   getCloseClick():Observable<any>{
     return this.subjectclose.asObservable()
+  }
+  recevoir_sorties(date:string){
+    this.requete_post("get_sortie_by_id_date.php",{id_utilisateur:1,date:date},(data:any)=>{
+      this.les_sorties=data
+    })
   }
 }

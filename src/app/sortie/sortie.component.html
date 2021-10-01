@@ -1,21 +1,19 @@
-<div class="container mt-5">
-    <h2>Les Sorties</h2>
+<div class="container mt-1"  *ngIf="item">
+    <h2>Les Sorties du {{item.date}}</h2>
     <hr>
-
-    <br>
     <div class="bg-light shadow-lg rounded p-4">
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
                 <button class="btn btn-success"
-                    [routerLink]="['/ajouter-sortie']">Ajouter Sortie</button>
+                    (click)="ajoutersortie()">{{data.closebool?"Fermer":"Ajouter Sortie"}}</button>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
             <div class="form-group col-12 col-md-5 d-flex mb-5">
-                <input type="search" aria-label="Search" class="form-control
+                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
                     me-1"
-                    placeholder="Chercher un produit...">
-                <button class="btn btn-success">Rechercher</button>
+                    placeholder="Chercher une sortie">
+                <!-- <button class="btn btn-success">Rechercher</button> -->
             </div>
         </div>
         <div class="table-responsive">
@@ -26,19 +24,18 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Date</th>
+                        <th scope="col">Heure</th>
                         <th scope="col">Quantité</th>
                         <th scope="col">Prix Unitaire</th>
                         <th scope="col">Total</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of data.les_sorties">
-                        <th scope="row">1</th>
-                        <td><a [routerLink]="['/detail-produit']"
-                                class="nav-item">{{une_sortie.nom_produit}}</a></td>
-                        <td>{{une_sortie.description}}</td>
+                    <tr *ngFor="let une_sortie of data.les_sorties | filter:recherche;let i=index ">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{une_sortie.nom_produit}}</td>
+                        <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.prix_unitaire}}</td>
                         <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
@@ -52,10 +49,14 @@
                                 <button class="btn btn-danger">
                                     <span class="material-icons">
                                         delete
-                                        </span>
+                                    </span>
                                 </button>
                             </div>
                         </td>
+                    </tr>
+                    <tr *ngIf="data.les_sorties.length==0" class="container w-100 center">
+                            <div class="fw-bold">{{item.date}}</div>
+                            <p>Pas de sorties</p>
                     </tr>
                 </tbody>
             </table>

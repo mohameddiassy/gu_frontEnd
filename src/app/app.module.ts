@@ -39,6 +39,7 @@ import { BasGaucheComponent } from './template/bas-gauche/bas-gauche.component';
 import { BasDroiteComponent } from './template/bas-droite/bas-droite.component';
 import { BasDroiteOptionnelComponent } from './template/bas-droite-optionnel/bas-droite-optionnel.component';
 import { HautDroiteOptionnelComponent } from './template/haut-droite-optionnel/haut-droite-optionnel.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes: Routes = [
   { path: "", component: BodyComponent },
@@ -115,7 +116,8 @@ const routes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

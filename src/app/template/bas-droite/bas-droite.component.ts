@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from 'src/app/data.service';
+import { SortieComponent } from 'src/app/sortie/sortie.component';
 
 @Component({
   selector: 'app-bas-droite',
@@ -10,16 +12,17 @@ import { DataService } from 'src/app/data.service';
 export class BasDroiteComponent implements OnInit {
   item:any
   clicksuscription: Subscription;
-  closesuscription: Subscription;
   sortie:any
   option="1"
-  closebool=false
   closesubscription:Subscription=new Subscription
+  sortiecomponent=SortieComponent
+  ajoutersortiecomponent=AjouterSortieComponent
   constructor(public data:DataService) { 
-    this.clicksuscription=data.getClick().subscribe((data:any)=>{
+    this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
       this.clique(data)
     })
-    this.closesuscription=data.getCloseClick().subscribe(()=>{
+    
+    this.closesubscription=data.getCloseClick().subscribe(()=>{
       this.close()
     })
   }
@@ -45,13 +48,12 @@ export class BasDroiteComponent implements OnInit {
   clique(data:any){
     console.log("clique")
     this.item=data
-    this.closebool=true
     this.recevoir_produit_entreprise()
   }
   changement(){
 
   }
   close(){
-    this.closebool=!this.closebool
+    this.data.closebool=!this.data.closebool
   }
 }

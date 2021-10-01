@@ -11,7 +11,7 @@ export class HautDroiteComponent implements OnInit {
   item:any
   clicksuscription: Subscription = new Subscription;
   constructor(public data:DataService) { 
-    this.clicksuscription=data.getClick().subscribe((data:any)=>{
+    this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
       this.clique(data)
     })
   }

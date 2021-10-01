@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/data.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
 import { BasGaucheComponent } from '../bas-gauche/bas-gauche.component';
@@ -20,9 +21,15 @@ export class BodyComponent implements OnInit {
     hautdroiteoptionnel:HautDroiteOptionnelComponent,
     basdroiteoptionnel:BasDroiteOptionnelComponent
   }
-  constructor() { }
+  constructor(public data:DataService) { }
 
   ngOnInit(): void {
+    this.recevoir_produit_entreprise(11)
   }
-
+  
+  recevoir_produit_entreprise(id_entreprise:number){
+    this.data.requete_post("get_product_by_entreprise.php",{id_entreprise:id_entreprise},(data:any)=>{
+      this.data.les_produits=data
+    })
+  }
 }

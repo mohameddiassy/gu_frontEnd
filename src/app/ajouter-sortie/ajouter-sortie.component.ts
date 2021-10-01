@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 
 @Component({
@@ -8,32 +10,46 @@ import { DataService } from '../data.service';
   styleUrls: ['./ajouter-sortie.component.css']
 })
 export class AjouterSortieComponent implements OnInit {
-  sortie={quantite:"",id_produit:"",id_enregistreur:1}
-  
+  sortie={quantite:"",id_produit:"0",id_enregistreur:1}
+  option="2"
   succes=false
   echec=false
-  constructor(public data:DataService,private router:ActivatedRoute) { }
+  clicksuscription: Subscription = new Subscription;
+  item:any
+  constructor(public data:DataService,private router:ActivatedRoute) { 
+    this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
+      console.log("data data ",data)
+      this.item=data
 
-  ngOnInit(): void {
-    this.router.params.subscribe((params:any)=>{
-      this.sortie.id_produit=params["id_produit"]
-      if(this.sortie.id_produit){
-
-        console.log("id_produit est renseigne")
-      }else{
-        console.log("pas de id_produit")
-      }
     })
   }
+
+  ngOnInit(): void {
+    
+  }
   ajouter(){
-    this.data.requete_post("add_sortie.php",{sortie:JSON.stringify(this.sortie)},(data:any)=>{
-      if (data.status) {
-        this.succes=true
-        this.sortie={quantite:"",id_produit:"",id_enregistreur:1}
-      } else {
-        this.echec=false
-      }
-    })
+    console.log("sortie= ",this.sortie)
+    if (this.sortie.id_produit=="0") {
+      console.log("choisir un produit")
+    } else {
+      this.data.requete_post("add_sortie.php",{sortie:JSON.stringify(this.sortie)},(data:any)=>{
+        if (data.status) {
+          this.succes=true
+          this.sortie.quantite=""
+          // this.data.les_produits.push(data.produit)
+          let date=moment(this.item.date).format("YYYY-MM-DD")
+          this.data.recevoir_sorties(date)
+        } else {
+          this.echec=false
+        }
+      })
+    }
+  }
+  changement(){
+
+  }
+  close(){
+    this.data.closebool=!this.data.closebool
   }
 
 }
