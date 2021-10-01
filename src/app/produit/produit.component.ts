@@ -47,4 +47,12 @@ export class ProduitComponent implements OnInit {
       this.route.navigate(["/connexion"])
     }
   }
+  consulter_sortie(){
+    console.log(this.data.utilisateur_connecte)
+    if(this.data.utilisateur_connecte){
+      this.route.navigate(["/sorties",this.id_entreprise])
+    }else{
+      this.route.navigate(["/connexion"])
+    }
+  }
 }

@@ -1,0 +1,11 @@
+<div class="h-100 ">
+    <select name="option" [(ngModel)]="option" (change)="changement()" class=" form-select" aria-label="Default select example">
+        <option [value]="item.id" *ngFor="let item of data.listehautgauche;let i=index;let f=first">{{item.nom}}</option>
+      </select>
+      <div class="m-1">
+        <input type="text" placeholder="rechercher">
+        <span class="material-icons align-middle">
+          search
+          </span>
+      </div>
+</div>

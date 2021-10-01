@@ -1,0 +1,13 @@
+<div class="card">
+    <div *ngIf="item" class="card-body">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{item.date}}</div>
+            <div class="align-middle">
+                <span (click)="close()" class="material-icons croix">
+                    {{"close"}}
+                </span>
+            </div>
+            <!-- {{data.hautdroite.derniereentreesortie}} -->
+        </div>
+    </div>
+  </div>

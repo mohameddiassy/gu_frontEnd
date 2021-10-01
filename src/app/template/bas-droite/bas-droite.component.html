@@ -1,0 +1,60 @@
+<div >
+    <div class="table-responsive">
+        <table class="table table-stripped table
+            table-hover table-center mb-0 bg-light">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let un_produit of data.les_produits;let index=index">
+                    <th scope="row">{{index}}</th>
+                    <td><a [routerLink]="['/detail-produit']"
+                            class="nav-item">{{un_produit.nom_produit}}</a></td>
+                    <td>{{un_produit.description}}</td>
+                    <td>{{un_produit.stock}}</td>
+                    <td>{{un_produit.prix_unitaire}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <a [routerLink]="['/modifier-produit',un_produit.id_produit]" class="btn btn-success">
+                                <span class="material-icons">
+                                    edit
+                                    </span>
+                            </a>
+                            <a [routerLink]="['/ajouter-sortie',un_produit.id_produit]" class="btn btn-primary">
+                                <span class="material-icons">
+                                    add
+                                    </span>
+                            </a>
+                            <button class="btn btn-danger" (click)="supprimer(un_produit)">
+                                <span class="material-icons">
+                                    delete
+                                    </span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    <div class="fixed-bottom barreajout">
+        <div class="row d-flex justify-content-end">
+            
+            <select *ngIf="closebool" name="option" [(ngModel)]="option" (change)="changement()" class=" form-select col" aria-label="Default select example">
+                <option [value]="item.id" *ngFor="let item of data.listeproduits;let i=index;let f=first">{{item.nom}}</option>
+            </select>
+            <div *ngIf="closebool" class="input-group col quantite">
+                <input type="text" class="form-control" placeholder="Quantité" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-secondary" type="button" id="button-addon2">Ajouter</button>
+            </div>
+        </div>
+    </div>
+</div>

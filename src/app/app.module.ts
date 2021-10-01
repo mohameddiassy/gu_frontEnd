@@ -32,12 +32,19 @@ import { AjouterGerantComponent } from './ajouter-gerant/ajouter-gerant.componen
 import { ModifierGerantComponent } from './modifier-gerant/modifier-gerant.component';
 import { DetailGerantComponent } from './detail-gerant/detail-gerant.component';
 import { AProposComponent } from './a-propos/a-propos.component';
+import { BodyComponent } from './template/body/body.component';
+import { HautGaucheComponent } from './template/haut-gauche/haut-gauche.component';
+import { HautDroiteComponent } from './template/haut-droite/haut-droite.component';
+import { BasGaucheComponent } from './template/bas-gauche/bas-gauche.component';
+import { BasDroiteComponent } from './template/bas-droite/bas-droite.component';
+import { BasDroiteOptionnelComponent } from './template/bas-droite-optionnel/bas-droite-optionnel.component';
+import { HautDroiteOptionnelComponent } from './template/haut-droite-optionnel/haut-droite-optionnel.component';
 
 const routes: Routes = [
-  { path: "", component: AccueilComponent },
+  { path: "", component: BodyComponent },
   { path: "accueil", component: AccueilComponent },
   { path: "connexion", component: ConnexionComponent },
-  { path: "admin", component: AdminComponent },
+  { path: "admin", component: EntrepriseComponent },
   { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
   { path: "produit/:id_entreprise", component: ProduitComponent },
   { path: "detail-produit", component: DetailProduitComponent },
@@ -48,7 +55,7 @@ const routes: Routes = [
   { path: "detail-entreprise/:id_entreprise", component: DetailEntrepriseComponent },
   { path: "ajouter-entreprise", component: AjouterEntrepriseComponent },
   { path: "modifier-entreprise/:id_entreprise", component: ModifierEntrepriseComponent },
-  { path: "sorties", component: SortieComponent },
+  { path: "sorties/:id_entreprise", component: SortieComponent },
   { path: "ajouter-sortie/:id_produit", component: AjouterSortieComponent },
   { path: "ajouter-sortie", component: AjouterSortieComponent },
   { path: "utilisateur", component: UtilisateurComponent },
@@ -95,6 +102,13 @@ const routes: Routes = [
     ConnexionComponent,
     SortieComponent,
     AjouterSortieComponent,
+    BodyComponent,
+    HautGaucheComponent,
+    HautDroiteComponent,
+    BasGaucheComponent,
+    BasDroiteComponent,
+    BasDroiteOptionnelComponent,
+    HautDroiteOptionnelComponent,
   ],
   imports: [
     BrowserModule,
