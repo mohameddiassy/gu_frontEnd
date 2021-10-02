@@ -10,7 +10,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./ajouter-sortie.component.css']
 })
 export class AjouterSortieComponent implements OnInit {
-  sortie={quantite:"",id_produit:"0",id_enregistreur:1}
+  sortie={quantite:"",id_produit:"0",id_enregistreur:1,date_sortie:""}
   option="2"
   succes=false
   echec=false
@@ -28,6 +28,7 @@ export class AjouterSortieComponent implements OnInit {
     
   }
   ajouter(){
+    this.sortie.date_sortie=this.item.datetime
     console.log("sortie= ",this.sortie)
     if (this.sortie.id_produit=="0") {
       console.log("choisir un produit")
