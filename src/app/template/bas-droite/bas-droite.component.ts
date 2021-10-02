@@ -4,6 +4,7 @@ import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.co
 import { DataService } from 'src/app/data.service';
 import { DetailProduitComponent } from 'src/app/detail-produit/detail-produit.component';
 import { ListejoursComponent } from 'src/app/listejours/listejours.component';
+import { SortieMoisComponent } from 'src/app/sortie-mois/sortie-mois.component';
 import { SortieComponent } from 'src/app/sortie/sortie.component';
 
 @Component({
@@ -15,18 +16,14 @@ export class BasDroiteComponent implements OnInit {
   item:any
   // clicksuscription: Subscription;
   sortie:any
-  option="1"
-  closesubscription:Subscription=new Subscription
-  sortiecomponent=SortieComponent
-  ajoutersortiecomponent=AjouterSortieComponent
   lecomponent=SortieComponent
   les_components:any[]=[
     SortieComponent,
+    SortieMoisComponent,
     DetailProduitComponent
   ]
-  produit: any;
-  constructor(public data:DataService) { 
-    this.closesubscription=data.getCloseClick().subscribe(()=>{
+  constructor(public data:DataService) {
+    data.getCloseClick().subscribe(()=>{
       this.close()
     })
     data.getEvent().subscribe((data)=>{
@@ -36,9 +33,9 @@ export class BasDroiteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
-  
+
   recevoir_produit_entreprise(){
     this.data.requete_post("get_product_by_entreprise.php",{id_entreprise:11},(data:any)=>{
       this.data.les_produits=data

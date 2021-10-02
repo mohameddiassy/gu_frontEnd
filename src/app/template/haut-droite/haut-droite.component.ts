@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
+import { EnteteJourComponent } from 'src/app/entete/entete-jour/entete-jour.component';
+import { EnteteMoisComponent } from 'src/app/entete/entete-mois/entete-mois.component';
+import { EnteteProduitComponent } from 'src/app/entete/entete-produit/entete-produit.component';
 
 @Component({
   selector: 'app-haut-droite',
@@ -8,19 +11,22 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./haut-droite.component.css']
 })
 export class HautDroiteComponent implements OnInit {
+
+  les_droite_component=EnteteJourComponent
+  les_components:any[]=[
+    EnteteJourComponent,
+    EnteteMoisComponent,
+    EnteteProduitComponent
+  ]
+
   item:any
   produit:any
   clicksuscription: Subscription = new Subscription;
   clickproduit: Subscription = new Subscription;
-  constructor(public data:DataService) { 
-    this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
-      this.clique(data)
-      
-    })
-    //ecouter produit
-    this.clickproduit=data.getProduit().subscribe((data:any)=>{
-      this.produit=data
-      this.item=undefined
+  constructor(public data:DataService) {
+    data.getEvent().subscribe((data)=>{
+      console.log(data.index)
+      this.les_droite_component=this.les_components[data.index]
     })
   }
 

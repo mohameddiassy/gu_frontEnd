@@ -14,18 +14,20 @@ export class AjouterSortieComponent implements OnInit {
   option="2"
   succes=false
   echec=false
-  clicksuscription: Subscription = new Subscription;
   item:any
-  constructor(public data:DataService,private router:ActivatedRoute) { 
-    this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
+  constructor(public data:DataService,private router:ActivatedRoute) {
+    data.getBasGaucheClick().subscribe((data:any)=>{
       console.log("data data ",data)
       this.item=data
 
     })
+    data.getCloseClick().subscribe((data:any)=>{
+      this.data.closebool=!this.data.closebool
+    })
   }
 
   ngOnInit(): void {
-    
+
   }
   ajouter(){
     this.sortie.date_sortie=this.item.datetime
