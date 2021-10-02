@@ -1,4 +1,4 @@
-<div class="container mt-1"  *ngIf="item">
+<div class="container mt-1" >
     <h2>Les Sorties du {{item.date}}</h2>
     <hr>
     <div class="bg-light shadow-lg rounded p-4">
@@ -62,4 +62,7 @@
             </table>
         </div>
     </div>
+</div>
+<div class="fixed-bottom barreajout">
+    <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
 </div>

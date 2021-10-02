@@ -1,5 +1,5 @@
 <div class="h-100 ">
-    <select name="option" [(ngModel)]="option" (change)="changement()" class=" form-select" aria-label="Default select example">
+    <select name="option" [(ngModel)]="data.option" (change)="changement()" class=" form-select" aria-label="Default select example">
         <option [value]="item.id" *ngFor="let item of data.listehautgauche;let i=index;let f=first">{{item.nom}}</option>
       </select>
       <div class="m-1">

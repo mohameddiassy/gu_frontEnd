@@ -8,12 +8,13 @@ import { DataService } from 'src/app/data.service';
 })
 export class HautGaucheComponent implements OnInit {
   
-  option="1"
+  
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
   }
   changement(){
-    console.log("option= ",this.option)
+    console.log("option= ",this.data.option)
+    this.data.envoyerClick()
   }
 }

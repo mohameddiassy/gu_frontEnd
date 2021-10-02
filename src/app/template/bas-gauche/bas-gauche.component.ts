@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from 'src/app/data.service';
+import { ListejoursComponent } from 'src/app/listejours/listejours.component';
+import { ListemoisComponent } from 'src/app/listemois/listemois.component';
+import { ListeproduitsComponent } from 'src/app/listeproduits/listeproduits.component';
+import { ProduitComponent } from 'src/app/produit/produit.component';
+import { SortieComponent } from 'src/app/sortie/sortie.component';
 
 @Component({
   selector: 'app-bas-gauche',
@@ -8,26 +15,24 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./bas-gauche.component.css']
 })
 export class BasGaucheComponent implements OnInit {
-  listebasgauche:any[]=[]
-  constructor(public data:DataService) { }
-
-  ngOnInit(): void {
-    this.get_dates()
+  clicksuscription: Subscription = new Subscription;
+  
+  lecomponent=ListejoursComponent
+  les_components=[
+    ListejoursComponent,
+    ListemoisComponent,
+    ListeproduitsComponent
+  ]
+  // lecomponent=ListejoursComponent
+  constructor(public data:DataService){
+    this.clicksuscription=data.recevoirClick().subscribe((data:any)=>{
+      // on ecoute le changement du select depuis un component different
+      console.log("on ecoute le changement du select depui un component different")
+      let index=parseInt(this.data.option)
+      this.lecomponent=this.les_components[index]
+      // this.data.sendEvent(1,data.item)
+    })
   }
-  get_dates(){
-    
-    // let la_date=moment().locale("fr").format('L');
-    for (let index = 0; index < 100; index++) {
-      let la_date:moment.Moment=moment().locale("fr").subtract(index, 'days');
-      let la_date_formatee=la_date.format('LL')
-      let la_datetime=la_date.format('YYYY-MM-DD H:m:s')
-      let nombreentreesortie=Math.floor(Math.random() * 100);
-      this.listebasgauche.push({id:index,date:la_date_formatee,nombreentreesortie:nombreentreesortie,derniereentreesortie:"La dernière activité d'entrée sortie",datetime:la_datetime})
-    }
-  }
-  clique(item:any){
-    // console.log(item)
-    // this.data.hautdroite=item;
-    this.data.sendBasGaucheClick(item)
-  }
+  ngOnInit(){}
+  
 }

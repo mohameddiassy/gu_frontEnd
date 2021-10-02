@@ -40,6 +40,9 @@ import { BasDroiteComponent } from './template/bas-droite/bas-droite.component';
 import { BasDroiteOptionnelComponent } from './template/bas-droite-optionnel/bas-droite-optionnel.component';
 import { HautDroiteOptionnelComponent } from './template/haut-droite-optionnel/haut-droite-optionnel.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ListejoursComponent } from './listejours/listejours.component';
+import { ListemoisComponent } from './listemois/listemois.component';
+import { ListeproduitsComponent } from './listeproduits/listeproduits.component';
 
 const routes: Routes = [
   { path: "", component: BodyComponent },
@@ -110,6 +113,9 @@ const routes: Routes = [
     BasDroiteComponent,
     BasDroiteOptionnelComponent,
     HautDroiteOptionnelComponent,
+    ListejoursComponent,
+    ListemoisComponent,
+    ListeproduitsComponent,
   ],
   imports: [
     BrowserModule,

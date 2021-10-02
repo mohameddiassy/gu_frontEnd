@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from 'src/app/data.service';
+import { DetailProduitComponent } from 'src/app/detail-produit/detail-produit.component';
+import { ListejoursComponent } from 'src/app/listejours/listejours.component';
 import { SortieComponent } from 'src/app/sortie/sortie.component';
 
 @Component({
@@ -11,19 +13,25 @@ import { SortieComponent } from 'src/app/sortie/sortie.component';
 })
 export class BasDroiteComponent implements OnInit {
   item:any
-  clicksuscription: Subscription;
+  // clicksuscription: Subscription;
   sortie:any
   option="1"
   closesubscription:Subscription=new Subscription
   sortiecomponent=SortieComponent
   ajoutersortiecomponent=AjouterSortieComponent
+  lecomponent=SortieComponent
+  les_components:any[]=[
+    SortieComponent,
+    DetailProduitComponent
+  ]
+  produit: any;
   constructor(public data:DataService) { 
-    this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
-      this.clique(data)
-    })
-    
     this.closesubscription=data.getCloseClick().subscribe(()=>{
       this.close()
+    })
+    data.getEvent().subscribe((data)=>{
+      console.log(data.index)
+      this.lecomponent=this.les_components[data.index]
     })
   }
 
@@ -47,7 +55,9 @@ export class BasDroiteComponent implements OnInit {
   }
   clique(data:any){
     console.log("clique")
+    this.lecomponent=this.les_components[0]
     this.item=data
+
     this.recevoir_produit_entreprise()
   }
   changement(){

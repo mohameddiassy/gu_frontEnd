@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ListejoursComponent } from './listejours/listejours.component';
+import { ListemoisComponent } from './listemois/listemois.component';
+import { ProduitComponent } from './produit/produit.component';
+import { SortieComponent } from './sortie/sortie.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,16 +21,19 @@ export class DataService {
   hautdroite:any={}
   private subject=new Subject<any>()
   private subjectclose=new Subject<any>()
+  private subjectenvoyer=new Subject<any>()
+  private subjectProduit=new Subject<any>()
+  private subjectEvent=new Subject<any>()
   listehautgauche=[
-    {nom:"Sorties",id:1},
-    {nom:"Produits",id:2},
+    {nom:"Jours",id:0,component:'ListejoursComponent'},
+    {nom:"Mois",id:1,component:'ListemoisComponent'},
+    {nom:"Produits",id:2,component:'ProduitComponent'},
     {nom:"Achats",id:3},
     {nom:"Fournisseurs",id:4},
     {nom:"Semaines",id:5},
-    {nom:"Mois",id:6},
     {nom:"Années",id:7},
     {nom:"Toutes Périodes",id:8},
-    {nom:"Jours",id:8},
+    {nom:"Sorties",id:9,component:'SortieComponent'},
   ]
   listeproduits=[
     {nom:"Pain",id:1},
@@ -36,6 +43,8 @@ export class DataService {
   ]
   closebool: boolean=false;
   recherche_hautgauche=""
+  option='0'
+  les_jours:any[]=[]
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})
   requete_post(page:string,parametres:any,calback:Function){
@@ -86,5 +95,27 @@ export class DataService {
     this.requete_post("get_sortie_by_id_date.php",{id_utilisateur:1,date:date},(data:any)=>{
       this.les_sorties=data
     })
+  }
+  
+  envoyerClick(){
+    this.subjectenvoyer.next()
+  }
+  recevoirClick():Observable<any>{
+    return this.subjectenvoyer.asObservable()
+  }
+
+  //notif
+  sendproduit(item:any){
+    this.subjectProduit.next(item)
+  }
+  getProduit():Observable<any>{
+    return this.subjectProduit.asObservable()
+  }
+  // ecouteur globale
+  sendEvent(index:number,item:any){
+    this.subjectEvent.next({item:item,index:index})
+  }
+  getEvent():Observable<any>{
+    return this.subjectEvent.asObservable()
   }
 }
