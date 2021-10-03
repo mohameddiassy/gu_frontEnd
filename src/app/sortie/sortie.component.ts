@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from '../ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../data.service';
+import { ModifieProduitComponent } from '../modifie-produit/modifie-produit.component';
 
 @Component({
   selector: 'app-sortie',
@@ -30,7 +31,11 @@ export class SortieComponent implements OnInit {
   }
   
   ajoutersortie(){
-    this.data.sendCloseClick()
+    this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
+    this.data.sendCode("ajoutersortie",{});
   }
-  
+  modifier_sortie(une_sortie:any){
+    this.data.bool.modifiersortie=!this.data.bool.modifiersortie
+    this.data.sendCode("modifier_sortie",une_sortie);
+  }
 }

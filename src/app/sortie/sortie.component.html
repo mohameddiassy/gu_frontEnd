@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-5 _add_produit_btn mb-5">
                 <button class="btn btn-success"
-                    (click)="ajoutersortie()">{{data.closebool?"Fermer":"Ajouter Sortie"}}</button>
+                    (click)="ajoutersortie()">{{data.bool.ajoutersortie?"Fermer":"Ajouter Sortie"}}</button>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
@@ -41,11 +41,11 @@
                         <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
                         <td class="text-right">
                             <div class="btn-group">
-                                <a [routerLink]="['/modifier-produit',une_sortie.id_produit]" class="btn btn-success">
+                                <!-- <a (click)="modifier_sortie(une_sortie)" class="btn btn-success">
                                     <span class="material-icons">
                                         edit
                                     </span>
-                                </a>
+                                </a> -->
                                 <button class="btn btn-danger">
                                     <span class="material-icons">
                                         delete
@@ -66,3 +66,4 @@
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
 </div>
+

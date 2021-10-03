@@ -1,7 +1,7 @@
 <div class="container">
         <div class="row">
-            <div class="col"><button class="btn btn-primary" (click)="ajouter_produit()">{{data.ajouterproduitbool?"Fermer":"Ajouter Produit"}}</button></div>
-            <div class="col"><button class="btn btn-warning">Modifier</button></div>
+            <div class="col"><button class="btn btn-primary" (click)="ajouter_produit()">{{data.bool.ajouterproduit?"Fermer":"Ajouter Produit"}}</button></div>
+            <div class="col"><button class="btn btn-warning"  (click)="modifier_sortie()" >Modifier</button></div>
             <div class="col"><button class="btn btn-danger">Supprimer</button></div>
         </div>
         <div class="col-md-8 mt-4">
@@ -23,4 +23,7 @@
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajouterproduitcomponent"></ng-container>
+</div>
+<div class="fixed-bottom couleurgrise">
+    <ng-container *ngComponentOutlet="modifierproduitcomponent"></ng-container>
 </div>

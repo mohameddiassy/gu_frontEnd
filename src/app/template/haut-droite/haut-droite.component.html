@@ -1,3 +1,11 @@
+<div class="row">
+    <div class="col-1">
+        <button (click)="data.sidenavbool=!data.sidenavbool" type="button" class=" btn btn-primary position-relative">
+            <span class="material-icons" >
+                {{data.sidenavbool?"close":"menu"}}
+            </span>
+        </button>
+    </div>
+    <div class="col"><ng-container *ngComponentOutlet="les_droite_component"></ng-container></div>
+</div>
 
-
-<ng-container *ngComponentOutlet="les_droite_component"></ng-container>

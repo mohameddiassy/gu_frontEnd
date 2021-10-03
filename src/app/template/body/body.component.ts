@@ -35,6 +35,13 @@ export class BodyComponent implements OnInit {
       this.route.navigate(["/"])
     } else {
       this.data.utilisateur_connecte=user
+      if (user.privilege==2) {
+        this.data.listehautgauche.push(
+          {nom:"Statistiques",id:3,component:'AnalyticsComponent'})
+          console.log("le propriétaire de l'entreprise")
+      } else {
+        console.log("un gérant de l'entreprise")
+      }
     }
   }
   

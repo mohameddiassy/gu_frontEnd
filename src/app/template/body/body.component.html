@@ -1,6 +1,6 @@
 <div class="body">
     <div class="haut row">
-        <div class="hautgauche col-3" >
+        <div class="hautgauche col-11 col-sm-3" *ngIf="data.sidenavbool">
             <ng-container *ngComponentOutlet="les_components.hautgauche"></ng-container>
         </div>
         <div class="hautdroite col ">
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="bas row">
-        <div class="basgauche col-3">
+        <div class="basgauche col-11 col-sm-3" *ngIf="data.sidenavbool">
             <ng-container *ngComponentOutlet="les_components.basgauche"></ng-container>
         </div>
         <div class="basdroite col">
