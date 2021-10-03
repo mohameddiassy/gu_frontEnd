@@ -9,13 +9,13 @@ import { DataService } from '../data.service';
 })
 export class ListejoursComponent implements OnInit {
 
-  
+
   lecomponent=ListejoursComponent
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
-    this.data.sendEvent(0,this.data.les_jours[0])
     this.get_dates()
+    this.data.sendEvent(0,this.data.les_jours[0])
   }
   get_dates(){
     // let la_date=moment().locale("fr").format('L');
@@ -28,8 +28,6 @@ export class ListejoursComponent implements OnInit {
     }
   }
   clique(item:any){
-    // console.log(item)
-    // this.data.hautdroite=item;
     this.data.sendEvent(0,item)
   }
 

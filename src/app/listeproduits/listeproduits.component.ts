@@ -15,11 +15,11 @@ export class ListeproduitsComponent implements OnInit {
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
-    this.data.sendEvent(1,this.data.les_produits[0])
     this.get_dates()
+    this.data.sendEvent(2,this.data.les_produits[0])
   }
   get_dates(){
-    
+
     // let la_date=moment().locale("fr").format('L');
     for (let index = 0; index < 100; index++) {
       let la_date:moment.Moment=moment().locale("fr").subtract(index, 'month');
@@ -32,7 +32,7 @@ export class ListeproduitsComponent implements OnInit {
   clique(item:any){
     // console.log(item)
     // this.data.hautdroite=item;
-    this.data.sendEvent(1,item)
+    this.data.sendEvent(2,item)
   }
 
 }

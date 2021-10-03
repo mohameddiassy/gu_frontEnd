@@ -43,6 +43,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ListejoursComponent } from './listejours/listejours.component';
 import { ListemoisComponent } from './listemois/listemois.component';
 import { ListeproduitsComponent } from './listeproduits/listeproduits.component';
+import { EnteteJourComponent } from './entete/entete-jour/entete-jour.component';
+import { EnteteMoisComponent } from './entete/entete-mois/entete-mois.component';
+import { EnteteProduitComponent } from './entete/entete-produit/entete-produit.component';
+import { SortieMoisComponent } from './sortie-mois/sortie-mois.component';
 
 const routes: Routes = [
   { path: "", component: BodyComponent },
@@ -72,6 +76,12 @@ const routes: Routes = [
   { path: "detail-gerant", component: DetailGerantComponent },
   { path: "a-propos", component: AProposComponent },
   { path: "detail-gerant/:id_agent", component: DetailGerantComponent },
+  { path: "ente-jour", component: EnteteJourComponent },
+  { path: "ente-mois", component: EnteteMoisComponent },
+  { path: "ente-prouit", component: EnteteProduitComponent },
+
+
+
 
 ];
 @NgModule({
@@ -116,6 +126,10 @@ const routes: Routes = [
     ListejoursComponent,
     ListemoisComponent,
     ListeproduitsComponent,
+    EnteteJourComponent,
+    EnteteMoisComponent,
+    EnteteProduitComponent,
+    SortieMoisComponent,
   ],
   imports: [
     BrowserModule,

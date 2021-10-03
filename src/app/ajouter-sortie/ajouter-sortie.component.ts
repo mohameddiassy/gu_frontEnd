@@ -19,12 +19,19 @@ export class AjouterSortieComponent implements OnInit {
     data.getEvent().subscribe((data:any)=>{
       console.log("data data ",data)
       this.item=data.item
+    })
+    data.getBasGaucheClick().subscribe((data:any)=>{
+      console.log("data data ",data)
+      this.item=data.item
 
+    })
+    data.getCloseClick().subscribe((data:any)=>{
+      this.data.closebool=!this.data.closebool
     })
   }
 
   ngOnInit(): void {
-    
+
   }
   ajouter(){
     this.sortie.date_sortie=this.item.datetime
