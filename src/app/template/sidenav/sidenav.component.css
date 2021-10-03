@@ -1,0 +1,57 @@
+:host{
+    font-size: 1rem;
+}
+
+div.sidenav-container{
+    position: fixed;
+    top: 45px;
+    left: 0;
+    background-color: rgb(216, 228, 224);
+    border-right: 1px solid #17202A;
+    height: calc(100vh - 40px);
+    width: 25vw;
+    padding: 5px 0 0 0;
+    overflow-y: scroll;
+    box-shadow: 3px 0 5px rgba(23, 32, 42, .8);
+    animation-name: slideRight;
+    animation-duration: 1000ms;
+}
+
+@keyframes slideRight{
+    0%{
+        left: -25vw;
+        opacity: 0;
+    }
+    100%{
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    /* sm */
+    div.sidenav-container{
+      width: 80vw;
+    }  
+}
+
+@media (min-width: 768px) {
+    /* md */
+    div.sidenav-container{
+        width: 50vw;
+    }
+}
+
+@media (min-width: 992px) {
+    /* lg */
+    div.sidenav-container{
+        width: 30vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    /* xl */
+    div.sidenav-container{
+      width: 25vw;
+    }
+}

@@ -1,0 +1,5 @@
+<button class="btn btn-dark" (click)="toggle()"><span class="material-icons">{{ icone }}</span></button>
+<div *ngIf="isClosed" class="sidenav-container">
+    <ng-container *ngComponentOutlet="les_components.hautgauche"></ng-container>
+    <ng-container *ngComponentOutlet="les_components.basgauche"></ng-container>
+</div>

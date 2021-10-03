@@ -43,6 +43,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ListejoursComponent } from './listejours/listejours.component';
 import { ListemoisComponent } from './listemois/listemois.component';
 import { ListeproduitsComponent } from './listeproduits/listeproduits.component';
+import { SidenavComponent } from './template/sidenav/sidenav.component';
+import { MainComponent } from './template/main/main.component';
 
 const routes: Routes = [
   { path: "", component: BodyComponent },
@@ -116,6 +118,8 @@ const routes: Routes = [
     ListejoursComponent,
     ListemoisComponent,
     ListeproduitsComponent,
+    SidenavComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

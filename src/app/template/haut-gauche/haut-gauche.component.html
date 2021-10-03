@@ -1,9 +1,17 @@
-<div class="h-100 ">
-    <select name="option" [(ngModel)]="data.option" (change)="changement()" class=" form-select" aria-label="Default select example">
-        <option [value]="item.id" *ngFor="let item of data.listehautgauche;let i=index;let f=first">{{item.nom}}</option>
+<div class="w-100 px-2 d-flex flex-column align-items-center">
+    <select name="option" 
+            [(ngModel)]="data.option" 
+            (change)="changement()" 
+            class=" form-select" 
+            aria-label="Default select example">
+        <option [value]="item.id" 
+                *ngFor="let item of data.listehautgauche;let i=index;let f=first">{{item.nom}}</option>
       </select>
       <div class="m-1">
-        <input name="recherche_hautgauche" [(ngModel)]="data.recherche_hautgauche" type="text" placeholder="rechercher">
+        <input name="recherche_hautgauche" 
+              [(ngModel)]="data.recherche_hautgauche" 
+              type="text" 
+              placeholder="rechercher">
         <span class="material-icons align-middle">
           search
           </span>

@@ -1,4 +1,4 @@
-<div *ngIf="item" class="">
+<div *ngIf="item" class="w-100">
     <div class="d-flex justify-content-between">
         <div class="fw-bold">{{item.date}}</div>
         <span (click)="close()" class="material-icons croix">
@@ -15,6 +15,6 @@
     </div>
       
 </div>
-<div *ngIf="produit">
+<div *ngIf="produit" class="w-100">
     {{produit.nom_produit}}
 </div>

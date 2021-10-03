@@ -1,4 +1,4 @@
-.body{background-color: rgb(216, 228, 224);height: 100vh;padding:0px 15px ;}
+.body{background-color: rgb(216, 228, 224);padding:0;}
 .haut{height: 13vh;background-color: #f8f9fa;}
 .bas{height: 85vh;margin-top: 10px;}
 .basgauche{border-right: 1px black solid;height: 100%;overflow: auto;}
