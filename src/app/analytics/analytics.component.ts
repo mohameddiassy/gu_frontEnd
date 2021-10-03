@@ -15,7 +15,7 @@ export class AnalyticsComponent implements OnInit {
     {nom:"Mois",id:2},
     {nom:"Annee",id:3}
   ]
-  type = 'bar';
+  type = 'line';
   title="titre du graphe"
   data = { };
   options = {
@@ -39,7 +39,7 @@ export class AnalyticsComponent implements OnInit {
       }]
     }
   };
-  
+
   constructor(public d:DataService) {
     d.getEvent().subscribe((data:any)=>{
       this.item=data.item
@@ -104,7 +104,7 @@ export class AnalyticsComponent implements OnInit {
               'rgba(153, 102, 255, 0.2)',
               'rgba(255, 159, 64, 0.2)'
           ],
-          
+
           borderColor: [
               'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
@@ -126,9 +126,9 @@ export class AnalyticsComponent implements OnInit {
         this.recevoir_sortie_par_mois(this.item.id_produit)
         break;
       case "3":
-        
+
         break;
-    
+
       default:
         break;
     }
