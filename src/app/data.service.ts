@@ -128,8 +128,9 @@ export class DataService {
     return this.subjectEvent.asObservable()
   }
 
-  recevoir_jours(){
+  recevoir_jours(callback:Function){
     this.requete_post("get_nombre_d_activite_jour.php",{id_utilisateur:1},(data:any)=>{
+
       this.les_jours=data
       console.log(this.les_jours[0].date+"     "+moment().format("YYYY-MM-DD"))
       if (this.les_jours.length>0 && this.les_jours[0].date==moment().format("YYYY-MM-DD")) {
@@ -141,12 +142,19 @@ export class DataService {
             "montant": "0"
         })
       }
-
+      callback(this.les_jours)
     })
   }
-  recevoir_mois(){
+  recevoir_mois(callback:Function){
     this.requete_post("get_nombre_d_activite_mois.php",{id_utilisateur:1},(data:any)=>{
       this.les_mois=data
+      callback(this.les_jours)
+    })
+  }
+  recevoir_produit_entreprise(id_entreprise:number,callback:Function){
+    this.requete_post("get_product_by_entreprise.php",{id_entreprise:id_entreprise},(data:any)=>{
+      this.les_produits=data
+      callback(data)
     })
   }
 }

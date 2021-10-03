@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
@@ -21,15 +22,21 @@ export class BodyComponent implements OnInit {
     hautdroiteoptionnel:HautDroiteOptionnelComponent,
     basdroiteoptionnel:BasDroiteOptionnelComponent
   }
-  constructor(public data:DataService) { }
+  constructor(public data:DataService,public route:Router) { }
 
   ngOnInit(): void {
-    this.recevoir_produit_entreprise(11)
+    this.verifier_session()
+  }
+  verifier_session(){
+    let u:any = localStorage.getItem('utilisateur');
+    let user=JSON.parse(u)
+    console.log("session= ",u)
+    if (user==null) {//non connecté
+      this.route.navigate(["/"])
+    } else {
+      this.data.utilisateur_connecte=user
+    }
   }
   
-  recevoir_produit_entreprise(id_entreprise:number){
-    this.data.requete_post("get_product_by_entreprise.php",{id_entreprise:id_entreprise},(data:any)=>{
-      this.data.les_produits=data
-    })
-  }
+  
 }
