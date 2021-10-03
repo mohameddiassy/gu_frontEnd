@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from 'src/app/data.service';
 import { DetailProduitComponent } from 'src/app/detail-produit/detail-produit.component';
-import { ListejoursComponent } from 'src/app/listejours/listejours.component';
 import { SortieMoisComponent } from 'src/app/sortie-mois/sortie-mois.component';
 import { SortieComponent } from 'src/app/sortie/sortie.component';
 
@@ -23,9 +20,6 @@ export class BasDroiteComponent implements OnInit {
     DetailProduitComponent
   ]
   constructor(public data:DataService) {
-    data.getCloseClick().subscribe(()=>{
-      this.close()
-    })
     data.getEvent().subscribe((data)=>{
       console.log(data.index)
       this.lecomponent=this.les_components[data.index]
@@ -59,8 +53,5 @@ export class BasDroiteComponent implements OnInit {
   }
   changement(){
 
-  }
-  close(){
-    this.data.closebool=!this.data.closebool
   }
 }
