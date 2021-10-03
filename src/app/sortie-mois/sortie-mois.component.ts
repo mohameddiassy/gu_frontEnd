@@ -10,20 +10,14 @@ import { SortieComponent } from '../sortie/sortie.component';
   styleUrls: ['./sortie-mois.component.css']
 })
 export class SortieMoisComponent implements OnInit {
-  lecomponent=SortieComponent
   ajoutersortiecomponent=AjouterSortieComponent
   item:any
   recherche=""
   constructor(public data:DataService) {
-    // this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
-    //   this.item=data
-    //   let date=moment(this.item.date).format("YYYY-MM-DD")
-    //   this.data.recevoir_sorties(date)
-    // })
-    this.item=this.data.les_mois[0]
+    // this.item=this.data.les_mois[0]
     data.getEvent().subscribe((data)=>{
       this.item=data.item
-      console.log(this.item.date)
+      console.log("ecouteur de sortie mois",this.item.date)
       this.data.recevoir_sortiesMois(this.item.date)
     })
   }

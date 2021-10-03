@@ -17,12 +17,8 @@ export class SortieComponent implements OnInit {
   item:any
   recherche=""
   constructor(public data:DataService) { 
-    // this.clicksuscription=data.getBasGaucheClick().subscribe((data:any)=>{
-    //   this.item=data
-    //   let date=moment(this.item.date).format("YYYY-MM-DD")
-    //   this.data.recevoir_sorties(date)
-    // })
     this.item=this.data.les_jours[0]
+    
     data.getEvent().subscribe((data)=>{
       this.item=data.item
 

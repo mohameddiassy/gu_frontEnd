@@ -50,6 +50,7 @@ import { SortieMoisComponent } from './sortie-mois/sortie-mois.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { EnteteAnalyticsComponent } from './entete/entete-analytics/entete-analytics.component';
 import { ListeAnalyticsComponent } from './liste-analytics/liste-analytics.component';
+import { ChartModule } from 'angular2-chartjs';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -143,7 +144,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

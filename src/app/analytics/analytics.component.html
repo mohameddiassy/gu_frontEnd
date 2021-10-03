@@ -1,1 +1,24 @@
-<p>analytics works!</p>
+<select name="option" [(ngModel)]="option" (change)="changement()" class=" form-select" aria-label="Default select example">
+    <option [value]="item.id" *ngFor="let item of listetrie">{{item.nom}}</option>
+  </select>
+
+<chart [title]="title" [type]="type" [data]="data" [options]="options"></chart>
+<table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Nombre de Sortie</th>
+        <th scope="col">Montant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of nombre_sortie_par_jour;let index=index">
+        <th scope="row">{{index}}</th>
+        <td>{{item.date}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.montant}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
