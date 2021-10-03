@@ -10,7 +10,7 @@ export class EnteteProduitComponent implements OnInit {
 
   item:any
   constructor(public data:DataService) {
-    this.item=this.data.les_produits[0]
+    this.item=data.les_produits[0]   
     data.getEvent().subscribe((data)=>{
       this.item=data.item
       console.log("entete jour= ",this.item)

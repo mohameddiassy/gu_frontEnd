@@ -20,6 +20,7 @@ export class ConnexionComponent implements OnInit {
       if(data.status){
         this.data.utilisateur_connecte=data.personne
         console.log("Connexion effectuée avec succés")
+        localStorage.setItem('utilisateur', JSON.stringify(data.personne));
         this.route.navigate(['/accueil'])
       }else{
         console.log("Echec de connexion")

@@ -11,19 +11,18 @@ import { SortieComponent } from '../sortie/sortie.component';
 })
 export class SortieMoisComponent implements OnInit {
   ajoutersortiecomponent=AjouterSortieComponent
-  item:any
   recherche=""
+  item:any
   constructor(public data:DataService) {
-    // this.item=this.data.les_mois[0]
+    this.item=data.les_mois[0]   
     data.getEvent().subscribe((data)=>{
       this.item=data.item
-      console.log("ecouteur de sortie mois",this.item.date)
       this.data.recevoir_sortiesMois(this.item.date)
     })
   }
 
   ngOnInit(): void {
-    this.item=this.data.les_mois[0]
+    this.data.recevoir_sortiesMois(this.item.date)
   }
 
   ajoutersortie(){

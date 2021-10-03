@@ -16,8 +16,10 @@ export class ListemoisComponent implements OnInit {
 
   ngOnInit(): void {
     // this.get_dates()
-    this.data.recevoir_mois()
-    this.data.sendEvent(1,this.data.les_mois[0])
+    this.data.recevoir_mois((data:any)=>{
+      this.data.sendEvent(1,this.data.les_mois[0])
+    })
+    
   }
   clique(item:any){
     this.data.sendEvent(1,item)

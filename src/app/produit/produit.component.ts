@@ -13,16 +13,6 @@ export class ProduitComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.router.params.subscribe((params:any)=>{
-      this.id_entreprise=params["id_entreprise"];
-      if (this.id_entreprise) {
-        console.log("id_entreprise est present")
-        this.recevoir_produit_entreprise()
-      } else {
-        console.log("id_entreprise est absent")
-        
-      }
-    })
   }
   recevoir_produit_entreprise(){
     this.data.requete_post("get_product_by_entreprise.php",{id_entreprise:this.id_entreprise},(data:any)=>{

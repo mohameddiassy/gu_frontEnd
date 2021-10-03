@@ -11,7 +11,6 @@ import { SortieComponent } from 'src/app/sortie/sortie.component';
   styleUrls: ['./bas-droite.component.css']
 })
 export class BasDroiteComponent implements OnInit {
-  item:any
   // clicksuscription: Subscription;
   sortie:any
   lecomponent=SortieComponent
@@ -21,39 +20,16 @@ export class BasDroiteComponent implements OnInit {
     DetailProduitComponent,
     AnalyticsComponent
   ]
+  item:any
   constructor(public data:DataService) {
     data.getEvent().subscribe((data)=>{
-      console.log(data.index)
+      console.log("bas droite= ",data)
+      this.item=data.item
       this.lecomponent=this.les_components[data.index]
     })
   }
 
   ngOnInit(): void {
-
-  }
-
-  recevoir_produit_entreprise(){
-    this.data.requete_post("get_product_by_entreprise.php",{id_entreprise:11},(data:any)=>{
-      this.data.les_produits=data
-    })
-  }
-  supprimer(un_produit:any){
-    this.data.requete_post("update_product_state.php",{id_produit:un_produit.id_produit},(data:any)=>{
-      if(data.status){
-        console.log("Suppression effectuée avec succés")
-      }else{
-        console.log("Echec de suppression")
-      }
-    })
-  }
-  clique(data:any){
-    console.log("clique")
-    this.lecomponent=this.les_components[0]
-    this.item=data
-
-    this.recevoir_produit_entreprise()
-  }
-  changement(){
 
   }
 }
