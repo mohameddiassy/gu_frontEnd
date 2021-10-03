@@ -1,11 +1,20 @@
 <div class="container mt-1" >
     <h2>Les Sorties du {{item?.date| date:'dd MMMM YYYY'}}</h2>
+
     <hr>
+
     <div class="bg-light shadow-lg rounded p-4">
         <div class="row">
-            <div class="col-md-5 _add_produit_btn mb-5">
+            <div class="col-md-3 _add_produit_btn mb-5">
                 <button class="btn btn-success"
                     (click)="ajoutersortie()">{{data.closebool?"Fermer":"Ajouter Sortie"}}</button>
+
+
+            </div>
+            <div class="col-md-2  mb-5">
+              <button  class="btn btn-primary"
+              (click)="downloadFile(data.les_sorties)">load csv
+               </button>
             </div>
             <div class="col-md-2 _add_produit_btn">
             </div>
@@ -56,12 +65,16 @@
                     </tr>
                     <tr *ngIf="data.les_sorties.length==0" class="container w-100 center">
                         <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
-                            
+
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="text-wrap">
+
+  </div>
+
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>

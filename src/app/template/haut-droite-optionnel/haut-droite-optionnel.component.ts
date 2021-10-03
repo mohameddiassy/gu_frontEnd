@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { EnteteJourComponent } from 'src/app/entete/entete-jour/entete-jour.component';
 import { EnteteMoisComponent } from 'src/app/entete/entete-mois/entete-mois.component';
+import { saveAs } from 'file-saver'
 
 @Component({
   selector: 'app-haut-droite-optionnel',
@@ -12,7 +13,7 @@ import { EnteteMoisComponent } from 'src/app/entete/entete-mois/entete-mois.comp
 export class HautDroiteOptionnelComponent implements OnInit {
 
   constructor(public data:DataService,public route:Router) { }
-  
+
   ngOnInit(): void {
   }
   deconnexion(){
