@@ -17,8 +17,8 @@ export class SortieComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   item:any
   recherche=""
-  constructor(public data:DataService) {  
-    this.item=data.les_jours[0]   
+  constructor(public data:DataService) {
+    this.item=data.les_jours[0]
     data.getEvent().subscribe((data)=>{
       this.item=data.item
       let date=moment(this.item?.date).format("YYYY-MM-DD")
@@ -27,9 +27,9 @@ export class SortieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
-  
+
   ajoutersortie(){
     this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
     this.data.sendCode("ajoutersortie",{});
@@ -38,4 +38,28 @@ export class SortieComponent implements OnInit {
     this.data.bool.modifiersortie=!this.data.bool.modifiersortie
     this.data.sendCode("modifier_sortie",une_sortie);
   }
+
+  downloadFile(data: any) {
+    const replacer = (key:any, value:any) => (value === null ? '' : value);
+    const header = Object.keys(data[0]);
+    const csv = data.map((row: any ) =>
+      header
+        .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+        .join(',')
+    );
+    csv.unshift(header.join(','));
+    const csvArray = csv.join('\r\n');
+
+
+    const a = document.createElement('a');
+    const blob = new Blob([csvArray], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    a.href = url;
+    a.download = 'journalier.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }
+
 }
