@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnalyticsComponent } from 'src/app/analytics/analytics.component';
 import { DataService } from 'src/app/data.service';
 import { DetailProduitComponent } from 'src/app/detail-produit/detail-produit.component';
 import { SortieMoisComponent } from 'src/app/sortie-mois/sortie-mois.component';
@@ -17,7 +18,8 @@ export class BasDroiteComponent implements OnInit {
   les_components:any[]=[
     SortieComponent,
     SortieMoisComponent,
-    DetailProduitComponent
+    DetailProduitComponent,
+    AnalyticsComponent
   ]
   constructor(public data:DataService) {
     data.getEvent().subscribe((data)=>{
