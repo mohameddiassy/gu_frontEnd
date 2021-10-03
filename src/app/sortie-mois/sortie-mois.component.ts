@@ -23,7 +23,7 @@ export class SortieMoisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.item=this.data.les_mois[0]
   }
 
   ajoutersortie(){
