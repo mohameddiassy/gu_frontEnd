@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-entete-mois',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnteteMoisComponent implements OnInit {
 
-  constructor() { }
-
+  item:any
+  constructor(public data:DataService) {
+    this.item=this.data.les_mois[0]
+    data.getEvent().subscribe((data)=>{
+      this.item=data.item
+      console.log("entete jour= ",this.item)
+    })
+  }
   ngOnInit(): void {
   }
 

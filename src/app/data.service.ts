@@ -45,6 +45,8 @@ export class DataService {
   recherche_hautgauche=""
   option='0'
   les_jours:any[]=[]
+  les_mois:any[]=[]
+  les_sorties_mois: any;
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})
   requete_post(page:string,parametres:any,calback:Function){
@@ -96,7 +98,11 @@ export class DataService {
       this.les_sorties=data
     })
   }
-  
+  recevoir_sortiesMois(date:string){
+    this.requete_post("get_sortie_by_id_date2.php",{id_utilisateur:1,date:date},(data:any)=>{
+      this.les_sorties_mois=data
+    })
+  }
   envoyerClick(){
     this.subjectenvoyer.next()
   }
