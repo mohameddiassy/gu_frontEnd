@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from 'src/app/data.service';
+import { ListeAnalyticsComponent } from 'src/app/liste-analytics/liste-analytics.component';
 import { ListejoursComponent } from 'src/app/listejours/listejours.component';
 import { ListemoisComponent } from 'src/app/listemois/listemois.component';
 import { ListeproduitsComponent } from 'src/app/listeproduits/listeproduits.component';
@@ -16,12 +17,13 @@ import { SortieComponent } from 'src/app/sortie/sortie.component';
 })
 export class BasGaucheComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
-  
+
   lecomponent=ListejoursComponent
   les_components:any=[
     ListejoursComponent,
     ListemoisComponent,
-    ListeproduitsComponent
+    ListeproduitsComponent,
+    ListeAnalyticsComponent
   ]
   // lecomponent=ListejoursComponent
   constructor(public data:DataService){
@@ -34,5 +36,5 @@ export class BasGaucheComponent implements OnInit {
     })
   }
   ngOnInit(){}
-  
+
 }

@@ -29,8 +29,9 @@ export class DataService {
     {nom:"Jours",id:0,component:'ListejoursComponent'},
     {nom:"Mois",id:1,component:'ListemoisComponent'},
     {nom:"Produits",id:2,component:'ProduitComponent'},
-    {nom:"Achats",id:3},
-    {nom:"Fournisseurs",id:4},
+    {nom:"Statistiques",id:3,component:'AnalyticsComponent'},
+   // {nom:"Achats",id:3},
+   // {nom:"Fournisseurs",id:4},
     // {nom:"Semaines",id:5},
     // {nom:"Années",id:7},
     // {nom:"Toutes Périodes",id:8},
@@ -126,7 +127,7 @@ export class DataService {
   getEvent():Observable<any>{
     return this.subjectEvent.asObservable()
   }
-  
+
   recevoir_jours(){
     this.requete_post("get_nombre_d_activite_jour.php",{id_utilisateur:1},(data:any)=>{
       this.les_jours=data
@@ -140,7 +141,7 @@ export class DataService {
             "montant": "0"
         })
       }
-      
+
     })
   }
   recevoir_mois(){

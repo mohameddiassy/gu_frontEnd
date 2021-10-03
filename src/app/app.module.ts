@@ -47,6 +47,9 @@ import { EnteteJourComponent } from './entete/entete-jour/entete-jour.component'
 import { EnteteMoisComponent } from './entete/entete-mois/entete-mois.component';
 import { EnteteProduitComponent } from './entete/entete-produit/entete-produit.component';
 import { SortieMoisComponent } from './sortie-mois/sortie-mois.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { EnteteAnalyticsComponent } from './entete/entete-analytics/entete-analytics.component';
+import { ListeAnalyticsComponent } from './liste-analytics/liste-analytics.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -130,6 +133,9 @@ const routes: Routes = [
     EnteteMoisComponent,
     EnteteProduitComponent,
     SortieMoisComponent,
+    AnalyticsComponent,
+    EnteteAnalyticsComponent,
+    ListeAnalyticsComponent,
   ],
   imports: [
     BrowserModule,

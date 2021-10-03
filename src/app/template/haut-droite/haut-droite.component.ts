@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
+import { EnteteAnalyticsComponent } from 'src/app/entete/entete-analytics/entete-analytics.component';
 import { EnteteJourComponent } from 'src/app/entete/entete-jour/entete-jour.component';
 import { EnteteMoisComponent } from 'src/app/entete/entete-mois/entete-mois.component';
 import { EnteteProduitComponent } from 'src/app/entete/entete-produit/entete-produit.component';
@@ -16,7 +17,8 @@ export class HautDroiteComponent implements OnInit {
   les_components:any[]=[
     EnteteJourComponent,
     EnteteMoisComponent,
-    EnteteProduitComponent
+    EnteteProduitComponent,
+    EnteteAnalyticsComponent
   ]
 
   item:any
