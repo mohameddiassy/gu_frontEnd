@@ -16,7 +16,7 @@ export class ListemoisComponent implements OnInit {
 
   ngOnInit(): void {
     this.get_dates()
-    this.data.sendEvent(1,this.data.les_jours[0])
+    this.data.sendEvent(1,this.data.les_mois[0])
   }
   get_dates(){
 
@@ -26,7 +26,7 @@ export class ListemoisComponent implements OnInit {
       let la_date_formatee=la_date.format('MMMM  YYYY')
       let la_datetime=la_date.format('YYYY-MM-DD H:m:s')
       let nombreentreesortie=Math.floor(Math.random() * 100);
-      this.listebasgauche.push({id:index,date:la_date_formatee,nombreentreesortie:nombreentreesortie,derniereentreesortie:"La dernière activité d'entrée sortie",datetime:la_datetime})
+      this.data.les_mois.push({id:index,date:la_date_formatee,nombreentreesortie:nombreentreesortie,derniereentreesortie:"La dernière activité d'entrée sortie",datetime:la_datetime})
     }
   }
   clique(item:any){

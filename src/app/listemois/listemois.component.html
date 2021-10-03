@@ -1,5 +1,5 @@
 <div class="list-group list-group-numbered">
-    <div (click)="clique(item)" *ngFor="let item of listebasgauche | filter:data.recherche_hautgauche" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
+    <div (click)="clique(item)" *ngFor="let item of data.les_mois | filter:data.recherche_hautgauche" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
       <div class="ms-2 me-auto">
         <div class="fw-bold">{{item.date}}</div>
         {{item.derniereentreesortie}}

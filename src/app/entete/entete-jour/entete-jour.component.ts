@@ -11,6 +11,7 @@ export class EnteteJourComponent implements OnInit {
 
   item:any
   constructor(public data:DataService) {
+    this.item=this.data.les_jours[0]
     data.getEvent().subscribe((data)=>{
       this.item=data.item
       console.log("entete jour= ",this.item)
