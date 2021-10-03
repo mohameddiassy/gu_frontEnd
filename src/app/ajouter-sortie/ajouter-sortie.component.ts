@@ -34,7 +34,7 @@ export class AjouterSortieComponent implements OnInit {
 
   }
   ajouter(){
-    this.sortie.date_sortie=this.item.datetime
+    this.sortie.date_sortie=this.item.date
     console.log("sortie= ",this.sortie)
     if (this.sortie.id_produit=="0") {
       console.log("choisir un produit")

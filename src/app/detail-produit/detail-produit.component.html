@@ -1,10 +1,10 @@
 <div class="container">
-        <div class="col-md-4">
-            <h6 class="card-title m-b-20">Action</h6>
-            <div><button class="btn btn-warning m-1 col">Modifier</button></div>
-            <div><button class="btn btn-danger m-1 col">Supprimer</button></div>
+        <div class="row">
+            <div class="col"><button class="btn btn-primary" (click)="ajouter_produit()">{{data.ajouterproduitbool?"Fermer":"Ajouter Produit"}}</button></div>
+            <div class="col"><button class="btn btn-warning">Modifier</button></div>
+            <div class="col"><button class="btn btn-danger">Supprimer</button></div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 mt-4">
             <h6 class="card-title m-b-20">Information Général</h6>
             <div class="m-b-30">
                 <ul class="list-group">
@@ -20,4 +20,7 @@
                 </ul>
             </div>
         </div>
+</div>
+<div class="fixed-bottom couleurgrise">
+    <ng-container *ngComponentOutlet="ajouterproduitcomponent"></ng-container>
 </div>

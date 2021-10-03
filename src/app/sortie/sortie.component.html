@@ -1,5 +1,5 @@
 <div class="container mt-1" >
-    <h2>Les Sorties du {{item.date}}</h2>
+    <h2>Les Sorties du {{item?.date| date:'dd MMMM YYYY'}}</h2>
     <hr>
     <div class="bg-light shadow-lg rounded p-4">
         <div class="row">
@@ -55,7 +55,7 @@
                         </td>
                     </tr>
                     <tr *ngIf="data.les_sorties.length==0" class="container w-100 center">
-                            <div class="fw-bold">Pas de sorties pour cette date</div>
+                        <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
                             
                     </tr>
                 </tbody>
@@ -63,6 +63,6 @@
         </div>
     </div>
 </div>
-<div class="fixed-bottom barreajout">
+<div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
 </div>

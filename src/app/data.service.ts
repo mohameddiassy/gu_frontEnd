@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
 import { ListejoursComponent } from './listejours/listejours.component';
 import { ListemoisComponent } from './listemois/listemois.component';
@@ -30,10 +31,10 @@ export class DataService {
     {nom:"Produits",id:2,component:'ProduitComponent'},
     {nom:"Achats",id:3},
     {nom:"Fournisseurs",id:4},
-    {nom:"Semaines",id:5},
-    {nom:"Années",id:7},
-    {nom:"Toutes Périodes",id:8},
-    {nom:"Sorties",id:9,component:'SortieComponent'},
+    // {nom:"Semaines",id:5},
+    // {nom:"Années",id:7},
+    // {nom:"Toutes Périodes",id:8},
+    // {nom:"Sorties",id:9,component:'SortieComponent'},
   ]
   listeproduits=[
     {nom:"Pain",id:1},
@@ -47,6 +48,7 @@ export class DataService {
   les_jours:any[]=[]
   les_mois:any[]=[]
   les_sorties_mois: any;
+  ajouterproduitbool=false
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})
   requete_post(page:string,parametres:any,calback:Function){
@@ -123,5 +125,27 @@ export class DataService {
   }
   getEvent():Observable<any>{
     return this.subjectEvent.asObservable()
+  }
+  
+  recevoir_jours(){
+    this.requete_post("get_nombre_d_activite_jour.php",{id_utilisateur:1},(data:any)=>{
+      this.les_jours=data
+      console.log(this.les_jours[0].date+"     "+moment().format("YYYY-MM-DD"))
+      if (this.les_jours.length>0 && this.les_jours[0].date==moment().format("YYYY-MM-DD")) {
+        // on a deja un enregistrement pour aujourd'hui
+      } else {
+        this.les_jours.unshift({
+            "date": moment().format("YYYY-MM-DD"),
+            "nombre": "0",
+            "montant": "0"
+        })
+      }
+      
+    })
+  }
+  recevoir_mois(){
+    this.requete_post("get_nombre_d_activite_mois.php",{id_utilisateur:1},(data:any)=>{
+      this.les_mois=data
+    })
   }
 }

@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./ajouter-produit.component.css']
 })
 export class AjouterProduitComponent implements OnInit {
-  produit={id_enregistreur:0,nom_produit:"",description:"",stock:0,prix_unitaire:""}
+  produit={id_enregistreur:1,id_entreprise:11,nom_produit:"",description:"",stock:0,prix_unitaire:""}
   
   succes=false
   echec=false
@@ -17,25 +17,19 @@ export class AjouterProduitComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.router.params.subscribe((params:any)=>{
-      this.produit.id_enregistreur=params["id_enregistreur"];
-      if (this.id_entreprise) {
-        console.log("id_entreprise est present")
-      } else {
-        console.log("id_entreprise est absent")
-        
-      }
-    })
   }
   ajouter(){
     console.log(this.produit)
     this.data.requete_post("add_product.php",{produit:JSON.stringify(this.produit)},(data:any)=>{
       if (data.status) {
         this.succes=true
-        this.produit={id_enregistreur:0,nom_produit:"",description:"",stock:0 ,prix_unitaire:""}      
+        this.produit={id_enregistreur:1,id_entreprise:11,nom_produit:"",description:"",stock:0 ,prix_unitaire:""}      
       } else {
         this.echec=false
       }
     })
+  }
+  close(){
+    this.data.ajouterproduitbool=!this.data.ajouterproduitbool
   }
 }

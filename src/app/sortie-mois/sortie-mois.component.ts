@@ -20,14 +20,11 @@ export class SortieMoisComponent implements OnInit {
     //   let date=moment(this.item.date).format("YYYY-MM-DD")
     //   this.data.recevoir_sorties(date)
     // })
-    this.item=this.data.les_jours[0]
+    this.item=this.data.les_mois[0]
     data.getEvent().subscribe((data)=>{
       this.item=data.item
-
-      let date=moment(this.item.date).format("YYYY-MM-DD")
-      console.log("date    date "+date)
-      this.data.recevoir_sortiesMois(date)
-
+      console.log(this.item.date)
+      this.data.recevoir_sortiesMois(this.item.date)
     })
   }
 

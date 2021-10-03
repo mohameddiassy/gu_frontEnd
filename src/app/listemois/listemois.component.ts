@@ -15,11 +15,11 @@ export class ListemoisComponent implements OnInit {
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
-    this.get_dates()
+    // this.get_dates()
+    this.data.recevoir_mois()
     this.data.sendEvent(1,this.data.les_mois[0])
   }
   get_dates(){
-
     // let la_date=moment().locale("fr").format('L');
     for (let index = 0; index < 100; index++) {
       let la_date:moment.Moment=moment().locale("fr").subtract(index, 'month');

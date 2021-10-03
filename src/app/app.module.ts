@@ -49,8 +49,8 @@ import { EnteteProduitComponent } from './entete/entete-produit/entete-produit.c
 import { SortieMoisComponent } from './sortie-mois/sortie-mois.component';
 
 const routes: Routes = [
-  { path: "", component: BodyComponent },
-  { path: "accueil", component: AccueilComponent },
+  { path: "", component: ConnexionComponent },
+  { path: "accueil", component: BodyComponent },
   { path: "connexion", component: ConnexionComponent },
   { path: "admin", component: EntrepriseComponent },
   { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AjouterProduitComponent } from '../ajouter-produit/ajouter-produit.component';
 import { AjouterSortieComponent } from '../ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../data.service';
 import { SortieComponent } from '../sortie/sortie.component';
@@ -11,6 +12,7 @@ import { SortieComponent } from '../sortie/sortie.component';
 })
 export class DetailProduitComponent implements OnInit {
   produit:any
+  ajouterproduitcomponent=AjouterProduitComponent
   constructor(public data:DataService) { 
     this.produit=this.data.les_produits[0]
     data.getEvent().subscribe((data)=>{
@@ -22,5 +24,7 @@ export class DetailProduitComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
+  ajouter_produit(){
+    this.data.ajouterproduitbool=!this.data.ajouterproduitbool
+  }
 }

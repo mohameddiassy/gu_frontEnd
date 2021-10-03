@@ -18,7 +18,7 @@ export class BasGaucheComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   
   lecomponent=ListejoursComponent
-  les_components=[
+  les_components:any=[
     ListejoursComponent,
     ListemoisComponent,
     ListeproduitsComponent

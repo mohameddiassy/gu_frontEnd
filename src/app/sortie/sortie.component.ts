@@ -26,7 +26,7 @@ export class SortieComponent implements OnInit {
     data.getEvent().subscribe((data)=>{
       this.item=data.item
 
-      let date=moment(this.item.date).format("YYYY-MM-DD")
+      let date=moment(this.item?.date).format("YYYY-MM-DD")
       this.data.recevoir_sorties(date)
     })
   }

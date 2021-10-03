@@ -14,7 +14,8 @@ export class ListejoursComponent implements OnInit {
   constructor(public data:DataService) { }
 
   ngOnInit(): void {
-    this.get_dates()
+    // this.get_dates()
+    this.data.recevoir_jours()
     this.data.sendEvent(0,this.data.les_jours[0])
   }
   get_dates(){
