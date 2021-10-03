@@ -1,10 +1,10 @@
-<div *ngIf="data.ajouterproduitbool">
+<div *ngIf="data.bool.ajouterproduit">
     <div class="content container-fluid">
         <div class="page-header">
             <div class="d-flex justify-content-between">
                 <h3 class="page-title mt-1">Ajouter un Produit</h3>
                 <span (click)="close()" class="material-icons croix">
-                    {{data.ajouterproduitbool?"close":"add"}}
+                    {{data.bool.ajouterproduit?"close":"add"}}
                 </span>
             </div>
         </div>

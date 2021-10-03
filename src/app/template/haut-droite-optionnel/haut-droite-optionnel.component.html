@@ -1,4 +1,4 @@
-<div class="text-wrap">
+<div class="text-wrap"  *ngIf="!data.sidenavbool">
     {{data.utilisateur_connecte?.prenom}} <br>
     {{data.utilisateur_connecte?.nom}} <br>
     <span (click)="deconnexion()" class="material-icons align-middle croix">

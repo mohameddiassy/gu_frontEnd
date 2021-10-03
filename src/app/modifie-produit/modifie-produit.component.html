@@ -1,10 +1,11 @@
-<div>
+<div  *ngIf="data.bool.modifiersortie">
     <div class="content container-fluid">
         <div class="page-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h3 class="page-title mt-5">Modifier le produit {{produit.nom_produit}}</h3>
-                </div>
+            <div class="d-flex justify-content-between">
+                <h3 class="page-title mt-1">Modifier la sortie {{produit.nom_produit}}</h3>
+                <span (click)="close()" class="material-icons croix">
+                    {{data.bool.modifiersortie?"close":"add"}}
+                </span>
             </div>
         </div>
         <hr>

@@ -25,11 +25,11 @@ export class DataService {
   private subjectenvoyer=new Subject<any>()
   private subjectProduit=new Subject<any>()
   private subjectEvent=new Subject<any>()
+  private subjectCode=new Subject<any>()
   listehautgauche=[
     {nom:"Jours",id:0,component:'ListejoursComponent'},
     {nom:"Mois",id:1,component:'ListemoisComponent'},
     {nom:"Produits",id:2,component:'ProduitComponent'},
-    {nom:"Statistiques",id:3,component:'AnalyticsComponent'},
    // {nom:"Achats",id:3},
    // {nom:"Fournisseurs",id:4},
     // {nom:"Semaines",id:5},
@@ -43,13 +43,17 @@ export class DataService {
     {nom:"Sel",id:3},
     {nom:"Levure",id:4},
   ]
-  closebool: boolean=false;
   recherche_hautgauche=""
   option='0'
   les_jours:any[]=[]
   les_mois:any[]=[]
   les_sorties_mois: any;
-  ajouterproduitbool=false
+  bool:any={
+    ajoutersortie:false,
+    ajouterproduit:false,
+    modifiersortie:false
+  }
+  sidenavbool=true
   constructor(private http:HttpClient) { }
   // requete_post("inscription.php",{prenom:"mouhamed",nom:"Amar"},(data:any)=>{//apres reception})
   requete_post(page:string,parametres:any,calback:Function){
@@ -156,5 +160,18 @@ export class DataService {
       this.les_produits=data
       callback(data)
     })
+  }
+  
+  closeAllBool(){
+    for (const cle in this.bool) {
+      this.bool[cle]=false;
+    }
+  }
+  // ecouteur globale avec code
+  sendCode(code:string,data:any){
+    this.subjectCode.next({code:code,data:data})
+  }
+  getCode():Observable<any>{
+    return this.subjectCode.asObservable()
   }
 }

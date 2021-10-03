@@ -25,13 +25,12 @@ export class AjouterSortieComponent implements OnInit {
       this.item=data.item
 
     })
-    data.getCloseClick().subscribe((data:any)=>{
-      this.data.closebool=!this.data.closebool
-    })
   }
 
   ngOnInit(): void {
-
+    this.data.recevoir_produit_entreprise(11,(data:any)=>{
+      
+    })
   }
   ajouter(){
     this.sortie.date_sortie=this.item.date
@@ -56,7 +55,7 @@ export class AjouterSortieComponent implements OnInit {
 
   }
   close(){
-    this.data.closebool=!this.data.closebool
+    this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
   }
 
 }

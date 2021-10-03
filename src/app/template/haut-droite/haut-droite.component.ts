@@ -39,7 +39,4 @@ export class HautDroiteComponent implements OnInit {
     this.item=data
     this.produit=undefined
   }
-  close(){
-    this.data.sendCloseClick()
-  }
 }

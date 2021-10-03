@@ -30,6 +30,6 @@ export class AjouterProduitComponent implements OnInit {
     })
   }
   close(){
-    this.data.ajouterproduitbool=!this.data.ajouterproduitbool
+    this.data.bool.ajouterproduit=!this.data.bool.ajouterproduit
   }
 }
