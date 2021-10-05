@@ -12,7 +12,7 @@ import { SortieComponent } from './sortie/sortie.component';
 })
 export class DataService {
   // url="https://gu.groupemeta.com/"
-  url="http://192.168.1.6/gestionuniversel_back/"
+  url="http://192.168.1.12/gestionuniversel_back/"
   // url="http://localhost/gestionuniversel_back/"
   les_produits:any[]=[]
   les_sorties:any[]=[]
@@ -161,7 +161,7 @@ export class DataService {
       callback(data)
     })
   }
-  
+
   closeAllBool(){
     for (const cle in this.bool) {
       this.bool[cle]=false;

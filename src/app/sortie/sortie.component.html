@@ -3,19 +3,20 @@
 
     <hr>
 
-    <div class="bg-light shadow-lg rounded p-4">
+    <div class="bg-light shadow-lg rounded p-3">
         <div class="row">
             <div class="col-md-3 _add_produit_btn mb-5">
                 <button class="btn btn-success"
                     (click)="ajoutersortie()">{{data.bool.ajoutersortie?"Fermer":"Ajouter Sortie"}}</button>
             </div>
-            <div class="col-md-2  mb-5">
+            <div class="form-group col-12 col-md-5 d-flex mb-5">
               <button  class="btn btn-primary"
               (click)="downloadFile(data.les_sorties)">load csv</button>
+              <button class="btn btn-warning mx-2" (click)="exportexcel()">
+                load-excel
+            </button>
             </div>
-            <div class="col-md-2 _add_produit_btn">
-            </div>
-            <div class="form-group col-12 col-md-5 d-flex mb-5">
+            <div class="form-group col-12 col-md-3 d-flex mb-3">
                 <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
                     me-1"
                     placeholder="Chercher une sortie">
@@ -23,7 +24,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-stripped table
+            <table id="excel-table" class="table table-stripped table
                 table-hover table-center mb-0 bg-light">
 
                 <thead>
