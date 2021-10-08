@@ -3,6 +3,8 @@ import * as moment from 'moment';
 import { AjouterSortieComponent } from '../ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../data.service';
 import { SortieComponent } from '../sortie/sortie.component';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-sortie-mois',
@@ -10,6 +12,8 @@ import { SortieComponent } from '../sortie/sortie.component';
   styleUrls: ['./sortie-mois.component.css']
 })
 export class SortieMoisComponent implements OnInit {
+  fileName= 'rapport_mensuel.xlsx';
+
   ajoutersortiecomponent=AjouterSortieComponent
   recherche=""
   item:any
@@ -61,6 +65,18 @@ export class SortieMoisComponent implements OnInit {
     window.URL.revokeObjectURL(url);
     a.remove();
   }
+  exportexcel(): void
+    {
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
+       const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+       /* generate workbook and add the worksheet */
+       const wb: XLSX.WorkBook = XLSX.utils.book_new();
+       XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+       /* save to file */
+       XLSX.writeFile(wb, this.fileName);
+
+    }
 
 }
 
