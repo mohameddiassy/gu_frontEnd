@@ -13,6 +13,15 @@ export class SortieMoisComponent implements OnInit {
   ajoutersortiecomponent=AjouterSortieComponent
   recherche=""
   item:any
+  les_statistiques:any=[
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Stock initial",chiffre:12,bg:"secondary"},
+    {nom:"Stock Final",chiffre:12,bg:"success"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+  ]
   constructor(public data:DataService) {
     this.item=data.les_mois[0]
     data.getEvent().subscribe((data)=>{

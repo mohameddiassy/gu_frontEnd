@@ -1,0 +1,21 @@
+<div class="body row">
+    <div class="gauche col-sm-3 d-none d-sm-block" >
+        <div class="hautGauche">
+            <ng-container *ngComponentOutlet="les_components.hautgauche"></ng-container>
+        </div>
+        <div class="basGauche"><ng-container *ngComponentOutlet="les_components.basgauche"></ng-container></div>
+    </div>
+    <div class="droite col-sm-9 d-block d-sm-block">
+        <div class="hautDroite sticky-top">
+            <ng-container *ngComponentOutlet="les_components.hautdroite"></ng-container>
+        </div>
+        <br>
+        <div class="basDroite">
+            <ng-container *ngComponentOutlet="les_components.basdroite"></ng-container>
+        </div>
+    </div>
+    <!--    
+        <div class="hautDroiteOptionnel">hautDroiteOptionnel</div>
+        <div class="basDroiteOptionnel">basDroiteOptionnel</div>
+    </div> -->
+</div>

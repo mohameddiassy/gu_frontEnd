@@ -1,28 +1,29 @@
-.body{background-color: rgb(216, 228, 224);height: 100vh;padding:0px 15px ;}
+.body{background-color: var(--bgGrise);height: 100vh;padding:0px 15px ;}
 .haut{height: 13vh;background-color: #f8f9fa;}
-.bas{height: 85vh;margin-top: 10px;}
-.basgauche{border-right: 1px black solid;height: 100%;overflow: auto;}
+.bas{height: 85vh;margin-top: 10px;background-color: var(--bgGrise);}
+.basgauche{border-right: 1px black solid;height: 100%;overflow: auto;background-color: var(--bgGrise);}
 .hautgauche{border-right: 1px black solid;}
 .basdroite{height: 100%;overflow: auto;}
 .hautdroiteoptionnel{border-left: 1px black solid;}
 .basdroiteoptionnel{border-left: 1px black solid;}
 
+
 /* width */
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+  width: 5px!important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

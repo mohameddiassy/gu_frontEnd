@@ -51,10 +51,12 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { EnteteAnalyticsComponent } from './entete/entete-analytics/entete-analytics.component';
 import { ListeAnalyticsComponent } from './liste-analytics/liste-analytics.component';
 import { ChartModule } from 'angular2-chartjs';
+import { Body2Component } from './template/body2/body2.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
   { path: "accueil", component: BodyComponent },
+  { path: "accueil2", component: Body2Component },
   { path: "connexion", component: ConnexionComponent },
   { path: "admin", component: EntrepriseComponent },
   { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
@@ -137,6 +139,7 @@ const routes: Routes = [
     AnalyticsComponent,
     EnteteAnalyticsComponent,
     ListeAnalyticsComponent,
+    Body2Component,
   ],
   imports: [
     BrowserModule,
@@ -145,7 +148,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    ChartModule
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

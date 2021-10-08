@@ -2,10 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
-import { ListejoursComponent } from './listejours/listejours.component';
-import { ListemoisComponent } from './listemois/listemois.component';
-import { ProduitComponent } from './produit/produit.component';
-import { SortieComponent } from './sortie/sortie.component';
+import * as $ from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -173,5 +170,34 @@ export class DataService {
   }
   getCode():Observable<any>{
     return this.subjectCode.asObservable()
+  }
+  
+  toggleSidenav(){
+    if (this.sidenavbool) {// sidenav ouvert, on le ferme
+        // on ferme la partie gauche
+        $(".gauche").removeClass("d-block");
+        $(".gauche").addClass("d-none");
+        // on ouvre le droite
+        $(".droite").removeClass("d-none");
+        $(".droite").addClass("d-block");
+    } else {//fermé, on l'ouvre
+        // on ferme la partie droite
+        $(".droite").removeClass("d-block");
+        $(".droite").addClass("d-none");
+        // on ouvre le gauche
+        $(".gauche").removeClass("d-none");
+        $(".gauche").addClass("d-block");
+    }
+    this.sidenavbool=!this.sidenavbool
+  }
+  
+  closeSidenav(){
+      // on ferme la partie gauche
+      $(".gauche").removeClass("d-block");
+      $(".gauche").addClass("d-none");
+      // on ouvre le droite
+      $(".droite").removeClass("d-none");
+      $(".droite").addClass("d-block");
+      this.sidenavbool=false
   }
 }

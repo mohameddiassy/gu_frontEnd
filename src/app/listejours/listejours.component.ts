@@ -21,6 +21,7 @@ export class ListejoursComponent implements OnInit {
   }
   clique(item:any){
     this.data.sendEvent(0,item)
+    this.data.closeSidenav()
   }
 
 }

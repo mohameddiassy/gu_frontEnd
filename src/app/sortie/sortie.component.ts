@@ -17,6 +17,15 @@ export class SortieComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   item:any
   recherche=""
+  les_statistiques:any=[
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Stock initial",chiffre:12,bg:"secondary"},
+    {nom:"Stock Final",chiffre:12,bg:"success"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+  ]
   constructor(public data:DataService) {
     this.item=data.les_jours[0]
     data.getEvent().subscribe((data)=>{
