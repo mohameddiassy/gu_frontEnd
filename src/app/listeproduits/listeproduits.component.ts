@@ -22,6 +22,7 @@ export class ListeproduitsComponent implements OnInit {
   }
   clique(item:any){
     this.data.sendEvent(2,item)
+    this.data.closeSidenav()
   }
 
 }

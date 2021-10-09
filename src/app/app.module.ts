@@ -55,7 +55,7 @@ import { Body2Component } from './template/body2/body2.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
-  { path: "accueil", component: BodyComponent },
+  { path: "accueil", component: Body2Component },
   { path: "accueil2", component: Body2Component },
   { path: "connexion", component: ConnexionComponent },
   { path: "admin", component: EntrepriseComponent },

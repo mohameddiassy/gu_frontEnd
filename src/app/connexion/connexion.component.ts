@@ -13,6 +13,7 @@ export class ConnexionComponent implements OnInit {
   constructor(public data:DataService,private route:Router) { }
 
   ngOnInit(): void {
+    this.verifier_session()
   }
   connecter(){
     console.log(this.utilisateur)
@@ -27,6 +28,25 @@ export class ConnexionComponent implements OnInit {
         this.echec_connexion=true
       }
     })
+  }
+  verifier_session(){
+    let u:any = localStorage.getItem('utilisateur');
+    let user=JSON.parse(u)
+    console.log("session= ",u)
+    if (user==null) {//non connecté
+      // on ne fait rien
+      // this.route.navigate(["/"])
+    } else {
+      this.data.utilisateur_connecte=user
+      if (user.privilege==2) {
+        this.data.listehautgauche.push({nom:"Statistiques",id:3,component:'AnalyticsComponent'})
+        this.data.listehautgauche.push({nom:"Fournisseurs",id:4,component:'FournisseurComponent'})
+          console.log("le propriétaire de l'entreprise")
+      } else {
+        console.log("un gérant de l'entreprise")
+      }
+      this.route.navigate(["/accueil"])
+    }
   }
 
 }

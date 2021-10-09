@@ -4,7 +4,6 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from '../ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../data.service';
-import { ModifieProduitComponent } from '../modifie-produit/modifie-produit.component';
 import * as XLSX from 'xlsx';
 
 @Component({

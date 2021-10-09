@@ -17,5 +17,6 @@ export class ListeAnalyticsComponent implements OnInit {
   }
   clique(item:any){
     this.data.sendEvent(3,item)
+    this.data.closeSidenav()
   }
 }

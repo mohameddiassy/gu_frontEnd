@@ -23,6 +23,7 @@ export class ListemoisComponent implements OnInit {
   }
   clique(item:any){
     this.data.sendEvent(1,item)
+    this.data.closeSidenav()
   }
 
 }

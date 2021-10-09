@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { EnteteAnalyticsComponent } from 'src/app/entete/entete-analytics/entete-analytics.component';
@@ -25,7 +26,7 @@ export class HautDroiteComponent implements OnInit {
   produit:any
   clicksuscription: Subscription = new Subscription;
   clickproduit: Subscription = new Subscription;
-  constructor(public data:DataService) {
+  constructor(public data:DataService,private route:Router) {
     data.getEvent().subscribe((data)=>{
       console.log(data.index)
       this.les_droite_component=this.les_components[data.index]
@@ -38,5 +39,11 @@ export class HautDroiteComponent implements OnInit {
     console.log("clique")
     this.item=data
     this.produit=undefined
+  }
+  
+  deconnexion(){
+    localStorage.setItem('utilisateur', JSON.stringify(null));
+    // sessionStorage.removeItem('utilisateur');
+    this.route.navigate(["/"])
   }
 }

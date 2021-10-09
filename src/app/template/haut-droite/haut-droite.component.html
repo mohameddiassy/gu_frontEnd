@@ -1,9 +1,19 @@
-<div class="d-flex">
-    <button (click)="data.toggleSidenav()" type="button" class=" btn btn-primary align-center d-block d-sm-none">
-        <span class="material-icons" >
-            {{data.sidenavbool?"close":"menu"}}
+<div class="d-flex justify-content-between">
+    <div class="d-flex">
+        <button (click)="data.toggleSidenav()" type="button" class=" btn btn-primary d-block d-sm-none">
+            <span class="material-icons" >
+                {{data.sidenavbool?"close":"menu"}}
+            </span>
+        </button>
+        <h2 class="bold align-middle">GUStock</h2>
+    </div>
+    <div class="">
+        <span class="fs-6">
+            {{data.utilisateur_connecte?.prenom+" "+data.utilisateur_connecte?.nom}}
+        </span><br>
+        <span (click)="deconnexion()" class="material-icons align-middle croix">
+            power_settings_new
         </span>
-    </button>
-    <h2 class="align-bottom">GUStock</h2>
+    </div>        
 </div>
 
