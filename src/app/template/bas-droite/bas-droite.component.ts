@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AnalyticsComponent } from 'src/app/analytics/analytics.component';
-import { DataService } from 'src/app/data.service';
-import { DetailProduitComponent } from 'src/app/detail-produit/detail-produit.component';
-import { SortieMoisComponent } from 'src/app/sortie-mois/sortie-mois.component';
-import { SortieComponent } from 'src/app/sortie/sortie.component';
+import { AnalyticsComponent } from 'src/app/basDroite/analytics/analytics.component';
+import { DataService } from 'src/app/service/data.service';
+import { DetailProduitComponent } from 'src/app/basDroite/detail-produit/detail-produit.component';
+import { SortieMoisComponent } from 'src/app/basDroite/sortie-mois/sortie-mois.component';
+import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
 
 @Component({
   selector: 'app-bas-droite',

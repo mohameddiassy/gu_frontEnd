@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/service/data.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
 import { BasGaucheComponent } from '../bas-gauche/bas-gauche.component';
@@ -13,7 +13,7 @@ import { HautGaucheComponent } from '../haut-gauche/haut-gauche.component';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class BodyComponent implements OnInit {
+export class Body2Component implements OnInit {
   les_components:any={
     hautgauche:HautGaucheComponent,
     hautdroite:HautDroiteComponent,
@@ -22,9 +22,12 @@ export class BodyComponent implements OnInit {
     hautdroiteoptionnel:HautDroiteOptionnelComponent,
     basdroiteoptionnel:BasDroiteOptionnelComponent
   }
+
+  
   constructor(public data:DataService,public route:Router) { }
 
   ngOnInit(): void {
+    this.data.toggleSidenav()
     this.verifier_session()
   }
   verifier_session(){

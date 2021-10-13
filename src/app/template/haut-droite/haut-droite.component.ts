@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DataService } from 'src/app/data.service';
+import { DataService } from 'src/app/service/data.service';
 import { EnteteAnalyticsComponent } from 'src/app/entete/entete-analytics/entete-analytics.component';
 import { EnteteJourComponent } from 'src/app/entete/entete-jour/entete-jour.component';
 import { EnteteMoisComponent } from 'src/app/entete/entete-mois/entete-mois.component';

@@ -1,24 +1,21 @@
-<div class="body">
-    <div class="haut row">
-        <div class="hautgauche col-12 col-sm-3" *ngIf="data.sidenavbool">
+<div class="body row">
+    <div class="gauche col-sm-3 d-none d-sm-block" >
+        <div class="hautGauche">
             <ng-container *ngComponentOutlet="les_components.hautgauche"></ng-container>
         </div>
-        <div class="hautdroite col ">
+        <div class="basGauche"><ng-container *ngComponentOutlet="les_components.basgauche"></ng-container></div>
+    </div>
+    <div class="droite col-sm-9 d-block d-sm-block">
+        <div class="hautDroite sticky-top">
             <ng-container *ngComponentOutlet="les_components.hautdroite"></ng-container>
         </div>
-        <div class="hautdroiteoptionnel col-sm-1 sm-block d-none">
-            <ng-container *ngComponentOutlet="les_components.hautdroiteoptionnel"></ng-container>
-        </div>
-    </div>
-    <div class="bas row">
-        <div class="basgauche col-12 col-sm-3" *ngIf="data.sidenavbool">
-            <ng-container *ngComponentOutlet="les_components.basgauche"></ng-container>
-        </div>
-        <div class="basdroite col">
+        <br>
+        <div class="basDroite">
             <ng-container *ngComponentOutlet="les_components.basdroite"></ng-container>
         </div>
-        <!-- <div class="basdroiteoptionnel col">
-            <ng-container *ngComponentOutlet="les_components.basdroiteoptionnel"></ng-container>
-        </div> -->
     </div>
+    <!--    
+        <div class="hautDroiteOptionnel">hautDroiteOptionnel</div>
+        <div class="basDroiteOptionnel">basDroiteOptionnel</div>
+    </div> -->
 </div>

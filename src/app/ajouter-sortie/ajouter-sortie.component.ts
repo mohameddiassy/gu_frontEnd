@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { DataService } from '../data.service';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-ajouter-sortie',

@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { AjouterSortieComponent } from 'src/app/ajouter-sortie/ajouter-sortie.component';
-import { DataService } from 'src/app/data.service';
-import { ListeAnalyticsComponent } from 'src/app/liste-analytics/liste-analytics.component';
-import { ListejoursComponent } from 'src/app/listejours/listejours.component';
-import { ListemoisComponent } from 'src/app/listemois/listemois.component';
-import { ListeproduitsComponent } from 'src/app/listeproduits/listeproduits.component';
-import { ProduitComponent } from 'src/app/produit/produit.component';
-import { SortieComponent } from 'src/app/sortie/sortie.component';
+import { DataService } from 'src/app/service/data.service';
+import { ListeAnalyticsComponent } from 'src/app/basGauche/liste-analytics/liste-analytics.component';
+import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
+import { ListemoisComponent } from 'src/app/basGauche/listemois/listemois.component';
+import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
 
 @Component({
   selector: 'app-bas-gauche',
