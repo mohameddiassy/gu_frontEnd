@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
-import { EnteteJourComponent } from 'src/app/entete/entete-jour/entete-jour.component';
-import { EnteteMoisComponent } from 'src/app/entete/entete-mois/entete-mois.component';
-import { saveAs } from 'file-saver'
 
 @Component({
   selector: 'app-haut-droite-optionnel',

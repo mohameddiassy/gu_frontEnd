@@ -3,7 +3,7 @@
         <div class="hautGauche">
             <ng-container *ngComponentOutlet="les_components.hautgauche"></ng-container>
         </div>
-        <div class="basGauche"><ng-container *ngComponentOutlet="les_components.basgauche"></ng-container></div>
+        <div class="basGauche"><ng-container *ngComponentOutlet="fenetres[api.global.fenetre_selectionnee].basGauche"></ng-container></div>
     </div>
     <div class="droite col-sm-9 d-block d-sm-block">
         <div class="hautDroite sticky-top">
@@ -11,7 +11,7 @@
         </div>
         <br>
         <div class="basDroite">
-            <ng-container *ngComponentOutlet="les_components.basdroite"></ng-container>
+            <ng-container *ngComponentOutlet="fenetres[api.global.fenetre_selectionnee].basDroite"></ng-container>
         </div>
     </div>
     <!--    

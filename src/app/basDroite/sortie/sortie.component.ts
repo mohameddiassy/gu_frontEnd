@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from '../../ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../../service/data.service';
 import * as XLSX from 'xlsx';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-sortie',
@@ -13,11 +14,10 @@ import * as XLSX from 'xlsx';
 })
 export class SortieComponent implements OnInit {
   fileName= 'rapport_journalier.xlsx';
-
+  item:any={}
   lecomponent=SortieComponent
   ajoutersortiecomponent=AjouterSortieComponent
   clicksuscription: Subscription = new Subscription;
-  item:any
   recherche=""
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
@@ -28,12 +28,12 @@ export class SortieComponent implements OnInit {
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
   ]
-  constructor(public data:DataService) {
-    this.item=data.les_jours[0]
-    data.getEvent().subscribe((data)=>{
-      this.item=data.item
-      let date=moment(this.item?.date).format("YYYY-MM-DD")
-      this.data.recevoir_sorties(date)
+  constructor(public api:ApiService) {
+    api.getEvent().subscribe((data)=>{
+      if(data.code=="sortie_par_jours_par_enregistreur"){
+        console.log("SortieComponent ecoute bien la liste des jour ",data.data)
+        this.item=data.data
+      }
     })
   }
 
@@ -42,12 +42,12 @@ export class SortieComponent implements OnInit {
   }
 
   ajoutersortie(){
-    this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
-    this.data.sendCode("ajoutersortie",{});
+    // this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
+    // this.data.sendCode("ajoutersortie",{});
   }
   modifier_sortie(une_sortie:any){
-    this.data.bool.modifiersortie=!this.data.bool.modifiersortie
-    this.data.sendCode("modifier_sortie",une_sortie);
+    // this.data.bool.modifiersortie=!this.data.bool.modifiersortie
+    // this.data.sendCode("modifier_sortie",une_sortie);
   }
 
   downloadFile(data: any) {

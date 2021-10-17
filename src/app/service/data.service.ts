@@ -8,9 +8,9 @@ import * as $ from 'jquery';
   providedIn: 'root'
 })
 export class DataService {
-  url="https://gu.groupemeta.com/"
+  // url="https://gu.groupemeta.com/"
   // url="http://192.168.1.6/gestionuniversel_back/"
-  // url="http://localhost/gestionuniversel_back/"
+  url="http://localhost/gestionuniversel_back/"
   les_produits:any[]=[]
   les_sorties:any[]=[]
   utilisateur_connecte:any

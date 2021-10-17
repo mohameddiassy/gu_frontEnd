@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnalyticsComponent } from 'src/app/basDroite/analytics/analytics.component';
+import { ProduitComponent } from 'src/app/basDroite/produit/produit.component';
+import { SortieMoisComponent } from 'src/app/basDroite/sortie-mois/sortie-mois.component';
+import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
+import { ListeAnalyticsComponent } from 'src/app/basGauche/liste-analytics/liste-analytics.component';
+import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
+import { ListemoisComponent } from 'src/app/basGauche/listemois/listemois.component';
+import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
+import { ApiService } from 'src/app/service/api.service';
 import { DataService } from 'src/app/service/data.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
@@ -13,7 +22,7 @@ import { HautGaucheComponent } from '../haut-gauche/haut-gauche.component';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class Body2Component implements OnInit {
+export class BodyComponent implements OnInit {
   les_components:any={
     hautgauche:HautGaucheComponent,
     hautdroite:HautDroiteComponent,
@@ -22,29 +31,42 @@ export class Body2Component implements OnInit {
     hautdroiteoptionnel:HautDroiteOptionnelComponent,
     basdroiteoptionnel:BasDroiteOptionnelComponent
   }
-
-  
-  constructor(public data:DataService,public route:Router) { }
+  fenetres:any=[
+    {
+      nom:"Sortie Par jour",
+      basGauche:ListejoursComponent,
+      basDroite:SortieComponent
+    },
+    {
+      nom:"Sortie par mois",
+      basGauche:ListemoisComponent,
+      basDroite:SortieMoisComponent
+    },
+    {
+      nom:"Produits",
+      basGauche:ListeproduitsComponent,
+      basDroite:ProduitComponent
+    },
+    {
+      nom:"Tableau de Bord",
+      basGauche:ListeAnalyticsComponent,
+      basDroite:AnalyticsComponent
+    }
+  ]
+  constructor(public api:ApiService,public route:Router) { }
 
   ngOnInit(): void {
-    this.data.toggleSidenav()
+    this.api.toggleSidenav()
     this.verifier_session()
   }
   verifier_session(){
     let u:any = localStorage.getItem('utilisateur');
     let user=JSON.parse(u)
-    console.log("session= ",u)
+    // console.log("session= ",u)
     if (user==null) {//non connecté
-      this.route.navigate(["/"])
+      this.route.navigate(["/connexion"])
     } else {
-      this.data.utilisateur_connecte=user
-      if (user.privilege==2) {
-        this.data.listehautgauche.push({nom:"Statistiques",id:3,component:'AnalyticsComponent'})
-        this.data.listehautgauche.push({nom:"Fournisseurs",id:4,component:'FournisseurComponent'})
-          console.log("le propriétaire de l'entreprise")
-      } else {
-        console.log("un gérant de l'entreprise")
-      }
+      this.api.global.utilisateur_connecte=user
     }
   }
 }

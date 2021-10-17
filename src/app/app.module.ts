@@ -40,48 +40,16 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ListejoursComponent } from './basGauche/listejours/listejours.component';
 import { ListemoisComponent } from './basGauche/listemois/listemois.component';
 import { ListeproduitsComponent } from './basGauche/listeproduits/listeproduits.component';
-import { EnteteJourComponent } from './entete/entete-jour/entete-jour.component';
-import { EnteteMoisComponent } from './entete/entete-mois/entete-mois.component';
-import { EnteteProduitComponent } from './entete/entete-produit/entete-produit.component';
 import { SortieMoisComponent } from './basDroite/sortie-mois/sortie-mois.component';
 import { AnalyticsComponent } from './basDroite/analytics/analytics.component';
-import { EnteteAnalyticsComponent } from './entete/entete-analytics/entete-analytics.component';
 import { ListeAnalyticsComponent } from './basGauche/liste-analytics/liste-analytics.component';
 import { ChartModule } from 'angular2-chartjs';
-import { Body2Component } from './template/body/body.component';
+import { BodyComponent } from './template/body/body.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
-  { path: "accueil", component: Body2Component },
-  { path: "accueil2", component: Body2Component },
   { path: "connexion", component: ConnexionComponent },
-  { path: "admin", component: EntrepriseComponent },
-  { path: "ajout_utilisateur", component: AjoutUtilisateurComponent },
-  { path: "produit/:id_entreprise", component: ProduitComponent },
-  { path: "detail-produit", component: DetailProduitComponent },
-  { path: "ajouter-produit/:id_enregistreur", component: AjouterProduitComponent },
-  { path: "modifier-produit", component: ModifieProduitComponent },
-  { path: "modifier-produit/:id_produit", component: ModifieProduitComponent },
-  { path: "entreprise", component: EntrepriseComponent },
-  { path: "detail-entreprise/:id_entreprise", component: DetailEntrepriseComponent },
-  { path: "ajouter-entreprise", component: AjouterEntrepriseComponent },
-  { path: "modifier-entreprise/:id_entreprise", component: ModifierEntrepriseComponent },
-  { path: "sorties/:id_entreprise", component: SortieComponent },
-  { path: "ajouter-sortie/:id_produit", component: AjouterSortieComponent },
-  { path: "ajouter-sortie", component: AjouterSortieComponent },
-  { path: "utilisateur", component: UtilisateurComponent },
-  { path: "ajouter-utilisateur", component: AjoutUtilisateurComponent },
-  { path: "modifier-utilisateur", component: ModifierUtilisateurComponent },
-  { path: "detail-utilisateur", component: DetailUtilisateurComponent },
-  { path: "gerant", component: GerantComponent },
-  { path: "ajouter-gerant/:id_entreprise", component: AjouterGerantComponent },
-  { path: "modifier-gerant", component: ModifierGerantComponent },
-  { path: "detail-gerant", component: DetailGerantComponent },
-  { path: "a-propos", component: AProposComponent },
-  { path: "detail-gerant/:id_agent", component: DetailGerantComponent },
-  { path: "ente-jour", component: EnteteJourComponent },
-  { path: "ente-mois", component: EnteteMoisComponent },
-  { path: "ente-prouit", component: EnteteProduitComponent },
+  { path: "accueil", component: BodyComponent },
 
 
 
@@ -126,14 +94,10 @@ const routes: Routes = [
     ListejoursComponent,
     ListemoisComponent,
     ListeproduitsComponent,
-    EnteteJourComponent,
-    EnteteMoisComponent,
-    EnteteProduitComponent,
     SortieMoisComponent,
     AnalyticsComponent,
-    EnteteAnalyticsComponent,
     ListeAnalyticsComponent,
-    Body2Component,
+    BodyComponent,
   ],
   imports: [
     BrowserModule,
