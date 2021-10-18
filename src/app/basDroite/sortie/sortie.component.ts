@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
-import { AjouterSortieComponent } from '../../ajouter-sortie/ajouter-sortie.component';
+import { AjouterSortieComponent } from '../../modal/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../../service/data.service';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
@@ -38,12 +38,11 @@ export class SortieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   ajoutersortie(){
-    // this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
-    // this.data.sendCode("ajoutersortie",{});
+    this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
+    this.api.sendEvent("ajoutersortie",{});
   }
   modifier_sortie(une_sortie:any){
     // this.data.bool.modifiersortie=!this.data.bool.modifiersortie

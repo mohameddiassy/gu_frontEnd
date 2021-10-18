@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { AjouterSortieComponent } from '../../ajouter-sortie/ajouter-sortie.component';
+import { AjouterSortieComponent } from '../../modal/ajouter-sortie/ajouter-sortie.component';
 import { DataService } from '../../service/data.service';
 import { SortieComponent } from '../sortie/sortie.component';
 import * as XLSX from 'xlsx';

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { ApiService } from 'src/app/service/api.service';
 import { DataService } from '../../service/data.service';
 import { ListejoursComponent } from '../listejours/listejours.component';
 
@@ -10,19 +11,18 @@ import { ListejoursComponent } from '../listejours/listejours.component';
 })
 export class ListeproduitsComponent implements OnInit {
 
-  listebasgauche:any[]=[]
-  lecomponent=ListejoursComponent
-  constructor(public data:DataService) { }
+  constructor(public api:ApiService) { }
 
   ngOnInit(): void {
-    this.data.recevoir_produit_entreprise(11,(data:any)=>{
-      this.data.sendEvent(2,this.data.les_produits[0])
+    this.api.post({get_products_by_id_entreprise:true,id_entreprise:1}).subscribe((data:any)=>{
+      this.api.global.les_produits=data.les_produits
+      this.api.sendEvent("item_liste_produit",this.api.global.les_produits[0])
     })
     
   }
   clique(item:any){
-    this.data.sendEvent(2,item)
-    this.data.closeSidenav()
+    this.api.sendEvent("item_liste_produit",item)
+    this.api.closeSidenav()
   }
 
 }

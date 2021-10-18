@@ -5,15 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './page/accueil/accueil.component';
 import { AjoutUtilisateurComponent } from './admin/ajout-utilisateur/ajout-utilisateur.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './page/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ProduitComponent } from './basDroite/produit/produit.component';
 import { ConnexionComponent } from './page/connexion/connexion.component';
-import { AjouterProduitComponent } from './ajouter-produit/ajouter-produit.component';
+import { AjouterProduitComponent } from './modal/ajouter-produit/ajouter-produit.component';
 import { FormsModule } from '@angular/forms';
 import { EntrepriseComponent } from './admin/entreprise/entreprise.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ModifieProduitComponent } from './modifie-produit/modifie-produit.component';
+import { ModifieProduitComponent } from './modal/modifie-produit/modifie-produit.component';
 import { DetailProduitComponent } from './basDroite/detail-produit/detail-produit.component';
 import { DetailEntrepriseComponent } from './admin/detail-entreprise/detail-entreprise.component';
 import { AjouterEntrepriseComponent } from './admin/ajouter-entreprise/ajouter-entreprise.component';
@@ -22,9 +21,9 @@ import { UtilisateurComponent } from './admin/utilisateur/utilisateur.component'
 import { AjouterUtilisateurComponent } from './admin/ajouter-utilisateur/ajouter-utilisateur.component';
 import { ModifierUtilisateurComponent } from './admin/modifier-utilisateur/modifier-utilisateur.component';
 import { DetailUtilisateurComponent } from './admin/detail-utilisateur/detail-utilisateur.component';
-import { InscriptionComponent } from './inscription/inscription.component';
+import { InscriptionComponent } from './page/inscription/inscription.component';
 import { SortieComponent } from './basDroite/sortie/sortie.component';
-import { AjouterSortieComponent } from './ajouter-sortie/ajouter-sortie.component';
+import { AjouterSortieComponent } from './modal/ajouter-sortie/ajouter-sortie.component';
 import { GerantComponent } from './admin/gerant/gerant.component';
 import { AjouterGerantComponent } from './admin/ajouter-gerant/ajouter-gerant.component';
 import { ModifierGerantComponent } from './admin/modifier-gerant/modifier-gerant.component';
@@ -45,6 +44,12 @@ import { AnalyticsComponent } from './basDroite/analytics/analytics.component';
 import { ListeAnalyticsComponent } from './basGauche/liste-analytics/liste-analytics.component';
 import { ChartModule } from 'angular2-chartjs';
 import { BodyComponent } from './template/body/body.component';
+import { EntreeComponent } from './basDroite/entree/entree.component';
+import { DashbordComponent } from './basDroite/dashbord/dashbord.component';
+import { FournisseurComponent } from './basDroite/fournisseur/fournisseur.component';
+import { ListeEntreeComponent } from './basGauche/liste-entree/liste-entree.component';
+import { ListeFournisseurComponent } from './basGauche/liste-fournisseur/liste-fournisseur.component';
+import { ListeDashbordComponent } from './basGauche/liste-dashbord/liste-dashbord.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -60,7 +65,6 @@ const routes: Routes = [
     AppComponent,
     ConnexionComponent,
     AccueilComponent,
-    ProduitComponent,
     DetailProduitComponent,
     AjouterProduitComponent,
     ModifieProduitComponent,
@@ -98,6 +102,12 @@ const routes: Routes = [
     AnalyticsComponent,
     ListeAnalyticsComponent,
     BodyComponent,
+    EntreeComponent,
+    DashbordComponent,
+    FournisseurComponent,
+    ListeEntreeComponent,
+    ListeFournisseurComponent,
+    ListeDashbordComponent,
   ],
   imports: [
     BrowserModule,

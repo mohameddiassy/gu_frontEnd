@@ -14,11 +14,13 @@ export class ApiService {
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:0,
+    fenetre_selectionnee:"fenetre_produit",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],
-    sortie_par_jours_par_enregistreur:[]
+    sortie_par_jours_par_enregistreur:[],
+    les_produits:[],
+    les_categories:[]
   }
   bool:any={
     ajoutersortie:false,
@@ -54,8 +56,7 @@ export class ApiService {
         $(".gauche").addClass("d-block");
     }
     this.global.sidenavbool=!this.global.sidenavbool
-  }
-  
+  } 
   closeSidenav(){
       // on ferme la partie gauche
       $(".gauche").removeClass("d-block");
@@ -65,12 +66,17 @@ export class ApiService {
       $(".droite").addClass("d-block");
       this.global.sidenavbool=false
   }
-  
   //  ecouteur globale avec code
   sendEvent(code:string,data:any){
     this.subjectCode.next({code:code,data:data})
   }
   getEvent():Observable<any>{
     return this.subjectCode.asObservable()
+  }
+  
+  closeAllBool(){
+    for (const cle in this.bool) {
+      this.bool[cle]=false;
+    }
   }
 }

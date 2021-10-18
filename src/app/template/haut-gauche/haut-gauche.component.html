@@ -2,7 +2,7 @@
   <div class="input-group">
     <select name="option" [(ngModel)]="api.global.fenetre_selectionnee" (change)="changement()" class=" form-select"
       aria-label="Default select example">
-      <option [value]="i" *ngFor="let item of api.global.les_fenetres;let i=index;let f=first">{{item.nom}}</option>
+      <option [value]="item.cle" *ngFor="let item of api.global.les_fenetres;let i=index;let f=first">{{item.nom}}</option>
     </select>
     <button (click)="api.toggleSidenav()" class="input-group-btn btn-warning d-block d-sm-none d-md-none"
       for="inputGroupSelect02">

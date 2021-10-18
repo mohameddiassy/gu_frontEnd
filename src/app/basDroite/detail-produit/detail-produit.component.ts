@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
-import { Subscription } from 'rxjs';
-import { AjouterProduitComponent } from '../../ajouter-produit/ajouter-produit.component';
-import { AjouterSortieComponent } from '../../ajouter-sortie/ajouter-sortie.component';
-import { DataService } from '../../service/data.service';
-import { ModifieProduitComponent } from '../../modifie-produit/modifie-produit.component';
-import { SortieComponent } from '../sortie/sortie.component';
+import { AjouterProduitComponent } from '../../modal/ajouter-produit/ajouter-produit.component';
+import { ModifieProduitComponent } from '../../modal/modifie-produit/modifie-produit.component';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-detail-produit',
@@ -17,11 +13,12 @@ export class DetailProduitComponent implements OnInit {
   ajouterproduitcomponent=AjouterProduitComponent
   
   modifierproduitcomponent=ModifieProduitComponent
-  constructor(public data:DataService) { 
-    this.produit=this.data.les_produits[0]
-    data.getEvent().subscribe((data)=>{
-      console.log(data.index)
-      this.produit=data.item
+  constructor(public api:ApiService) { 
+    // this.produit=this.api.global.les_produits[0]
+    api.getEvent().subscribe((data:any)=>{
+      if(data.code=="item_liste_produit"){
+        this.produit=data.data
+      }
     })
   }
 
@@ -29,13 +26,13 @@ export class DetailProduitComponent implements OnInit {
     
   }
   ajouter_produit(){
-    this.data.closeAllBool()
-    this.data.bool.ajouterproduit=!this.data.bool.ajouterproduit
+    this.api.closeAllBool()
+    this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
   }
   
   modifier_sortie(){
-    this.data.closeAllBool()
-    this.data.bool.modifiersortie=!this.data.bool.modifiersortie
-    this.data.sendCode("modifier_sortie",this.produit);
+    this.api.closeAllBool()
+    this.api.bool.modifiersortie=!this.api.bool.modifiersortie
+    this.api.sendEvent("modifier_sortie",this.produit);
   }
 }

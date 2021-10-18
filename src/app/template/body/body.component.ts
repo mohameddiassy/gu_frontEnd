@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AnalyticsComponent } from 'src/app/basDroite/analytics/analytics.component';
-import { ProduitComponent } from 'src/app/basDroite/produit/produit.component';
-import { SortieMoisComponent } from 'src/app/basDroite/sortie-mois/sortie-mois.component';
+import { DashbordComponent } from 'src/app/basDroite/dashbord/dashbord.component';
+import { DetailProduitComponent } from 'src/app/basDroite/detail-produit/detail-produit.component';
+import { EntreeComponent } from 'src/app/basDroite/entree/entree.component';
+import { FournisseurComponent } from 'src/app/basDroite/fournisseur/fournisseur.component';
 import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
-import { ListeAnalyticsComponent } from 'src/app/basGauche/liste-analytics/liste-analytics.component';
+import { ListeDashbordComponent } from 'src/app/basGauche/liste-dashbord/liste-dashbord.component';
+import { ListeEntreeComponent } from 'src/app/basGauche/liste-entree/liste-entree.component';
+import { ListeFournisseurComponent } from 'src/app/basGauche/liste-fournisseur/liste-fournisseur.component';
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
-import { ListemoisComponent } from 'src/app/basGauche/listemois/listemois.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
 import { ApiService } from 'src/app/service/api.service';
-import { DataService } from 'src/app/service/data.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
 import { BasGaucheComponent } from '../bas-gauche/bas-gauche.component';
@@ -31,28 +32,35 @@ export class BodyComponent implements OnInit {
     hautdroiteoptionnel:HautDroiteOptionnelComponent,
     basdroiteoptionnel:BasDroiteOptionnelComponent
   }
-  fenetres:any=[
+  fenetres:any={
+    "fenetre_sortie":
     {
-      nom:"Sortie Par jour",
+      nom:"Sortie",
       basGauche:ListejoursComponent,
       basDroite:SortieComponent
     },
+    "fenetre_entree":
     {
-      nom:"Sortie par mois",
-      basGauche:ListemoisComponent,
-      basDroite:SortieMoisComponent
+      nom:"Entrée",
+      basGauche:ListeEntreeComponent,
+      basDroite:EntreeComponent
     },
-    {
+    "fenetre_produit":{
       nom:"Produits",
       basGauche:ListeproduitsComponent,
-      basDroite:ProduitComponent
+      basDroite:DetailProduitComponent
     },
-    {
+    "fenetre_dashbord":{
       nom:"Tableau de Bord",
-      basGauche:ListeAnalyticsComponent,
-      basDroite:AnalyticsComponent
+      basGauche:ListeDashbordComponent,
+      basDroite:DashbordComponent
+    },
+    "fenetre_fournisseur":{
+      nom:"Fournisseur",
+      basGauche:ListeFournisseurComponent,
+      basDroite:FournisseurComponent
     }
-  ]
+  }
   constructor(public api:ApiService,public route:Router) { }
 
   ngOnInit(): void {

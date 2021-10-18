@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../service/data.service';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-modifie-produit',
@@ -10,8 +10,8 @@ import { DataService } from '../service/data.service';
 export class ModifieProduitComponent implements OnInit {
   id_produit:number=0
   produit={nom_produit:"",description:"",stock:0,prix_unitaire:""}
-  constructor(public data:DataService,private router:ActivatedRoute) { 
-    data.getCode().subscribe((data:any)=>{
+  constructor(public api:ApiService,private router:ActivatedRoute) { 
+    api.getEvent().subscribe((data:any)=>{
       console.log("getcode= ",data)
       if(data.code=="modifier_sortie"){
         this.produit=data.data
@@ -22,12 +22,6 @@ export class ModifieProduitComponent implements OnInit {
   ngOnInit(): void {
   }
   modifier(){
-    this.data.requete_post("update_product.php",{produit:JSON.stringify(this.produit)},(data:any)=>{
-      
-    })
-  }
-  close(){
-    this.data.bool.modifiersortie=!this.data.bool.modifiersortie
   }
 
 }

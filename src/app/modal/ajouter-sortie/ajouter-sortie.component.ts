@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { Subscription } from 'rxjs';
-import { DataService } from '../service/data.service';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-ajouter-sortie',
@@ -15,22 +13,15 @@ export class AjouterSortieComponent implements OnInit {
   succes=false
   echec=false
   item:any
-  constructor(public data:DataService) { 
-    data.getEvent().subscribe((data:any)=>{
-      console.log("data data ",data)
-      this.item=data.item
-    })
-    data.getBasGaucheClick().subscribe((data:any)=>{
-      console.log("data data ",data)
-      this.item=data.item
-
+  constructor(public api:ApiService) { 
+    api.getEvent().subscribe((data)=>{
+      if(data.code=="ajoutersortie"){
+        this.item=data.data
+      }
     })
   }
 
   ngOnInit(): void {
-    this.data.recevoir_produit_entreprise(11,(data:any)=>{
-      
-    })
   }
   ajouter(){
     this.sortie.date_sortie=this.item.date
@@ -38,13 +29,13 @@ export class AjouterSortieComponent implements OnInit {
     if (this.sortie.id_produit=="0") {
       console.log("choisir un produit")
     } else {
-      this.data.requete_post("add_sortie.php",{sortie:JSON.stringify(this.sortie)},(data:any)=>{
+      this.api.post({sortie:JSON.stringify(this.sortie)}).subscribe((data:any)=>{
         if (data.status) {
           this.succes=true
           this.sortie.quantite=""
           // this.data.les_produits.push(data.produit)
-          let date=moment(this.item.date).format("YYYY-MM-DD")
-          this.data.recevoir_sorties(date)
+          // let date=moment(this.item.date).format("YYYY-MM-DD")
+          // this.data.recevoir_sorties(date)
         } else {
           this.echec=false
         }
@@ -53,9 +44,6 @@ export class AjouterSortieComponent implements OnInit {
   }
   changement(){
 
-  }
-  close(){
-    this.data.bool.ajoutersortie=!this.data.bool.ajoutersortie
   }
 
 }

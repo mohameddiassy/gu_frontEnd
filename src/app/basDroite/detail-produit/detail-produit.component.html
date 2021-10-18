@@ -9,13 +9,16 @@
             <div class="m-b-30">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        Libellé : <strong>{{produit.nom_produit}}</strong>
+                        Libellé : <strong>{{produit?.nom}}</strong>
                     </li>
                     <li class="list-group-item">
-                        Quantité : <strong>{{produit.stock}}</strong>
+                        Quantité : <strong>{{produit?.stock}}</strong>
                     </li>
                     <li class="list-group-item">
-                        Prix Unitaire : <strong>{{produit.prix_unitaire}}</strong>
+                        Prix Unitaire : <strong>{{produit?.prix_unitaire}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Catégorie : <strong>{{produit?.categorie}}</strong>
                     </li>
                 </ul>
             </div>
