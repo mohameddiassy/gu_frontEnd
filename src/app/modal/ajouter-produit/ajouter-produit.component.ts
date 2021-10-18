@@ -10,13 +10,18 @@ import { DataService } from '../../service/data.service';
 })
 export class AjouterProduitComponent implements OnInit {
   produit:any={}
-  
+  default_formulaire:any={nom:"",description:"",categorie:null,stock:0,prix_unitaire:0}
   succes=false
   echec=false
   id_entreprise:number=0
-  constructor(public api:ApiService,private router:ActivatedRoute) { }
+  constructor(public api:ApiService) { 
+    this.produit=this.default_formulaire
+  }
 
   ngOnInit(): void {
+    this.recevoir_categorie()
+  }
+  recevoir_categorie(){
     this.api.post({get_categorie:true}).subscribe((data:any)=>{
       if (data.status) {
         this.api.global.les_categories=data.les_categories
@@ -33,7 +38,10 @@ export class AjouterProduitComponent implements OnInit {
       console.log(data)
       if (data.status) {
         this.succes=true
-        this.produit={}      
+        if(this.produit.categorie=="nouvelle_categorie"){
+          this.recevoir_categorie()
+        }
+        this.produit=this.default_formulaire
       } else {
         this.echec=false
       }
