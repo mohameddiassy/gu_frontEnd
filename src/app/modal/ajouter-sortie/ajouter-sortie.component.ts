@@ -8,42 +8,55 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./ajouter-sortie.component.css']
 })
 export class AjouterSortieComponent implements OnInit {
-  sortie={quantite:"",id_produit:"0",id_enregistreur:1,date_sortie:""}
-  option="2"
-  succes=false
-  echec=false
-  item:any
-  constructor(public api:ApiService) { 
-    api.getEvent().subscribe((data)=>{
-      if(data.code=="ajoutersortie"){
-        this.item=data.data
+  sortie = { quantite: "", id_produit: "0", id_enregistreur: 1, date_sortie: "" }
+  option = "2"
+  succes = false
+  echec = false
+  item: any
+  constructor(public api: ApiService) {
+    api.getEvent().subscribe((data) => {
+      if (data.code == "ajoutersortie") {
+        this.item = data.data
       }
     })
   }
 
   ngOnInit(): void {
+    this.recevoir_produit_entrant()
   }
-  ajouter(){
-    this.sortie.date_sortie=this.item.date
-    console.log("sortie= ",this.sortie)
-    if (this.sortie.id_produit=="0") {
+  ajouter() {
+    this.echec = false
+    this.succes = false
+    this.sortie.date_sortie = this.item.date
+    console.log("sortie= ", this.sortie)
+    if (this.sortie.id_produit == "0") {
       console.log("choisir un produit")
     } else {
-      this.api.post({sortie:JSON.stringify(this.sortie)}).subscribe((data:any)=>{
+      this.api.post({ add_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
         if (data.status) {
-          this.succes=true
-          this.sortie.quantite=""
+          this.succes = true
+          this.sortie.quantite = ""
           // this.data.les_produits.push(data.produit)
           // let date=moment(this.item.date).format("YYYY-MM-DD")
-          // this.data.recevoir_sorties(date)
+          this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
         } else {
-          this.echec=false
+          this.echec = true
         }
       })
     }
   }
-  changement(){
+  changement() {
 
+  }
+  recevoir_produit_entrant() {
+    this.api.post({ get_products_by_id_entreprise: true, type: "sortant", id_entreprise: 1 }).subscribe((data: any) => {
+      this.api.global.les_produits_sortants = data.les_produits
+    })
+  }
+  recevoir_sorties() {
+    this.api.post({ get_sortie: true, id_entreprise: 1 }).subscribe((data: any) => {
+      this.api.global.les_sorties_par_jour = data.les_sorties_par_jour
+    })
   }
 
 }

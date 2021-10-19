@@ -13,6 +13,7 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./sortie.component.css']
 })
 export class SortieComponent implements OnInit {
+  les_sorties:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
   lecomponent=SortieComponent
@@ -31,8 +32,8 @@ export class SortieComponent implements OnInit {
   constructor(public api:ApiService) {
     api.getEvent().subscribe((data)=>{
       if(data.code=="sortie_par_jours_par_enregistreur"){
-        console.log("SortieComponent ecoute bien la liste des jour ",data.data)
         this.item=data.data
+        this.recevoir_sorties(data.data.date)
       }
     })
   }
@@ -42,7 +43,7 @@ export class SortieComponent implements OnInit {
 
   ajoutersortie(){
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
-    this.api.sendEvent("ajoutersortie",{});
+    this.api.sendEvent("ajoutersortie",this.item);
   }
   modifier_sortie(une_sortie:any){
     // this.data.bool.modifiersortie=!this.data.bool.modifiersortie
@@ -81,5 +82,12 @@ export class SortieComponent implements OnInit {
      /* save to file */
      XLSX.writeFile(wb, this.fileName);
 
+  }
+  
+  recevoir_sorties(date:string){
+    this.api.post({get_sortie_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
+      this.les_sorties=data.les_produits
+      console.log("get_sortie_date",data)
+    })
   }
 }

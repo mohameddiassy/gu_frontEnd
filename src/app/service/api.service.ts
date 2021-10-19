@@ -14,7 +14,7 @@ export class ApiService {
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_produit_sortant",
+    fenetre_selectionnee:"fenetre_sortie",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],

@@ -16,7 +16,7 @@
             </div>
             <div class="form-group col-6 col-sm-4">
               <button  class="btn btn-primary"
-              (click)="downloadFile(api.global.sortie_par_jours_par_enregistreur)">load csv</button>
+              (click)="downloadFile(les_sorties)">load csv</button>
             </div>
             <div class="form-group col-6 col-sm-4">
               <button class="btn btn-warning mx-2" (click)="exportexcel()">
@@ -46,20 +46,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of api.global.sortie_par_jours_par_enregistreur | filter:recherche;let i=index ">
+                    <tr *ngFor="let une_sortie of les_sorties | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{une_sortie.nom_produit}}</td>
+                        <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
-                        <td>{{une_sortie.quantite}}</td>
+                        <td>{{une_sortie.stock}}</td>
                         <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
+                        <td>{{une_sortie.prix_unitaire*une_sortie.stock}}</td>
                         <td class="text-right">
                             <div class="btn-group">
-                                <!-- <a (click)="modifier_sortie(une_sortie)" class="btn btn-success">
-                                    <span class="material-icons">
-                                        edit
-                                    </span>
-                                </a> -->
                                 <button class="btn btn-danger">
                                     <span class="material-icons">
                                         delete
