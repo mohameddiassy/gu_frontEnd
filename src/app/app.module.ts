@@ -50,6 +50,7 @@ import { FournisseurComponent } from './basDroite/fournisseur/fournisseur.compon
 import { ListeEntreeComponent } from './basGauche/liste-entree/liste-entree.component';
 import { ListeFournisseurComponent } from './basGauche/liste-fournisseur/liste-fournisseur.component';
 import { ListeDashbordComponent } from './basGauche/liste-dashbord/liste-dashbord.component';
+import { ListeProduitEntrantComponent } from './basGauche/liste-produit-entrant/liste-produit-entrant.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -108,6 +109,7 @@ const routes: Routes = [
     ListeEntreeComponent,
     ListeFournisseurComponent,
     ListeDashbordComponent,
+    ListeProduitEntrantComponent,
   ],
   imports: [
     BrowserModule,

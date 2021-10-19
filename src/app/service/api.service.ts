@@ -14,12 +14,13 @@ export class ApiService {
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_produit",
+    fenetre_selectionnee:"fenetre_produit_sortant",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],
     sortie_par_jours_par_enregistreur:[],
-    les_produits:[],
+    les_produits_entrants:[],
+    les_produits_sortants:[],
     les_categories:[]
   }
   bool:any={

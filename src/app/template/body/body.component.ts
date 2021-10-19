@@ -8,6 +8,7 @@ import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
 import { ListeDashbordComponent } from 'src/app/basGauche/liste-dashbord/liste-dashbord.component';
 import { ListeEntreeComponent } from 'src/app/basGauche/liste-entree/liste-entree.component';
 import { ListeFournisseurComponent } from 'src/app/basGauche/liste-fournisseur/liste-fournisseur.component';
+import { ListeProduitEntrantComponent } from 'src/app/basGauche/liste-produit-entrant/liste-produit-entrant.component';
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
 import { ApiService } from 'src/app/service/api.service';
@@ -45,8 +46,13 @@ export class BodyComponent implements OnInit {
       basGauche:ListeEntreeComponent,
       basDroite:EntreeComponent
     },
-    "fenetre_produit":{
-      nom:"Produits",
+    "fenetre_produit_entrant":{
+      nom:"Produits Entrants",
+      basGauche:ListeProduitEntrantComponent,
+      basDroite:DetailProduitComponent
+    },
+    "fenetre_produit_sortant":{
+      nom:"Produits Sortants",
       basGauche:ListeproduitsComponent,
       basDroite:DetailProduitComponent
     },

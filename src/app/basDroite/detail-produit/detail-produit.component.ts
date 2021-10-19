@@ -28,11 +28,12 @@ export class DetailProduitComponent implements OnInit {
   ajouter_produit(){
     this.api.closeAllBool()
     this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
+    this.api.sendEvent("ajouter_produit",this.produit);
   }
   
   modifier_sortie(){
     this.api.closeAllBool()
-    this.api.bool.modifiersortie=!this.api.bool.modifiersortie
-    this.api.sendEvent("modifier_sortie",this.produit);
+    this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
+    this.api.sendEvent("modifier_produit",this.produit);
   }
 }
