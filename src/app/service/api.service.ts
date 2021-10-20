@@ -6,31 +6,36 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  
+
   // url="https://gu.groupemeta.com/"
-  // url="http://192.168.1.6/gestionuniversel_back/"
-  url="http://localhost/gestionuniversel_back/nouveau/api.php"
+   url="http://192.168.1.3/gestionuniversel_back/nouveau/api.php"
+  //url="http://localhost/gestionuniversel_back/nouveau/api.php"
   global:any={
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_sortie",
+    fenetre_selectionnee:"fenetre_entree",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],
     sortie_par_jours_par_enregistreur:[],
     les_produits_entrants:[],
     les_produits_sortants:[],
-    les_categories:[]
+    les_categories:[],
+    les_fournisseurs:[],
+    entree_par_jours_par_enregistreur:[]
+
   }
   bool:any={
+    ajouterentree:false,
     ajoutersortie:false,
     ajouterproduit:false,
-    modifiersortie:false
+    modifiersortie:false,
+    ajouterfournisseur:false
   }
-  
+
   private subjectCode=new Subject<any>()
-  
+
   constructor(private http:HttpClient) { }
   // pour envoyer une requete par post
   post(parametres:any):Observable<any>{
@@ -57,7 +62,7 @@ export class ApiService {
         $(".gauche").addClass("d-block");
     }
     this.global.sidenavbool=!this.global.sidenavbool
-  } 
+  }
   closeSidenav(){
       // on ferme la partie gauche
       $(".gauche").removeClass("d-block");
@@ -74,7 +79,7 @@ export class ApiService {
   getEvent():Observable<any>{
     return this.subjectCode.asObservable()
   }
-  
+
   closeAllBool(){
     for (const cle in this.bool) {
       this.bool[cle]=false;
