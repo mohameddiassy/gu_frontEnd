@@ -1,1 +1,21 @@
-<p>dashbord works!</p>
+<div class="row m-1">
+    <div class="card col-md-6 pt-2 " *ngFor="let item of les_statistiques">
+        <div class="card-body">
+            <h5 class="card-title">{{item.nom}}</h5>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of item.liste">
+                <span>{{item_liste.nom}}</span>
+                <span class="badge bg-secondary">{{item_liste.quantite}}</span>
+            </li>
+        </ul>
+        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+            [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+        <div class="card-body">
+            <a class="btn border">voir plus</a>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class AjouterEntreeComponent implements OnInit {
   stock_en_cour:any=0;
-  entree:any = { quantite: "0", id_produit: "0", id_enregistreur: 1, date_entree: ""}
+  entree:any = { quantite: "0", id_produit: "0", id_enregistreur: 1, date_entree: "",id_fournisseur:1}
   option = "2"
   succes = false
   echec = false
