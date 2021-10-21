@@ -7,14 +7,14 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApiService {
 
-  url="https://gu.groupemeta.com/nouveau/api.php"
+  // url="https://gu.groupemeta.com/nouveau/api.php"
   //  url="http://192.168.1.3/gestionuniversel_back/nouveau/api.php"
-  //url="http://localhost/gestionuniversel_back/nouveau/api.php"
+  url="http://localhost/gestionuniversel_back/nouveau/api.php"
   global:any={
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_dashbord",
+    fenetre_selectionnee:"fenetre_production",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],
@@ -23,15 +23,18 @@ export class ApiService {
     les_produits_sortants:[],
     les_categories:[],
     les_fournisseurs:[],
-    entree_par_jours_par_enregistreur:[]
-
+    entree_par_jours_par_enregistreur:[],
+    les_vendeurs:[],
+    production_par_jours_par_enregistreur:[]
   }
   bool:any={
     ajouterentree:false,
     ajoutersortie:false,
     ajouterproduit:false,
     modifiersortie:false,
-    ajouterfournisseur:false
+    ajouterfournisseur:false,
+    ajoutervendeur:false,
+    ajouterproduction:false
   }
 
   private subjectCode=new Subject<any>()

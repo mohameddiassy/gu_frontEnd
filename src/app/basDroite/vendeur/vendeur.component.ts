@@ -1,34 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AjouterProduitComponent } from '../../modal/ajouter-produit/ajouter-produit.component';
-import { ModifieProduitComponent } from '../../modal/modifie-produit/modifie-produit.component';
+import { AjouterVendeurComponent } from 'src/app/modal/ajouter-vendeur/ajouter-vendeur.component';
 import { ApiService } from 'src/app/service/api.service';
-import { multi } from './data';
+import {multi} from './data'
 
 @Component({
-  selector: 'app-detail-produit',
-  templateUrl: './detail-produit.component.html',
-  styleUrls: ['./detail-produit.component.css']
+  selector: 'app-vendeur',
+  templateUrl: './vendeur.component.html',
+  styleUrls: ['./vendeur.component.css']
 })
-export class DetailProduitComponent implements OnInit {
-  produit:any
-  ajouterproduitcomponent=AjouterProduitComponent
-  
-  modifierproduitcomponent=ModifieProduitComponent
-
-  ngOnInit(): void {
-    
-  }
-  ajouter_produit(){
-    this.api.closeAllBool()
-    this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
-    this.api.sendEvent("ajouter_produit",this.produit);
-  }
-  
-  modifier_produit(){
-    this.api.closeAllBool()
-    this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
-    this.api.sendEvent("modifier_produit",this.produit);
-  }
+export class VendeurComponent implements OnInit {
+  vendeur:any
+  ajoutervendeurcomponent=AjouterVendeurComponent
   multi: any=[];
   view: any= [700, 300];
 
@@ -51,11 +33,25 @@ export class DetailProduitComponent implements OnInit {
   constructor(public api:ApiService) { 
     // this.produit=this.api.global.les_produits[0]
     api.getEvent().subscribe((data:any)=>{
-      if(data.code=="item_liste_produit"){
-        this.produit=data.data
+      if(data.code=="item_liste_vendeur"){
+        this.vendeur=data.data
       }
     })
     Object.assign(this, { multi });
+  }
+  ngOnInit(): void {
+    
+  }
+  ajouter_vendeur(){
+    this.api.closeAllBool()
+    this.api.bool.ajoutervendeur=!this.api.bool.ajoutervendeur
+    this.api.sendEvent("ajouter_vendeur",this.vendeur);
+  }
+  
+  modifier_vendeur(){
+    this.api.closeAllBool()
+    this.api.bool.ajoutervendeur=!this.api.bool.ajoutervendeur
+    this.api.sendEvent("modifier_vendeur",this.vendeur);
   }
 
   onSelect(data:any): void {

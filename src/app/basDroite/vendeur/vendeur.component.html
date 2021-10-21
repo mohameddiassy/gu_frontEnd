@@ -1,24 +1,28 @@
 <div class="container">
     <div class="row">
-        <div class="col"><button class="btn btn-primary" (click)="ajouter_produit()">Ajouter Produit</button></div>
-        <div class="col"><button class="btn btn-warning" (click)="modifier_produit()">Modifier</button></div>
+        <div class="col"><button class="btn btn-primary" (click)="ajouter_vendeur()">Ajouter Vendeur</button></div>
+        <div class="col"><button class="btn btn-warning" (click)="modifier_vendeur()">Modifier</button></div>
         <div class="col"><button class="btn btn-danger">Supprimer</button></div>
     </div>
     <div class="col-md-8 mt-4">
-        <h6 class="card-title m-b-20">Information Général</h6>
+        <h6 class="card-title m-b-20">Information Général du vendeur</h6>
         <div class="m-b-30">
             <ul class="list-group">
+                
                 <li class="list-group-item">
-                    Libellé : <strong>{{produit?.nom}}</strong>
+                    Libellé : <strong>{{vendeur?.nom}}</strong>
                 </li>
                 <li class="list-group-item">
-                    Stock : <strong>{{produit?.stock}}</strong>
+                    Description : <strong>{{vendeur?.description}}</strong>
                 </li>
                 <li class="list-group-item">
-                    Prix Unitaire : <strong>{{produit?.prix_unitaire}}</strong>
+                    Dette : <strong>{{vendeur?.dette}}</strong>
                 </li>
                 <li class="list-group-item">
-                    Catégorie : <strong>{{produit?.categorie}}</strong>
+                    Téléphone : <strong>{{vendeur?.telephone}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Adresse : <strong>{{vendeur?.adresse}}</strong>
                 </li>
             </ul>
         </div>
@@ -30,5 +34,5 @@
     </ngx-charts-line-chart>
 </div>
 <div class="fixed-bottom couleurgrise">
-    <ng-container *ngComponentOutlet="ajouterproduitcomponent"></ng-container>
+    <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
 </div>

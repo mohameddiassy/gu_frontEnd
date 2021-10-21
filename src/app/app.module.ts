@@ -54,6 +54,12 @@ import { ListeProduitEntrantComponent } from './basGauche/liste-produit-entrant/
 import { AjouterEntreeComponent } from './modal/ajouter-entree/ajouter-entree.component';
 import { AjouterFournisseurComponent } from './modal/ajouter-fournisseur/ajouter-fournisseur.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { VendeurComponent } from './basDroite/vendeur/vendeur.component';
+import { ListeVendeurComponent } from './basGauche/liste-vendeur/liste-vendeur.component';
+import { AjouterVendeurComponent } from './modal/ajouter-vendeur/ajouter-vendeur.component';
+import { ListeProductionComponent } from './basGauche/liste-production/liste-production.component';
+import { ProductionComponent } from './basDroite/production/production.component';
+import { AjouterProductionComponent } from './modal/ajouter-production/ajouter-production.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -115,6 +121,12 @@ const routes: Routes = [
     ListeProduitEntrantComponent,
     AjouterEntreeComponent,
     AjouterFournisseurComponent,
+    VendeurComponent,
+    ListeVendeurComponent,
+    AjouterVendeurComponent,
+    ListeProductionComponent,
+    ProductionComponent,
+    AjouterProductionComponent
   ],
   imports: [
     BrowserModule,

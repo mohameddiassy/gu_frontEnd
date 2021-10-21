@@ -4,11 +4,15 @@ import { DashbordComponent } from 'src/app/basDroite/dashbord/dashbord.component
 import { DetailProduitComponent } from 'src/app/basDroite/detail-produit/detail-produit.component';
 import { EntreeComponent } from 'src/app/basDroite/entree/entree.component';
 import { FournisseurComponent } from 'src/app/basDroite/fournisseur/fournisseur.component';
+import { ProductionComponent } from 'src/app/basDroite/production/production.component';
 import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
+import { VendeurComponent } from 'src/app/basDroite/vendeur/vendeur.component';
 import { ListeDashbordComponent } from 'src/app/basGauche/liste-dashbord/liste-dashbord.component';
 import { ListeEntreeComponent } from 'src/app/basGauche/liste-entree/liste-entree.component';
 import { ListeFournisseurComponent } from 'src/app/basGauche/liste-fournisseur/liste-fournisseur.component';
+import { ListeProductionComponent } from 'src/app/basGauche/liste-production/liste-production.component';
 import { ListeProduitEntrantComponent } from 'src/app/basGauche/liste-produit-entrant/liste-produit-entrant.component';
+import { ListeVendeurComponent } from 'src/app/basGauche/liste-vendeur/liste-vendeur.component';
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
 import { ApiService } from 'src/app/service/api.service';
@@ -65,6 +69,16 @@ export class BodyComponent implements OnInit {
       nom:"Fournisseur",
       basGauche:ListeFournisseurComponent,
       basDroite:FournisseurComponent
+    },
+    "fenetre_vendeur":{
+      nom:"Vendeur",
+      basGauche:ListeVendeurComponent,
+      basDroite:VendeurComponent
+    },
+    "fenetre_production":{
+      nom:"Production",
+      basGauche:ListeProductionComponent,
+      basDroite:ProductionComponent
     }
   }
   constructor(public api:ApiService,public route:Router) { }

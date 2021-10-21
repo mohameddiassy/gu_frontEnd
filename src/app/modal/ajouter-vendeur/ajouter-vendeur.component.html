@@ -1,0 +1,53 @@
+<div *ngIf="api.bool.ajoutervendeur">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="d-flex justify-content-between">
+                <h3 class="page-title mt-1">{{modifier_bool?"Modifier le vendeur < "+vendeur.nom+">" :"Ajouter
+                        un vendeur"}}</h3>
+                <span (click)="api.bool.ajoutervendeur=!api.bool.ajoutervendeur" class="material-icons croix">
+                    {{api.bool.ajoutervendeur?"close":"add"}}
+                </span>
+            </div>
+        </div>
+        <hr>
+        <form class="row">
+            <div class="form-group col-md-4">
+                <label>nom</label>
+                <input placeholder="nom" type="text" class="form-control" name="nom" [(ngModel)]="vendeur.nom">
+            </div>
+            <div class="form-group col-md-4">
+                <label>numero telephone</label>
+                <input placeholder="numero de telephone" type="text" class="form-control" name="telephone"
+                    [(ngModel)]="vendeur.telephone">
+            </div>
+            <div class="form-group col-md-4">
+                <label>adresse</label>
+                <input placeholder="adresse" type="text" class="form-control" name="adresse"
+                    [(ngModel)]="vendeur.adresse">
+            </div>
+            <div class="form-group col-md-4">
+                <label>description</label>
+                <input placeholder="description" type="text" class="form-control" name="description"
+                    [(ngModel)]="vendeur.description">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Dette</label>
+                <input placeholder="dette" type="text" class="form-control" name="dette"
+                    [(ngModel)]="vendeur.dette">
+            </div>
+
+        </form>
+        <div *ngIf="succes" class="alert alert-success" role="alert">
+            Opération effectuée avec succés!
+        </div>
+        <div *ngIf="echec" class="alert alert-danger" role="alert">
+            l'opération effectuée a échoué!
+        </div>
+        <div class="m-2 d-flex justify-content-evenly">
+            <button *ngIf="!modifier_bool" type="button" class="col-md-2 btn btn-primary" (click)="ajouter()">Ajouter
+                vendeur</button>
+            <button *ngIf="modifier_bool" type="button" class="col-md-2 btn btn-warning" (click)="modifier()">Modifier
+                vendeur</button>
+        </div>
+    </div>
+</div>

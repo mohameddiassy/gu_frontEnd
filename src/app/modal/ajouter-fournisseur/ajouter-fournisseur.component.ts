@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./ajouter-fournisseur.component.css']
 })
 export class AjouterFournisseurComponent implements OnInit {
-    stock_en_cour: any = 0;
+  stock_en_cour: any = 0;
   fournisseur: any = { nom: "", adresse: "", telephone: "", description: "",dette:0 }
   option = "2"
   succes = false
@@ -16,6 +16,7 @@ export class AjouterFournisseurComponent implements OnInit {
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouter_fournisseur") {
+        this.modifier_bool=false
         this.fournisseur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
       } else if (data.code == "modifier_fournisseur") {
         this.modifier_bool=true

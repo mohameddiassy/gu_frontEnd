@@ -10,7 +10,6 @@ import { ListejoursComponent } from '../listejours/listejours.component';
 })
 export class ListeEntreeComponent implements OnInit {
 
-  lecomponent=ListejoursComponent
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
