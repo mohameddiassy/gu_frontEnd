@@ -17,13 +17,12 @@ export class AjouterProductionComponent implements OnInit {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterproduction") {
         this.item = data.data
-        this.recevoir_produit_entrants()
+        this.recevoir_produit_sortant()
       }
     })
   }
   ngOnInit(): void {
-    this.recevoir_produit_entrants()
-    this.recevoir_fournisseur();
+    // this.recevoir_produit_entrants()
   }
   ajouter() {
     this.echec = false
@@ -32,30 +31,26 @@ export class AjouterProductionComponent implements OnInit {
     this.production.stock=this.stock_en_cour
     console.log("production= ", this.production)
     if (this.production.id_produit == "0") {
-      console.log("choisir un produit")
+      alert("choisir un produit")
     } else {
-      this.api.post({ add_production: true, production: JSON.stringify(this.production) }).subscribe((data: any) => {
+      this.api.post({ add_production: true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur, production: JSON.stringify(this.production) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
           this.production.quantite = "0"
           // this.data.les_produits.push(data.produit)
           // let date=moment(this.item.date).format("YYYY-MM-DD")
-          this.api.sendEvent("production_par_jours_par_enregistreur",this.item)
+          this.api.sendEvent("item_liste_production",this.item)
         } else {
           this.echec = true
         }
       })
     }
   }
-  parse(quantite:string)
-  {
-    return parseInt(quantite)
-  }
   changement() {
-    if(this.production.id_fournisseur=="nouveau_fournisseur")
+    if(this.production.id_produit=="nouveau_produit")
     {
       this.api.closeAllBool()
-      this.api.sendEvent("ajouterfournisseur",this.item)
+      this.api.sendEvent("ajouterproduit",this.item)
       this.api.bool.ajouterfournisseur=true
     }
 
@@ -67,20 +62,9 @@ export class AjouterProductionComponent implements OnInit {
       }
     });
     }
-  recevoir_produit_entrants() {
-    this.api.post({get_produit_entrant_by_id_entreprise: true, type: "entrant", id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_produits_entrants = data.les_produits_productions
-      console.log(";;;;;",data)
-    })
-  }
-  recevoir_production() {
-    this.api.post({ get_production: true, id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_production_par_jour = data.les_production_par_jour
-    })
-  }
-  recevoir_fournisseur() {
-    this.api.post({ get_fournisseur: true, id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_fournisseurs = data.les_fournisseurs
+  recevoir_produit_sortant(){
+    this.api.post({get_products_by_id_entreprise:true,type:"sortant",id_entreprise:1}).subscribe((data:any)=>{
+      this.api.global.les_produits_sortants=data.products
     })
   }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +61,11 @@ import { AjouterVendeurComponent } from './modal/ajouter-vendeur/ajouter-vendeur
 import { ListeProductionComponent } from './basGauche/liste-production/liste-production.component';
 import { ProductionComponent } from './basDroite/production/production.component';
 import { AjouterProductionComponent } from './modal/ajouter-production/ajouter-production.component';
+import { ConsommationComponent } from './basDroite/consommation/consommation.component';
+import { ListeConsommationComponent } from './basGauche/liste-consommation/liste-consommation.component';
+import { AjouterConsommationComponent } from './modal/ajouter-consommation/ajouter-consommation.component';
+import { ListeParametreComponent } from './basGauche/liste-parametre/liste-parametre.component';
+import { ParametreComponent } from './basDroite/parametre/parametre.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -126,17 +132,23 @@ const routes: Routes = [
     AjouterVendeurComponent,
     ListeProductionComponent,
     ProductionComponent,
-    AjouterProductionComponent
+    AjouterProductionComponent,
+    ConsommationComponent,
+    ListeConsommationComponent,
+    AjouterConsommationComponent,
+    ListeParametreComponent,
+    ParametreComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
     ChartModule,
-    NgxChartsModule
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

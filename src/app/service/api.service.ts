@@ -14,7 +14,7 @@ export class ApiService {
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_production",
+    fenetre_selectionnee:"fenetre_parametre",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],
@@ -25,7 +25,8 @@ export class ApiService {
     les_fournisseurs:[],
     entree_par_jours_par_enregistreur:[],
     les_vendeurs:[],
-    production_par_jours_par_enregistreur:[]
+    production_par_jours_par_enregistreur:[],
+    consommation_par_jours_par_enregistreur:[]
   }
   bool:any={
     ajouterentree:false,
@@ -34,7 +35,8 @@ export class ApiService {
     modifiersortie:false,
     ajouterfournisseur:false,
     ajoutervendeur:false,
-    ajouterproduction:false
+    ajouterproduction:false,
+    ajouterconsommation:false
   }
 
   private subjectCode=new Subject<any>()
@@ -87,5 +89,15 @@ export class ApiService {
     for (const cle in this.bool) {
       this.bool[cle]=false;
     }
+  }
+  
+  parse(quantite:any)
+  {
+    if(parseInt(quantite).toString()=='NaN'){
+      return 0
+    }else{
+      return parseInt(quantite)
+    }
+    
   }
 }

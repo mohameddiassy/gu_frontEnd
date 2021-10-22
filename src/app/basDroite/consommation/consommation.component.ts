@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AjouterSortieComponent } from '../../modal/ajouter-sortie/ajouter-sortie.component';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
-import { AjouterProductionComponent } from 'src/app/modal/ajouter-production/ajouter-production.component';
+import { AjouterConsommationComponent } from 'src/app/modal/ajouter-consommation/ajouter-consommation.component';
+
 
 @Component({
-  selector: 'app-production',
-  templateUrl: './production.component.html',
-  styleUrls: ['./production.component.css']
+  selector: 'app-consommation',
+  templateUrl: './consommation.component.html',
+  styleUrls: ['./consommation.component.css']
 })
-export class ProductionComponent implements OnInit {
+export class ConsommationComponent implements OnInit {
 
-  les_productions:any=[]
+ 
+  les_consommations:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
-  ajouterproductioncomponent=AjouterProductionComponent
+  ajouterconsommationcomponent=AjouterConsommationComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
   les_statistiques:any=[
@@ -29,9 +30,9 @@ export class ProductionComponent implements OnInit {
   ]
   constructor(public api:ApiService) {
     api.getEvent().subscribe((data)=>{
-      if(data.code=="item_liste_production"){
+      if(data.code=="item_liste_consommation"){
         this.item=data.data
-        this.recevoir_productions(data.data.date)
+        this.recevoir_consommations(data.data.date)
       }
     })
   }
@@ -41,13 +42,13 @@ export class ProductionComponent implements OnInit {
 
   ajouter(){
     this.api.closeAllBool()
-    this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
-    this.api.sendEvent("ajouterproduction",this.item);
+    this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
+    this.api.sendEvent("ajouterconsommation",this.item);
   }
-  modifier_production(production:any){
+  modifier_consommation(consommation:any){
     this.api.closeAllBool()
-    this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
-    this.api.sendEvent("ajouterproduction",production);
+    this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
+    this.api.sendEvent("modifierconsommation",consommation);
   }
 
   downloadFile(data: any) {
@@ -84,10 +85,10 @@ export class ProductionComponent implements OnInit {
 
   }
   
-  recevoir_productions(date:string){
-    this.api.post({get_production_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
-      this.les_productions=data.les_productions
-      console.log("get_production_date",data)
+  recevoir_consommations(date:string){
+    this.api.post({get_consommation_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
+      this.les_consommations=data.les_consommations
+      console.log("get_consommation_date",data)
     })
   }
 }

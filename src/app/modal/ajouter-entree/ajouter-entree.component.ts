@@ -46,10 +46,6 @@ export class AjouterEntreeComponent implements OnInit {
       })
     }
   }
-  parse(quantite:string)
-  {
-    return parseInt(quantite)
-  }
   changement() {
     if(this.entree.id_fournisseur=="nouveau_fournisseur")
     {
@@ -67,14 +63,9 @@ export class AjouterEntreeComponent implements OnInit {
     });
     }
   recevoir_produit_entrants() {
-    this.api.post({get_produit_entrant_by_id_entreprise: true, type: "entrant", id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_produits_entrants = data.les_produits_entrees
-      console.log(";;;;;",data)
-    })
-  }
-  recevoir_entree() {
-    this.api.post({ get_entree: true, id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_entree_par_jour = data.les_entree_par_jour
+    this.api.post({get_products_by_id_entreprise: true, type: "entrant", id_entreprise: 1 }).subscribe((data: any) => {
+      this.api.global.les_produits_entrants = data.products
+      console.log("dfghjkllkjhgcvbklmkjhghjkjhg ",data)
     })
   }
   recevoir_fournisseur() {

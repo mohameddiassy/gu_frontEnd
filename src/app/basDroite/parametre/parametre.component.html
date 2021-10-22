@@ -1,22 +1,16 @@
 <div class="" >
-    <h2>Les productions du {{item?.date | date:'dd MMMM YYYY'}}</h2>
+    <h2>Mes utilisateurs</h2>
     <hr>
-    <div class="d-flex mb-2 les_statistiques">
-        <button  *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white">
-            {{item.nom}} <br>
-            <span class="badge bg-primary">{{item.chiffre}}</span>
-        </button>
-    </div>
        
     <div class="bg-light shadow-lg rounded p-1">
         <div class="row">
             <div class="col-6 col-sm-4 _add_produit_btn">
                 <button class="btn btn-success"
-                    (click)="ajouter()">Ajouter Production</button>
+                    (click)="ajoutersortie()">Ajouter Utilisateur</button>
             </div>
             <div class="form-group col-6 col-sm-4">
               <button  class="btn btn-primary"
-              (click)="downloadFile(les_productions)">load csv</button>
+              (click)="downloadFile(les_utilisateurs)">load csv</button>
             </div>
             <div class="form-group col-6 col-sm-4">
               <button class="btn btn-warning mx-2" (click)="exportexcel()">
@@ -46,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of les_productions | filter:recherche;let i=index ">
+                    <tr *ngFor="let une_sortie of les_utilisateurs | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
@@ -63,7 +57,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr *ngIf="les_productions.length==0" class="container w-100 center">
+                    <tr *ngIf="api.global.sortie_par_jours_par_enregistreur.length==0" class="container w-100 center">
                         <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
 
                     </tr>
@@ -77,6 +71,6 @@
 
 </div>
 <div class="fixed-bottom couleurgrise">
-    <ng-container *ngComponentOutlet="ajouterproductioncomponent"></ng-container>
+    <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
 </div>
 

@@ -22,7 +22,7 @@ export class AjouterSortieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recevoir_produit_entrant()
+    this.recevoir_produit_sortant()
   }
   ajouter() {
     this.echec = false
@@ -48,9 +48,9 @@ export class AjouterSortieComponent implements OnInit {
   changement() {
 
   }
-  recevoir_produit_entrant() {
+  recevoir_produit_sortant() {
     this.api.post({ get_products_by_id_entreprise: true, type: "sortant", id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_produits_sortants = data.les_produits
+      this.api.global.les_produits_sortants = data.products
     })
   }
   recevoir_sorties() {

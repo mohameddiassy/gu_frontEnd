@@ -20,7 +20,7 @@ export class ListeproduitsComponent implements OnInit {
   }
   recevoir_produit_entrant(){
     this.api.post({get_products_by_id_entreprise:true,type:"sortant",id_entreprise:1}).subscribe((data:any)=>{
-      this.api.global.les_produits_sortants=data.les_produits
+      this.api.global.les_produits_sortants=data.products
       this.api.sendEvent("item_liste_produit",this.api.global.les_produits_sortants[0])
     })
   }
