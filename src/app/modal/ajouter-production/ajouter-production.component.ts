@@ -33,7 +33,7 @@ export class AjouterProductionComponent implements OnInit {
     if (this.production.id_produit == "0") {
       alert("choisir un produit")
     } else {
-      this.api.post({ add_production: true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur, production: JSON.stringify(this.production) }).subscribe((data: any) => {
+      this.api.post_utilisateur_connecte({ add_production: true, production: JSON.stringify(this.production) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
           this.production.quantite = "0"
@@ -63,7 +63,7 @@ export class AjouterProductionComponent implements OnInit {
     });
     }
   recevoir_produit_sortant(){
-    this.api.post({get_products_by_id_entreprise:true,type:"sortant",id_entreprise:1}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"sortant"}).subscribe((data:any)=>{
       this.api.global.les_produits_sortants=data.products
     })
   }

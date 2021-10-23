@@ -104,7 +104,7 @@ export class BodyComponent implements OnInit {
   verifier_session(){
     let u:any = localStorage.getItem('utilisateur');
     let user=JSON.parse(u)
-    // console.log("session= ",u)
+    console.log("session= ",u)
     if (user==null) {//non connecté
       this.route.navigate(["/connexion"])
     } else {

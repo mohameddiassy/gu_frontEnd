@@ -19,7 +19,7 @@ export class ListeProduitEntrantComponent implements OnInit {
     this.api.closeSidenav()
   }
   recevoir_produit_entrnt(){
-    this.api.post({get_products_by_id_entreprise:true,type:"entrant",id_entreprise:1}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
       this.api.global.les_produits_entrants=data.products
       this.api.sendEvent("item_liste_produit",this.api.global.les_produits_entrants[0])
     })

@@ -19,7 +19,7 @@ export class ListeConsommationComponent implements OnInit {
     this.api.closeSidenav()
   }
   consommation_par_jours_par_enregistreur(){
-    this.api.post({get_consommation_par_jours_par_enregistreur:true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_consommation_par_jours_par_enregistreur:true}).subscribe((data:any)=>{
       console.log(data)
       if (data.status) {
         this.api.global.consommation_par_jours_par_enregistreur=data.consommation_par_jours_par_enregistreur

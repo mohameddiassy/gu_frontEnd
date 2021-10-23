@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AjouterSortieComponent } from '../../modal/ajouter-sortie/ajouter-sortie.component';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
+import { AjoutUtilisateurComponent } from 'src/app/modal/ajout-utilisateur/ajout-utilisateur.component';
 
 @Component({
   selector: 'app-parametre',
@@ -14,7 +14,7 @@ export class ParametreComponent implements OnInit {
   les_utilisateurs:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
-  ajoutersortiecomponent=AjouterSortieComponent
+  ajouterutilisateurcomponent=AjoutUtilisateurComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
   les_statistiques:any=[
@@ -28,7 +28,7 @@ export class ParametreComponent implements OnInit {
   ]
   constructor(public api:ApiService) {
     api.getEvent().subscribe((data)=>{
-      if(data.code=="sortie_par_jours_par_enregistreur"){
+      if(data.code=="liste_parametre_utilisateur"){
         this.item=data.data
         this.recevoir_les_utilisateurs()
       }
@@ -38,9 +38,9 @@ export class ParametreComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ajoutersortie(){
-    this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
-    this.api.sendEvent("ajoutersortie",this.item);
+  ajouterutilisateur(){
+    this.api.bool.ajouterutilisateur=!this.api.bool.ajouterutilisateur
+    this.api.sendEvent("ajouterutilisateur",this.item);
   }
   modifier_sortie(une_sortie:any){
     // this.data.bool.modifiersortie=!this.data.bool.modifiersortie
@@ -82,9 +82,9 @@ export class ParametreComponent implements OnInit {
   }
   
   recevoir_les_utilisateurs(){
-    this.api.post({get_utilisateur_entreprise:true,id_utilisateur:this.api.global.utilisateur_connecte.id_utilisateur}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_utilisateur_entreprise:true}).subscribe((data:any)=>{
       this.les_utilisateurs=data.les_utilisateurs
-      console.log("get_sortie_date",data)
+      console.log("get_utilisateur_entreprise",data)
     })
   }
 }

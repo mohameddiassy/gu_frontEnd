@@ -20,7 +20,7 @@ export class ListeVendeurComponent implements OnInit {
     this.api.closeSidenav()
   }
   recevoir_vendeur(){
-    this.api.post({get_vendeur:true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_vendeur:true}).subscribe((data:any)=>{
       if (data.status) {
         this.api.global.les_vendeurs=data.les_vendeurs
         this.api.sendEvent("item_liste_vendeur",this.api.global.les_vendeurs[0])

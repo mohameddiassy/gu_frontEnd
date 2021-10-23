@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-6 col-sm-4 _add_produit_btn">
                 <button class="btn btn-success"
-                    (click)="ajoutersortie()">Ajouter Utilisateur</button>
+                    (click)="ajouterutilisateur()">Ajouter Utilisateur</button>
             </div>
             <div class="form-group col-6 col-sm-4">
               <button  class="btn btn-primary"
@@ -31,22 +31,22 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Prenom</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Heure</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Prix Unitaire</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Profession</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Privilège</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of les_utilisateurs | filter:recherche;let i=index ">
+                    <tr *ngFor="let un_utilisateur of les_utilisateurs | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{une_sortie.nom}}</td>
-                        <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
-                        <td>{{une_sortie.quantite}}</td>
-                        <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
+                        <td>{{un_utilisateur.prenom}}</td>
+                        <td>{{un_utilisateur.nom }}</td>
+                        <td>{{un_utilisateur.profession}}</td>
+                        <td>{{un_utilisateur.login}}</td>
+                        <td>{{un_utilisateur.privilege}}</td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <button class="btn btn-danger">
@@ -57,7 +57,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr *ngIf="api.global.sortie_par_jours_par_enregistreur.length==0" class="container w-100 center">
+                    <tr *ngIf="les_utilisateurs.length==0" class="container w-100 center">
                         <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
 
                     </tr>
@@ -71,6 +71,6 @@
 
 </div>
 <div class="fixed-bottom couleurgrise">
-    <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
+    <ng-container *ngComponentOutlet="ajouterutilisateurcomponent"></ng-container>
 </div>
 

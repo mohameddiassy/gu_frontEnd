@@ -21,7 +21,7 @@ export class ListeFournisseurComponent implements OnInit {
     this.api.closeSidenav()
   }
   recevoir_fournisseur(){
-    this.api.post({get_fournisseur:true,id_entreprise:1}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_fournisseur:true}).subscribe((data:any)=>{
       if (data.status) {
         this.api.global.les_fournisseurs=data.les_fournisseurs
         if(this.api.global.les_fournisseurs.length>0){

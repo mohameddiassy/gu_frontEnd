@@ -20,7 +20,7 @@ export class HautGaucheComponent implements OnInit {
     // this.data.envoyerClick()
   }
   get_fenetres(){
-    this.api.post({get_fenetre:true}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_fenetre:true}).subscribe((data:any)=>{
       if (data.status) {
         this.api.global.les_fenetres=data.les_fenetres
       } else {

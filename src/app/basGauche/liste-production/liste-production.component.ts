@@ -21,7 +21,7 @@ export class ListeProductionComponent implements OnInit {
     this.api.closeSidenav()
   }
   recevoir_production_par_jours_par_enregistreur(){
-    this.api.post({get_production_par_jours_par_enregistreur:true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_production_par_jours_par_enregistreur:true}).subscribe((data:any)=>{
       console.log(data)
       if (data.status) {
         this.api.global.production_par_jours_par_enregistreur=data.production_par_jours_par_enregistreur

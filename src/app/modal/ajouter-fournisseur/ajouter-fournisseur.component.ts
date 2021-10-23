@@ -29,7 +29,7 @@ export class AjouterFournisseurComponent implements OnInit {
   ajouter() {
     this.echec = false
     this.succes = false
-    this.api.post({ add_fournisseur: true, fournisseur: JSON.stringify(this.fournisseur) }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ add_fournisseur: true, fournisseur: JSON.stringify(this.fournisseur) }).subscribe((data: any) => {
       console.log(data)
       if (data.status) {
         this.succes = true
@@ -43,7 +43,7 @@ export class AjouterFournisseurComponent implements OnInit {
   modifier() {
     this.echec = false
     this.succes = false
-    this.api.post({ modifier_fournisseur: true, fournisseur: JSON.stringify(this.fournisseur) }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ modifier_fournisseur: true, fournisseur: JSON.stringify(this.fournisseur) }).subscribe((data: any) => {
       console.log(data)
       if (data.status) {
         this.succes = true
@@ -62,7 +62,7 @@ export class AjouterFournisseurComponent implements OnInit {
 
   }
   recevoir_fournisseur() {
-    this.api.post({ get_fournisseur: true, id_entreprise: 1 }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ get_fournisseur: true}).subscribe((data: any) => {
       if (data.status) {
         this.api.global.les_fournisseurs = data.les_fournisseurs
       } else {

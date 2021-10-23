@@ -33,7 +33,7 @@ export class AjouterConsommationComponent implements OnInit {
     if (this.consommation.id_produit == "0") {
       alert("choisir un produit")
     } else {
-      this.api.post({ add_consommation: true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur, consommation: JSON.stringify(this.consommation) }).subscribe((data: any) => {
+      this.api.post_utilisateur_connecte({ add_consommation: true, consommation: JSON.stringify(this.consommation) }).subscribe((data: any) => {
        console.log(data)
         if (data.status) {
           this.succes = true
@@ -64,7 +64,7 @@ export class AjouterConsommationComponent implements OnInit {
     });
     }
   recevoir_produit_entrant(){
-    this.api.post({get_products_by_id_entreprise:true,type:"entrant",id_entreprise:1}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
       this.api.global.les_produits_entrants=data.products
     })
   }

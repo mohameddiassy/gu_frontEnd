@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './page/accueil/accueil.component';
-import { AjoutUtilisateurComponent } from './admin/ajout-utilisateur/ajout-utilisateur.component';
+import { AjoutUtilisateurComponent } from './modal/ajout-utilisateur/ajout-utilisateur.component';
 import { FooterComponent } from './page/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './page/connexion/connexion.component';
@@ -13,13 +13,11 @@ import { AjouterProduitComponent } from './modal/ajouter-produit/ajouter-produit
 import { FormsModule } from '@angular/forms';
 import { EntrepriseComponent } from './admin/entreprise/entreprise.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ModifieProduitComponent } from './modal/modifie-produit/modifie-produit.component';
 import { DetailProduitComponent } from './basDroite/detail-produit/detail-produit.component';
 import { DetailEntrepriseComponent } from './admin/detail-entreprise/detail-entreprise.component';
 import { AjouterEntrepriseComponent } from './admin/ajouter-entreprise/ajouter-entreprise.component';
 import { ModifierEntrepriseComponent } from './admin/modifier-entreprise/modifier-entreprise.component';
 import { UtilisateurComponent } from './admin/utilisateur/utilisateur.component';
-import { AjouterUtilisateurComponent } from './admin/ajouter-utilisateur/ajouter-utilisateur.component';
 import { ModifierUtilisateurComponent } from './admin/modifier-utilisateur/modifier-utilisateur.component';
 import { DetailUtilisateurComponent } from './admin/detail-utilisateur/detail-utilisateur.component';
 import { InscriptionComponent } from './page/inscription/inscription.component';
@@ -83,13 +81,11 @@ const routes: Routes = [
     AccueilComponent,
     DetailProduitComponent,
     AjouterProduitComponent,
-    ModifieProduitComponent,
     EntrepriseComponent,
     DetailEntrepriseComponent,
     AjouterEntrepriseComponent,
     ModifierEntrepriseComponent,
     UtilisateurComponent,
-    AjouterUtilisateurComponent,
     ModifierUtilisateurComponent,
     DetailUtilisateurComponent,
     GerantComponent,

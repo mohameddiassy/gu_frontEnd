@@ -8,18 +8,18 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./liste-parametre.component.css']
 })
 export class ListeParametreComponent implements OnInit {
-  options_parametre=[
+  options_parametre:any[]=[
     {nom:"Gestion des utilisateurs"},
     {nom:"Profil"},
-    {nom:"Charge du personnel"},
-    
+    {nom:"Charge du personnel"},  
   ]
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
+    this.api.sendEvent("liste_parametre_utilisateur",this.options_parametre[0])
   }
   clique(item:any){
-    this.api.sendEvent("item_liste_parametre",item)
+    this.api.sendEvent("liste_parametre_utilisateur",item)
     this.api.closeSidenav()
   }
 }

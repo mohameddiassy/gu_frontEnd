@@ -85,7 +85,7 @@ export class ProductionComponent implements OnInit {
   }
   
   recevoir_productions(date:string){
-    this.api.post({get_production_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_production_date:true,date:date}).subscribe((data:any)=>{
       this.les_productions=data.les_productions
       console.log("get_production_date",data)
     })

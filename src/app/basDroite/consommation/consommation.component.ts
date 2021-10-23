@@ -86,7 +86,7 @@ export class ConsommationComponent implements OnInit {
   }
   
   recevoir_consommations(date:string){
-    this.api.post({get_consommation_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_consommation_date:true,date:date}).subscribe((data:any)=>{
       this.les_consommations=data.les_consommations
       console.log("get_consommation_date",data)
     })

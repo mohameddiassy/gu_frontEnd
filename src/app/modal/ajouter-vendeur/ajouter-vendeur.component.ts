@@ -30,7 +30,7 @@ export class AjouterVendeurComponent implements OnInit {
   ajouter() {
     this.echec = false
     this.succes = false
-    this.api.post({ add_vendeur: true, vendeur: JSON.stringify(this.vendeur) }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ add_vendeur: true, vendeur: JSON.stringify(this.vendeur) }).subscribe((data: any) => {
       console.log(data)
       if (data.status) {
         this.succes = true
@@ -44,7 +44,7 @@ export class AjouterVendeurComponent implements OnInit {
   modifier() {
     this.echec = false
     this.succes = false
-    this.api.post({ modifier_vendeur: true, vendeur: JSON.stringify(this.vendeur) }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ modifier_vendeur: true, vendeur: JSON.stringify(this.vendeur) }).subscribe((data: any) => {
       console.log(data)
       if (data.status) {
         this.succes = true
@@ -63,7 +63,7 @@ export class AjouterVendeurComponent implements OnInit {
 
   }
   recevoir_vendeur() {
-    this.api.post({ get_vendeur: true, id_entreprise: 1 }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ get_vendeur: true}).subscribe((data: any) => {
       if (data.status) {
         this.api.global.les_vendeurs = data.les_vendeurs
       } else {

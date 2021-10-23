@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AjouterProduitComponent } from '../../modal/ajouter-produit/ajouter-produit.component';
-import { ModifieProduitComponent } from '../../modal/modifie-produit/modifie-produit.component';
 import { ApiService } from 'src/app/service/api.service';
 import { multi } from './data';
 
@@ -12,9 +11,6 @@ import { multi } from './data';
 export class DetailProduitComponent implements OnInit {
   produit:any
   ajouterproduitcomponent=AjouterProduitComponent
-  
-  modifierproduitcomponent=ModifieProduitComponent
-
   ngOnInit(): void {
     
   }

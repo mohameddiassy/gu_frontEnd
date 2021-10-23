@@ -40,7 +40,7 @@ export class AjouterProduitComponent implements OnInit {
     this.produit.id_categorie=1
   }
   recevoir_categorie(){
-    this.api.post({get_categorie:true}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_categorie:true}).subscribe((data:any)=>{
       if (data.status) {
         this.api.global.les_categories=data.les_categories
       } else {
@@ -54,7 +54,7 @@ export class AjouterProduitComponent implements OnInit {
     this.succes=false
     this.echec=false
     console.log(this.produit)
-    this.api.post({add_product:true,produit:JSON.stringify(this.produit)}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({add_product:true,produit:JSON.stringify(this.produit)}).subscribe((data:any)=>{
       console.log(data)
       if (data.status) {
         this.succes=true
@@ -78,12 +78,12 @@ export class AjouterProduitComponent implements OnInit {
     this.api.bool.ajouterproduit=false
   }
   recevoir_produit_entrant(){
-    this.api.post({get_products_by_id_entreprise:true,type:"entrant",id_entreprise:1}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
       this.api.global.les_produits_entrants=data.les_produits
     })
   }
   recevoir_produit_sortant(){
-    this.api.post({get_products_by_id_entreprise:true,type:"sortant",id_entreprise:1}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"sortant"}).subscribe((data:any)=>{
       this.api.global.les_produits_sortants=data.les_produits
     })
   }
@@ -93,7 +93,7 @@ export class AjouterProduitComponent implements OnInit {
     this.succes=false
     this.echec=false
     console.log(this.produit)
-    this.api.post({modifier_produit:true,produit:JSON.stringify(this.produit)}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({modifier_produit:true,produit:JSON.stringify(this.produit)}).subscribe((data:any)=>{
       console.log(data)
       if (data.status) {
         this.succes=true

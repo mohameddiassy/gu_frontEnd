@@ -14,7 +14,7 @@ export class ApiService {
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_parametre",
+    fenetre_selectionnee:"fenetre_entree",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],
@@ -26,7 +26,8 @@ export class ApiService {
     entree_par_jours_par_enregistreur:[],
     les_vendeurs:[],
     production_par_jours_par_enregistreur:[],
-    consommation_par_jours_par_enregistreur:[]
+    consommation_par_jours_par_enregistreur:[],
+    les_privileges:[]
   }
   bool:any={
     ajouterentree:false,
@@ -36,18 +37,21 @@ export class ApiService {
     ajouterfournisseur:false,
     ajoutervendeur:false,
     ajouterproduction:false,
-    ajouterconsommation:false
+    ajouterconsommation:false,
+    ajouterutilisteur:false
   }
 
   private subjectCode=new Subject<any>()
 
   constructor(private http:HttpClient) { }
   // pour envoyer une requete par post
-  post(parametres:any):Observable<any>{
+  post_utilisateur_connecte(parametres:any):Observable<any>{
     let formdata=new FormData()
     for (const key in parametres) {
       formdata.append(key,parametres[key])
     }
+    // on rajoute l'utilisateur
+    formdata.append("utilisateur_connecte",JSON.stringify(this.global.utilisateur_connecte))
     return this.http.post(this.url,formdata)
   }
   toggleSidenav(){

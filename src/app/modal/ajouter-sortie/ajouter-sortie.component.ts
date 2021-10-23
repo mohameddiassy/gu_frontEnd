@@ -32,7 +32,7 @@ export class AjouterSortieComponent implements OnInit {
     if (this.sortie.id_produit == "0") {
       console.log("choisir un produit")
     } else {
-      this.api.post({ add_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
+      this.api.post_utilisateur_connecte({ add_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
           this.sortie.quantite = ""
@@ -49,12 +49,12 @@ export class AjouterSortieComponent implements OnInit {
 
   }
   recevoir_produit_sortant() {
-    this.api.post({ get_products_by_id_entreprise: true, type: "sortant", id_entreprise: 1 }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ get_products_by_id_entreprise: true, type: "sortant"}).subscribe((data: any) => {
       this.api.global.les_produits_sortants = data.products
     })
   }
   recevoir_sorties() {
-    this.api.post({ get_sortie: true, id_entreprise: 1 }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ get_sortie: true }).subscribe((data: any) => {
       this.api.global.les_sorties_par_jour = data.les_sorties_par_jour
     })
   }
