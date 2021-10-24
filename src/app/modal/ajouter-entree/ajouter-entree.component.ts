@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class AjouterEntreeComponent implements OnInit {
   stock_en_cour:any=0;
-  entree:any = { quantite: "0", id_produit: "0", id_enregistreur: 1, date_entree: ""}
+  entree:any = { quantite: "0", id_produit: "0", id_enregistreur: 1, date_entree: "",id_fournisseur:1}
   option = "2"
   succes = false
   echec = false
@@ -33,7 +33,7 @@ export class AjouterEntreeComponent implements OnInit {
     if (this.entree.id_produit == "0") {
       console.log("choisir un produit")
     } else {
-      this.api.post({ add_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
+      this.api.post_utilisateur_connecte({ add_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
           this.entree.quantite = "0"
@@ -45,10 +45,6 @@ export class AjouterEntreeComponent implements OnInit {
         }
       })
     }
-  }
-  parse(quantite:string)
-  {
-    return parseInt(quantite)
   }
   changement() {
     if(this.entree.id_fournisseur=="nouveau_fournisseur")
@@ -67,18 +63,13 @@ export class AjouterEntreeComponent implements OnInit {
     });
     }
   recevoir_produit_entrants() {
-    this.api.post({get_produit_entrant_by_id_entreprise: true, type: "entrant", id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_produits_entrants = data.les_produits_entrees
-      console.log(";;;;;",data)
-    })
-  }
-  recevoir_entree() {
-    this.api.post({ get_entree: true, id_entreprise: 1 }).subscribe((data: any) => {
-      this.api.global.les_entree_par_jour = data.les_entree_par_jour
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise: true, type: "entrant"}).subscribe((data: any) => {
+      this.api.global.les_produits_entrants = data.products
+      console.log("dfghjkllkjhgcvbklmkjhghjkjhg ",data)
     })
   }
   recevoir_fournisseur() {
-    this.api.post({ get_fournisseur: true, id_entreprise: 1 }).subscribe((data: any) => {
+    this.api.post_utilisateur_connecte({ get_fournisseur: true}).subscribe((data: any) => {
       this.api.global.les_fournisseurs = data.les_fournisseurs
     })
   }

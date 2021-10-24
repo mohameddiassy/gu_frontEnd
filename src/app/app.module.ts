@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AccueilComponent } from './page/accueil/accueil.component';
-import { AjoutUtilisateurComponent } from './admin/ajout-utilisateur/ajout-utilisateur.component';
+import { AjoutUtilisateurComponent } from './modal/ajout-utilisateur/ajout-utilisateur.component';
 import { FooterComponent } from './page/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './page/connexion/connexion.component';
@@ -12,13 +13,11 @@ import { AjouterProduitComponent } from './modal/ajouter-produit/ajouter-produit
 import { FormsModule } from '@angular/forms';
 import { EntrepriseComponent } from './admin/entreprise/entreprise.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ModifieProduitComponent } from './modal/modifie-produit/modifie-produit.component';
 import { DetailProduitComponent } from './basDroite/detail-produit/detail-produit.component';
 import { DetailEntrepriseComponent } from './admin/detail-entreprise/detail-entreprise.component';
 import { AjouterEntrepriseComponent } from './admin/ajouter-entreprise/ajouter-entreprise.component';
 import { ModifierEntrepriseComponent } from './admin/modifier-entreprise/modifier-entreprise.component';
 import { UtilisateurComponent } from './admin/utilisateur/utilisateur.component';
-import { AjouterUtilisateurComponent } from './admin/ajouter-utilisateur/ajouter-utilisateur.component';
 import { ModifierUtilisateurComponent } from './admin/modifier-utilisateur/modifier-utilisateur.component';
 import { DetailUtilisateurComponent } from './admin/detail-utilisateur/detail-utilisateur.component';
 import { InscriptionComponent } from './page/inscription/inscription.component';
@@ -54,15 +53,25 @@ import { ListeProduitEntrantComponent } from './basGauche/liste-produit-entrant/
 import { AjouterEntreeComponent } from './modal/ajouter-entree/ajouter-entree.component';
 import { AjouterFournisseurComponent } from './modal/ajouter-fournisseur/ajouter-fournisseur.component';
 import { ScannerComponent } from './formulaire/scanner/scanner.component';
+import { VendeurComponent } from './basDroite/vendeur/vendeur.component';
+import { ListeVendeurComponent } from './basGauche/liste-vendeur/liste-vendeur.component';
+import { AjouterVendeurComponent } from './modal/ajouter-vendeur/ajouter-vendeur.component';
+import { ListeProductionComponent } from './basGauche/liste-production/liste-production.component';
+import { ProductionComponent } from './basDroite/production/production.component';
+import { AjouterProductionComponent } from './modal/ajouter-production/ajouter-production.component';
+import { ConsommationComponent } from './basDroite/consommation/consommation.component';
+import { ListeConsommationComponent } from './basGauche/liste-consommation/liste-consommation.component';
+import { AjouterConsommationComponent } from './modal/ajouter-consommation/ajouter-consommation.component';
+import { ListeParametreComponent } from './basGauche/liste-parametre/liste-parametre.component';
+import { ParametreComponent } from './basDroite/parametre/parametre.component';
+import { TemplateComponent } from './lteTemplate/template/template.component';
+import { DashbordLteComponent } from './basDroite/dashbord-lte/dashbord-lte.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
   { path: "connexion", component: ConnexionComponent },
   { path: "accueil", component: BodyComponent },
-
-
-
-
+  { path: "lte", component: TemplateComponent },
 ];
 
 @NgModule({
@@ -72,13 +81,11 @@ const routes: Routes = [
     AccueilComponent,
     DetailProduitComponent,
     AjouterProduitComponent,
-    ModifieProduitComponent,
     EntrepriseComponent,
     DetailEntrepriseComponent,
     AjouterEntrepriseComponent,
     ModifierEntrepriseComponent,
     UtilisateurComponent,
-    AjouterUtilisateurComponent,
     ModifierUtilisateurComponent,
     DetailUtilisateurComponent,
     GerantComponent,
@@ -117,9 +124,23 @@ const routes: Routes = [
     AjouterEntreeComponent,
     AjouterFournisseurComponent,
     ScannerComponent,
+    VendeurComponent,
+    ListeVendeurComponent,
+    AjouterVendeurComponent,
+    ListeProductionComponent,
+    ProductionComponent,
+    AjouterProductionComponent,
+    ConsommationComponent,
+    ListeConsommationComponent,
+    AjouterConsommationComponent,
+    ListeParametreComponent,
+    ParametreComponent,
+    TemplateComponent,
+    DashbordLteComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     FormsModule,

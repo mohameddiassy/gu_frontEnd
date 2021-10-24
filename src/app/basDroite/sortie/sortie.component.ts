@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from '../../modal/ajouter-sortie/ajouter-sortie.component';
-import { DataService } from '../../service/data.service';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -85,7 +82,7 @@ export class SortieComponent implements OnInit {
   }
   
   recevoir_sorties(date:string){
-    this.api.post({get_sortie_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_sortie_date:true,date:date}).subscribe((data:any)=>{
       this.les_sorties=data.les_produits
       console.log("get_sortie_date",data)
     })

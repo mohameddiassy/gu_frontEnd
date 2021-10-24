@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AjouterEntreeComponent } from 'src/app/modal/ajouter-entree/ajouter-entree.component';
 import { AjouterFournisseurComponent } from 'src/app/modal/ajouter-fournisseur/ajouter-fournisseur.component';
-import { AjouterSortieComponent } from 'src/app/modal/ajouter-sortie/ajouter-sortie.component';
 import { ApiService } from 'src/app/service/api.service';
 import * as XLSX from 'xlsx';
-import { FournisseurComponent } from '../fournisseur/fournisseur.component';
 import { SortieComponent } from '../sortie/sortie.component';
 
 @Component({
@@ -88,7 +86,7 @@ export class EntreeComponent implements OnInit {
   }
 
   recevoir_entree(date:string){
-    this.api.post({get_entree_date:true,id_utilisateur:1,date:date}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_entree_date:true,date:date}).subscribe((data:any)=>{
       this.les_entree=data.les_produits
       console.log("get_entree_date",data)
     })

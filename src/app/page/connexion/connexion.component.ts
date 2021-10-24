@@ -19,14 +19,15 @@ export class ConnexionComponent implements OnInit {
   connecter(){
     this.echec_connexion=false
     console.log(this.utilisateur)
-    this.api.post({connexion:true,utilisateur:JSON.stringify(this.utilisateur)}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({connexion:true,utilisateur:JSON.stringify(this.utilisateur)}).subscribe((data:any)=>{
       
+        // console.log("connexion",data)
       if(data.status){
         this.api.global.utilisateur_connecte=data.utilisateur
         localStorage.setItem('utilisateur', JSON.stringify(data.utilisateur));
         this.route.navigate(['/accueil'])
       }else{
-        console.log("Echec de connexion")
+        // console.log("Echec de connexion",data)
         this.echec_connexion=true
       }
     })

@@ -63,9 +63,8 @@
                           </div>
                       </td>
                   </tr>
-                  <tr *ngIf="api.global.sortie_par_jours_par_enregistreur.length==0" class="container w-100 center">
+                  <tr *ngIf="les_entree==0" class="container w-100 center">
                       <td class="fw-bold" colspan="4">Pas d'entree pour cette date</td>
-
                   </tr>
               </tbody>
           </table>

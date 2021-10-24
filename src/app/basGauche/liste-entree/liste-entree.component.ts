@@ -10,7 +10,6 @@ import { ListejoursComponent } from '../listejours/listejours.component';
 })
 export class ListeEntreeComponent implements OnInit {
 
-  lecomponent=ListejoursComponent
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
@@ -22,7 +21,7 @@ export class ListeEntreeComponent implements OnInit {
     this.api.closeSidenav()
   }
   recevoir_entree_par_jours_par_enregistreur(){
-    this.api.post({get_entree_par_jours_par_enregistreur:true,id_enregistreur:this.api.global.utilisateur_connecte.id_utilisateur}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({get_entree_par_jours_par_enregistreur:true}).subscribe((data:any)=>{
      console.log("llll",data);
       if (data.status) {
         this.api.global.entree_par_jours_par_enregistreur=data.entree_par_jours_par_enregistreur

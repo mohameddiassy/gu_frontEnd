@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConsommationComponent } from 'src/app/basDroite/consommation/consommation.component';
+import { DashbordLteComponent } from 'src/app/basDroite/dashbord-lte/dashbord-lte.component';
 import { DashbordComponent } from 'src/app/basDroite/dashbord/dashbord.component';
 import { DetailProduitComponent } from 'src/app/basDroite/detail-produit/detail-produit.component';
 import { EntreeComponent } from 'src/app/basDroite/entree/entree.component';
 import { FournisseurComponent } from 'src/app/basDroite/fournisseur/fournisseur.component';
+import { ParametreComponent } from 'src/app/basDroite/parametre/parametre.component';
+import { ProductionComponent } from 'src/app/basDroite/production/production.component';
 import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
+import { VendeurComponent } from 'src/app/basDroite/vendeur/vendeur.component';
+import { ListeConsommationComponent } from 'src/app/basGauche/liste-consommation/liste-consommation.component';
 import { ListeDashbordComponent } from 'src/app/basGauche/liste-dashbord/liste-dashbord.component';
 import { ListeEntreeComponent } from 'src/app/basGauche/liste-entree/liste-entree.component';
 import { ListeFournisseurComponent } from 'src/app/basGauche/liste-fournisseur/liste-fournisseur.component';
+import { ListeParametreComponent } from 'src/app/basGauche/liste-parametre/liste-parametre.component';
+import { ListeProductionComponent } from 'src/app/basGauche/liste-production/liste-production.component';
 import { ListeProduitEntrantComponent } from 'src/app/basGauche/liste-produit-entrant/liste-produit-entrant.component';
+import { ListeVendeurComponent } from 'src/app/basGauche/liste-vendeur/liste-vendeur.component';
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
 import { ApiService } from 'src/app/service/api.service';
@@ -59,12 +68,32 @@ export class BodyComponent implements OnInit {
     "fenetre_dashbord":{
       nom:"Tableau de Bord",
       basGauche:ListeDashbordComponent,
-      basDroite:DashbordComponent
+      basDroite:DashbordLteComponent
     },
     "fenetre_fournisseur":{
       nom:"Fournisseur",
       basGauche:ListeFournisseurComponent,
       basDroite:FournisseurComponent
+    },
+    "fenetre_vendeur":{
+      nom:"Vendeur",
+      basGauche:ListeVendeurComponent,
+      basDroite:VendeurComponent
+    },
+    "fenetre_production":{
+      nom:"Production",
+      basGauche:ListeProductionComponent,
+      basDroite:ProductionComponent
+    },
+    "fenetre_consommation":{
+      nom:"Consommation",
+      basGauche:ListeConsommationComponent,
+      basDroite:ConsommationComponent
+    },
+    "fenetre_parametre":{
+      nom:"Paramètre",
+      basGauche:ListeParametreComponent,
+      basDroite:ParametreComponent
     }
   }
   constructor(public api:ApiService,public route:Router) { }
@@ -76,7 +105,7 @@ export class BodyComponent implements OnInit {
   verifier_session(){
     let u:any = localStorage.getItem('utilisateur');
     let user=JSON.parse(u)
-    // console.log("session= ",u)
+    console.log("session= ",u)
     if (user==null) {//non connecté
       this.route.navigate(["/connexion"])
     } else {

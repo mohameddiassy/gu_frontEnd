@@ -50,9 +50,9 @@
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
-                        <td>{{une_sortie.stock}}</td>
+                        <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.stock}}</td>
+                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
                         <td class="text-right">
                             <div class="btn-group">
                                 <button class="btn btn-danger">
