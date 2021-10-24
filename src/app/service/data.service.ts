@@ -131,7 +131,6 @@ export class DataService {
 
   recevoir_jours(callback:Function){
     this.requete_post("get_nombre_d_activite_jour.php",{id_utilisateur:1},(data:any)=>{
-
       this.les_jours=data
       console.log(this.les_jours[0].date+"     "+moment().format("YYYY-MM-DD"))
       if (this.les_jours.length>0 && this.les_jours[0].date==moment().format("YYYY-MM-DD")) {
@@ -171,7 +170,7 @@ export class DataService {
   getCode():Observable<any>{
     return this.subjectCode.asObservable()
   }
-  
+
   toggleSidenav(){
     if (this.sidenavbool) {// sidenav ouvert, on le ferme
         // on ferme la partie gauche
@@ -190,7 +189,7 @@ export class DataService {
     }
     this.sidenavbool=!this.sidenavbool
   }
-  
+
   closeSidenav(){
       // on ferme la partie gauche
       $(".gauche").removeClass("d-block");

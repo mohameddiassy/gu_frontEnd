@@ -53,6 +53,7 @@ import { ListeDashbordComponent } from './basGauche/liste-dashbord/liste-dashbor
 import { ListeProduitEntrantComponent } from './basGauche/liste-produit-entrant/liste-produit-entrant.component';
 import { AjouterEntreeComponent } from './modal/ajouter-entree/ajouter-entree.component';
 import { AjouterFournisseurComponent } from './modal/ajouter-fournisseur/ajouter-fournisseur.component';
+import { ScannerComponent } from './formulaire/scanner/scanner.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -63,6 +64,7 @@ const routes: Routes = [
 
 
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +116,7 @@ const routes: Routes = [
     ListeProduitEntrantComponent,
     AjouterEntreeComponent,
     AjouterFournisseurComponent,
+    ScannerComponent,
   ],
   imports: [
     BrowserModule,
