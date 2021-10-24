@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConsommationComponent } from 'src/app/basDroite/consommation/consommation.component';
+import { DashbordLteComponent } from 'src/app/basDroite/dashbord-lte/dashbord-lte.component';
 import { DashbordComponent } from 'src/app/basDroite/dashbord/dashbord.component';
 import { DetailProduitComponent } from 'src/app/basDroite/detail-produit/detail-produit.component';
 import { EntreeComponent } from 'src/app/basDroite/entree/entree.component';
@@ -67,7 +68,7 @@ export class BodyComponent implements OnInit {
     "fenetre_dashbord":{
       nom:"Tableau de Bord",
       basGauche:ListeDashbordComponent,
-      basDroite:DashbordComponent
+      basDroite:DashbordLteComponent
     },
     "fenetre_fournisseur":{
       nom:"Fournisseur",

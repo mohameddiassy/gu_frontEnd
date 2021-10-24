@@ -7,14 +7,14 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApiService {
 
-  // url="https://gu.groupemeta.com/nouveau/api.php"
+  url="https://gu.groupemeta.com/nouveau/api.php"
   //  url="http://192.168.1.3/gestionuniversel_back/nouveau/api.php"
-  url="http://localhost/gestionuniversel_back/nouveau/api.php"
+  // url="http://localhost/gestionuniversel_back/nouveau/api.php"
   global:any={
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_entree",
+    fenetre_selectionnee:"fenetre_dashbord",
     les_fenetres:[],
     recherche_hautgauche:"",
     les_sorties_par_jour:[],

@@ -64,15 +64,14 @@ import { ListeConsommationComponent } from './basGauche/liste-consommation/liste
 import { AjouterConsommationComponent } from './modal/ajouter-consommation/ajouter-consommation.component';
 import { ListeParametreComponent } from './basGauche/liste-parametre/liste-parametre.component';
 import { ParametreComponent } from './basDroite/parametre/parametre.component';
+import { TemplateComponent } from './lteTemplate/template/template.component';
+import { DashbordLteComponent } from './basDroite/dashbord-lte/dashbord-lte.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
   { path: "connexion", component: ConnexionComponent },
   { path: "accueil", component: BodyComponent },
-
-
-
-
+  { path: "lte", component: TemplateComponent },
 ];
 @NgModule({
   declarations: [
@@ -133,7 +132,9 @@ const routes: Routes = [
     ListeConsommationComponent,
     AjouterConsommationComponent,
     ListeParametreComponent,
-    ParametreComponent
+    ParametreComponent,
+    TemplateComponent,
+    DashbordLteComponent
   ],
   imports: [
     BrowserModule,
