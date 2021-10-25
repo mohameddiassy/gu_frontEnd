@@ -64,6 +64,7 @@ import { ListeParametreComponent } from './basGauche/liste-parametre/liste-param
 import { ParametreComponent } from './basDroite/parametre/parametre.component';
 import { TemplateComponent } from './lteTemplate/template/template.component';
 import { DashbordLteComponent } from './basDroite/dashbord-lte/dashbord-lte.component';
+import { AnalyseComponent } from './analyse/analyse/analyse.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -71,6 +72,7 @@ const routes: Routes = [
   { path: "accueil", component: BodyComponent },
   { path: "lte", component: TemplateComponent },
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,7 +134,8 @@ const routes: Routes = [
     ListeParametreComponent,
     ParametreComponent,
     TemplateComponent,
-    DashbordLteComponent
+    DashbordLteComponent,
+    AnalyseComponent
   ],
   imports: [
     BrowserModule,
@@ -142,6 +145,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
