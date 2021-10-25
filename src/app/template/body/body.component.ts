@@ -99,7 +99,7 @@ export class BodyComponent implements OnInit {
   constructor(public api:ApiService,public route:Router) { }
 
   ngOnInit(): void {
-    this.api.toggleSidenav()
+    // this.api.toggleSidenav()
     this.verifier_session()
   }
   verifier_session(){

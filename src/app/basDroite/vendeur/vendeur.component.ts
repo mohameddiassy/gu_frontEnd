@@ -12,7 +12,7 @@ export class VendeurComponent implements OnInit {
   vendeur:any
   ajoutervendeurcomponent=AjouterVendeurComponent
   multi: any=[];
-  view: any= [700, 300];
+  view: any= [null, 300];
 
   // options
   legend: boolean = true;
@@ -25,6 +25,7 @@ export class VendeurComponent implements OnInit {
   xAxisLabel: string = 'En fonctions des jours';
   yAxisLabel: string = 'Entrées et Sorties';
   timeline: boolean = true;
+  legendPosition:any='above'
 
   colorScheme:any = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']

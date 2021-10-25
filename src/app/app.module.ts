@@ -41,7 +41,6 @@ import { ListeproduitsComponent } from './basGauche/listeproduits/listeproduits.
 import { SortieMoisComponent } from './basDroite/sortie-mois/sortie-mois.component';
 import { AnalyticsComponent } from './basDroite/analytics/analytics.component';
 import { ListeAnalyticsComponent } from './basGauche/liste-analytics/liste-analytics.component';
-import { ChartModule } from 'angular2-chartjs';
 import { BodyComponent } from './template/body/body.component';
 import { EntreeComponent } from './basDroite/entree/entree.component';
 import { DashbordComponent } from './basDroite/dashbord/dashbord.component';
@@ -52,7 +51,6 @@ import { ListeDashbordComponent } from './basGauche/liste-dashbord/liste-dashbor
 import { ListeProduitEntrantComponent } from './basGauche/liste-produit-entrant/liste-produit-entrant.component';
 import { AjouterEntreeComponent } from './modal/ajouter-entree/ajouter-entree.component';
 import { AjouterFournisseurComponent } from './modal/ajouter-fournisseur/ajouter-fournisseur.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { VendeurComponent } from './basDroite/vendeur/vendeur.component';
 import { ListeVendeurComponent } from './basGauche/liste-vendeur/liste-vendeur.component';
 import { AjouterVendeurComponent } from './modal/ajouter-vendeur/ajouter-vendeur.component';
@@ -144,8 +142,6 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    ChartModule,
-    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
