@@ -20,8 +20,6 @@
         "@angular/router": "~12.1.2",
         "@swimlane/ngx-charts": "^19.1.0",
         "admin-lte": "^3.0.5",
-        "angular2-chartjs": "^0.5.1",
-        "chart.js": "^3.5.1",
         "file-saver": "^2.0.5",
         "jquery": "^3.6.0",
         "moment": "^2.29.1",

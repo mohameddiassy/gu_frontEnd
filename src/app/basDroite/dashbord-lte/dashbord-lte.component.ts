@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { single } from '../dashbord/data';
 
 @Component({
   selector: 'app-dashbord-lte',
@@ -14,9 +15,33 @@ export class DashbordLteComponent implements OnInit {
     { nom: "Ajoutez la nouvelle fonctionnalité de GUSTock pour 100f le mois", liste: [] },
     { nom: "Derniers visites sur votre boutique en ligne", liste: [{ nom: "Pain Simple", quantite: "15 commandes" }] },
   ]
-  constructor() { }
 
+  single: any[]=[];
+  multi: any[]=[];
+
+  view:any= [400, 400];
+
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Country';
+  showYAxisLabel = true;
+  yAxisLabel = 'Population';
+  legendPosition:any='below'
+
+  colorScheme :any= {domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
+
+  constructor() {
+    Object.assign(this, { single })
+  }
   ngOnInit(): void {
+  }
+
+  onSelect(event:any) {
+    console.log(event);
   }
 
 }

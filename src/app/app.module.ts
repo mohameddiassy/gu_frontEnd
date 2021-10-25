@@ -52,7 +52,6 @@ import { ListeDashbordComponent } from './basGauche/liste-dashbord/liste-dashbor
 import { ListeProduitEntrantComponent } from './basGauche/liste-produit-entrant/liste-produit-entrant.component';
 import { AjouterEntreeComponent } from './modal/ajouter-entree/ajouter-entree.component';
 import { AjouterFournisseurComponent } from './modal/ajouter-fournisseur/ajouter-fournisseur.component';
-import { ScannerComponent } from './formulaire/scanner/scanner.component';
 import { VendeurComponent } from './basDroite/vendeur/vendeur.component';
 import { ListeVendeurComponent } from './basGauche/liste-vendeur/liste-vendeur.component';
 import { AjouterVendeurComponent } from './modal/ajouter-vendeur/ajouter-vendeur.component';
@@ -66,6 +65,7 @@ import { ListeParametreComponent } from './basGauche/liste-parametre/liste-param
 import { ParametreComponent } from './basDroite/parametre/parametre.component';
 import { TemplateComponent } from './lteTemplate/template/template.component';
 import { DashbordLteComponent } from './basDroite/dashbord-lte/dashbord-lte.component';
+import { AnalyseComponent } from './analyse/analyse/analyse.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -123,7 +123,6 @@ const routes: Routes = [
     ListeProduitEntrantComponent,
     AjouterEntreeComponent,
     AjouterFournisseurComponent,
-    ScannerComponent,
     VendeurComponent,
     ListeVendeurComponent,
     AjouterVendeurComponent,
@@ -136,7 +135,8 @@ const routes: Routes = [
     ListeParametreComponent,
     ParametreComponent,
     TemplateComponent,
-    DashbordLteComponent
+    DashbordLteComponent,
+    AnalyseComponent
   ],
   imports: [
     BrowserModule,

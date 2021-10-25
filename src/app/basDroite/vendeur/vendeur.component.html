@@ -8,7 +8,7 @@
         <h6 class="card-title m-b-20">Information Général du vendeur</h6>
         <div class="m-b-30">
             <ul class="list-group">
-                
+
                 <li class="list-group-item">
                     Libellé : <strong>{{vendeur?.nom}}</strong>
                 </li>
@@ -27,11 +27,11 @@
             </ul>
         </div>
     </div>
-    <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+    <!-- <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi" (select)="onSelect($event)"
         (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
-    </ngx-charts-line-chart>
+    </ngx-charts-line-chart> -->
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
