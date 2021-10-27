@@ -15,6 +15,16 @@ export class DashbordComponent implements OnInit {
     {nom:"Ajoutez la nouvelle fonctionnalité de GUSTock pour 100f le mois",liste:[]},
     {nom:"Derniers visites sur votre boutique en ligne",liste:[{nom:"Pain Simple",quantite:"15 commandes"}]},
   ]
+  les_ressumes_statistiques:any=[
+    {nom:"Chiffre d'affaire",icone:"money-check-alt",nombre:"1000",bg_color:"#63c2de",unite:"fcfa",t_color:"white"},
+    {nom:"Bénéfice du dernier mois",icone:"thumbs-up",nombre:"1000",bg_color:"#ffc107",unite:"fcfa",t_color:"white"},
+    {nom:"Vente",icone:"shopping-cart",nombre:"1000",bg_color:"#3EF06B",unite:"fcfa",t_color:"white"},
+    {nom:"Dépenses",icone:"share-square",nombre:"1000",bg_color:"#F00053",unite:"fcfa",t_color:"white"},
+    // {icone:"money",nombre:"1000",bg_color:"#4dbd74",unite:"fcfa",color:"white"},
+    // {icone:"money",nombre:"1000",bg_color:"#c8ced3",unite:"fcfa",color:"white"},
+    // {icone:"money",nombre:"1000",bg_color:"#20a8d8",unite:"fcfa",color:"white"},
+    // {icone:"money",nombre:"1000",bg_color:"#f0f3f5",unite:"fcfa",color:"black"},
+  ]
   single: any[]=[];
   multi: any[]=[];
 

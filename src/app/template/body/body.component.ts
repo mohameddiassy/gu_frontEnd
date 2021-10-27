@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConsommationComponent } from 'src/app/basDroite/consommation/consommation.component';
 import { DashbordLteComponent } from 'src/app/basDroite/dashbord-lte/dashbord-lte.component';
 import { DashbordComponent } from 'src/app/basDroite/dashbord/dashbord.component';
@@ -68,7 +68,7 @@ export class BodyComponent implements OnInit {
     "fenetre_dashbord":{
       nom:"Tableau de Bord",
       basGauche:ListeDashbordComponent,
-      basDroite:DashbordLteComponent
+      basDroite:DashbordComponent
     },
     "fenetre_fournisseur":{
       nom:"Fournisseur",
@@ -96,7 +96,22 @@ export class BodyComponent implements OnInit {
       basDroite:ParametreComponent
     }
   }
-  constructor(public api:ApiService,public route:Router) { }
+
+  constructor(public api:ApiService,public route:Router,private router:ActivatedRoute) {
+    router.params.subscribe((params:any)=>{
+      let e=params["id_entreprise"]
+      let f=params["fenetre"]
+      if (f && e) {
+        console.log("id_entreprise=",f)
+        if(api.global.fenetre_selectionnee!=f){
+          api.global.fenetre_selectionnee=f
+        }
+        
+      } else {
+        console.log("pas de parametre fenentre ",f,params)
+      }
+    })
+   }
 
   ngOnInit(): void {
     // this.api.toggleSidenav()

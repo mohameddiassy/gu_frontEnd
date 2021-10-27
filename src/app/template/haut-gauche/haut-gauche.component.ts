@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { DataService } from 'src/app/service/data.service';
 
@@ -10,13 +11,14 @@ import { DataService } from 'src/app/service/data.service';
 export class HautGaucheComponent implements OnInit {
   
   
-  constructor(public api:ApiService) { }
+  constructor(public api:ApiService,private route:Router) { }
 
   ngOnInit(): void {
     this.get_fenetres()
   }
   changement(){
     console.log("option= ",this.api.global.fenetre_selectionnee)
+    this.route.navigate(["/accueil/"+this.api.global.utilisateur_connecte.entreprise_selectionnee.id_entreprise+"/"+this.api.global.fenetre_selectionnee])
     // this.data.envoyerClick()
   }
   get_fenetres(){

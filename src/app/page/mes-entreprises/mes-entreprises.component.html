@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="mt-5">
+        <div class="card">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of api.global.utilisateur_connecte.proprietaire_entreprises">
+                    {{item.nom}}
+                </li>
+                <li class="list-group-item" *ngFor="let item of api.global.utilisateur_connecte.agent_entreprises">
+                    {{item.nom}}
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</div>

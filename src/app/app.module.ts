@@ -65,12 +65,15 @@ import { ParametreComponent } from './basDroite/parametre/parametre.component';
 import { TemplateComponent } from './lteTemplate/template/template.component';
 import { DashbordLteComponent } from './basDroite/dashbord-lte/dashbord-lte.component';
 import { AnalyseComponent } from './analyse/analyse/analyse.component';
+import { MesEntreprisesComponent } from './page/mes-entreprises/mes-entreprises.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
   { path: "connexion", component: ConnexionComponent },
   { path: "accueil", component: BodyComponent },
-  { path: "lte", component: TemplateComponent },
+  { path: "accueil/:id_entreprise", component: BodyComponent },
+  { path: "accueil/:id_entreprise/:fenetre", component: BodyComponent },
+  { path: "mes_entreprises", component: MesEntreprisesComponent },
 ];
 
 @NgModule({
@@ -135,7 +138,8 @@ const routes: Routes = [
     ParametreComponent,
     TemplateComponent,
     DashbordLteComponent,
-    AnalyseComponent
+    AnalyseComponent,
+    MesEntreprisesComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +149,6 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

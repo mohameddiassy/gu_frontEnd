@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class AjouterProduitComponent implements OnInit {
   produit:any={}
-  default_formulaire:any={nom:"",description:"",id_categorie:null,stock:0,prix_unitaire:0}
+  // default_formulaire:any={nom:"",description:"",id_categorie:null,stock:0,prix_unitaire:0,nom_new_categorie:"",description_new_categorie:""}
   succes=false
   echec=false
   id_entreprise:number=0
@@ -38,6 +38,8 @@ export class AjouterProduitComponent implements OnInit {
     this.produit.nom_new_categorie=""
     this.produit.description_new_categorie=""
     this.produit.id_categorie=1
+    this.produit.nom_new_categorie=""
+    this.produit.description_new_categorie=""
   }
   recevoir_categorie(){
     this.api.post_utilisateur_connecte({get_categorie:true}).subscribe((data:any)=>{

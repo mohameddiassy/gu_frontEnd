@@ -1,18 +1,14 @@
-<div class="d-flex justify-content-between">
-    <div class="d-flex">
-        <button (click)="api.toggleSidenav()" type="button" class="shadow-sm bg-white rounded btn d-block d-sm-none">
-            <span class="material-icons" >
-                {{api.global.sidenavbool?"close":"menu"}}
-            </span>
+<div class="d-flex justify-content-between align-items-center">
+    <div class="row">
+        <button (click)="api.toggleSidenav()" type="button" class="col shadow-sm bg-white rounded btn d-block d-sm-none">
+            <i class="fa fa-bars fa-2x"></i>
         </button>
-        <h2 class="bold align-middle">GUStock</h2>
+        <h2 class="bold col mt-2 croix" (click)="clique_nom_application()" > GUStock</h2>
     </div>
     <div class="">
         <span class="fs-6">
             {{api.global.utilisateur_connecte?.prenom+" "+api.global.utilisateur_connecte?.nom}}
         </span><br>
-        <span (click)="deconnexion()" class="material-icons align-middle croix">
-            power_settings_new
-        </span>
+        <i (click)="deconnexion()" class="fa fa-power-off croix align-middle"></i>
     </div>
 </div>

@@ -15,7 +15,9 @@ export class HautDroiteComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+  clique_nom_application(){
+    this.route.navigate(["/accueil/fenetre_dashbord"])
+  }
   deconnexion(){
     localStorage.setItem('utilisateur', JSON.stringify(null));
     // sessionStorage.removeItem('utilisateur');

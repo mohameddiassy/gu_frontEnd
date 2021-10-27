@@ -20,8 +20,12 @@ export class ListeProduitEntrantComponent implements OnInit {
   }
   recevoir_produit_entrnt(){
     this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
+      console.log("produits entrants",data)
       this.api.global.les_produits_entrants=data.products
-      this.api.sendEvent("item_liste_produit",this.api.global.les_produits_entrants[0])
+      if(data.products.length>0){
+        this.api.sendEvent("item_liste_produit",this.api.global.les_produits_entrants[0])
+      }
+      
     })
   }
 }

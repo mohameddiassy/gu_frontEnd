@@ -20,17 +20,39 @@ export class ConnexionComponent implements OnInit {
     this.echec_connexion=false
     console.log(this.utilisateur)
     this.api.post_utilisateur_connecte({connexion:true,utilisateur:JSON.stringify(this.utilisateur)}).subscribe((data:any)=>{
-      
-        // console.log("connexion",data)
+      console.log("connexion",data)
       if(data.status){
-        this.api.global.utilisateur_connecte=data.utilisateur
-        localStorage.setItem('utilisateur', JSON.stringify(data.utilisateur));
-        this.route.navigate(['/accueil'])
+        this.parametres_utililisateur_connecte(data)
+        
+        // this.route.navigate(['/accueil/fenetre_sortie'])
       }else{
         // console.log("Echec de connexion",data)
         this.echec_connexion=true
       }
     })
+  }
+  parametres_utililisateur_connecte(data:any){
+    let u=data.utilisateur
+    if (u.proprietaire_entreprises.length>0) {
+      let e=u.proprietaire_entreprises[0]
+      u.entreprise_selectionnee=e
+      this.api.global.utilisateur_connecte=u
+      // sauvegarder les informations de l'utilisateur sur le local_storage
+      localStorage.setItem('utilisateur', JSON.stringify(data.utilisateur));
+      this.route.navigate(["/accueil/"+u.entreprise_selectionnee.id_entreprise+"/fenetre_sortie"])
+      console.log("l'utilisateur connecté est le propriétaite de l'entreprise ",e)
+    } else if (u.agent_entreprises.length>0) {
+      let e=u.agent_entreprises[0]
+      u.entreprise_selectionnee=e
+      console.log("l'utilisateur connecté est un agent de l'entreprise ",e)
+      this.api.global.utilisateur_connecte=u
+      // sauvegarder les informations de l'utilisateur sur le local_storage
+      localStorage.setItem('utilisateur', JSON.stringify(data.utilisateur));
+      this.route.navigate(["/accueil/"+u.entreprise_selectionnee.id_entreprise+"/fenetre_sortie"])
+    }else {
+      console.log("L'utilisateur connecté n'est ni un agent ni propriétaire d'entreprise")
+      alert("Votre compte n'est pas encore activé. Veuillez contacter le propriétaire de l'entreprise")
+    }
   }
   verifier_session(){
     let u:any = localStorage.getItem('utilisateur');
