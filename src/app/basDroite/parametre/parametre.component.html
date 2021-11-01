@@ -1,76 +1,74 @@
-<div class="" >
-    <h2>Mes utilisateurs</h2>
-    <hr>
-       
-    <div class="bg-light shadow-lg rounded p-1">
-        <div class="row">
-            <div class="col-6 col-sm-4 _add_produit_btn">
-                <button class="btn btn-success"
-                    (click)="ajouterutilisateur()">Ajouter Utilisateur</button>
+<div class="">
+    <div>
+        <h2>Mes utilisateurs</h2>
+        <hr>
+
+        <div class="bg-light shadow-lg rounded p-1">
+            <div class="row">
+                <div class="col-6 col-sm-4 _add_produit_btn">
+                    <button class="btn btn-success" (click)="ajouterutilisateur()">Ajouter Utilisateur</button>
+                </div>
+                <div class="form-group col-6 col-sm-4">
+                    <button class="btn btn-primary" (click)="downloadFile(les_utilisateurs)">load csv</button>
+                </div>
+                <div class="form-group col-6 col-sm-4">
+                    <button class="btn btn-warning mx-2" (click)="exportexcel()">
+                        load-excel
+                    </button>
+                </div>
+                <div class="form-group col-6 col-sm-4">
+                    <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
+                    me-1" placeholder="Chercher une sortie">
+                    <!-- <button class="btn btn-success">Rechercher</button> -->
+                </div>
             </div>
-            <div class="form-group col-6 col-sm-4">
-              <button  class="btn btn-primary"
-              (click)="downloadFile(les_utilisateurs)">load csv</button>
-            </div>
-            <div class="form-group col-6 col-sm-4">
-              <button class="btn btn-warning mx-2" (click)="exportexcel()">
-                    load-excel
-                </button>
-            </div>
-            <div class="form-group col-6 col-sm-4">
-                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
-                    me-1"
-                    placeholder="Chercher une sortie">
-                <!-- <button class="btn btn-success">Rechercher</button> -->
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table id="excel-table" class="table table-stripped table
+            <div class="table-responsive">
+                <table id="excel-table" class="table table-stripped table
                 table-hover table-center mb-0 bg-light">
 
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Prenom</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Profession</th>
-                        <th scope="col">Login</th>
-                        <th scope="col">Privilège</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let un_utilisateur of les_utilisateurs | filter:recherche;let i=index ">
-                        <th scope="row">{{i+1}}</th>
-                        <td>{{un_utilisateur.prenom}}</td>
-                        <td>{{un_utilisateur.nom }}</td>
-                        <td>{{un_utilisateur.profession}}</td>
-                        <td>{{un_utilisateur.login}}</td>
-                        <td>{{un_utilisateur.privilege}}</td>
-                        <td class="text-right">
-                            <div class="btn-group">
-                                <button class="btn btn-danger">
-                                    <span class="material-icons">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr *ngIf="les_utilisateurs.length==0" class="container w-100 center">
-                        <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Prenom</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Profession</th>
+                            <th scope="col">Login</th>
+                            <th scope="col">Privilège</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let un_utilisateur of les_utilisateurs | filter:recherche;let i=index ">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{un_utilisateur.prenom}}</td>
+                            <td>{{un_utilisateur.nom }}</td>
+                            <td>{{un_utilisateur.profession}}</td>
+                            <td>{{un_utilisateur.login}}</td>
+                            <td>{{un_utilisateur.privilege}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn btn-danger">
+                                        <span class="material-icons">
+                                            delete
+                                        </span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr *ngIf="les_utilisateurs.length==0" class="container w-100 center">
+                            <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
 
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="text-wrap">
-
-  </div>
+    <div class="row">
+        col.s12
+    </div>
 
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajouterutilisateurcomponent"></ng-container>
 </div>
-

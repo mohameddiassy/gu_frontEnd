@@ -1,5 +1,5 @@
-<div class="h-100 ">
-  <div class="input-group">
+<div class="h-100">
+  <!-- <div class="input-group">
     <select name="option" [(ngModel)]="api.global.fenetre_selectionnee" (change)="changement()" class=" form-select"
       aria-label="Default select example">
       <option [value]="item.cle" *ngFor="let item of api.global.les_fenetres;let i=index;let f=first">{{item.nom}}</option>
@@ -8,6 +8,19 @@
       for="inputGroupSelect02">
       <i class="fa fa-close fa-2x text-white"></i>
     </button>
+  </div> -->
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <button (click)="api.global.afficher_menu_sidenav=!api.global.afficher_menu_sidenav" type="button" class="col shadow-sm bg-white rounded btn ">
+        <i class="fa fa-{{api.global.afficher_menu_sidenav?'close':'bars'}} fa-2x"></i>
+      </button>
+    </div>
+    <div class="">
+      <span class="fs-6 croix">
+        {{api.global.utilisateur_connecte?.prenom+" "+api.global.utilisateur_connecte?.nom}}
+      </span><br>
+      <i (click)="deconnexion()" class="fa fa-power-off croix align-middle"></i>
+    </div>
   </div>
   <div class="input-group pr-3">
     <input class="form-control" name="recherche_hautgauche" [(ngModel)]="api.global.recherche_hautgauche" type="text"

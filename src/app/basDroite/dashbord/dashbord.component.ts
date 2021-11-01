@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/service/api.service';
 import { single } from './data';
 
 @Component({
@@ -7,6 +8,7 @@ import { single } from './data';
   styleUrls: ['./dashbord.component.css']
 })
 export class DashbordComponent implements OnInit {
+  les_statistiques_backend:any=[]
   les_statistiques:any=[
     {nom:"Les bénéfice récents",liste:[{nom:"Mars",quantite:"40 000 f"},{nom:"Avril",quantite:"75 000 f"},{nom:"Mai",quantite:"30 000 f"},{nom:"Juin",quantite:"100 000 f"}]},
     {nom:"Les chiffres d'affaires récents",liste:[{nom:"Mars",quantite:"140 000 f"},{nom:"Avril",quantite:"250 000 f"},{nom:"Mai",quantite:"300 000 f"},{nom:"Juin",quantite:"100 000 f"}]},
@@ -20,10 +22,6 @@ export class DashbordComponent implements OnInit {
     {nom:"Bénéfice du dernier mois",icone:"thumbs-up",nombre:"1000",bg_color:"#ffc107",unite:"fcfa",t_color:"white"},
     {nom:"Vente",icone:"shopping-cart",nombre:"1000",bg_color:"#3EF06B",unite:"fcfa",t_color:"white"},
     {nom:"Dépenses",icone:"share-square",nombre:"1000",bg_color:"#F00053",unite:"fcfa",t_color:"white"},
-    // {icone:"money",nombre:"1000",bg_color:"#4dbd74",unite:"fcfa",color:"white"},
-    // {icone:"money",nombre:"1000",bg_color:"#c8ced3",unite:"fcfa",color:"white"},
-    // {icone:"money",nombre:"1000",bg_color:"#20a8d8",unite:"fcfa",color:"white"},
-    // {icone:"money",nombre:"1000",bg_color:"#f0f3f5",unite:"fcfa",color:"black"},
   ]
   single: any[]=[];
   multi: any[]=[];
@@ -43,13 +41,20 @@ export class DashbordComponent implements OnInit {
 
   colorScheme :any= {domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
 
-  constructor() {
+  constructor(public api:ApiService) {
     Object.assign(this, { single })
   }
   ngOnInit(): void {
+    this.recevoir_consommations()
   }
 
   onSelect(event:any) {
     console.log(event);
+  }
+  recevoir_consommations(){
+    this.api.post_utilisateur_connecte({dashboard:true}).subscribe((data:any)=>{
+      this.les_statistiques_backend=data
+      console.log("dashboard= ",data)
+    })
   }
 }

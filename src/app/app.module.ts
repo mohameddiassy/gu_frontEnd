@@ -62,8 +62,6 @@ import { ListeConsommationComponent } from './basGauche/liste-consommation/liste
 import { AjouterConsommationComponent } from './modal/ajouter-consommation/ajouter-consommation.component';
 import { ListeParametreComponent } from './basGauche/liste-parametre/liste-parametre.component';
 import { ParametreComponent } from './basDroite/parametre/parametre.component';
-import { TemplateComponent } from './lteTemplate/template/template.component';
-import { DashbordLteComponent } from './basDroite/dashbord-lte/dashbord-lte.component';
 import { AnalyseComponent } from './analyse/analyse/analyse.component';
 import { MesEntreprisesComponent } from './page/mes-entreprises/mes-entreprises.component';
 
@@ -136,8 +134,6 @@ const routes: Routes = [
     AjouterConsommationComponent,
     ListeParametreComponent,
     ParametreComponent,
-    TemplateComponent,
-    DashbordLteComponent,
     AnalyseComponent,
     MesEntreprisesComponent
   ],

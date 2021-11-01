@@ -10,6 +10,8 @@ import { ApiService } from 'src/app/service/api.service';
 export class ListeParametreComponent implements OnInit {
   options_parametre:any[]=[
     {nom:"Gestion des utilisateurs"},
+    {nom:"Parametrer les pages"},
+    {nom:"Parametrer les produits"},
     {nom:"Profil"},
     {nom:"Charge du personnel"},  
   ]

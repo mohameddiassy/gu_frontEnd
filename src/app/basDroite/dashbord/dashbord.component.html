@@ -18,21 +18,47 @@
     </div>
 </div>
 <div class="row m-1">
-    <div class="card col-md-6 pt-2 " *ngFor="let item of les_statistiques">
+    <!-- chiffre d'affaire -->
+    <div class="card col-md-6 pt-2 ">
         <div class="card-body">
-            <h5 class="card-title">{{item.nom}}</h5>
+            <h5 class="card-title">Chiffres d'affaire</h5>
         </div>
         <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of item.liste">
-                <span>{{item_liste.nom}}</span>
-                <span class="badge bg-secondary">{{item_liste.quantite}}</span>
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of les_statistiques_backend.CA">
+                <span>{{item_liste.mois}}</span>
+                <span class="badge bg-secondary">{{item_liste.CA}} FCFA</span>
             </li>
         </ul>
-        <!-- <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
-            [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-            (select)="onSelect($event)" [legendPosition]="legendPosition">
-        </ngx-charts-bar-vertical> -->
+        <div class="card-body">
+            <a class="btn border">voir plus</a>
+        </div>
+    </div>
+    <!-- produits mieux vendu par mois -->
+    <div class="card col-md-6 pt-2 ">
+        <div class="card-body">
+            <h5 class="card-title">Produits mieux vendu</h5>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of les_statistiques_backend.produit_vendus">
+                <span>{{item_liste.nom}}</span>
+                <span class="badge bg-secondary">{{item_liste.CA}} FCFA</span>
+            </li>
+        </ul>
+        <div class="card-body">
+            <a class="btn border">voir plus</a>
+        </div>
+    </div>
+    <!-- Les meilleurs agents -->
+    <div class="card col-md-6 pt-2 ">
+        <div class="card-body">
+            <h5 class="card-title">Les meilleurs agents</h5>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of les_statistiques_backend.les_agents">
+                {{(item_liste.mois|date:"MMMM")}}<span>{{item_liste.prenom+" "+item_liste.nom}}</span>
+                <span class="badge bg-secondary">{{item_liste.CA}} FCFA</span>
+            </li>
+        </ul>
         <div class="card-body">
             <a class="btn border">voir plus</a>
         </div>

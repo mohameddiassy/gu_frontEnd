@@ -30,4 +30,12 @@ export class HautGaucheComponent implements OnInit {
       }
     })
   }
+  deconnexion(){
+    localStorage.setItem('utilisateur', JSON.stringify(null));
+    // sessionStorage.removeItem('utilisateur');
+    this.route.navigate(["/"])
+  }
+  afficher_menu(){
+    this.api.sendEvent("bouton_menu_sidenav",{})
+  }
 }

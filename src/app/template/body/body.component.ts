@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConsommationComponent } from 'src/app/basDroite/consommation/consommation.component';
-import { DashbordLteComponent } from 'src/app/basDroite/dashbord-lte/dashbord-lte.component';
 import { DashbordComponent } from 'src/app/basDroite/dashbord/dashbord.component';
 import { DetailProduitComponent } from 'src/app/basDroite/detail-produit/detail-produit.component';
 import { EntreeComponent } from 'src/app/basDroite/entree/entree.component';
@@ -96,7 +95,7 @@ export class BodyComponent implements OnInit {
       basDroite:ParametreComponent
     }
   }
-
+  menu=ListeDashbordComponent
   constructor(public api:ApiService,public route:Router,private router:ActivatedRoute) {
     router.params.subscribe((params:any)=>{
       let e=params["id_entreprise"]
@@ -109,6 +108,11 @@ export class BodyComponent implements OnInit {
         
       } else {
         console.log("pas de parametre fenentre ",f,params)
+      }
+    })
+    api.getEvent().subscribe((data:any)=>{
+      if(data.code=="bouton_menu_sidenav"){
+        this.fenetres
       }
     })
    }

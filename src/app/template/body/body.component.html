@@ -3,7 +3,12 @@
         <div class="hautGauche">
             <ng-container *ngComponentOutlet="les_components.hautgauche"></ng-container>
         </div>
-        <div class="basGauche">
+        <!-- le menu de l'application -->
+        <div class="basGauche menu" *ngIf="api.global.afficher_menu_sidenav">
+            <ng-container *ngComponentOutlet="menu"></ng-container>
+        </div>
+        <!-- la liste qui concerne par basDroite -->
+        <div class="basGauche" *ngIf="!api.global.afficher_menu_sidenav">
             <ng-container *ngComponentOutlet="fenetres[api.global.fenetre_selectionnee]?.basGauche"></ng-container>
         </div>
     </div>

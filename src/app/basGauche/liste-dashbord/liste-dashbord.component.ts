@@ -26,6 +26,8 @@ export class ListeDashbordComponent implements OnInit {
   ngOnInit(): void {
   }
   clique(item:any) {
+    // console.log("jh jghhjohklk ",item)
+    this.api.global.afficher_menu_sidenav=!this.api.global.afficher_menu_sidenav
     this.route.navigate(['/accueil/'+this.api.global.utilisateur_connecte.entreprise_selectionnee.id_entreprise+"/"+item.cle])
   }
 
