@@ -1,66 +1,130 @@
-
 <div class="row">
-    <div class="col-6 col-md-4 col-xl-3" *ngFor="let item of les_ressumes_statistiques">
-        <div class="card p-2">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <button class="btn shadow-sm" [style.background-color]="item.bg_color" >
-                            <i class="fa fa-{{item.icone}} fa-3x" [style.color]="item.t_color"></i>
-                        </button>
-                    </div>                    
-                    <div class="col">
-                        <h6 class="bold">{{item.nombre}}</h6>
-                        <div class="">{{item.unite}}</div>
-                    </div>
+    <div class="col-6 col-md-4 col-xl-3" *ngFor="let item of les_statistiques_backend.depense_mois_en_cours">
+        <div class="card p-2 ">
+            <div class="row align-items-center ">
+                <div class="col ">
+                    <button class="btn shadow-sm btn-danger">
+                          <i class=" fa fa-share-square fa-3x " style.color="white"></i>
+                      </button>
                 </div>
-                <div class="center">{{item.nom}}</div>
+                <div class="col ">
+                    <h6 class="bold ">{{item.CA}} F CFA</h6>
+                    <div class=" ">---</div>
+                </div>
+            </div>
+            <div class="center fa fa-text-slash">depenses du mois en ccours</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-3 " *ngFor="let item of les_statistiques_backend.montant_today ">
+        <div class="card p-2 ">
+            <div class="row align-items-center ">
+                <div class="col ">
+                    <button class="btn shadow-sm btn-success " [style.background-color]="item.bg_color ">
+                        <i class="fa fa-shopping-cart fa-3x "></i>
+                    </button>
+                </div>
+                <div class="col ">
+                    <h6 class="bold ">{{item.CA}} F CFA</h6>
+                    <div class=" ">---</div>
+                </div>
+            </div>
+            <div class="center fa fa-text-slash">CA d'aujourd'hui {{item.mois}}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-3 " *ngFor="let item of les_statistiques_backend.depense_mois_en_cours ">
+        <div class="card p-2 ">
+            <div class="row align-items-center ">
+                <div class="col ">
+                    <button class="btn shadow-sm btn-warning " [style.background-color]="item.bg_color ">
+                        <i class="fa fa-money-check-alt fa-3x " [style.color]="item.t_color "></i>
+                    </button>
+                </div>
+                <div class="col ">
+                    <h6 class="bold ">{{item.CA}} F CFA</h6>
+                    <div class=" ">---</div>
+                </div>
+            </div>
+            <div class="center fa fa-text-slash">CA d'aujourd'hui {{item.mois}}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-3 " *ngFor="let item of les_statistiques_backend.depense_mois_en_cours ">
+        <div class="card p-2 ">
+            <div class="row align-items-center ">
+                <div class="col ">
+                    <button class="btn shadow-sm  btn-primary" [style.background-color]="item.bg_color ">
+                      <i class="fa fa-thumbs-up fa-3x " [style.color]="item.t_color "></i>
+                  </button>
+                </div>
+                <div class="col ">
+                    <h6 class="bold ">{{item.CA}} F CFA</h6>
+                    <div class=" ">---</div>
+                </div>
+            </div>
+            <div class="center fa fa-text-slash">benefices annuel</div>
         </div>
     </div>
 </div>
-<div class="row m-1">
-    <!-- chiffre d'affaire -->
+<div class="row m-1 ">
+    <!-- chiffre d' affaire -->
     <div class="card col-md-6 pt-2 ">
-        <div class="card-body">
-            <h5 class="card-title">Chiffres d'affaire</h5>
+        <div class="card-body ">
+            <h5 class="card-title ">Chiffres d'affaire</h5>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of les_statistiques_backend.CA">
+        <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.CA ">
                 <span>{{item_liste.mois}}</span>
-                <span class="badge bg-secondary">{{item_liste.CA}} FCFA</span>
+                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
             </li>
         </ul>
-        <div class="card-body">
-            <a class="btn border">voir plus</a>
+        <div class="card-body ">
+            <a class="btn border ">voir plus</a>
         </div>
     </div>
     <!-- produits mieux vendu par mois -->
     <div class="card col-md-6 pt-2 ">
-        <div class="card-body">
-            <h5 class="card-title">Produits mieux vendu</h5>
+        <div class="card-body ">
+            <h5 class="card-title ">Produits mieux vendu</h5>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of les_statistiques_backend.produit_vendus">
+        <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.produit_vendus ">
                 <span>{{item_liste.nom}}</span>
-                <span class="badge bg-secondary">{{item_liste.CA}} FCFA</span>
+                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
             </li>
         </ul>
-        <div class="card-body">
-            <a class="btn border">voir plus</a>
+        <div class="card-body ">
+            <a class="btn border ">voir plus</a>
         </div>
     </div>
     <!-- Les meilleurs agents -->
     <div class="card col-md-6 pt-2 ">
-        <div class="card-body">
-            <h5 class="card-title">Les meilleurs agents</h5>
+        <div class="card-body ">
+            <h5 class="card-title ">Les meilleurs agents</h5>
         </div>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between" *ngFor="let item_liste of les_statistiques_backend.les_agents">
-                {{(item_liste.mois|date:"MMMM")}}<span>{{item_liste.prenom+" "+item_liste.nom}}</span>
-                <span class="badge bg-secondary">{{item_liste.CA}} FCFA</span>
+        <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.les_agents ">
+                {{(item_liste.mois|date:"MMMM ")}}<span>{{item_liste.prenom+" "+item_liste.nom}}</span>
+                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
             </li>
         </ul>
-        <div class="card-body">
-            <a class="btn border">voir plus</a>
+        <div class="card-body ">
+            <a class="btn border ">voir plus</a>
         </div>
     </div>
+    <!-- Les depese des quatres derniers mois  -->
+
+    <div class="card col-md-6 pt-2 ">
+        <div class="card-body ">
+            <h5 class="card-title ">depenses des quatrs derniers mois</h5>
+        </div>
+        <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.depense_des_quatres_mois ">
+                <span> {{(item_liste.mois|date: "MMMM ")}}</span>
+                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
+            </li>
+        </ul>
+        <div class="card-body ">
+            <a class="btn border ">voir plus</a>
+        </div>
+    </div>
+
 </div>
