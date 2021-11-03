@@ -8,8 +8,8 @@ import { Observable, Subject } from 'rxjs';
 export class ApiService {
 
   // url="https://gu.groupemeta.com/nouveau/api.php"
-   url="http://192.168.1.13/gestionuniversel_back/nouveau/api.php"
-  // url="http://localhost/gestionuniversel_back/nouveau/api.php"
+  // url="http://192.168.1.106/gestionuniversel_back/nouveau/api.php"
+   url="http://localhost/gestionuniversel_back/nouveau/api.php"
   global:any={
     fenetres:[],
     sidenavbool:false,
@@ -95,7 +95,7 @@ export class ApiService {
       this.bool[cle]=false;
     }
   }
-  
+
   parse(quantite:any)
   {
     if(parseInt(quantite).toString()=='NaN'){
@@ -103,6 +103,6 @@ export class ApiService {
     }else{
       return parseInt(quantite)
     }
-    
+
   }
 }
