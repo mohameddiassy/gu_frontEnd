@@ -26,6 +26,7 @@ export class ParametreComponent implements OnInit {
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
   ]
+  utilisateur_courant:any
   constructor(public api:ApiService) {
     api.getEvent().subscribe((data)=>{
       if(data.code=="liste_parametre_utilisateur"){
@@ -85,7 +86,13 @@ export class ParametreComponent implements OnInit {
     this.api.post_utilisateur_connecte({get_utilisateur_entreprise:true}).subscribe((data:any)=>{
       this.les_utilisateurs=data.les_utilisateurs
       console.log("get_utilisateur_entreprise",data)
+      if(this.les_utilisateurs.length!=0){
+        this.utilisateur_courant=this.les_utilisateurs[0]
+      }
     })
+  }
+  clique_utiliateur(un_utilisateur:any){
+    this.utilisateur_courant=un_utilisateur
   }
 }
 
