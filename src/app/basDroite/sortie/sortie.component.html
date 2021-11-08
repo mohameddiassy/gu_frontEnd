@@ -34,23 +34,34 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Vendeur</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Heure</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Prix Unitaire</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Quantite</th>
+                        <th scope="col">Q. vendue</th>
+                        <th scope="col">Q. Restante</th>
+                        <th scope="col">Rations </th>
+                        <th scope="col">M. vendu</th>
+                        <th scope="col">M. versé</th>
+                        <th scope="col">Reliquat</th>
+                        <th scope="col">Prix unitaire</th>
+                        <th scope="col">Commissions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let une_sortie of les_sorties | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
+                        <td>{{une_sortie.vendeur}}</td>
                         <td>{{une_sortie.nom}}</td>
-                        <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
                         <td>{{une_sortie.quantite}}</td>
+                        <td>{{une_sortie.quantite-une_sortie.restant}}</td>
+                        <td>{{une_sortie.restant}}</td>
+                        <td>{{une_sortie.ration}}</td>
+                        <td>{{(une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire}}</td>
+                        <td>{{une_sortie.verse}}</td>
+                        <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}</td>
                         <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
-                        <td class="text-right">
+                        <td>{{une_sortie.commission}}</td>
+                        <!-- <td class="text-right">
                             <div class="btn-group">
                                 <button class="btn btn-danger">
                                     <span class="material-icons">
@@ -58,7 +69,7 @@
                                     </span>
                                 </button>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
                     <tr *ngIf="api.global.sortie_par_jours_par_enregistreur.length==0" class="container w-100 center">
                         <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>

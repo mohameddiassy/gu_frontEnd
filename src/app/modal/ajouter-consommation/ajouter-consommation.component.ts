@@ -28,7 +28,8 @@ export class AjouterConsommationComponent implements OnInit {
     this.echec = false
     this.succes = false
     this.consommation.date_consommation = this.item.date
-    this.consommation.stock=this.stock_en_cour
+    this.consommation.stock_avant=this.stock_en_cour
+    this.consommation.stock_apres=this.api.parse(this.stock_en_cour)-this.api.parse(this.consommation.quantite)
     console.log("consommation= ", this.consommation)
     if (this.consommation.id_produit == "0") {
       alert("choisir un produit")
