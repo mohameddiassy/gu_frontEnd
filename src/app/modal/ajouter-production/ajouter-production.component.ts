@@ -54,7 +54,10 @@ export class AjouterProductionComponent implements OnInit {
       this.api.bool.ajouterfournisseur=true
     }
 
-    this.api.global.les_produits_entrants .forEach((element:any) => {
+    }
+    changement2() {
+
+    this.api.global.les_produits_sortants .forEach((element:any) => {
       if(element.id_produit==this.production.id_produit)
       {
         this.stock_en_cour=element.stock

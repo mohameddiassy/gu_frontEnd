@@ -57,7 +57,7 @@ export class SortieComponent implements OnInit {
     );
     csv.unshift(header.join(','));
     const csvArray = csv.join('\r\n');
-    
+
     const a = document.createElement('a');
     const blob = new Blob([csvArray], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
@@ -80,7 +80,7 @@ export class SortieComponent implements OnInit {
      XLSX.writeFile(wb, this.fileName);
 
   }
-  
+
   recevoir_sorties(date:string){
     this.api.post_utilisateur_connecte({get_sortie_date:true,date:date}).subscribe((data:any)=>{
       this.les_sorties=data.les_produits

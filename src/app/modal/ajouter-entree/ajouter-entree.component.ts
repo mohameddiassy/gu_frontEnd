@@ -8,7 +8,11 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class AjouterEntreeComponent implements OnInit {
   stock_en_cour:any=0;
-  entree:any = { quantite: "0", id_produit: "0", id_enregistreur: 1, date_entree: "",id_fournisseur:1}
+  quantite_vide: any
+  prix_vide: any;
+  produit_vide:any;
+  fournisseur_vide:any
+  entree:any = { quantite: "0", id_produit: "0",prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1}
   option = "2"
   succes = false
   echec = false
@@ -32,14 +36,30 @@ export class AjouterEntreeComponent implements OnInit {
     console.log("entree= ", this.entree)
     if (this.entree.id_produit == "0") {
       console.log("choisir un produit")
-    } else {
+      this.produit_vide='donner le produit svp'
+    }
+    else if (this.entree.quantite =='0')
+    {
+      this.quantite_vide='donner la quantite svp'
+
+    }
+    else if (this.entree.prix_unitaire =='0')
+    {
+      this.prix_vide='donner la quantite svp'
+
+    }
+     else {
       this.api.post_utilisateur_connecte({ add_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
           this.entree.quantite = "0"
+          this.entree.id_produit = ""
+          this.entree.prix_unitaire='0'
+
           // this.data.les_produits.push(data.produit)
           // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("entree_par_jours_par_enregistreur",this.item)
+
         } else {
           this.echec = true
         }
