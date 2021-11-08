@@ -13,11 +13,14 @@ export class AjouterProductionComponent implements OnInit {
   succes = false
   echec = false
   item: any
+  les_productions: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterproduction") {
         this.item = data.data
         this.recevoir_produit_sortant()
+        this.get_produit_day_left();
+        this.recevoir_productions(this.item.date);
       }
     })
   }
@@ -57,13 +60,15 @@ export class AjouterProductionComponent implements OnInit {
     }
     changement2() {
 
-    this.api.global.les_produits_sortants .forEach((element:any) => {
-      if(element.id_produit==this.production.id_produit)
-      {
-        this.stock_en_cour=element.stock
-        return
-      }
-    });
+      this.les_productions.forEach((element:any) => {
+        this.stock_en_cour=0
+        if(element.id_produit==this.production.id_produit)
+        {
+          this.stock_en_cour=element.quantite
+          return
+        }
+      });
+
     }
   recevoir_produit_sortant(){
     this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"sortant"}).subscribe((data:any)=>{
@@ -71,5 +76,16 @@ export class AjouterProductionComponent implements OnInit {
     })
   }
 
-
+  get_produit_day_left(){
+    this.api.post_utilisateur_connecte({get_produit_day_left:true,type:"sortant",date:this.item.date}).subscribe((data:any)=>{
+      this.api.global.get_produit_day_left_list=data.produits_left
+      console.log(" left ",data)
+    })
+  }
+  recevoir_productions(date:string){
+    this.api.post_utilisateur_connecte({get_production_date:true,date:date}).subscribe((data:any)=>{
+      this.les_productions=data.les_productions
+      console.log("get_production_date",data)
+    })
+  }
 }

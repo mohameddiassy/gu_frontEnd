@@ -1,71 +1,67 @@
-<div class="" >
+<div class="">
     <h2>Les consommations du {{item?.date | date:'dd MMMM YYYY'}}</h2>
     <hr>
     <div class="d-flex mb-2 les_statistiques">
-        <button  *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white">
+        <button *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white">
             {{item.nom}} <br>
             <span class="badge bg-primary">{{item.chiffre}}</span>
         </button>
     </div>
-       
+
     <div class="bg-light shadow-lg rounded p-1">
         <div class="row">
             <div class="col-6 col-sm-4 _add_produit_btn">
-                <button class="btn btn-success"
-                    (click)="ajouter()">Ajouter consommation</button>
+                <button class="btn btn-success" (click)="ajouter()">Ajouter consommation</button>
             </div>
             <div class="form-group col-6 col-sm-4">
-              <button  class="btn btn-primary"
-              (click)="downloadFile(les_consommations)">load csv</button>
+                <button class="btn btn-primary" (click)="downloadFile(les_consommations)">load csv</button>
             </div>
             <div class="form-group col-6 col-sm-4">
-              <button class="btn btn-warning mx-2" (click)="exportexcel()">
+                <button class="btn btn-warning mx-2" (click)="exportexcel()">
                     load-excel
                 </button>
             </div>
             <div class="form-group col-6 col-sm-4">
                 <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
-                    me-1"
-                    placeholder="Chercher une sortie">
+                    me-1" placeholder="Chercher une sortie">
                 <!-- <button class="btn btn-success">Rechercher</button> -->
             </div>
         </div>
         <div class="table-responsive">
             <table id="excel-table" class="table table-stripped table
-                table-hover table-center mb-0 bg-light">
+            table-hover table-center mb-0 bg-light">
 
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Heure</th>
-                        <th scope="col">Quantité</th>
-                        <th scope="col">Prix Unitaire</th>
+                        <th scope="col">Stock avant</th>
+                        <th scope="col">consommation</th>
+                        <th scope="col">Stock aprés</th>
                         <th scope="col">Total</th>
-                        <th scope="col">Actions</th>
+                        <!-- <th scope="col">Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of les_consommations | filter:recherche;let i=index ">
+                    <tr *ngFor="let une_consommation of les_consommations | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{une_sortie.nom}}</td>
-                        <td>{{une_sortie.date_enregistrement | date:'h:mm a'}}</td>
-                        <td>{{une_sortie.quantite}}</td>
-                        <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
-                        <td class="text-right">
-                            <div class="btn-group">
-                                <button class="btn btn-danger">
-                                    <span class="material-icons">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </td>
+                        <td>{{une_consommation.nom}}</td>
+                        <td>{{une_consommation.stock_avant}}</td>
+                        <td>{{une_consommation.quantite}}</td>
+                        <td>{{une_consommation.stock_apres}}</td>
+                        <td>{{une_consommation.prix_unitaire*une_consommation.quantite}}</td>
+                        <!-- <td class="text-right">
+                          <div class="btn-group">
+                              <button class="btn btn-danger">
+                                <span class="material-icons">
+                                    delete
+                                </span>
+                            </button>
+                          </div>
+                      </td> -->
                     </tr>
                     <tr *ngIf="les_consommations.length==0" class="container w-100 center">
-                        <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
-
+                        <td class="fw-bold" colspan="4">Pas d'entree pour cette date</td>
                     </tr>
                 </tbody>
             </table>
@@ -73,10 +69,9 @@
     </div>
     <div class="text-wrap">
 
-  </div>
+    </div>
 
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajouterconsommationcomponent"></ng-container>
 </div>
-

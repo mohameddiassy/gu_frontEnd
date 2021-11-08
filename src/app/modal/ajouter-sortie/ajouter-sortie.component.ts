@@ -14,7 +14,7 @@ export class AjouterSortieComponent implements OnInit {
   prix_vide: any;
   produit_vide:any;
   vendeur_vide:any
-  sortie = { quantite: "", id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"",prix_unitaire:'0'}
+  sortie = { quantite: "", id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
   option = "2"
   succes = false
   echec = false
@@ -23,6 +23,8 @@ export class AjouterSortieComponent implements OnInit {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajoutersortie") {
         this.item = data.data
+        this.recevoir_productions()
+
       }
     })
   }
@@ -83,10 +85,10 @@ export class AjouterSortieComponent implements OnInit {
   }
 }
   changement() {
-    this.api.global.les_produits_sortants.forEach((element:any) => {
+    this.api.global.les_production_day.forEach((element:any) => {
       if(element.id_produit==this.sortie.id_produit)
       {
-        this.stock_en_cour=element.stock +" en stock"
+        this.stock_en_cour=element.quantite +" en stock"
         console.log('ppppppppppppppppp',this.stock_en_cour)
         return
       }
@@ -113,4 +115,18 @@ export class AjouterSortieComponent implements OnInit {
       }
     })
   }
+
+  recevoir_productions(){
+    this.api.post_utilisateur_connecte({get_production_day:true,date:this.item?.date}).subscribe((data:any)=>{
+      console.log("production",data.les_produits)
+
+      if (data.status) {
+
+        this.api.global.les_production_day=data.les_produits
+      } else {
+        console.log("erreur de reception des fenetre")
+      }
+    })
+  }
+
 }

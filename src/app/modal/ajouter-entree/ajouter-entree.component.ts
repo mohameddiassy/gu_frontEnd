@@ -12,7 +12,7 @@ export class AjouterEntreeComponent implements OnInit {
   prix_vide: any;
   produit_vide:any;
   fournisseur_vide:any
-  entree:any = { quantite: "0", id_produit: "0",prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1}
+  entree:any = { quantite: "0", id_produit: "0",prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
   option = "2"
   succes = false
   echec = false
@@ -32,7 +32,8 @@ export class AjouterEntreeComponent implements OnInit {
     this.echec = false
     this.succes = false
     this.entree.date_entree = this.item.date
-    this.entree.stock=this.stock_en_cour
+    this.entree.stock_avant=this.stock_en_cour
+    this.entree.stock_apres = this.api.parse(this.stock_en_cour)+this.api.parse(this.entree.quantite)
     console.log("entree= ", this.entree)
     if (this.entree.id_produit == "0") {
       console.log("choisir un produit")
@@ -78,6 +79,7 @@ export class AjouterEntreeComponent implements OnInit {
       if(element.id_produit==this.entree.id_produit)
       {
         this.stock_en_cour=element.stock
+        this.entree.prix_unitaire=element.prix_unitaire
         return
       }
     });
