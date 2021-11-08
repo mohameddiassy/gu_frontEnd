@@ -1,4 +1,4 @@
-<div class="list-group list-group-numbered">
+<div class="list-group list-group-numbered" *ngIf="api.global.afficher_menu_sidenav">
     <div (click)="clique(item)" *ngFor="let item of api.global.les_fenetres | filter:api.global.recherche_hautgauche" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
       <div class="d-flex align-items-center">
         <i class="fa fa-{{icons[item.cle]['icone']}} fa-3x shadow-sm p-2 center" [style.background-color]="icons[item.cle]['background_color']" [style.color]="icons[item.cle]['color']" style="width: 75px;"></i>
