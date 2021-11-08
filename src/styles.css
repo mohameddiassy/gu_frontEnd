@@ -2,3 +2,6 @@
 .croix{cursor: pointer;}
 .couleurgrise{background-color: rgb(216, 228, 224);}
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

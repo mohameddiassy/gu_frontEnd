@@ -64,6 +64,12 @@ import { ListeParametreComponent } from './basGauche/liste-parametre/liste-param
 import { ParametreComponent } from './basDroite/parametre/parametre.component';
 import { AnalyseComponent } from './analyse/analyse/analyse.component';
 import { MesEntreprisesComponent } from './page/mes-entreprises/mes-entreprises.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -72,6 +78,7 @@ const routes: Routes = [
   { path: "accueil/:id_entreprise", component: BodyComponent },
   { path: "accueil/:id_entreprise/:fenetre", component: BodyComponent },
   { path: "mes_entreprises", component: MesEntreprisesComponent },
+
 ];
 
 @NgModule({
@@ -135,7 +142,8 @@ const routes: Routes = [
     ListeParametreComponent,
     ParametreComponent,
     AnalyseComponent,
-    MesEntreprisesComponent
+    MesEntreprisesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -145,6 +153,12 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

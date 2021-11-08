@@ -95,7 +95,7 @@ export class ApiService {
       this.bool[cle]=false;
     }
   }
-  
+
   parse(quantite:any)
   {
     if(parseInt(quantite).toString()=='NaN'){
@@ -103,6 +103,6 @@ export class ApiService {
     }else{
       return parseInt(quantite)
     }
-    
+
   }
 }
