@@ -18,13 +18,13 @@ export class SortieComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   recherche=""
   les_statistiques:any=[
-    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
-    {nom:"Stock initial",chiffre:12,bg:"secondary"},
-    {nom:"Stock Final",chiffre:12,bg:"success"},
-    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
-    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
-    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
-    {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
+    {nom:"Montant total vendu",chiffre:0,bg:"secondary"},
+    {nom:"Montant total encaissé",chiffre:0,bg:"success"},
+    {nom:"Montant total Reliquat",chiffre:0,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
   ]
   constructor(public api:ApiService) {
     api.getEvent().subscribe((data)=>{
@@ -34,7 +34,6 @@ export class SortieComponent implements OnInit {
       }
     })
   }
-
   ngOnInit(): void {
   }
 
@@ -85,6 +84,16 @@ export class SortieComponent implements OnInit {
     this.api.post_utilisateur_connecte({get_sortie_date:true,date:date}).subscribe((data:any)=>{
       this.les_sorties=data.les_produits
       console.log("get_sortie_date",data)
+      this.get_stats() ;
     })
+  }
+  get_stats() {
+    this.les_statistiques[0].chiffre=this.les_sorties.length
+    this.les_sorties.forEach((element:any)=>{
+      this.les_statistiques[1].chiffre+=(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)
+      this.les_statistiques[2].chiffre+=this.api.parse(element.verse)
+      this.les_statistiques[3].chiffre+=(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)
+    })
+
   }
 }
