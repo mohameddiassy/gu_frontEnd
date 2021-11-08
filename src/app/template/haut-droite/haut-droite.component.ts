@@ -23,4 +23,7 @@ export class HautDroiteComponent implements OnInit {
     // sessionStorage.removeItem('utilisateur');
     this.route.navigate(["/"])
   }
+  changer_entreprise(entreprise:any){
+    this.route.navigate(["/accueil/"+entreprise.id_entreprise])
+  }
 }

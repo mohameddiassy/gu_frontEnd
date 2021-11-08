@@ -6,8 +6,14 @@
         </button>
         <h2 class="bold col mt-2 croix" (click)="clique_nom_application()"> GUStock</h2>
     </div>
-
-    <div>
-        {{api.global.utilisateur_connecte.entreprise_selectionnee.nom}}
-    </div>
+    <div class="btn-group">
+        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{api.global.utilisateur_connecte.entreprise_selectionnee.nom}}
+        </button>
+        <ul class="dropdown-menu">
+            <!-- <li *ngFor="let une_entreprise of api.global.utilisateur_connecte.proprietaire_entreprises"><a class="dropdown-item" href="#">{{une_entreprise.nom}}</a></li> -->
+            <!-- <hr> -->
+            <li class="croix" (click)="changer_entreprise(une_entreprise)" *ngFor="let une_entreprise of api.global.utilisateur_connecte.agent_entreprises"><a class="dropdown-item" >{{une_entreprise.nom}}</a></li>
+        </ul>
+      </div>
 </div>
