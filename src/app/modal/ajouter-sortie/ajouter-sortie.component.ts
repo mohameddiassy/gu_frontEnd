@@ -25,6 +25,12 @@ export class AjouterSortieComponent implements OnInit {
         this.item = data.data
         this.recevoir_productions()
 
+
+      }
+     else if (data.code == "modifiersortie") {
+        this.sortie = data.data
+        this.recevoir_productions()
+
       }
     })
   }
@@ -33,6 +39,8 @@ export class AjouterSortieComponent implements OnInit {
     this.recevoir_produit_sortant()
     this.recevoir_vendeur()
   }
+
+
   ajouter() {
     if(parseInt(this.stock_en_cour)<parseInt(this.sortie.quantite))
     {
@@ -83,6 +91,48 @@ export class AjouterSortieComponent implements OnInit {
       })
     }
   }
+}
+modifier()
+{
+  if(parseInt(this.stock_en_cour)<parseInt(this.sortie.quantite))
+  {
+    this.stock_en_cour="quantite insuffisante"
+  }
+  else
+  {
+  this.echec = false
+  this.succes = false
+  this.sortie.date_sortie = this.item.date
+  console.log("sortie= ", this.sortie)
+  if (this.sortie.id_produit == "0") {
+    console.log("choisir un produit")
+  }
+
+  else if (this.sortie.quantite =='0')
+  {
+    this.quantite_vide='donner la quantite svp'
+
+  }
+  else if (this.sortie.prix_unitaire =='0')
+  {
+    this.prix_vide='donner le prix unitaire svp'
+
+  }
+   else {
+    this.stock_en_cour=parseInt(this.stock_en_cour)-parseInt(this.sortie.quantite)+" en stock "
+
+    this.api.post_utilisateur_connecte({ update_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
+      if (data.status) {
+        this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
+
+      } else {
+        this.echec = true
+      }
+    })
+  }
+}
+
+
 }
   changement() {
     this.api.global.les_production_day.forEach((element:any) => {

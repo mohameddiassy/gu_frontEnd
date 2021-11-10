@@ -70,6 +70,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -159,6 +160,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     LayoutModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

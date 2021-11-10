@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
 import { AjouterConsommationComponent } from 'src/app/modal/ajouter-consommation/ajouter-consommation.component';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -12,10 +13,12 @@ import { AjouterConsommationComponent } from 'src/app/modal/ajouter-consommation
 })
 export class ConsommationComponent implements OnInit {
 
- 
+
   les_consommations:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
+  closeResult = '';
+  id_produit_supprime:any
   ajouterconsommationcomponent=AjouterConsommationComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
@@ -28,7 +31,7 @@ export class ConsommationComponent implements OnInit {
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
   ]
-  constructor(public api:ApiService) {
+  constructor(public api:ApiService,private modalService: NgbModal) {
     api.getEvent().subscribe((data)=>{
       if(data.code=="item_liste_consommation"){
         this.item=data.data
@@ -61,7 +64,7 @@ export class ConsommationComponent implements OnInit {
     );
     csv.unshift(header.join(','));
     const csvArray = csv.join('\r\n');
-    
+
     const a = document.createElement('a');
     const blob = new Blob([csvArray], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
@@ -84,12 +87,47 @@ export class ConsommationComponent implements OnInit {
      XLSX.writeFile(wb, this.fileName);
 
   }
-  
+
   recevoir_consommations(date:string){
     this.api.post_utilisateur_connecte({get_consommation_date:true,date:date}).subscribe((data:any)=>{
       this.les_consommations=data.les_consommations
       console.log("get_consommation_date",data)
     })
+  }
+
+
+
+
+
+  open(content:any,sortie:any) {
+    this.id_produit_supprime=sortie
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  suppression(id_consommation:number)
+  {
+    console.log("donnee send",id_consommation);
+    this.api.post_utilisateur_connecte({delete_consommation:true,id_consommation:id_consommation}).subscribe((data:any)=>{
+
+
+      console.log("status",data)
+    })
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
 

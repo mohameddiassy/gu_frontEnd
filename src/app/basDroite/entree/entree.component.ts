@@ -5,6 +5,8 @@ import { AjouterFournisseurComponent } from 'src/app/modal/ajouter-fournisseur/a
 import { ApiService } from 'src/app/service/api.service';
 import * as XLSX from 'xlsx';
 import { SortieComponent } from '../sortie/sortie.component';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-entree',
@@ -21,6 +23,9 @@ export class EntreeComponent implements OnInit {
 
   clicksuscription: Subscription = new Subscription;
   recherche=""
+  closeResult = '';
+  id_produit_supprime:any
+
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Stock initial",chiffre:12,bg:"secondary"},
@@ -30,7 +35,7 @@ export class EntreeComponent implements OnInit {
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
   ]
-  constructor(public api:ApiService) {
+  constructor(public api:ApiService,private modalService: NgbModal) {
     api.getEvent().subscribe((data)=>{
       if(data.code=="entree_par_jours_par_enregistreur"){
         this.item=data.data
@@ -46,9 +51,9 @@ export class EntreeComponent implements OnInit {
     this.api.bool.ajouterentree=!this.api.bool.ajouterentree
     this.api.sendEvent("ajouterentree",this.item);
   }
-  modifier_sortie(une_sortie:any){
-    // this.data.bool.modifiersortie=!this.data.bool.modifiersortie
-    // this.data.sendCode("modifier_sortie",une_sortie);
+  modifier_entree(une_entree:any){
+    this.api.bool.ajouterentree=!this.api.bool.ajouterentree
+     this.api.sendEvent("modifierentree",une_entree);
   }
 
   downloadFile(data: any) {
@@ -90,5 +95,37 @@ export class EntreeComponent implements OnInit {
       this.les_entree=data.les_produits
       console.log("get_entree_date",data)
     })
+  }
+
+
+  open(content:any,sortie:any) {
+    this.id_produit_supprime=sortie
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  suppression(id_entree:any)
+  {
+    console.log("donnee send",id_entree);
+    this.api.post_utilisateur_connecte({delete_entree:true,id_entree:id_entree}).subscribe((data:any)=>{
+
+
+      console.log("status",data)
+    })
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
