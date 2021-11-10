@@ -1,3 +1,25 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">confirmation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        Attention
+        <i class="fa fa-exclamation-circle" style.color="#ff0000"></i>: voulez vous supprimer l'entree {{id_produit_supprime.nom}}
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-outline-warning" (click)="modifier_entree(id_produit_supprime);modal.close('Save click')">modifier</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_entree)">confirmer</button>
+    </div>
+</ng-template>
+
+
+
+
 <div class="">
     <h2>Les Entrées du {{item?.date | date:'dd MMMM YYYY'}}</h2>
     <hr>
@@ -12,15 +34,11 @@
         <div class="row">
             <div class="col-6 col-sm-4 _add_produit_btn">
                 <button class="btn btn-success" (click)="ajouterentree()">{{api.bool.ajouterentree?"Fermer":"Ajouter Entrées"}}</button>
-            </div>
-            <div class="form-group col-6 col-sm-4">
-                <button class="btn btn-primary" (click)="downloadFile(les_entree)">load csv</button>
-            </div>
-            <div class="form-group col-6 col-sm-4">
-                <button class="btn btn-warning mx-2" (click)="exportexcel()">
-                  load-excel
+                <button class="btn btn-warning mx-2 float-left" (click)="exportexcel()">
+                  <i class="fa fa-download"></i>
               </button>
             </div>
+
             <div class="form-group col-6 col-sm-4">
                 <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
                   me-1" placeholder="Chercher une sortie">
@@ -44,14 +62,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of les_entree | filter:recherche;let i=index ">
+                    <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of les_entree | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.stock_avant}}</td>
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.stock_apres}}</td>
                         <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
+                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}
+                        </td>
                         <!-- <td class="text-right">
                             <div class="btn-group">
                                 <button class="btn btn-danger">

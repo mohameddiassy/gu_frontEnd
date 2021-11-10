@@ -1,3 +1,25 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">confirmation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <div class="modal-body">
+        Attention
+        <i class="fa fa-exclamation-circle" style.color="#ff0000"></i>: voulez vous supprimer l'entree {{id_produit_supprime.nom}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" (click)="modifier_production(id_produit_supprime);modal.close('Save click')">modifier</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_entree)">confirmer</button>
+    </div>
+</ng-template>
+
+
+
+
+
 <div class="">
     <h2>Les productions du {{item?.date | date:'dd MMMM YYYY'}}</h2>
     <hr>
@@ -42,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let une_sortie of les_productions | filter:recherche;let i=index ">
+                    <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of api.global.les_productions | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.quantite}}</td>

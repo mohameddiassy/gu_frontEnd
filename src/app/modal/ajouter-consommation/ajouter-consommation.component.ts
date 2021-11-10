@@ -8,16 +8,22 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class AjouterConsommationComponent implements OnInit {
   stock_en_cour:any=0;
-  consommation:any = { quantite: "0", id_produit: "0", date_consommation: ""}
+  consommation:any = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
   option = "2"
   succes = false
   echec = false
   item: any
+  les_type: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterconsommation") {
         this.item = data.data
         this.recevoir_produit_entrant()
+        this.recevoir_type_consommation()
+      }
+      else if (data.code == "modifierconsommation")
+      {
+        this.consommation=data.data
       }
     })
   }
@@ -48,6 +54,33 @@ export class AjouterConsommationComponent implements OnInit {
       })
     }
   }
+  Modifier()
+  {
+
+    this.echec = false
+    this.succes = false
+    this.consommation.date_consommation = this.item.date
+    this.consommation.stock_avant=this.stock_en_cour
+    this.consommation.stock_apres=this.api.parse(this.stock_en_cour)-this.api.parse(this.consommation.quantite)
+    console.log("consommation= ", this.consommation)
+    if (this.consommation.id_produit == "0") {
+      alert("choisir un produit")
+    } else {
+      this.api.post_utilisateur_connecte({ update_consommation: true, consommation: JSON.stringify(this.consommation) }).subscribe((data: any) => {
+       console.log(data)
+        if (data.status) {
+          this.succes = true
+          this.consommation.quantite = "0"
+          // this.data.les_produits.push(data.produit)
+          // let date=moment(this.item.date).format("YYYY-MM-DD")
+          this.api.sendEvent("item_liste_consommation",this.item)
+        } else {
+          this.echec = true
+        }
+      })
+    }
+
+  }
   changement() {
     if(this.consommation.id_produit=="nouveau_produit")
     {
@@ -70,5 +103,10 @@ export class AjouterConsommationComponent implements OnInit {
     })
   }
 
-
+  recevoir_type_consommation(){
+    this.api.post_utilisateur_connecte({get_type_consommation:true}).subscribe((data:any)=>{
+      this.les_type=data.type
+      console.log("type",data.type)
+    })
+  }
 }

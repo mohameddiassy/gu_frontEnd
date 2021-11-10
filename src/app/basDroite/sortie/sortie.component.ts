@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { AjouterSortieComponent } from '../../modal/ajouter-sortie/ajouter-sortie.component';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
-
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-sortie',
   templateUrl: './sortie.component.html',
@@ -17,6 +17,8 @@ export class SortieComponent implements OnInit {
   ajoutersortiecomponent=AjouterSortieComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
+  closeResult = '';
+
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
     {nom:"Montant total vendu",chiffre:0,bg:"secondary"},
@@ -26,7 +28,8 @@ export class SortieComponent implements OnInit {
     {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
     {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
   ]
-  constructor(public api:ApiService) {
+  id_produit_supprime: any;
+  constructor(public api:ApiService,private modalService: NgbModal) {
     api.getEvent().subscribe((data)=>{
       if(data.code=="sortie_par_jours_par_enregistreur"){
         this.item=data.data
@@ -41,9 +44,10 @@ export class SortieComponent implements OnInit {
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
     this.api.sendEvent("ajoutersortie",this.item);
   }
-  modifier_sortie(une_sortie:any){
-    // this.data.bool.modifiersortie=!this.data.bool.modifiersortie
-    // this.data.sendCode("modifier_sortie",une_sortie);
+  modifier_sortie(sortie:any){
+    this.api.closeAllBool()
+    this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
+    this.api.sendEvent("modifiersortie",sortie);
   }
 
   downloadFile(data: any) {
@@ -96,4 +100,43 @@ export class SortieComponent implements OnInit {
     })
 
   }
+
+
+
+
+
+
+
+  open(content:any,sortie:any) {
+    this.id_produit_supprime=sortie
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  suppression(id_sortie:number)
+  {
+    console.log("donnee send",id_sortie);
+    this.api.post_utilisateur_connecte({delete_sortie:true,id_consommation:id_sortie}).subscribe((data:any)=>{
+
+
+      console.log("status",data)
+    })
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }
+
+

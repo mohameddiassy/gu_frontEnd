@@ -8,8 +8,8 @@ import { Observable, Subject } from 'rxjs';
 export class ApiService {
 
   // url="https://gu.groupemeta.com/nouveau/api.php"
-   url="http://192.168.1.4/gestionuniversel_back/nouveau/api.php"
- // url="http://localhost/gestionuniversel_back/nouveau/api.php"
+//url="http://192.168.1.4/gestionuniversel_back/nouveau/api.php"
+ url="http://localhost/gestionuniversel_back/nouveau/api.php"
   global:any={
     fenetres:[],
     sidenavbool:false,
@@ -25,6 +25,7 @@ export class ApiService {
     les_produits_sortants:[],
     les_categories:[],
     les_fournisseurs:[],
+    les_productions:[],
     entree_par_jours_par_enregistreur:[],
     les_vendeurs:[],
     production_par_jours_par_enregistreur:[],

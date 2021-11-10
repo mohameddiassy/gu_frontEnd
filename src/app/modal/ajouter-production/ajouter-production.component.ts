@@ -19,8 +19,11 @@ export class AjouterProductionComponent implements OnInit {
       if (data.code == "ajouterproduction") {
         this.item = data.data
         this.recevoir_produit_sortant()
-        this.get_produit_day_left();
-        this.recevoir_productions(this.item.date);
+
+      }
+      else if (data.code == "modifierproduction")
+      {
+        this.production=data.data
       }
     })
   }
@@ -59,12 +62,14 @@ export class AjouterProductionComponent implements OnInit {
 
     }
     changement2() {
+      this.stock_en_cour=0
 
-      this.les_productions.forEach((element:any) => {
-        this.stock_en_cour=0
-        if(element.id_produit==this.production.id_produit)
+      this.api.global.les_productions.forEach((element:any) => {
+        if(this.api.parse(element.id_produit)==this.api.parse(this.production.id_produit))
         {
           this.stock_en_cour=element.quantite
+          console.log("kkkk",this.stock_en_cour);
+
           return
         }
       });
@@ -76,16 +81,4 @@ export class AjouterProductionComponent implements OnInit {
     })
   }
 
-  get_produit_day_left(){
-    this.api.post_utilisateur_connecte({get_produit_day_left:true,type:"sortant",date:this.item.date}).subscribe((data:any)=>{
-      this.api.global.get_produit_day_left_list=data.produits_left
-      console.log(" left ",data)
-    })
-  }
-  recevoir_productions(date:string){
-    this.api.post_utilisateur_connecte({get_production_date:true,date:date}).subscribe((data:any)=>{
-      this.les_productions=data.les_productions
-      console.log("get_production_date",data)
-    })
-  }
 }
