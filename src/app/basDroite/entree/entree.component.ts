@@ -53,7 +53,7 @@ export class EntreeComponent implements OnInit {
   }
   modifier_entree(une_entree:any){
     this.api.bool.ajouterentree=!this.api.bool.ajouterentree
-     this.api.sendEvent("modifierentree",une_entree);
+     this.api.sendEvent("modifierentree",[une_entree, this.item]);
   }
 
   downloadFile(data: any) {

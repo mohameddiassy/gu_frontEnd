@@ -13,21 +13,26 @@ export class AjouterConsommationComponent implements OnInit {
   succes = false
   echec = false
   item: any
+  add=true;
   les_type: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterconsommation") {
+        this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.item = data.data
-        this.recevoir_produit_entrant()
-        this.recevoir_type_consommation()
+        
       }
       else if (data.code == "modifierconsommation")
       {
-        this.consommation=data.data
+        this.add = false;
+        this.consommation = Object.assign({}, data.data[1])
+        this.item = Object.assign({}, data.data[0])
       }
     })
   }
   ngOnInit(): void {
+    this.recevoir_produit_entrant()
+    this.recevoir_type_consommation()
     // this.recevoir_produit_entrants()
   }
   ajouter() {
@@ -48,6 +53,7 @@ export class AjouterConsommationComponent implements OnInit {
           // this.data.les_produits.push(data.produit)
           // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("item_liste_consommation",this.item)
+          this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         } else {
           this.echec = true
         }
@@ -74,6 +80,7 @@ export class AjouterConsommationComponent implements OnInit {
           // this.data.les_produits.push(data.produit)
           // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("item_liste_consommation",this.item)
+          this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         } else {
           this.echec = true
         }
@@ -96,7 +103,7 @@ export class AjouterConsommationComponent implements OnInit {
         return
       }
     });
-    }
+  }
   recevoir_produit_entrant(){
     this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
       this.api.global.les_produits_entrants=data.products

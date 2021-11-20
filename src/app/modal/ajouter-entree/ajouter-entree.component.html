@@ -10,7 +10,7 @@
         </div>
         <hr>
         <div class="row">
-            <div>
+            <div class="page-title mt-1">
                 <h6>stock actuel ={{api.parse(stock_en_cour)+api.parse(entree?.quantite)}} </h6>
             </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="form-group col-md-3">
                 <label>Fournisseur</label>
-                <select name="option" [(ngModel)]="entree.id_fournisseur" (change)="changement()" class="form-control form-select" aria-label="Default select example">
+                <select name="option" [(ngModel)]="entree.id_fournisseur"  class="form-control form-select" aria-label="Default select example">
                 <!-- <option [value]="0" >Sélectionnez un fournisseur </option> -->
                 <option  class="d-flex justify-content-between" [value]="item.id_fournisseur" *ngFor="let item of api.global.les_fournisseurs ;let i=index;let f=first">{{item.nom}} </option>
                 <hr>
@@ -54,11 +54,14 @@
         <div *ngIf="echec" class="alert alert-danger" role="alert">
             Erreur d'ajout du produit!
         </div>
-        <div class="m-2">
-            <button type="button" class="col-md-2 btn btn-primary float-right" (click)="ajouter()">Ajouter Entree</button>
+        <div *ngIf="champ" class="alert alert-danger" role="alert">
+           Veuillez remplir tous les champs
         </div>
         <div class="m-2">
-            <button type="button" class="col-md-2 btn btn-warning float-right" (click)="Modifier()">Modifier</button>
+            <button *ngIf="add" type="button" class="col-md-2 btn btn-primary float-right" (click)="ajouter()">Ajouter Entree</button>
+        </div>
+        <div class="m-2">
+            <button *ngIf="!add" type="button" class="col-md-2 btn btn-warning float-right" (click)="Modifier()">Modifier</button>
         </div>
     </div>
 </div>

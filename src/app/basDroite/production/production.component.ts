@@ -52,7 +52,7 @@ export class ProductionComponent implements OnInit {
   modifier_production(production:any){
     this.api.closeAllBool()
     this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
-    this.api.sendEvent("modifierproduction",production);
+    this.api.sendEvent("modifierproduction",[this.item,production]);
   }
 
   downloadFile(data: any) {

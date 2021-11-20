@@ -13,23 +13,28 @@ export class AjouterProductionComponent implements OnInit {
   succes = false
   echec = false
   item: any
+  add=true;
   les_productions: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterproduction") {
         this.item = data.data
-        this.recevoir_produit_sortant()
 
       }
       else if (data.code == "modifierproduction")
       {
-        this.production=data.data
+        this.add=false;
+        this.production=Object.assign({}, data.data[1])
+        this.item = Object.assign({}, data.data[0])
       }
     })
   }
   ngOnInit(): void {
-    // this.recevoir_produit_entrants()
+    this.recevoir_produit_sortant()
   }
+
+  modifier(){}
+
   ajouter() {
     this.echec = false
     this.succes = false
@@ -43,8 +48,6 @@ export class AjouterProductionComponent implements OnInit {
         if (data.status) {
           this.succes = true
           this.production.quantite = "0"
-          // this.data.les_produits.push(data.produit)
-          // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("item_liste_production",this.item)
         } else {
           this.echec = true

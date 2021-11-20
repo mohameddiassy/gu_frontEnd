@@ -58,8 +58,8 @@
             Erreur d'ajout du produit!
         </div>
         <div class="m-2">
-            <button type="button" class="col-md-2 btn btn-primary float-right" (click)="ajouter()">Ajouter Sortie</button>
-            <button type="button" class="col-md-2 btn btn-primary float-right" (click)="modifier()">Ajouter Sortie</button>
+            <button *ngIf="add" type="button" class="col-md-2 btn btn-primary float-right" (click)="ajouter()">Ajouter Sortie</button>
+            <button *ngIf="!add" type="button" class="col-md-2 btn btn-warning float-right" (click)="modifier()">Modifier Sortie</button>
         </div>
     </div>
 </div>

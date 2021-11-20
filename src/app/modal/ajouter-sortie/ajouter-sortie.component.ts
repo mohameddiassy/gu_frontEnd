@@ -13,6 +13,7 @@ export class AjouterSortieComponent implements OnInit {
   quantite_vide: any
   prix_vide: any;
   produit_vide:any;
+  add=true;
   vendeur_vide:any
   sortie = { quantite: "", id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
   option = "2"
@@ -24,10 +25,9 @@ export class AjouterSortieComponent implements OnInit {
       if (data.code == "ajoutersortie") {
         this.item = data.data
         this.recevoir_productions()
-
-
       }
      else if (data.code == "modifiersortie") {
+        this.add=false;
         this.sortie = data.data
         this.recevoir_productions()
 
