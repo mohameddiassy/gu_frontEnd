@@ -19,11 +19,13 @@ export class VendeurComponent implements OnInit {
   les_sorties = [];
   fileName= 'rapport_journalier.xlsx';
   item:any={};
+  mois_select: any;
   ajoutersortiecomponent=AjouterSortieComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
   closeResult = '';
  les_stats:any
+ les_mois:any[]=[]
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:0,bg:"ffffff"},
     {nom:"Montant total vendu",chiffre:0,bg:"ffffff"},
@@ -38,10 +40,30 @@ export class VendeurComponent implements OnInit {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_vendeur"){
         this.vendeur=data.data
+        
+        this.recevoir_mois();
       }
     })
     Object.assign(this, { multi });
   }
+
+  recevoir_mois(){
+    this.api.post_utilisateur_connecte({les_mois:true}).subscribe((data:any)=>{
+      this.les_mois=data.les_mois
+      this.mois_select = this.les_mois[0].mois;
+      this.recevoir_sorties();
+      //this.les_stats=data.les_statistiques
+      console.log("get_sortie_date",data)
+      this.get_stats() ;
+    })
+  }
+
+  changement_mois(){
+    //this.recevoir_sorties()
+    this.recevoir_sorties();
+  }
+
+
   ajoutersortie(){
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
     this.api.sendEvent("ajoutersortie",this.item);
@@ -88,12 +110,12 @@ export class VendeurComponent implements OnInit {
   }
 
   recevoir_sorties(){
-    this.api.post_utilisateur_connecte({get_sorties_vendeur_date:true,id_vendeur:this.vendeur.id_vendeur}).subscribe((data:any)=>{
-      this.les_sorties=data.les_produits
+    this.api.post_utilisateur_connecte({get_sortie_by_vendeur:true,id_vendeur:this.vendeur.id_vendeur, date:this.mois_select}).subscribe((data:any)=>{
+      this.les_sorties=data.les_sorties_vendeur
       this.les_stats=data.les_statistiques
       console.log("get_sortie_date",data)
-      this.get_stats() ;
-
+      console.log("mois : ",this.mois_select);
+      //this.get_stats() ;
     })
   }
   get_stats() {
@@ -105,9 +127,9 @@ export class VendeurComponent implements OnInit {
       this.les_statistiques[1].chiffre= this.api.parse(this.les_statistiques[1].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)
       this.les_statistiques[2].chiffre= this.api.parse(this.les_statistiques[2].chiffre)+this.api.parse(element.verse)
       this.les_statistiques[3].chiffre= this.api.parse(this.les_statistiques[3].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)    })
-    this.les_statistiques[1].chiffre+=" F CFA"
-    this.les_statistiques[2].chiffre+=" F CFA"
-    this.les_statistiques[3].chiffre+=" F CFA"
+    this.les_statistiques[1].chiffre+=" FCFA"
+    this.les_statistiques[2].chiffre+=" FCFA"
+    this.les_statistiques[3].chiffre+=" FCFA"
     var i=3
     var j=0
     this.les_stats.forEach((element2:any) => {
@@ -169,7 +191,6 @@ export class VendeurComponent implements OnInit {
 
   //########################################################
   ngOnInit(): void {
-    
   }
   ajouter_vendeur(){
     this.api.closeAllBool()
