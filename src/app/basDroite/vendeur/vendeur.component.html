@@ -1,38 +1,82 @@
 <div class="container">
+
     <div class="row">
         <div class="col"><button class="btn btn-primary" (click)="ajouter_vendeur()">Ajouter Vendeur</button></div>
         <div class="col"><button class="btn btn-warning" (click)="modifier_vendeur()">Modifier</button></div>
         <div class="col"><button class="btn btn-danger">Supprimer</button></div>
     </div>
-    <div class="col-md-8 mt-4">
-        <h6 class="card-title m-b-20">Information Général du vendeur</h6><br>
-        <div class="m-b-30">
-            <ul class="list-group">
+    <div>
 
-                <li class="list-group-item">
-                    Libellé : <strong>{{vendeur?.nom}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Description : <strong>{{vendeur?.description}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Dette : <strong>{{vendeur?.dette}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Téléphone : <strong>{{vendeur?.telephone}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Adresse : <strong>{{vendeur?.adresse}}</strong>
-                </li>
-            </ul>
+
+        <div class="col-md-8 mt-4">
+            <h6 class="card-title m-b-20">Information Général du vendeur</h6><br>
+            <div class="m-b-30">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        Libellé : <strong>{{vendeur?.nom}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Description : <strong>{{vendeur?.description}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Dette : <strong>{{vendeur?.dette}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Téléphone : <strong>{{vendeur?.telephone}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Adresse : <strong>{{vendeur?.adresse}}</strong>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <!-- <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+        <div class="row">
+
+        </div>
+        <div class="row" style="margin: top 23px;">
+            <div class="table-responsive">
+                <table id="excel-table" class="table table-stripped table
+              table-hover table-center mb-0 bg-light">
+
+                    <thead class="bg-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">sortie</th>
+                            <th scope="col">produit</th>
+                            <th scope="col">quantite</th>
+                            <th scope="col">versement</th>
+                            <th scope="col">date </th>
+                            <th scope="col">Reliquat</th>
+                            <th scope="col">commission </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>12</td>
+                            <td>pain</td>
+                            <td>120</td>
+                            <td>13000</td>
+                            <td>1 novembre</td>
+                            <td>2600</td>
+                            <td>2400</td>
+                        </tr>
+                        <tr class="container w-100 center">
+                            <td class="fw-bold" colspan="4">pas d'informations</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
         [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi" (select)="onSelect($event)"
         (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
     </ngx-charts-line-chart> -->
-</div>
-<div class="fixed-bottom couleurgrise">
-    <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
-</div>
+    </div>
+    <div class="fixed-bottom couleurgrise">
+        <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
+    </div>
