@@ -58,6 +58,51 @@ export class ApiService {
     formdata.append("utilisateur_connecte",JSON.stringify(this.global.utilisateur_connecte))
     return this.http.post(this.url,formdata)
   }
+  get_categorie(){
+    let api_path:string=""
+    let api_url=api_path+"/categorie/get" // recevoir tout
+    //let api_url=this.api_path+"/categorie/get?id_categorie=1" // recevoir le(a) categorie d'identifiant 1
+
+    this.http.get(api_url).subscribe((reponse:any)=>{
+      //when success
+      if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table categorie. Réponse= ",reponse)
+      }else{
+        console.log("L'opération sur la table categorie a échoué. Réponse= ",reponse)
+      }
+    },
+    (error:any)=>{
+      //when error
+      console.log("Erreur inconnue! ",error)
+    })
+  }
+  add_categorie(categorie:any){
+    /*
+    categorie:any={
+      id_categorie:1,
+    }
+    */
+    //transformation des parametres à envoyer
+    let formdata=new FormData()
+    for (const key in categorie) {
+      formdata.append(key,categorie[key])
+    }
+
+    let api_url="/add" 
+    this.http.post(api_url,formdata).subscribe((reponse:any)=>{
+      //when success
+      if(reponse.status){
+        console.log("Opération effectuée avec succés sur la table categorie. Réponse= ",reponse)
+      }else{
+        console.log("L'opération sur la table categorie a échoué. Réponse= ",reponse)
+      }
+    },
+    (error:any)=>{
+      //when error
+      console.log("Erreur inconnue! ",error)
+    })
+  }
+  
   toggleSidenav(){
     if (this.global.sidenavbool) {// sidenav ouvert, on le ferme
         // on ferme la partie gauche
