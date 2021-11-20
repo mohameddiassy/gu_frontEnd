@@ -76,118 +76,94 @@
 </ng-template>
 
 
-
-<div class="container">
-
+<div class="">
     <div class="row">
-        <div class="col"><button class="btn btn-primary" (click)="ajouter_vendeur()">Ajouter Vendeur</button></div>
-        <div class="col"><button class="btn btn-warning" (click)="modifier_vendeur()">Modifier</button></div>
-        <div class="col"><button class="btn btn-danger">Supprimer</button></div>
-    </div>
-    <div>
-
-
-        <div class="col-md-8 mt-4">
-            <h6 class="card-title m-b-20">Information Général du vendeur</h6><br>
-            <div class="m-b-30">
-                <ul class="list-group">
-
-                    <li class="list-group-item">
-                        Libellé : <strong>{{vendeur?.nom}}</strong>
-                    </li>
-                    <li class="list-group-item">
-                        Description : <strong>{{vendeur?.description}}</strong>
-                    </li>
-                    <li class="list-group-item">
-                        Dette : <strong>{{vendeur?.dette}}</strong>
-                    </li>
-                    <li class="list-group-item">
-                        Téléphone : <strong>{{vendeur?.telephone}}</strong>
-                    </li>
-                    <li class="list-group-item">
-                        Adresse : <strong>{{vendeur?.adresse}}</strong>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <br/>
-        <div class="d-flex mb-2 les_statistiques ">
-            <button *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white">
-                {{item.nom}} <br>
-                <span class="badge bg-gradient-pink">{{item.nom_vendeur}}</span>
-                <span class="badge bg-success">{{item.chiffre}} </span><br>
-                <span class="badge bg-success">{{item.chiffre2}}</span><br>
-    
-            </button>
-        </div>
-       <br/>
-
-        <div class="col-md-4">
+        <button class="col m-2 btn btn-primary" (click)="ajouter_vendeur()">Ajouter Vendeur</button>
+        <button class="col m-2 btn btn-warning" (click)="modifier_vendeur()">Modifier</button>
+        <button class="col m-2 btn btn-danger">Supprimer</button>
+        <div class="col m-2">
             <div class="form-group">
                 <select (change)="changement_mois()" [(ngModel)]="mois_select" class="form-control form-select" aria-label="Default select example" name="type">
-                    
-                    <option  *ngFor="let un_mois of les_mois" value="{{un_mois.mois}}">{{un_mois.mois}}</option>
+                   <option  *ngFor="let un_mois of les_mois" value="{{un_mois.mois}}">{{un_mois.mois}}</option>
                 </select>
             </div>
         </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <ul class="list-group">
 
-        <div class="table-responsive">
-            <table id="excel-table" class="table table-stripped table
-                table-hover table-center mb-0 bg-light">
-
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Vendeur</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Quantite</th>
-                        <th scope="col">Q. vendue</th>
-                        <th scope="col">Q. Restante</th>
-                        <th scope="col">Rations </th>
-                        <th scope="col">M. vendu</th>
-                        <th scope="col">M. versé</th>
-                        <th scope="col">Reliquat</th>
-                        <th scope="col">Prix unitaire</th>
-                        <th scope="col">Commissions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of les_sorties | filter:recherche;let i=index ">
-                        <th scope="row">{{i+1}}</th>
-                        <td>{{une_sortie.vendeur}}</td>
-                        <td>{{une_sortie.nom}}</td>
-                        <td>{{une_sortie.quantite}}</td>
-                        <td>{{une_sortie.quantite-une_sortie.restant}}</td>
-                        <td>{{une_sortie.restant}}<i (click)="open(content1,une_sortie)" class="fa fa-edit text-warning"></i></td>
-                        <td>{{une_sortie.ration}}</td>
-                        <td>{{(une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.verse}}</td>
-                        <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}<i (click)="open(content2,une_sortie)" class="fa fa-edit text-warning"></i></td>
-                        <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.commission}}</td>
-                        <!-- <td class="text-right">
-                            <div class="btn-group">
-                                <button class="btn btn-danger">
-                                    <span class="material-icons">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </td> -->
-                    </tr>
-                    <tr *ngIf="les_sorties.length==0" class="container w-100 center">
-                        <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
-                    </tr>
-                </tbody>
-            </table>
-
+                <li class="list-group-item">
+                    Libellé : <strong>{{vendeur?.nom}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Description : <strong>{{vendeur?.description}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Dette : <strong>{{vendeur?.dette}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Téléphone : <strong>{{vendeur?.telephone}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Adresse : <strong>{{vendeur?.adresse}}</strong>
+                </li>
+            </ul>
         </div>
-        <!-- <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi" (select)="onSelect($event)"
-        (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
-    </ngx-charts-line-chart> -->
+        <div class="col-md-8 les_statistiques">
+            <div class="row">
+                <button *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white col m-1">
+                    {{item.nom}} <br>
+                    <span class="badge bg-gradient-pink">{{item.nom_vendeur}}</span>
+                    <span class="badge bg-success">{{item.chiffre}} </span><br>
+                    <span class="badge bg-success">{{item.chiffre2}}</span><br>
+        
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="fixed-bottom couleurgrise">
-        <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
+    <div class="table-responsive mt-4">
+        <table id="excel-table" class="table table-stripped table
+            table-hover table-center mb-0 bg-light">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Vendeur</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Q. vendue</th>
+                    <th scope="col">Q. Restante</th>
+                    <th scope="col">Rations </th>
+                    <th scope="col">M. vendu</th>
+                    <th scope="col">M. versé</th>
+                    <th scope="col">Reliquat</th>
+                    <th scope="col">Prix unitaire</th>
+                    <th scope="col">Commissions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of les_sorties | filter:recherche;let i=index ">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{une_sortie.vendeur}}</td>
+                    <td>{{une_sortie.nom}}</td>
+                    <td>{{une_sortie.quantite}}</td>
+                    <td>{{une_sortie.quantite-une_sortie.restant}}</td>
+                    <td>{{une_sortie.restant}}<i (click)="open(content1,une_sortie)" class="fa fa-edit text-warning"></i></td>
+                    <td>{{une_sortie.ration}}</td>
+                    <td>{{(une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire}}</td>
+                    <td>{{une_sortie.verse}}</td>
+                    <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}<i (click)="open(content2,une_sortie)" class="fa fa-edit text-warning"></i></td>
+                    <td>{{une_sortie.prix_unitaire}}</td>
+                    <td>{{une_sortie.commission}}</td>
+                </tr>
+                <tr *ngIf="les_sorties.length==0" class="container w-100 center">
+                    <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+<div class="fixed-bottom couleurgrise">
+    <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
+</div>

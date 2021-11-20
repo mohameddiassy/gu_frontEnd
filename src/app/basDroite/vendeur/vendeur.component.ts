@@ -115,7 +115,7 @@ export class VendeurComponent implements OnInit {
       this.les_stats=data.les_statistiques
       console.log("get_sortie_date",data)
       console.log("mois : ",this.mois_select);
-      //this.get_stats() ;
+      this.get_stats() ;
     })
   }
   get_stats() {
@@ -126,17 +126,18 @@ export class VendeurComponent implements OnInit {
     this.les_sorties.forEach((element:any)=>{
       this.les_statistiques[1].chiffre= this.api.parse(this.les_statistiques[1].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)
       this.les_statistiques[2].chiffre= this.api.parse(this.les_statistiques[2].chiffre)+this.api.parse(element.verse)
-      this.les_statistiques[3].chiffre= this.api.parse(this.les_statistiques[3].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)    })
+      this.les_statistiques[3].chiffre= this.api.parse(this.les_statistiques[3].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)    
+    })
     this.les_statistiques[1].chiffre+=" FCFA"
     this.les_statistiques[2].chiffre+=" FCFA"
     this.les_statistiques[3].chiffre+=" FCFA"
     var i=3
     var j=0
-    this.les_stats.forEach((element2:any) => {
-      this.les_statistiques[i+1]={nom:element2.nom_vendeur,quantite:element2.quantite,bg:"#ffffff",chiffre:element2.total_verse+"F CFA",chiffre2:"/"+element2.montant_total+" F CFA "}
-     i=i+1
-     j=j+1
-    })
+    // this.les_stats.forEach((element2:any) => {
+    //   this.les_statistiques[i+1]={nom:element2.nom_vendeur,quantite:element2.quantite,bg:"#ffffff",chiffre:element2.total_verse+"F CFA",chiffre2:"/"+element2.montant_total+" F CFA "}
+    //  i=i+1
+    //  j=j+1
+    // })
     console.log("waxellll",this.les_stats)
 
   }

@@ -17,7 +17,7 @@ export class AjouterSortieComponent implements OnInit {
   add=true;
   vendeur_vide:any
   les_sortie_day:any;
-  sortie = { quantite: "",restant: '0',verse:'', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
+  sortie = { quantite: "",restant: '0',verse:'', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0',commission:'0'}
   option = "2"
   succes = false
   echec = false
