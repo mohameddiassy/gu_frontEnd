@@ -66,4 +66,5 @@ export class VendeurComponent implements OnInit {
   onDeactivate(data:any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
+  
 }
