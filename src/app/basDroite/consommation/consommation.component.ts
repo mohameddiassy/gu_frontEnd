@@ -51,7 +51,7 @@ export class ConsommationComponent implements OnInit {
   modifier_consommation(consommation:any){
     this.api.closeAllBool()
     this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
-    this.api.sendEvent("modifierconsommation",consommation);
+    this.api.sendEvent("modifierconsommation",[this.item,  consommation]);
   }
 
   downloadFile(data: any) {

@@ -57,6 +57,7 @@
                         <th scope="col">nouvelle entrée</th>
                         <th scope="col">Quantité aprés</th>
                         <th scope="col">Prix Unitaire</th>
+                        <th scope="col">Consomation</th>
                         <th scope="col">Total</th>
                         <!-- <th scope="col">Actions</th> -->
                     </tr>
@@ -69,8 +70,9 @@
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.stock_apres}}</td>
                         <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}
+                        <td>{{une_sortie.consommation}}
                         </td>
+                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
                         <!-- <td class="text-right">
                             <div class="btn-group">
                                 <button class="btn btn-danger">

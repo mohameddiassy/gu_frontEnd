@@ -13,12 +13,19 @@
         </div>
         <hr>
         <form class="row">
-            <div class="form-group required col-md-3">
+            <div class="form-group required col-md-4">
                 <label>Quantité</label>
-                <input placeholder="quantité" [(ngModel)]="sortie.quantite" required type="number" class="form-control" name="stock">
+                <input value="sortie.quantite" placeholder="quantité" [(ngModel)]="sortie.quantite" required type="number" class="form-control" name="quantite">
+                <p class="d-flex justify-content-center text-danger ">{{quantite_vide}}</p>
+
             </div>
-            <p class="d-flex justify-content-center text-danger ">{{quantite_vide}}</p>
-            <div class="form-group required col-md-3">
+            <div class="form-group required col-md-4">
+                <label>retour</label>
+                <input placeholder="restant" [(ngModel)]="sortie.restant" required type="number" class="form-control" name="restant">
+            </div>
+
+
+            <div class="form-group required col-md-4">
                 <label>Produit</label>
                 <select name="id_produit" [(ngModel)]="sortie.id_produit" (change)="changement()" required class="form-control form-select" aria-label="Default select example">
                     <option [value]="0" >Sélectionnez un produit</option>
@@ -27,7 +34,7 @@
                   </select>
                 <p class="d-flex justify-content-center text-danger ">{{produit_vide}}</p>
             </div>
-            <div class="form-group required col-md-3">
+            <div class="form-group required col-md-4">
                 <label> vendeur </label>
                 <select name="id_vendeur" [(ngModel)]="sortie.id_vendeur" (change)="changement()" class="form-control form-select" required aria-label="Default select example">
                   <option [value]="0" >Sélectionnez un produit</option>
@@ -36,11 +43,21 @@
               </select>
                 <p class="d-flex justify-content-center text-danger ">{{vendeur_vide}}</p>
             </div>
-            <div class="form-group required col-md-3">
+            <div class="form-group required col-md-4">
                 <label> prix unitaire </label>
                 <input required placeholder="prix_unitaire" [(ngModel)]="sortie.prix_unitaire" type="number" class="form-control" name="prix_unitaire">
                 <p class="d-flex justify-content-center text-danger ">{{prix_vide}}</p>
             </div>
+<<<<<<< HEAD
+=======
+            <div class="form-group required col-md-4">
+                <label> Somme à verser </label>
+                <input required placeholder="verser" [(ngModel)]="sortie.verse" type="number" class="form-control" name="somme_verse">
+                <p class="d-flex justify-content-center text-danger ">{{prix_vide}}</p>
+
+            </div>
+
+>>>>>>> cd55df89615b3c3b39a0775cce96b852ee4a1b6a
         </form>
         <div *ngIf="succes" class="alert alert-success" role="alert">
             Sortie ajoutée avec succés!
@@ -49,8 +66,8 @@
             Erreur d'ajout du produit!
         </div>
         <div class="m-2">
-            <button type="button" class="col-md-2 btn btn-primary float-right" (click)="ajouter()">Ajouter Sortie</button>
-            <button type="button" class="col-md-2 btn btn-primary float-right" (click)="modifier()">Ajouter Sortie</button>
+            <button *ngIf="add" type="button" class="col-md-2 btn btn-primary float-right" (click)="ajouter()">Ajouter Sortie</button>
+            <button *ngIf="!add" type="button" class="col-md-2 btn btn-warning float-right" (click)="modifier()">Modifier Sortie</button>
         </div>
     </div>
 </div>

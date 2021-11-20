@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/service/api.service';
@@ -13,8 +14,10 @@ export class AjouterSortieComponent implements OnInit {
   quantite_vide: any
   prix_vide: any;
   produit_vide:any;
+  add=true;
   vendeur_vide:any
-  sortie = { quantite: "", id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
+  les_sortie_day:any;
+  sortie = { quantite: "",restant: '0',verse:'', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
   option = "2"
   succes = false
   echec = false
@@ -22,15 +25,16 @@ export class AjouterSortieComponent implements OnInit {
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajoutersortie") {
+        this.add=true;
         this.item = data.data
         this.recevoir_productions()
-
-
       }
      else if (data.code == "modifiersortie") {
-        this.sortie = data.data
+        this.add=false;
+        this.sortie =Object.assign({}, data.data[1])// data.data[1]
+        this.item =Object.assign({}, data.data[0])// data.data[0]
         this.recevoir_productions()
-
+        console.log(this.sortie);
       }
     })
   }
@@ -80,7 +84,7 @@ export class AjouterSortieComponent implements OnInit {
          this.sortie.id_vendeur="0",
          this.sortie.prix_unitaire='0'
          this.stock_restant='0'
-         this.stock_en_cour='0'
+
           // this.data.les_produits.push(data.produit)
           // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
@@ -124,10 +128,11 @@ modifier()
     this.api.post_utilisateur_connecte({ update_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
       if (data.status) {
         this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
-
+        this.succes=true;
       } else {
         this.echec = true
       }
+      console.log(data);
     })
   }
 }
@@ -138,13 +143,17 @@ modifier()
     this.api.global.les_production_day.forEach((element:any) => {
       if(element.id_produit==this.sortie.id_produit)
       {
-        this.stock_en_cour=element.quantite +" en stock"
-        console.log('ppppppppppppppppp',this.stock_en_cour)
-        return
+        this.les_sortie_day.forEach((element2:any) => {
+          if(element.id_produit==element2.id_produit)
+          {
+            this.stock_en_cour=this.api.parse(element.quantite)-this.api.parse(element2.quantite) +" en stock"
+            console.log('ppppppppppppppppp',this.stock_en_cour)
+            return
+          }
+        })
+
       }
     });
-
-
     }
   recevoir_produit_sortant() {
     this.api.post_utilisateur_connecte({ get_products_by_id_entreprise: true, type: "sortant"}).subscribe((data: any) => {
@@ -173,6 +182,7 @@ modifier()
       if (data.status) {
 
         this.api.global.les_production_day=data.les_produits
+        this.les_sortie_day=data.les_produits_sorties_grouper
       } else {
         console.log("erreur de reception des fenetre")
       }

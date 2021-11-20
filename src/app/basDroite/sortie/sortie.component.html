@@ -11,23 +11,79 @@
     </div>
     <div class="modal-footer">
 
-        <button type="button" class="btn btn-outline-warning" (click)="modifier_sortie(id_produit_supprime);modal.close('Save click')">modifier</button>
+        <button type="button" class="btn btn-outline-warning" (click)="modifier_sortie(id_produit_supprime,item);modal.close('Save click')">modifier</button>
         <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
-        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_consommation)">confirmer</button>
+        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_sortie);modal.close('Save click')">confirmer</button>
     </div>
 </ng-template>
 
 
+<!-- retour  -->
+<ng-template #content1 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Ajouter le restant {{id_produit_supprime.nom}} </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+<span aria-hidden="true">&times;</span>
+</button>
+    </div>
+    <div class="modal-body">
+        vous voulez ajouter le restant du {{id_produit_supprime.nom}} à la date {{item?.date | date:'dd MMMM YYYY'}}
 
+        <form class="row">
+            <div class="form-group required col">
+                <label>retour</label>
+                <input placeholder="restant" [(ngModel)]="id_produit_supprime.restant" required type="number" class="form-control" name="restant">
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-outline-warning" (click)="retour(id_produit_supprime);modal.close('Save click')"><i class="fa fa-save"></i></button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
+    </div>
+</ng-template>
+
+
+<!-- nouveau versement -->
+
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">nouveau versement</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+<span aria-hidden="true">&times;</span>
+</button>
+    </div>
+    <div class="modal-body">
+
+        vous voulez faire un nouveau versement pour la sortie {{id_produit_supprime.nom}} à la date {{item?.date | date:'dd MMMM YYYY'}}
+
+        <form class="row">
+            <div class="form-group required col">
+                <label>somme a verser</label>
+                <input placeholder="verse" [(ngModel)]="id_produit_supprime.verse" required type="number" class="form-control" name="verse">
+            </div>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-outline-warning" (click)="modal.close('Save click');verser(id_produit_supprime)">versement</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
+    </div>
+</ng-template>
 
 
 <div class="">
     <h2>Les Sorties du {{item?.date | date:'dd MMMM YYYY'}}</h2>
     <hr>
-    <div class="d-flex mb-2 les_statistiques">
+    <div class="d-flex mb-2 les_statistiques ">
         <button *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white">
             {{item.nom}} <br>
-            <span class="badge bg-primary">{{item.chiffre}}</span>
+            <span class="badge bg-gradient-pink">{{item.nom_vendeur}}</span>
+            <span class="badge bg-success">{{item.chiffre}} </span><br>
+            <span class="badge bg-success">{{item.chiffre2}}</span><br>
+
         </button>
     </div>
 
@@ -35,14 +91,12 @@
         <div class="row">
             <div class="col-6 col-sm-4 _add_produit_btn">
                 <button class="btn btn-success" (click)="ajoutersortie()">{{api.bool.ajoutersortie?"Fermer":"Ajouter Sortie"}}</button>
-            </div>
-            <div class="form-group col-6 col-sm-4">
-                <button class="btn btn-primary" (click)="downloadFile(les_sorties)">load csv</button>
-            </div>
-            <div class="form-group col-6 col-sm-4">
                 <button class="btn btn-warning mx-2" (click)="exportexcel()">
-                    load-excel
-                </button>
+                  <i class="fa fa-download"></i>              </button>
+            </div>
+
+            <div class="form-group col-6 col-sm-4">
+
             </div>
             <div class="form-group col-6 col-sm-4">
                 <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
@@ -77,11 +131,11 @@
                         <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.quantite-une_sortie.restant}}</td>
-                        <td>{{une_sortie.restant}}</td>
+                        <td>{{une_sortie.restant}}<i (click)="open(content1,une_sortie)" class="fa fa-edit text-warning"></i></td>
                         <td>{{une_sortie.ration}}</td>
                         <td>{{(une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire}}</td>
                         <td>{{une_sortie.verse}}</td>
-                        <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}</td>
+                        <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}<i (click)="open(content2,une_sortie)" class="fa fa-edit text-warning"></i></td>
                         <td>{{une_sortie.prix_unitaire}}</td>
                         <td>{{une_sortie.commission}}</td>
                         <!-- <td class="text-right">
