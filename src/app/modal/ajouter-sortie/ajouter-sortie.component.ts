@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/service/api.service';
@@ -16,7 +17,7 @@ export class AjouterSortieComponent implements OnInit {
   add=true;
   vendeur_vide:any
   les_sortie_day:any;
-  sortie = { quantite: "",restant: '0',verser:'', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
+  sortie = { quantite: "",restant: '0',verse:'', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0'}
   option = "2"
   succes = false
   echec = false
@@ -24,14 +25,16 @@ export class AjouterSortieComponent implements OnInit {
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajoutersortie") {
+        this.add=true;
         this.item = data.data
         this.recevoir_productions()
       }
      else if (data.code == "modifiersortie") {
         this.add=false;
-        this.sortie = data.data
+        this.sortie =Object.assign({}, data.data[1])// data.data[1]
+        this.item =Object.assign({}, data.data[0])// data.data[0]
         this.recevoir_productions()
-
+        console.log(this.sortie);
       }
     })
   }
@@ -125,10 +128,11 @@ modifier()
     this.api.post_utilisateur_connecte({ update_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
       if (data.status) {
         this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
-
+        this.succes=true;
       } else {
         this.echec = true
       }
+      console.log(data);
     })
   }
 }

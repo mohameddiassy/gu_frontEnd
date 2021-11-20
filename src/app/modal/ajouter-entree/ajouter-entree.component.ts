@@ -24,6 +24,7 @@ export class AjouterEntreeComponent implements OnInit {
 
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterentree") {
+        this.add=true;
         this.item = data.data
         this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
       }

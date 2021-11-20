@@ -18,6 +18,7 @@ export class AjouterProductionComponent implements OnInit {
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterproduction") {
+        this.add=true;
         this.item = data.data
 
       }
@@ -33,7 +34,6 @@ export class AjouterProductionComponent implements OnInit {
     this.recevoir_produit_sortant()
   }
 
-  modifier(){}
 
   ajouter() {
     this.echec = false

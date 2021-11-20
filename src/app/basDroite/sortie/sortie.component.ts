@@ -49,9 +49,8 @@ export class SortieComponent implements OnInit {
   }
   modifier_sortie(sortie:any,date:any){
     this.api.closeAllBool()
-    var sortie2={'sortie':sortie, 'date':date}
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
-    this.api.sendEvent("modifiersortie",sortie2);
+    this.api.sendEvent("modifiersortie",[this.item,sortie]);
 
   }
 

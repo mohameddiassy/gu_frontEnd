@@ -18,6 +18,7 @@ export class AjouterConsommationComponent implements OnInit {
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterconsommation") {
+        this.add=true;
         this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.item = data.data
         

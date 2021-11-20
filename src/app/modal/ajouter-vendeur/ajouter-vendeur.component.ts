@@ -16,6 +16,8 @@ export class AjouterVendeurComponent implements OnInit {
   modifier_bool = false
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+      this.echec = false
+      this.succes = false
       if (data.code == "ajouter_vendeur") {
         this.modifier_bool=false
         this.vendeur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
