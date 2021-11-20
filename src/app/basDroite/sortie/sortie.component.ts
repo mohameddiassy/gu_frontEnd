@@ -18,15 +18,13 @@ export class SortieComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   recherche=""
   closeResult = '';
-
+ les_stats:any
   les_statistiques:any=[
-    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
-    {nom:"Montant total vendu",chiffre:0,bg:"secondary"},
-    {nom:"Montant total encaissé",chiffre:0,bg:"success"},
-    {nom:"Montant total Reliquat",chiffre:0,bg:"primary"},
-    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
-    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
-    {nom:"Nombre de Sorties",chiffre:0,bg:"primary"},
+    {nom:"Nombre de Sorties",chiffre:0,bg:"ffffff"},
+    {nom:"Montant total vendu",chiffre:0,bg:"ffffff"},
+    {nom:"Montant total encaissé",chiffre:0,bg:"ffffff"},
+    {nom:"Montant total Reliquat",chiffre:0,bg:"ffffff"},
+
   ]
   id_produit_supprime: any;
   constructor(public api:ApiService,private modalService: NgbModal) {
@@ -34,20 +32,27 @@ export class SortieComponent implements OnInit {
       if(data.code=="sortie_par_jours_par_enregistreur"){
         this.item=data.data
         this.recevoir_sorties(data.data.date)
+
       }
     })
+
+
+
   }
   ngOnInit(): void {
+
   }
 
   ajoutersortie(){
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
     this.api.sendEvent("ajoutersortie",this.item);
   }
-  modifier_sortie(sortie:any){
+  modifier_sortie(sortie:any,date:any){
     this.api.closeAllBool()
+    var sortie2={'sortie':sortie, 'date':date}
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
-    this.api.sendEvent("modifiersortie",sortie);
+    this.api.sendEvent("modifiersortie",sortie2);
+
   }
 
   downloadFile(data: any) {
@@ -87,26 +92,34 @@ export class SortieComponent implements OnInit {
   recevoir_sorties(date:string){
     this.api.post_utilisateur_connecte({get_sortie_date:true,date:date}).subscribe((data:any)=>{
       this.les_sorties=data.les_produits
+      this.les_stats=data.les_statistiques
       console.log("get_sortie_date",data)
       this.get_stats() ;
+
     })
   }
   get_stats() {
+    this.les_statistiques[1].chiffre=0
+    this.les_statistiques[2].chiffre=0
+    this.les_statistiques[3].chiffre=0
     this.les_statistiques[0].chiffre=this.les_sorties.length
     this.les_sorties.forEach((element:any)=>{
-      this.les_statistiques[1].chiffre+=(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)
-      this.les_statistiques[2].chiffre+=this.api.parse(element.verse)
-      this.les_statistiques[3].chiffre+=(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)
+      this.les_statistiques[1].chiffre= this.api.parse(this.les_statistiques[1].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)
+      this.les_statistiques[2].chiffre= this.api.parse(this.les_statistiques[2].chiffre)+this.api.parse(element.verse)
+      this.les_statistiques[3].chiffre= this.api.parse(this.les_statistiques[3].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)    })
+    this.les_statistiques[1].chiffre+=" F CFA"
+    this.les_statistiques[2].chiffre+=" F CFA"
+    this.les_statistiques[3].chiffre+=" F CFA"
+    var i=3
+    var j=0
+    this.les_stats.forEach((element2:any) => {
+      this.les_statistiques[i+1]={nom:element2.nom_vendeur,quantite:element2.quantite,bg:"#ffffff",chiffre:element2.total_verse+"F CFA",chiffre2:"/"+element2.montant_total+" F CFA "}
+     i=i+1
+     j=j+1
     })
+    console.log("waxellll",this.les_stats)
 
   }
-
-
-
-
-
-
-
   open(content:any,sortie:any) {
     this.id_produit_supprime=sortie
 
@@ -121,12 +134,30 @@ export class SortieComponent implements OnInit {
   suppression(id_sortie:number)
   {
     console.log("donnee send",id_sortie);
-    this.api.post_utilisateur_connecte({delete_sortie:true,id_consommation:id_sortie}).subscribe((data:any)=>{
+    this.api.post_utilisateur_connecte({delete_sortie:true,id_sortie:id_sortie}).subscribe((data:any)=>{
 
 
       console.log("status",data)
     })
   }
+
+  verser(verse:any)
+  {
+    console.log("sendddd",verse)
+
+    this.api.post_utilisateur_connecte({add_versement: true,versement:JSON.stringify(verse) }).subscribe((data:any)=>{
+      console.log("retour",data)
+    })
+  }
+  retour(retour:any)
+  {
+    console.log("sendddd",retour)
+
+    this.api.post_utilisateur_connecte({update_retour:true,sortie:JSON.stringify(retour) }).subscribe((data:any)=>{
+      console.log("retour",data)
+    })
+  }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

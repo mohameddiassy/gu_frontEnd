@@ -111,16 +111,14 @@ export class ProductionComponent implements OnInit {
     });
   }
 
-  suppression(id_entree:any)
+  suppression(id_production:any)
   {
-    console.log("donnee send",id_entree);
-    this.api.post_utilisateur_connecte({delete_entree:true,id_entree:id_entree}).subscribe((data:any)=>{
-
+    console.log("donnee send",id_production);
+    this.api.post_utilisateur_connecte({delete_production:true,id_production:id_production}).subscribe((data:any)=>{
 
       console.log("status",data)
     })
   }
-
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

@@ -55,6 +55,30 @@ export class AjouterProductionComponent implements OnInit {
       })
     }
   }
+  modifier()
+  {
+
+    this.echec = false
+    this.succes = false
+    this.production.date_production = this.item.date
+    this.production.stock=this.stock_en_cour
+    console.log("production= ", this.production)
+    if (this.production.id_produit == "0") {
+      alert("choisir un produit")
+    } else {
+      this.api.post_utilisateur_connecte({ update_production: true, production: JSON.stringify(this.production) }).subscribe((data: any) => {
+        if (data.status) {
+          this.succes = true
+          // this.production.quantite = "0"
+          // // this.data.les_produits.push(data.produit)
+          // // let date=moment(this.item.date).format("YYYY-MM-DD")
+          this.api.sendEvent("item_liste_production",this.item)
+        } else {
+          this.echec = true
+        }
+      })
+    }
+  }
   changement() {
     if(this.production.id_produit=="nouveau_produit")
     {
