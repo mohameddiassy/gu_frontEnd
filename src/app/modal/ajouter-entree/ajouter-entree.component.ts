@@ -64,6 +64,7 @@ export class AjouterEntreeComponent implements OnInit {
 
     }
      else {
+       console.log(this.entree)
       this.api.post_utilisateur_connecte({ add_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
