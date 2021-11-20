@@ -121,7 +121,6 @@
                         <th scope="col">M. versé</th>
                         <th scope="col">Reliquat</th>
                         <th scope="col">Prix unitaire</th>
-                        <th scope="col">Commissions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -137,16 +136,6 @@
                         <td>{{une_sortie.verse}}</td>
                         <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}<i (click)="open(content2,une_sortie)" class="fa fa-edit text-warning"></i></td>
                         <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.commission}}</td>
-                        <!-- <td class="text-right">
-                            <div class="btn-group">
-                                <button class="btn btn-danger">
-                                    <span class="material-icons">
-                                        delete
-                                    </span>
-                                </button>
-                            </div>
-                        </td> -->
                     </tr>
                     <tr *ngIf="api.global.sortie_par_jours_par_enregistreur.length==0" class="container w-100 center">
                         <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>

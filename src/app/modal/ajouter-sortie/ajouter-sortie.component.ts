@@ -17,7 +17,7 @@ export class AjouterSortieComponent implements OnInit {
   add=true;
   vendeur_vide:any
   les_sortie_day:any;
-  sortie = { quantite: "",restant: '0',verse:'', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0',commission:'0'}
+  sortie = { quantite: "",restant: '0',verse:'0', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0',commission:'0'}
   option = "2"
   succes = false
   echec = false
@@ -77,6 +77,7 @@ export class AjouterSortieComponent implements OnInit {
       this.stock_en_cour=parseInt(this.stock_en_cour)-parseInt(this.sortie.quantite)+" en stock "
 
       this.api.post_utilisateur_connecte({ add_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
+        console.log(data)
         if (data.status) {
          this.succes = true
          this.sortie.quantite = ""

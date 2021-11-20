@@ -31,7 +31,7 @@ export class VendeurComponent implements OnInit {
     {nom:"Montant total vendu",chiffre:0,bg:"ffffff"},
     {nom:"Montant total encaissé",chiffre:0,bg:"ffffff"},
     {nom:"Montant total Reliquat",chiffre:0,bg:"ffffff"},
-
+    {nom:"Total commission",chiffre:0,bg:"ffffff"},
   ]
   id_produit_supprime: any;
   
@@ -122,15 +122,18 @@ export class VendeurComponent implements OnInit {
     this.les_statistiques[1].chiffre=0
     this.les_statistiques[2].chiffre=0
     this.les_statistiques[3].chiffre=0
+    this.les_statistiques[4].chiffre=0
     this.les_statistiques[0].chiffre=this.les_sorties.length
     this.les_sorties.forEach((element:any)=>{
       this.les_statistiques[1].chiffre= this.api.parse(this.les_statistiques[1].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)
       this.les_statistiques[2].chiffre= this.api.parse(this.les_statistiques[2].chiffre)+this.api.parse(element.verse)
       this.les_statistiques[3].chiffre= this.api.parse(this.les_statistiques[3].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.prix_unitaire)-this.api.parse(element.verse)    
+      this.les_statistiques[4].chiffre= this.api.parse(this.les_statistiques[4].chiffre)+(this.api.parse(element.quantite)-this.api.parse(element.restant)-this.api.parse(element.ration))*this.api.parse(element.commission)    
     })
     this.les_statistiques[1].chiffre+=" FCFA"
     this.les_statistiques[2].chiffre+=" FCFA"
     this.les_statistiques[3].chiffre+=" FCFA"
+    this.les_statistiques[4].chiffre+=" FCFA"
     var i=3
     var j=0
     // this.les_stats.forEach((element2:any) => {
