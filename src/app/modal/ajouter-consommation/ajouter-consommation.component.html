@@ -23,16 +23,24 @@
                 <label>Produit</label>
                 <select name="id_produit" [(ngModel)]="consommation.id_produit" (change)="changement()" class="form-control form-select" aria-label="Default select example">
                     <option [value]="0" >Sélectionnez un produit</option>
-                    <option  class="d-flex justify-content-between" [value]="item.id_produit" *ngFor="let item of api.global.les_produits_entrants;let i=index;let f=first">{{item.nom}} {{item.stock}}</option>
+                    <option  class="d-flex justify-content-between" [value]="item.id_produit" *ngFor="let item of api.global.les_produits_entrants;let i=index;let f=first">{{item.nom}} </option>
                 </select>
             </div>
+
             <div class="form-group col-md-4">
+                <label>Sélectionnez un produit fini</label>
+                <select name="id_produit" [(ngModel)]="consommation.id_produit_sortant" (change)="changement()" class="form-control form-select" aria-label="Default select example">
+                  <option [value]="0" >Sélectionnez un produit fini</option>
+                  <option  class="d-flex justify-content-between" [value]="produit.id_produit_sortant" *ngFor="let produit of api.global.les_produits_sortants;let i=index;let f=first">{{produit.nom}} </option>
+              </select>
+            </div>
+            <!-- <div class="form-group col-md-4">
                 <label>Utiliser dans :</label>
                 <select name="id_type_consommation" class="form-control form-select" [(ngModel)]="consommation.id_type_consommation" aria-label="Default select example">
                   <option [value]="0" >type</option>
                   <option  class="d-flex justify-content-between" [value]="item.id_type_consommation" *ngFor="let item of les_type;let i=index;let f=first">{{item.nom}} {{item.stock}}</option>
                 </select>
-            </div>
+            </div> -->
 
         </form>
         <div *ngIf="succes" class="alert alert-success" role="alert">

@@ -19,6 +19,7 @@ import { ListeProduitEntrantComponent } from 'src/app/basGauche/liste-produit-en
 import { ListeVendeurComponent } from 'src/app/basGauche/liste-vendeur/liste-vendeur.component';
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
+import { MenuComponent } from 'src/app/basGauche/menu/menu.component';
 import { ApiService } from 'src/app/service/api.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
@@ -95,7 +96,7 @@ export class BodyComponent implements OnInit {
       basDroite:ParametreComponent
     }
   }
-  menu=ListeDashbordComponent
+  menu=MenuComponent
   constructor(public api:ApiService,public route:Router,private router:ActivatedRoute) {
     router.params.subscribe((params:any)=>{
       let e=params["id_entreprise"]
@@ -105,7 +106,7 @@ export class BodyComponent implements OnInit {
         if(api.global.fenetre_selectionnee!=f){
           api.global.fenetre_selectionnee=f
         }
-        
+
       } else {
         console.log("pas de parametre fenentre ",f,params)
       }

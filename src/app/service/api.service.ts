@@ -7,10 +7,10 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApiService {
 
-  // url="https://gu.groupemeta.com/nouveau/api.php"
-// url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
+   //url="https://gu.groupemeta.com/nouveau/api.php"
+url="http://192.168.1.13/gestionuniversel_back/nouveau/api.php"
 // url="http://192.168.1.4/gestionuniversel_back/nouveau/api.php"
-url="http://localhost/gestionuniversel_back/nouveau/api.php"
+//url="http://localhost/gestionuniversel_back/nouveau/api.php"
   global:any={
     fenetres:[],
     sidenavbool:false,
@@ -75,7 +75,7 @@ url="http://localhost/gestionuniversel_back/nouveau/api.php"
       formdata.append(key,categorie[key])
     }
 
-    let api_url="http://localhost/amar_api/categorie/add" 
+    let api_url="http://localhost/amar_api/categorie/add"
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
@@ -89,7 +89,7 @@ url="http://localhost/gestionuniversel_back/nouveau/api.php"
       console.log("Erreur inconnue! ",error)
     })
   }
-  
+
   toggleSidenav(){
     if (this.global.sidenavbool) {// sidenav ouvert, on le ferme
         // on ferme la partie gauche

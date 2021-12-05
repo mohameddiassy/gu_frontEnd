@@ -34,6 +34,8 @@ export class AjouterFournisseurComponent implements OnInit {
       if (data.status) {
         this.succes = true
         // this.api.sendEvent("ajouterfournisseur",this.item)
+        console.log(data)
+
         this.recevoir_fournisseur()
       } else {
         this.echec = true

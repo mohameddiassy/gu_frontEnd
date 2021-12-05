@@ -45,7 +45,9 @@ export class AjouterProductionComponent implements OnInit {
       alert("choisir un produit")
     } else {
       this.api.post_utilisateur_connecte({ add_production: true, production: JSON.stringify(this.production) }).subscribe((data: any) => {
+        console.log(data);
         if (data.status) {
+
           this.succes = true
           this.production.quantite = "0"
           this.api.sendEvent("item_liste_production",this.item)

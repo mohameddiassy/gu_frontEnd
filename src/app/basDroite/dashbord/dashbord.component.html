@@ -1,3 +1,5 @@
+<h2>Les productions du {{item?.date | date:'dd MMMM YYYY'}}</h2>
+<hr>
 <div class="row">
     <div class="col-6 col-md-4 col-xl-3" *ngFor="let item of les_statistiques_backend.depense_mois_en_cours">
         <div class="card p-2 ">
@@ -67,7 +69,7 @@
             <!-- <div class="center fa fa-text-slash">benefices annuel</div> -->
         </div>
     </div>
-    
+
     <div class="col-6 col-md-4 col-xl-3 ">
         <div class="card p-2 ">
             <div class="row align-items-center ">
@@ -85,7 +87,7 @@
             <!-- <div class="center fa fa-text-slash">CA d'aujourd'hui {{item.mois}}</div> -->
         </div>
     </div>
-    
+
     <div class="col-6 col-md-4 col-xl-3 ">
         <div class="card p-2 ">
             <div class="row align-items-center ">
@@ -103,8 +105,8 @@
             <!-- <div class="center fa fa-text-slash">CA d'aujourd'hui {{item.mois}}</div> -->
         </div>
     </div>
-    
-    
+
+
     <div class="col-6 col-md-4 col-xl-3 ">
         <div class="card p-2 ">
             <div class="row align-items-center ">
@@ -122,8 +124,8 @@
             <!-- <div class="center fa fa-text-slash">CA d'aujourd'hui {{item.mois}}</div> -->
         </div>
     </div>
-    
-    
+
+
     <div class="col-6 col-md-4 col-xl-3 ">
         <div class="card p-2 ">
             <div class="row align-items-center ">
@@ -147,12 +149,14 @@
     <!-- chiffre d' affaire -->
     <div class="card col-md-6 pt-2 ">
         <div class="card-body ">
-            <h5 class="card-title ">Chiffres d'affaire</h5>
+            <h5 class="card-title ">Résumé consommation</h5>
         </div>
         <ul class="list-group ">
-            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.CA ">
-                <span>{{item_liste.mois}}</span>
-                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.resume_consommation ">
+
+                <span>{{item_liste.id_produit=='all'? 'tout' : item_liste.nom}}</span>
+                <span class="">{{  item_liste.id_produit=='all'? '' : item_liste.prix_unitaire | currency : 'XOF' : true : '1.2-2'}} </span>
+                <span class="">{{  item_liste.quantite | currency : 'XOF' : true : '1.2-2'}}  </span>
             </li>
         </ul>
         <div class="card-body ">
@@ -162,12 +166,12 @@
     <!-- produits mieux vendu par mois -->
     <div class="card col-md-6 pt-2 ">
         <div class="card-body ">
-            <h5 class="card-title ">Produits mieux vendu</h5>
+            <h5 class="card-title ">resumé production</h5>
         </div>
         <ul class="list-group ">
-            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.produit_vendus ">
-                <span>{{item_liste.nom}}</span>
-                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.resume_production ">
+                <span>{{item_liste.id_produit=='all'? 'tout' : item_liste.nom}}</span>
+                <span class="">{{item_liste.quantite}}</span>
             </li>
         </ul>
         <div class="card-body ">
@@ -182,7 +186,7 @@
         <ul class="list-group ">
             <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.les_agents ">
                 {{(item_liste.mois|date:"MMMM ")}}<span>{{item_liste.prenom+" "+item_liste.nom}}</span>
-                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
+                <span class="">{{item_liste.CA}} FCFA</span>
             </li>
         </ul>
         <div class="card-body ">
