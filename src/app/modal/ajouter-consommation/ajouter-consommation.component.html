@@ -31,7 +31,7 @@
                 <label>Sélectionnez un produit fini</label>
                 <select name="id_produit" [(ngModel)]="consommation.id_produit_sortant" (change)="changement()" class="form-control form-select" aria-label="Default select example">
                   <option [value]="0" >Sélectionnez un produit fini</option>
-                  <option  class="d-flex justify-content-between" [value]="produit.id_produit_sortant" *ngFor="let produit of api.global.les_produits_sortants;let i=index;let f=first">{{produit.nom}} </option>
+                  <option  class="d-flex justify-content-between" [value]="produit.id_produit" *ngFor="let produit of api.global.les_produits_sortants;let i=index;let f=first">{{produit.nom}} </option>
               </select>
             </div>
             <!-- <div class="form-group col-md-4">

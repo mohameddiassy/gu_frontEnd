@@ -54,6 +54,7 @@
                         <th scope="col">Stock avant</th>
                         <th scope="col">consommation</th>
                         <th scope="col">Stock aprés</th>
+                        <th scope="col">Prix unitaire</th>
                         <th scope="col">Total</th>
                         <!-- <th scope="col">Actions</th> -->
                     </tr>
@@ -65,7 +66,8 @@
                         <td>{{une_consommation.stock_avant}}</td>
                         <td>{{une_consommation.quantite}}</td>
                         <td>{{une_consommation.stock_apres}}</td>
-                        <td>{{une_consommation.prix_unitaire*une_consommation.quantite}}</td>
+                        <td>{{une_consommation.prix_unitaire}}</td>
+                        <td>{{une_consommation.prix_unitaire*une_consommation.quantite |number:'1.0-2'}}</td>
                     </tr>
                 </tbody>
                 
