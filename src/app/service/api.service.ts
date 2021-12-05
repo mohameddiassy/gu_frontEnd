@@ -7,10 +7,11 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApiService {
 
-  // url="https://gu.groupemeta.com/nouveau/api.php"
+  // url="https://gu.h24code.com/nouveau/api.php"
   // url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
   // url="http://192.168.1.4/gestionuniversel_back/nouveau/api.php"
   url="http://localhost/gestionuniversel_back/nouveau/api.php"
+
   global:any={
     fenetres:[],
     sidenavbool:false,
