@@ -21,7 +21,7 @@ export class AjouterConsommationComponent implements OnInit {
         this.add=true;
         this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.item = data.data
-        
+
       }
       else if (data.code == "modifierconsommation")
       {
@@ -34,6 +34,7 @@ export class AjouterConsommationComponent implements OnInit {
   ngOnInit(): void {
     this.recevoir_produit_entrant()
     this.recevoir_type_consommation()
+    this.recevoir_produit_sortant();
     // this.recevoir_produit_entrants()
   }
   ajouter() {
@@ -108,6 +109,11 @@ export class AjouterConsommationComponent implements OnInit {
   recevoir_produit_entrant(){
     this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
       this.api.global.les_produits_entrants=data.products
+    })
+  }
+  recevoir_produit_sortant(){
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"sortant"}).subscribe((data:any)=>{
+      this.api.global.les_produits_sortants=data.products
     })
   }
 

@@ -40,19 +40,32 @@ export class DashbordComponent implements OnInit {
   legendPosition:any='below'
 
   colorScheme :any= {domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] };
+  item: any;
 
   constructor(public api:ApiService) {
+
     Object.assign(this, { single })
+
+
+    api.getEvent().subscribe((data)=>{
+      if(data.code=="item_list_dashboard"){
+        this.item=data.data
+        this.recevoir_dashboard(this.item.date);
+
+
+      }
+
+    })
+
   }
   ngOnInit(): void {
-    this.recevoir_consommations()
   }
 
   onSelect(event:any) {
     console.log(event);
   }
-  recevoir_consommations(){
-    this.api.post_utilisateur_connecte({dashboard:true}).subscribe((data:any)=>{
+  recevoir_dashboard(date:any) {
+    this.api.post_utilisateur_connecte({dashboard:true,date:date}).subscribe((data:any)=>{
       this.les_statistiques_backend=data
       console.log("dashboard= ",data)
     })
