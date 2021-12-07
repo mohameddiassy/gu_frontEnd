@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class MenuComponent implements OnInit {
 
-
+  fenetre:any;
   icons:any={
     "fenetre_dashbord":{icone:"list",background_color:"#63c2de",color:"white"},
     "fenetre_sortie":{icone:"paper-plane",background_color:"#63c2de",color:"white"},

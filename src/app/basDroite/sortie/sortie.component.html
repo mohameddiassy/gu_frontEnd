@@ -92,22 +92,19 @@
             <div class="col-6 col-sm-4 _add_produit_btn">
                 <button class="btn btn-success" (click)="ajoutersortie()">{{api.bool.ajoutersortie?"Fermer":"Ajouter Sortie"}}</button>
                 <button class="btn btn-warning mx-2" (click)="exportexcel()">
-                  <i class="fa fa-download"></i>              </button>
+                  <i class="fa fa-download"></i>
+                </button>
             </div>
 
             <div class="form-group col-6 col-sm-4">
 
             </div>
             <div class="form-group col-6 col-sm-4">
-                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
-                    me-1" placeholder="Chercher une sortie">
-                <!-- <button class="btn btn-success">Rechercher</button> -->
+                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1" placeholder="Chercher une sortie">
             </div>
         </div>
         <div class="table-responsive">
-            <table id="excel-table" class="table table-stripped table
-                table-hover table-center mb-0 bg-light">
-
+            <table id="excel-table" class="table table-stripped table table-hover table-center mb-0 bg-light">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -137,11 +134,12 @@
                         <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}<i (click)="open(content2,une_sortie)" class="fa fa-edit text-warning"></i></td>
                         <td>{{une_sortie.prix_unitaire}}</td>
                     </tr>
-                    <tr *ngIf="api.global.sortie_par_jours_par_enregistreur.length==0" class="container w-100 center">
-                        <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
-
-                    </tr>
                 </tbody>
+                <tfoot>
+                    <tr *ngIf="les_sorties.length==0" class="center">
+                        Pas de sortie pour cette date
+                    </tr>
+                </tfoot>
             </table>
 
         </div>

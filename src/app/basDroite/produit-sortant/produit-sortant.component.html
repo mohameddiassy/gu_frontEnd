@@ -1,0 +1,68 @@
+<div class="container">
+
+    <div class="d-flex mb-2 les_statistiques">
+        <button (click)="choisir_jour(item)" *ngFor="let item of api.global.production_par_jours_par_enregistreur;let first = first;" type="button" [ngClass]="item==jour?'btn bg-white text-primary': 'btn bg-primary text-white'">
+            {{item.date| date :'dd MMMM YYYY'}} <br>
+            <span class="badge bg-primary">{{item.chiffre}}</span>
+        </button>
+    </div>
+    <div class="row">
+        <div class="card col-md-5 p-2">
+            <h4>Détails <i class="fa fa-edit right croix" (click)="modifier_produit()" ></i> </h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Libellé : <strong>{{produit?.nom}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Unité : <strong>{{produit?.unite}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Prix de vente : <strong>{{produit?.prix_unitaire}}</strong>
+                </li>
+                <li class="list-group-item">
+                    Catégorie : <strong>{{produit?.categorie}}</strong>
+                </li>
+            </ul>
+            <h4>Statistiques</h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Prix de revient : <strong>{{get_prix_revient()|number}}</strong> fcfa
+                </li>
+                <li class="list-group-item">
+                    Bénéfice unitaire : <strong>{{(produit?.prix_unitaire-get_prix_revient())|number}}</strong> fcfa
+                </li>
+                <li class="list-group-item">
+                    Bénéfice total : <strong>{{(get_sum_consommation())|number}}</strong> fcfa
+                </li>
+            </ul>
+        </div>
+        <div class="card col-md-7 p-2">
+            <h2 class="card-title"><span>Consommation</span> <span
+                    class="right bg-primary btn text-white">{{get_sum_consommation()|number}} fcfa</span></h2>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of les_details?.consommation">
+                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
+                        class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                </li>
+                <li class="list-group-item" *ngIf="les_details?.consommation.length==0">
+                    pas de consommations
+                </li>
+            </ul>
+            <hr>
+            <h2 class="card-title">Production <span class="right bg-primary btn text-white">
+                    {{get_sum_production()|number}} fcfa</span></h2>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of les_details?.production">
+                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
+                        class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                </li>
+                <li class="list-group-item" *ngIf="les_details?.production.length==0">
+                    pas de productions
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="fixed-bottom couleurgrise">
+    <ng-container *ngComponentOutlet="ajouterproduitcomponent"></ng-container>
+</div>
