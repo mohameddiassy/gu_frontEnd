@@ -87,3 +87,11 @@ INFOS: Unsupported notification method: $/setTrace
 [0m2021.11.12 11:38:43 INFO  time: initialize in 1.27s[0m
 [0m2021.11.12 11:38:49 WARN  Build server is not auto-connectable.[0m
 [0m2021.11.12 11:38:49 WARN  no build tool detected in workspace 'C:\Users\DELL\gu_h24\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.12.05 21:55:29 INFO  Started: Metals version 0.10.9 in workspace 'C:\Users\DELL\front\gu_frontEnd' for client Visual Studio Code 1.62.3.[0m
+[0m2021.12.05 21:55:33 INFO  time: initialize in 3.93s[0m
+[0m2021.12.05 21:55:41 WARN  Build server is not auto-connectable.[0m
+[0m2021.12.05 21:55:41 WARN  no build tool detected in workspace 'C:\Users\DELL\front\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.12.07 00:48:18 INFO  Started: Metals version 0.10.9 in workspace 'C:\Users\DELL\front\gu_frontEnd' for client Visual Studio Code 1.62.3.[0m
+[0m2021.12.07 00:48:24 INFO  time: initialize in 6.4s[0m
+[0m2021.12.07 00:48:37 WARN  Build server is not auto-connectable.[0m
+[0m2021.12.07 00:48:37 WARN  no build tool detected in workspace 'C:\Users\DELL\front\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
