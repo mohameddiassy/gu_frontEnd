@@ -25,7 +25,6 @@ export class ListeProductionComponent implements OnInit {
       console.log(data)
       if (data.status) {
         this.api.global.production_par_jours_par_enregistreur=data.production_par_jours_par_enregistreur
-
         if (this.api.global.production_par_jours_par_enregistreur.length>0 && this.api.global.production_par_jours_par_enregistreur[0].date==moment().format("YYYY-MM-DD")) {
           // on a deja un enregistrement pour aujourd'hui
         } else {

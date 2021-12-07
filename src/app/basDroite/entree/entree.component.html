@@ -40,15 +40,11 @@
             </div>
 
             <div class="form-group col-6 col-sm-4">
-                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
-                  me-1" placeholder="Chercher une sortie">
-                <!-- <button class="btn btn-success">Rechercher</button> -->
+                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1" placeholder="Chercher une sortie">
             </div>
         </div>
         <div class="table-responsive">
-            <table id="excel-table" class="table table-stripped table
-              table-hover table-center mb-0 bg-light">
-
+            <table id="excel-table" class="table table-stripped table table-hover table-center mb-0 bg-light">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -59,7 +55,6 @@
                         <th scope="col">Prix Unitaire</th>
                         <th scope="col">Consomation</th>
                         <th scope="col">Total</th>
-                        <!-- <th scope="col">Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -73,20 +68,13 @@
                         <td>{{une_sortie.consommation}}
                         </td>
                         <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
-                        <!-- <td class="text-right">
-                            <div class="btn-group">
-                                <button class="btn btn-danger">
-                                  <span class="material-icons">
-                                      delete
-                                  </span>
-                              </button>
-                            </div>
-                        </td> -->
-                    </tr>
-                    <tr *ngIf="les_entree==0" class="container w-100 center">
-                        <td class="fw-bold" colspan="4">Pas d'entree pour cette date</td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr *ngIf="les_entree.length==0" class="center">
+                        Pas d'entree pour cette date
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

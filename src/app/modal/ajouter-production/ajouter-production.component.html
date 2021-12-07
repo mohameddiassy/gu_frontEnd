@@ -13,12 +13,6 @@
             <h4 text-align="center">stock actuel ={{api.parse(stock_en_cour)+api.parse(production.quantite)}} </h4>
         </div>
         <form class="row">
-            <div>
-            </div>
-            <div class="form-group col-md-4">
-                <label>Quantité</label>
-                <input placeholder="quantité" type="number" class="form-control" name="stock" [(ngModel)]="production.quantite">
-            </div>
             <div class="form-group col-md-4">
                 <label>Produit</label>
                 <select name="id_produit" [(ngModel)]="production.id_produit" (change)="changement2()" class="form-control form-select" aria-label="Default select example">
@@ -28,7 +22,10 @@
 
                   </select>
             </div>
-
+            <div class="form-group col-md-4">
+                <label>Quantité</label>
+                <input placeholder="quantité" type="number" class="form-control" name="stock" [(ngModel)]="production.quantite">
+            </div>
         </form>
         <div *ngIf="succes" class="alert alert-success" role="alert">
             Sortie ajoutée avec succés!

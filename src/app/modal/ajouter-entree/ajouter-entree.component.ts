@@ -68,12 +68,6 @@ export class AjouterEntreeComponent implements OnInit {
       this.api.post_utilisateur_connecte({ add_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
-          // this.entree.quantite = "0"
-          // this.entree.id_produit = ""
-          // this.entree.prix_unitaire='0'
-
-          // this.data.les_produits.push(data.produit)
-          // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("entree_par_jours_par_enregistreur",this.item)
           this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
         } else {

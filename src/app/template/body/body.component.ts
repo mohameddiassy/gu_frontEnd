@@ -7,6 +7,7 @@ import { EntreeComponent } from 'src/app/basDroite/entree/entree.component';
 import { FournisseurComponent } from 'src/app/basDroite/fournisseur/fournisseur.component';
 import { ParametreComponent } from 'src/app/basDroite/parametre/parametre.component';
 import { ProductionComponent } from 'src/app/basDroite/production/production.component';
+import { ProduitSortantComponent } from 'src/app/basDroite/produit-sortant/produit-sortant.component';
 import { SortieComponent } from 'src/app/basDroite/sortie/sortie.component';
 import { VendeurComponent } from 'src/app/basDroite/vendeur/vendeur.component';
 import { ListeConsommationComponent } from 'src/app/basGauche/liste-consommation/liste-consommation.component';
@@ -63,7 +64,7 @@ export class BodyComponent implements OnInit {
     "fenetre_produit_sortant":{
       nom:"Produits Sortants",
       basGauche:ListeproduitsComponent,
-      basDroite:DetailProduitComponent
+      basDroite:ProduitSortantComponent
     },
     "fenetre_dashbord":{
       nom:"Tableau de Bord",

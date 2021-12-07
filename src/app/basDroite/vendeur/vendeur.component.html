@@ -117,15 +117,12 @@
                     <span class="badge bg-gradient-pink">{{item.nom_vendeur}}</span>
                     <span class="badge bg-success">{{item.chiffre}} </span><br>
                     <span class="badge bg-success">{{item.chiffre2}}</span><br>
-        
                 </button>
             </div>
         </div>
     </div>
     <div class="table-responsive mt-4">
-        <table id="excel-table" class="table table-stripped table
-            table-hover table-center mb-0 bg-light">
-
+        <table id="excel-table" class="table table-stripped table table-hover table-center mb-0 bg-light">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -157,10 +154,12 @@
                     <td>{{une_sortie.prix_unitaire}}</td>
                     <td>{{une_sortie.commission*(une_sortie.quantite-une_sortie.restant-une_sortie.ration)}}</td>
                 </tr>
-                <tr *ngIf="les_sorties.length==0" class="container w-100 center">
-                    <td class="fw-bold" colspan="4">Pas de sorties pour cette date</td>
-                </tr>
             </tbody>
+            <tfoot>
+                <tr *ngIf="les_sorties.length==0" class="center">
+                    Pas de vendeur
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>

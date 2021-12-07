@@ -7,10 +7,11 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApiService {
 
-   //url="https://gu.groupemeta.com/nouveau/api.php"
-url="http://192.168.1.13/gestionuniversel_back/nouveau/api.php"
-// url="http://192.168.1.4/gestionuniversel_back/nouveau/api.php"
-//url="http://localhost/gestionuniversel_back/nouveau/api.php"
+  // url="https://gu.h24code.com/nouveau/api.php"
+  // url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
+  // url="http://192.168.1.4/gestionuniversel_back/nouveau/api.php"
+  url="http://localhost/gestionuniversel_back/nouveau/api.php"
+
   global:any={
     fenetres:[],
     sidenavbool:false,
@@ -59,37 +60,6 @@ url="http://192.168.1.13/gestionuniversel_back/nouveau/api.php"
     formdata.append("utilisateur_connecte",JSON.stringify(this.global.utilisateur_connecte))
     return this.http.post(this.url,formdata)
   }
-  add_categorie(categorie:any){
-    /*
-    categorie:any={
-      id_categorie:'int(255) (primary key)',
-      nom:'varchar(100)',
-      description:'varchar(255)',
-      id_entreprise:'int(255)',
-      id_enregistreur:'int(255)'
-    }
-    */
-    //transformation des parametres à envoyer
-    let formdata=new FormData()
-    for (const key in categorie) {
-      formdata.append(key,categorie[key])
-    }
-
-    let api_url="http://localhost/amar_api/categorie/add"
-    this.http.post(api_url,formdata).subscribe((reponse:any)=>{
-      //when success
-      if(reponse.status){
-        console.log("Opération effectuée avec succés sur la table categorie. Réponse= ",reponse)
-      }else{
-        console.log("L'opération sur la table categorie a échoué. Réponse= ",reponse)
-      }
-    },
-    (error:any)=>{
-      //when error
-      console.log("Erreur inconnue! ",error)
-    })
-  }
-
   toggleSidenav(){
     if (this.global.sidenavbool) {// sidenav ouvert, on le ferme
         // on ferme la partie gauche
