@@ -72,6 +72,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './basGauche/menu/menu.component';
+import { ProduitSortantComponent } from './basDroite/produit-sortant/produit-sortant.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -146,6 +147,7 @@ const routes: Routes = [
     AnalyseComponent,
     MesEntreprisesComponent,
     MenuComponent,
+    ProduitSortantComponent,
 
   ],
   imports: [
