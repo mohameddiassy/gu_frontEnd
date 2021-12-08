@@ -9,12 +9,14 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ListeConsommationComponent implements OnInit {
   les_consommations:any=[]
+  jour:any
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
     this.consommation_par_jours_par_enregistreur()
   }
   clique(item:any){
+    this.jour=item
     this.api.sendEvent("item_liste_consommation",item)
     this.api.closeSidenav()
   }
@@ -34,7 +36,8 @@ export class ListeConsommationComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.api.sendEvent("item_liste_consommation",this.api.global.consommation_par_jours_par_enregistreur[0])
+        this.jour=this.api.global.consommation_par_jours_par_enregistreur[0]
+        this.api.sendEvent("item_liste_consommation",this.jour)
       } else {
         alert("erreur coté serveur")
       }

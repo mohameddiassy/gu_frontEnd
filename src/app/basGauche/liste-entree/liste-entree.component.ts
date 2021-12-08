@@ -9,7 +9,7 @@ import { ListejoursComponent } from '../listejours/listejours.component';
   styleUrls: ['./liste-entree.component.css']
 })
 export class ListeEntreeComponent implements OnInit {
-
+  jour:any
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
@@ -17,6 +17,7 @@ export class ListeEntreeComponent implements OnInit {
 
   }
   clique(item:any){
+    this.jour=item
     this.api.sendEvent("entree_par_jours_par_enregistreur",item)
     this.api.closeSidenav()
   }
@@ -36,7 +37,8 @@ export class ListeEntreeComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.api.sendEvent("entree_par_jours_par_enregistreur",this.api.global.entree_par_jours_par_enregistreur[0])
+        this.jour=this.api.global.entree_par_jours_par_enregistreur[0]
+        this.api.sendEvent("entree_par_jours_par_enregistreur",this.jour)
       } else {
         console.log("erreur de reception des fenetre")
       }

@@ -9,7 +9,7 @@ import * as moment from 'moment';
 })
 export class ListejoursComponent implements OnInit {
 
-
+  jour:any
   lecomponent=ListejoursComponent
   constructor(public api:ApiService) { }
 
@@ -17,6 +17,7 @@ export class ListejoursComponent implements OnInit {
     this.recevoir_sortie_par_jours_par_enregistreur()
   }
   clique(item:any){
+    this.jour=item
     this.api.sendEvent("sortie_par_jours_par_enregistreur",item)
     this.api.closeSidenav()
   }
@@ -35,7 +36,8 @@ export class ListejoursComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.api.sendEvent("sortie_par_jours_par_enregistreur",this.api.global.sortie_par_jours_par_enregistreur[0])
+        this.jour=this.api.global.sortie_par_jours_par_enregistreur[0]
+        this.api.sendEvent("sortie_par_jours_par_enregistreur",this.jour)
       } else {
         console.log("erreur de reception des fenetre")
       }

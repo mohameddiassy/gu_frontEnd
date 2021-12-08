@@ -12,7 +12,6 @@ export class ListeproduitsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recevoir_produit_entrant()
-    
   }
   clique(item:any){
     this.jour=item

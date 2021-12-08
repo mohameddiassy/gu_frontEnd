@@ -1,7 +1,12 @@
 .list-group-numbered{cursor: pointer;}
 .croix{cursor: pointer;}
+.couleur_body{
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: rgb(99, 194, 222);}
 .couleurgrise{background-color: rgb(216, 228, 224);}
-
+.text_bleu_clair{color: rgb(99, 194, 222);}
+.bg_bleu_clair{background-color: rgb(99, 194, 222);}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -11,4 +16,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .active{
     background-color: white;
     color: blue;
+}
+.fw-bold{
+    font-weight: none!important;
+    font-size: large;
+    font-family: -webkit-body;
 }
