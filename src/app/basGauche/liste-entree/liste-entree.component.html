@@ -1,9 +1,9 @@
 <div class="list-group list-group-numbered">
-  <div (click)="clique(item)" *ngFor="let item of api.global.entree_par_jours_par_enregistreur | filter:api.global.recherche_hautgauche" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">{{item.date| date :'dd MMMM YYYY'}}</div>
-      Montant {{item.montant}}
+    <div (click)="clique(item)" *ngFor="let item of api.global.entree_par_jours_par_enregistreur | filter:api.global.recherche_hautgauche" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{item.date| date :'dd MMMM YYYY'}}</div>
+            Montant {{item.montant |number:'1.0-2'}}
+        </div>
+        <span class="badge bg-primary rounded-pill">{{item.nombre}}</span>
     </div>
-    <span class="badge bg-primary rounded-pill">{{item.nombre}}</span>
-  </div>
 </div>

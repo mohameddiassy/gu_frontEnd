@@ -64,18 +64,23 @@
                         <td>{{une_sortie.stock_avant}}</td>
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.stock_apres}}</td>
-                        <td>{{une_sortie.prix_unitaire}}</td>
+                        <td>{{une_sortie.prix_unitaire |number:'1.0-2'}}</td>
                         <td>{{une_sortie.consommation}}
                         </td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
+                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite |number:'1.0-2'}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <tr *ngIf="les_entree.length==0" class="center">
-                        Pas d'entree pour cette date
+                    <tr *ngIf="les_entree.length==0">
+                        <td colspan="4">
+                            Pas d'entree pour cette date
+
+                        </td>
                     </tr>
+
                 </tfoot>
             </table>
+
         </div>
     </div>
     <div class="text-wrap">

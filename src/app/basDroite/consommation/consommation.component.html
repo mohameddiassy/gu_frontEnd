@@ -66,11 +66,11 @@
                         <td>{{une_consommation.stock_avant}}</td>
                         <td>{{une_consommation.quantite}}</td>
                         <td>{{une_consommation.stock_apres}}</td>
-                        <td>{{une_consommation.prix_unitaire}}</td>
+                        <td>{{une_consommation.prix_unitaire |number:'1.0-2'}}</td>
                         <td>{{une_consommation.prix_unitaire*une_consommation.quantite |number:'1.0-2'}}</td>
                     </tr>
                 </tbody>
-                
+
                 <tfoot>
                     <tr *ngIf="les_consommations==0" class="center">
                         Pas de consommation pour cette date
