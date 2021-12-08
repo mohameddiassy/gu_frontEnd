@@ -32,7 +32,7 @@
                     Bénéfice unitaire : <strong>{{(produit?.prix_unitaire-get_prix_revient())|number}}</strong> fcfa
                 </li>
                 <li class="list-group-item">
-                    Bénéfice total : <strong>{{(get_sum_consommation())|number}}</strong> fcfa
+                    Bénéfice total : <strong>{{(get_sum_production()-get_sum_consommation())|number}}</strong> fcfa
                 </li>
             </ul>
         </div>

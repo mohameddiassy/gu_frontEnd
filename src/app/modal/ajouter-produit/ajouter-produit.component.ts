@@ -16,7 +16,7 @@ export class AjouterProduitComponent implements OnInit {
   constructor(public api:ApiService) { 
     api.getEvent().subscribe((data:any)=>{
       if (data.code=="modifier_produit") {
-        this.produit=data.data
+        this.produit=Object.assign({},data.data)
         this.modifier_bool=true
       } else if (data.code=="ajouter_produit") {
         this.modifier_bool=false
@@ -98,10 +98,8 @@ export class AjouterProduitComponent implements OnInit {
     this.api.post_utilisateur_connecte({modifier_produit:true,produit:JSON.stringify(this.produit)}).subscribe((data:any)=>{
       console.log(data)
       if (data.status) {
+        this.api.sendEvent("item_liste_produit",Object.assign({},this.produit))
         this.succes=true
-        // this.api.sendEvent("item_liste_produit",Object.assign({},this.produit))
-        // this.close()
-        // mettre à jour la liste des produits en fonction du type
         if (this.produit.type=="entrant") {
           //this.recevoir_produit_entrant()
         } else if (this.produit.type=="sortant") {

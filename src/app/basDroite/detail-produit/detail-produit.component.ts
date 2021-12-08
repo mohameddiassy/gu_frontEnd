@@ -17,7 +17,6 @@ export class DetailProduitComponent implements OnInit {
   les_statistiques:any=[]
   jour:any
   constructor(public api:ApiService) { 
-    // this.produit=this.api.global.les_produits[0]
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit"){
         this.produit=data.data
@@ -35,8 +34,8 @@ export class DetailProduitComponent implements OnInit {
   modifier_produit(){
     this.api.closeAllBool()
     this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
-    var p=Object.assign({},this.produit)
-    this.api.sendEvent("modifier_produit",p);
+    // var p=Object.assign({},this.produit)
+    this.api.sendEvent("modifier_produit",this.produit);
   }
   recevoir_details(date:string){
     this.api.post_utilisateur_connecte({details_produits_entrant:true,date:date,id_produit:this.produit.id_produit}).subscribe((data:any)=>{

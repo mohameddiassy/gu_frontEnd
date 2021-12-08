@@ -8,8 +8,13 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class ListeProduitEntrantComponent implements OnInit {
   jour:any
-  constructor(public api:ApiService) { }
-
+  constructor(public api:ApiService) {
+    // api.getEvent().subscribe((data:any)=>{
+    //   if(data.code=="update_liste_produit_entrant"){
+    //     this.recevoir_produit_entrnt()
+    //   }
+    // })
+  }
   ngOnInit(): void {
     this.recevoir_produit_entrnt()
     
