@@ -4,6 +4,6 @@
         <div class="fw-bold">{{item.nom}}</div>
         {{item.description}}
       </div>
-      <span class="badge bg-primary rounded-pill">{{item.stock}}</span>
+      <span class="badge bg-primary rounded-pill" [ngClass]="item==jour?'bg-white text-primary': ''">{{item.prix_unitaire}}</span>
     </div>
 </div>

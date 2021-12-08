@@ -99,15 +99,16 @@ export class AjouterProduitComponent implements OnInit {
       console.log(data)
       if (data.status) {
         this.succes=true
-        this.api.sendEvent("item_liste_produit",Object.assign({},this.produit))
-        this.close()
+        // this.api.sendEvent("item_liste_produit",Object.assign({},this.produit))
+        // this.close()
         // mettre à jour la liste des produits en fonction du type
         if (this.produit.type=="entrant") {
-          this.recevoir_produit_entrant()
+          //this.recevoir_produit_entrant()
         } else if (this.produit.type=="sortant") {
-          this.recevoir_produit_sortant()
+          // this.recevoir_produit_sortant()
         }
         this.initialiser_formulaire()
+        this.close()
       } else {
         this.echec=true
       }

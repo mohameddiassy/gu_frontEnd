@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./liste-production.component.css']
 })
 export class ListeProductionComponent implements OnInit {
-
+  jour:any
   les_productions:any=[]
   constructor(public api:ApiService) { }
 
@@ -17,6 +17,7 @@ export class ListeProductionComponent implements OnInit {
 
   }
   clique(item:any){
+    this.jour=item
     this.api.sendEvent("item_liste_production",item)
     this.api.closeSidenav()
   }
@@ -35,7 +36,8 @@ export class ListeProductionComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.api.sendEvent("item_liste_production",this.api.global.production_par_jours_par_enregistreur[0])
+        this.jour=this.api.global.production_par_jours_par_enregistreur[0]
+        this.api.sendEvent("item_liste_production",this.jour)
       } else {
         console.log("erreur de reception des fenetre")
       }
