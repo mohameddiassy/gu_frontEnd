@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./liste-dashbord.component.css']
 })
 export class ListeDashbordComponent implements OnInit {
-
+  jour:any
   les_productions:any=[]
   constructor(public api:ApiService) { }
 
@@ -18,6 +18,7 @@ export class ListeDashbordComponent implements OnInit {
 
   }
   clique(item:any){
+    this.jour=item
     this.api.sendEvent("item_list_dashboard",item)
     this.api.closeSidenav()
   }
@@ -37,7 +38,8 @@ export class ListeDashbordComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.api.sendEvent("item_list_dashboard",this.api.global.production_par_jours_par_enregistreur[0])
+        this.jour=this.api.global.production_par_jours_par_enregistreur[0]
+        this.api.sendEvent("item_list_dashboard",this.jour)
       } else {
         console.log("erreur de reception des fenetre")
       }
