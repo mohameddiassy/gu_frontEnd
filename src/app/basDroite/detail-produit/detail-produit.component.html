@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngClass]="{'disabled_div_event':produit?.etat==-1}">
 
     <div class="d-flex mb-2 les_statistiques">
         <button (click)="choisir_jour(item)" *ngFor="let item of api.global.entree_par_jours_par_enregistreur;let first = first;" type="button" [ngClass]="item==jour?'btn bg-white text-primary': 'btn bg-primary text-white'">
@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="card col-md-5 p-2">
-            <h4>Détails <i class="fa fa-edit right croix" (click)="modifier_produit()" ></i> </h4>
+            <h4>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()" > </i><i class="fa fa-edit right croix m-2" (click)="modifier_produit()" ></i> </h4>
             <ul class="list-group">
                 <li class="list-group-item">
                     Libellé : <strong>{{produit?.nom}}</strong>
@@ -26,13 +26,17 @@
             <h4>Statistiques</h4>
             <ul class="list-group">
                 <li class="list-group-item">
-                    Consommation moyenne : <strong>--</strong> {{produit?.unite}} / jour
+                    Consommation moyenne : <strong>{{produit?.moyenne|number}}</strong> {{produit?.unite}} / jour
                 </li>
                 <li class="list-group-item">
-                    Durée moyenne : <strong>{{0}}</strong> fcfa
+                    Consommation minimale :  <strong>{{produit?.min|number}}</strong> {{produit?.unite}} / jour
                 </li>
                 <li class="list-group-item">
-                    Bénéfice total : <strong>{{(get_sum_consommation())|number}}</strong> fcfa
+                    Consommation maximale :  <strong>{{produit?.max|number}}</strong> {{produit?.unite}} / jour
+                </li>
+                <li class="list-group-item">
+                    Jours restant : <strong>{{produit?.nb_jour|number}}</strong> jour
+                    <i class="fa-2x fa fa-bell right" [ngClass]="{'niveau_1':produit?.nb_jour<4,'niveau_2':(produit?.nb_jour>=4 && produit?.nb_jour<8),'niveau_3':produit?.nb_jour>=8}"></i>
                 </li>
             </ul>
         </div>
