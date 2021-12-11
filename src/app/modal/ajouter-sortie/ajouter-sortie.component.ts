@@ -24,6 +24,9 @@ export class AjouterSortieComponent implements OnInit {
   item: any
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+      this.succes = false
+      this.echec = false
+
       if (data.code == "ajoutersortie") {
         this.add=true;
         this.item = data.data
