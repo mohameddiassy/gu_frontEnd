@@ -112,3 +112,5 @@ INFOS: Unsupported notification method: $/setTrace
 [0m2021.12.11 15:23:16 INFO  time: initialize in 1.3s[0m
 [0m2021.12.11 15:23:18 WARN  Build server is not auto-connectable.[0m
 [0m2021.12.11 15:23:18 WARN  no build tool detected in workspace 'C:\Users\DELL\front\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+déc. 11, 2021 3:26:09 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFOS: Unsupported notification method: $/setTrace

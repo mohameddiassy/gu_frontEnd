@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="card col-md-5 p-2">
-            <h4>Détails <i class="fa fa-edit right croix" (click)="modifier_produit()" ></i> </h4>
+            <h4>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()" > </i>  <i class="fa fa-edit right croix m-2" (click)="modifier_produit()" ></i> </h4>
             <ul class="list-group">
                 <li class="list-group-item">
                     Libellé : <strong>{{produit?.nom}}</strong>

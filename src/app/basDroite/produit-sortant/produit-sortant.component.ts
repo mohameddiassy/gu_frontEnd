@@ -37,6 +37,17 @@ export class ProduitSortantComponent implements OnInit {
     var p=Object.assign({},this.produit)
     this.api.sendEvent("modifier_produit",p);
   }
+  supression_produit(){
+    this.api.post_utilisateur_connecte({delete_produit:true,id_produit:this.produit.id_produit}).subscribe((data:any)=>{
+      console.log("Supression de produit: ",data)
+      if(data.status){
+        alert("Produit désactivé avec succés")
+        this.produit.etat=-1
+      }else{
+        alert("Echec de supression")
+      }
+    })
+  }
   recevoir_details(date:string){
     this.api.post_utilisateur_connecte({details_produits_sortant:true,date:date,id_produit:this.produit.id_produit}).subscribe((data:any)=>{
       this.les_details=data

@@ -95,5 +95,17 @@ export class DetailProduitComponent implements OnInit {
     this.jour=item
     this.recevoir_details(this.jour["date"])
   }
+  
+  supression_produit(){
+    this.api.post_utilisateur_connecte({delete_produit:true,id_produit:this.produit.id_produit}).subscribe((data:any)=>{
+      console.log("Supression de produit: ",data)
+      if(data.status){
+        alert("Produit désactivé avec succés")
+        this.produit.etat=-1
+      }else{
+        alert("Echec de supression")
+      }
+    })
+  }
 }
 
