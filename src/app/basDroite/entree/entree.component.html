@@ -1,46 +1,43 @@
+<!-- modal de supression -->
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">confirmation</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+        <h4 class="modal-title" id="modal-basic-title">Attention<i class="fa fa-exclamation-circle text-danger"></i>
+        </h4>
+        <i class="fa fa-close text-danger fa-2x" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
     </div>
     <div class="modal-body">
-        Attention
-        <i class="fa fa-exclamation-circle" style.color="#ff0000"></i>: voulez vous supprimer l'entree {{id_produit_supprime.nom}}
+        Voulez-vous supprimer l'entree "{{produit_supprime.nom}}"
     </div>
     <div class="modal-footer">
-
-        <button type="button" class="btn btn-outline-warning" (click)="modifier_entree(id_produit_supprime);modal.close('Save click')">modifier</button>
-        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
-        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_entree)">confirmer</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-danger"
+            (click)="suppression(produit_supprime);modal.close('Save click')">confirmer</button>
     </div>
 </ng-template>
-
-
-
-
+<!-- contenu -->
 <div class="">
     <h2>Les Entrées du {{item?.date | date:'dd MMMM YYYY'}}</h2>
     <hr>
     <div class="d-flex mb-2 les_statistiques">
         <button *ngFor="let item of les_statistiques" type="button" class="btn bg-{{item.bg}} text-white">
-          {{item.nom}} <br>
-          <span class="badge bg-primary">{{item.chiffre}}</span>
-      </button>
+            {{item.nom}} <br>
+            <span class="badge bg-primary">{{item.chiffre}}</span>
+        </button>
     </div>
 
     <div class="bg-light shadow-lg rounded p-1">
         <div class="row">
             <div class="col-6 col-sm-4 _add_produit_btn">
-                <button class="btn btn-success" (click)="ajouterentree()">{{api.bool.ajouterentree?"Fermer":"Ajouter Entrées"}}</button>
+                <button class="btn btn-success" (click)="ajouterentree()">{{api.bool.ajouterentree?"Fermer":"Ajouter
+                    Entrées"}}</button>
                 <button class="btn btn-warning mx-2 float-left" (click)="exportexcel()">
-                  <i class="fa fa-download"></i>
-              </button>
+                    <i class="fa fa-download"></i>
+                </button>
             </div>
 
             <div class="form-group col-6 col-sm-4">
-                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1" placeholder="Chercher une sortie">
+                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1"
+                    placeholder="Chercher une sortie">
             </div>
         </div>
         <div class="table-responsive">
@@ -49,39 +46,41 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Quantité avant</th>
-                        <th scope="col">nouvelle entrée</th>
-                        <th scope="col">Quantité aprés</th>
-                        <th scope="col">Prix Unitaire</th>
-                        <th scope="col">Consomation</th>
+                        <th scope="col">Qté avant</th>
+                        <th scope="col">Nlle entrée</th>
+                        <th scope="col">Qté aprés</th>
+                        <th scope="col">Prix Unit</th>
                         <th scope="col">Total</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of les_entree | filter:recherche;let i=index ">
+                    <tr (dblclick)="open(content,une_entree)"
+                        *ngFor="let une_entree of les_entree | slice: (page-1) * pageSize : page * pageSize| filter:recherche;let i=index">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{une_sortie.nom}}</td>
-                        <td>{{une_sortie.stock_avant}}</td>
-                        <td>{{une_sortie.quantite}}</td>
-                        <td>{{une_sortie.stock_apres}}</td>
-                        <td>{{une_sortie.prix_unitaire}}</td>
-                        <td>{{une_sortie.consommation}}
+                        <td>{{une_entree.nom}}</td>
+                        <td>{{une_entree.stock_avant}}</td>
+                        <td>{{une_entree.quantite}}</td>
+                        <td>{{une_entree.stock_apres}}</td>
+                        <td>{{une_entree.prix_unitaire |number:'1.0-2'}}</td>
+                        <td>{{une_entree.prix_unitaire*une_entree.quantite |number:'1.0-2'}}</td>
+                        <td>
+                            <i (click)="modifier_entree(une_entree)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                            <i (click)="open(content,une_entree)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
                         </td>
-                        <td>{{une_sortie.prix_unitaire*une_sortie.quantite}}</td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <tr *ngIf="les_entree.length==0" class="center">
-                        Pas d'entree pour cette date
+                    <tr *ngIf="les_entree.length==0">
+                        <td colspan="4">
+                            Pas d'entree pour cette date
+                        </td>
                     </tr>
                 </tfoot>
             </table>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_entree.length"></ngb-pagination>
         </div>
     </div>
-    <div class="text-wrap">
-
-    </div>
-
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajouterentreecomponent"></ng-container>

@@ -12,7 +12,6 @@ export class ListeproduitsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recevoir_produit_entrant()
-    
   }
   clique(item:any){
     this.jour=item
@@ -26,4 +25,9 @@ export class ListeproduitsComponent implements OnInit {
       this.api.sendEvent("item_liste_produit",this.jour)
     })
   }
+  ajouter_produit_sortant(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
+    this.api.sendEvent("ajouter_produit",{type:'sortant'});
+}
 }

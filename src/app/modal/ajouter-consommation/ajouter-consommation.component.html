@@ -3,9 +3,7 @@
         <div class="page-header">
             <div class="d-flex justify-content-between">
                 <h3 class="page-title mt-1">Ajouter une consommation pour le {{item?.date|date:'dd MMMM YYYY'}}</h3>
-                <span (click)="api.bool.ajouterconsommation=!api.bool.ajouterconsommation" class="material-icons croix">
-                    {{api.bool.ajouterconsommation?"close":"add"}}
-                </span>
+                <i  (click)="api.bool.ajouterconsommation=!api.bool.ajouterconsommation" class="fa fa-close fa-2x right croix text-danger"></i>
             </div>
         </div>
         <hr>
@@ -29,7 +27,7 @@
 
             <div class="form-group col-md-4">
                 <label>Le produit fini</label>
-                <select name="id_produit" [(ngModel)]="consommation.id_produit_sortant" (change)="changement()" class="form-control form-select" aria-label="Default select example">
+                <select name="id_produit_destination" [(ngModel)]="consommation.id_produit_destination" (change)="changement()" class="form-control form-select" aria-label="Default select example">
                   <option [value]="0" >Sélectionnez un produit fini</option>
                   <option  class="d-flex justify-content-between" [value]="produit.id_produit" *ngFor="let produit of api.global.les_produits_sortants;let i=index;let f=first">{{produit.nom}} </option>
               </select>

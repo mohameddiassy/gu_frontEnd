@@ -1,7 +1,12 @@
 .list-group-numbered{cursor: pointer;}
 .croix{cursor: pointer;}
+.couleur_body{
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: rgb(99, 194, 222);}
 .couleurgrise{background-color: rgb(216, 228, 224);}
-
+.text_bleu_clair{color: rgb(99, 194, 222);}
+.bg_bleu_clair{background-color: rgb(99, 194, 222);}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -11,4 +16,37 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .active{
     background-color: white;
     color: blue;
+}
+.fw-bold{
+    font-weight: none!important;
+    font-size: large;
+    font-family: -webkit-body;
+}
+.disabled_div {
+    opacity: 0.4;
+}
+.disabled_div_event {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.niveau_1{
+    color: red;
+    text-shadow: black 1px 0 5px ;
+}
+.niveau_2{
+    color: yellow;
+    text-shadow: black  1px 0 5px ;
+}
+.niveau_3{
+    color: green;
+    text-shadow: black  1px 0 5px ;
+}
+.bg_niveau_1{
+    background-color: rgba(255, 0, 0, 0.513)!important;
+}
+.bg_niveau_2{
+    background-color: yellow!important;
+}
+.bg_niveau_3{
+    background-color: rgba(4, 214, 4, 0.431)!important;
 }

@@ -17,11 +17,13 @@ export class AjouterConsommationComponent implements OnInit {
   les_type: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+      this.succes = false
+      this.echec = false
+      this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
+      
       if (data.code == "ajouterconsommation") {
         this.add=true;
-        this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.item = data.data
-
       }
       else if (data.code == "modifierconsommation")
       {
@@ -52,8 +54,6 @@ export class AjouterConsommationComponent implements OnInit {
         if (data.status) {
           this.succes = true
           this.consommation.quantite = "0"
-          // this.data.les_produits.push(data.produit)
-          // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("item_liste_consommation",this.item)
           this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         } else {
@@ -64,7 +64,6 @@ export class AjouterConsommationComponent implements OnInit {
   }
   Modifier()
   {
-
     this.echec = false
     this.succes = false
     this.consommation.date_consommation = this.item.date
@@ -77,10 +76,9 @@ export class AjouterConsommationComponent implements OnInit {
       this.api.post_utilisateur_connecte({ update_consommation: true, consommation: JSON.stringify(this.consommation) }).subscribe((data: any) => {
        console.log(data)
         if (data.status) {
+          this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
           this.succes = true
           this.consommation.quantite = "0"
-          // this.data.les_produits.push(data.produit)
-          // let date=moment(this.item.date).format("YYYY-MM-DD")
           this.api.sendEvent("item_liste_consommation",this.item)
           this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         } else {

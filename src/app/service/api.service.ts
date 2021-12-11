@@ -9,8 +9,8 @@ export class ApiService {
 
   // url="https://gu.h24code.com/nouveau/api.php"
   // url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
-  url="http://192.168.1.21/gestionuniversel_back/nouveau/api.php"
-  //url="http://localhost/gestionuniversel_back/nouveau/api.php"
+   url="http://192.168.1.21/gestionuniversel_back/nouveau/api.php"
+ // url="http://localhost/gestionuniversel_back/nouveau/api.php"
 
   global:any={
     fenetres:[],
@@ -46,7 +46,6 @@ export class ApiService {
     ajouterconsommation:false,
     ajouterutilisteur:false
   }
-
   private subjectCode=new Subject<any>()
 
   constructor(private http:HttpClient) { }
@@ -94,13 +93,11 @@ export class ApiService {
   getEvent():Observable<any>{
     return this.subjectCode.asObservable()
   }
-
   closeAllBool(){
     for (const cle in this.bool) {
       this.bool[cle]=false;
     }
   }
-
   parse(quantite:any)
   {
     if(parseInt(quantite).toString()=='NaN'){

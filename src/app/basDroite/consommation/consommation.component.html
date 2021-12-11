@@ -1,19 +1,16 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">confirmation</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
-  </button>
+        <h4 class="modal-title" id="modal-basic-title">Attention<i class="fa fa-exclamation-circle text-danger"></i>
+        </h4>
+        <i class="fa fa-close text-danger fa-2x" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
     </div>
     <div class="modal-body">
-        Attention
-        <i class="fa fa-exclamation-circle" style.color="#ff0000"></i>: voulez vous supprimer l'entree {{id_produit_supprime.nom}}
+        Voulez-vous supprimer la consommation du produit "{{produit_supprime.nom}}"
     </div>
     <div class="modal-footer">
-
-        <button type="button" class="btn btn-outline-warning" (click)="modifier_consommation(id_produit_supprime);modal.close('Save click')">modifier</button>
-        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
-        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_consommation)">confirmer</button>
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-danger"
+            (click)="suppression(produit_supprime);modal.close('Save click')">confirmer</button>
     </div>
 </ng-template>
 
@@ -40,7 +37,6 @@
             <div class="form-group col-6 col-sm-4">
                 <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control
                     me-1" placeholder="Chercher une sortie">
-                <!-- <button class="btn btn-success">Rechercher</button> -->
             </div>
         </div>
         <div class="table-responsive">
@@ -56,27 +52,32 @@
                         <th scope="col">Stock aprés</th>
                         <th scope="col">Prix unitaire</th>
                         <th scope="col">Total</th>
-                        <!-- <th scope="col">Actions</th> -->
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (dblclick)="open(content,une_consommation)" *ngFor="let une_consommation of les_consommations | filter:recherche;let i=index ">
+                    <tr (dblclick)="open(content,une_consommation)" *ngFor="let une_consommation of les_consommations | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_consommation.nom}}</td>
                         <td>{{une_consommation.stock_avant}}</td>
                         <td>{{une_consommation.quantite}}</td>
                         <td>{{une_consommation.stock_apres}}</td>
-                        <td>{{une_consommation.prix_unitaire}}</td>
+                        <td>{{une_consommation.prix_unitaire |number:'1.0-2'}}</td>
                         <td>{{une_consommation.prix_unitaire*une_consommation.quantite |number:'1.0-2'}}</td>
+                        <td>
+                            <i (click)="modifier_consommation(une_consommation)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                            <i (click)="open(content,une_consommation)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                        </td>
                     </tr>
                 </tbody>
-                
+
                 <tfoot>
                     <tr *ngIf="les_consommations==0" class="center">
                         Pas de consommation pour cette date
                     </tr>
                 </tfoot>
             </table>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_consommations.length"></ngb-pagination>
         </div>
     </div>
     <div class="text-wrap">

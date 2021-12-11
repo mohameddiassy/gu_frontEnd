@@ -12,13 +12,13 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./consommation.component.css']
 })
 export class ConsommationComponent implements OnInit {
-
-
+  pageSize=5
+  page=1
   les_consommations:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
   closeResult = '';
-  id_produit_supprime:any
+  produit_supprime:any
   ajouterconsommationcomponent=AjouterConsommationComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
@@ -100,7 +100,7 @@ export class ConsommationComponent implements OnInit {
 
 
   open(content:any,sortie:any) {
-    this.id_produit_supprime=sortie
+    this.produit_supprime=sortie
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -110,12 +110,16 @@ export class ConsommationComponent implements OnInit {
     });
   }
 
-  suppression(id_consommation:number)
+  suppression(produit:any)
   {
-    console.log("donnee send",id_consommation);
-    this.api.post_utilisateur_connecte({delete_consommation:true,id_consommation:id_consommation}).subscribe((data:any)=>{
-
-
+    console.log("donnee send",produit);
+    this.api.post_utilisateur_connecte({delete_consommation:true,id_consommation:produit.id_consommation}).subscribe((data:any)=>{
+      if (data.status) {
+        alert("Produit supprimé avec succes")
+        this.recevoir_consommations(this.item.date)
+      } else {
+        alert("Echec de suppression")
+      }
       console.log("status",data)
     })
   }

@@ -15,10 +15,15 @@ export class AjouterProduitComponent implements OnInit {
   modifier_bool=false
   constructor(public api:ApiService) { 
     api.getEvent().subscribe((data:any)=>{
+      this.succes=false
+      this.echec=false
+      this.produit={}
       if (data.code=="modifier_produit") {
-        this.produit=data.data
+        this.produit=Object.assign({},data.data)
         this.modifier_bool=true
       } else if (data.code=="ajouter_produit") {
+        var type=Object.assign({},data.data)
+        this.produit.type=type.type
         this.modifier_bool=false
       } else {
         this.initialiser_formulaire()
@@ -64,11 +69,11 @@ export class AjouterProduitComponent implements OnInit {
           this.produit.categorie=undefined
           this.recevoir_categorie()
         }
-        // mettre à jour la liste des produits en fonction du type
+        this.produit.id_produit=data.id;
         if (this.produit.type=="entrant") {
-          this.recevoir_produit_entrant()
+          this.api.global.les_produits_entrants.push(Object.assign({},this.produit))
         } else if (this.produit.type=="sortant") {
-          this.recevoir_produit_sortant()
+          this.api.global.les_produits_sortants.push(Object.assign({},this.produit))
         }
         this.initialiser_formulaire()
       } else {
@@ -79,16 +84,6 @@ export class AjouterProduitComponent implements OnInit {
   close(){
     this.api.bool.ajouterproduit=false
   }
-  recevoir_produit_entrant(){
-    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
-      this.api.global.les_produits_entrants=data.les_produits
-    })
-  }
-  recevoir_produit_sortant(){
-    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"sortant"}).subscribe((data:any)=>{
-      this.api.global.les_produits_sortants=data.les_produits
-    })
-  }
   modifier(){
     this.produit.id_enregistreur=1
     this.produit.id_entreprise=1
@@ -98,16 +93,11 @@ export class AjouterProduitComponent implements OnInit {
     this.api.post_utilisateur_connecte({modifier_produit:true,produit:JSON.stringify(this.produit)}).subscribe((data:any)=>{
       console.log(data)
       if (data.status) {
-        this.succes=true
         this.api.sendEvent("item_liste_produit",Object.assign({},this.produit))
-        this.close()
-        // mettre à jour la liste des produits en fonction du type
-        if (this.produit.type=="entrant") {
-          this.recevoir_produit_entrant()
-        } else if (this.produit.type=="sortant") {
-          this.recevoir_produit_sortant()
-        }
+        this.succes=true
+        
         this.initialiser_formulaire()
+        this.close()
       } else {
         this.echec=true
       }
