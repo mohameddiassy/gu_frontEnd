@@ -101,3 +101,14 @@ INFOS: Unsupported notification method: $/setTrace
 [0m2021.12.07 22:48:47 WARN  no build tool detected in workspace 'C:\Users\DELL\front\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
 déc. 07, 2021 11:05:28 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFOS: Unsupported notification method: $/setTrace
+[0m2021.12.08 23:23:34 INFO  Started: Metals version 0.10.9 in workspace 'C:\Users\DELL\front\gu_frontEnd' for client Visual Studio Code 1.62.3.[0m
+[0m2021.12.08 23:23:36 INFO  time: initialize in 2.15s[0m
+[0m2021.12.08 23:23:42 WARN  Build server is not auto-connectable.[0m
+[0m2021.12.08 23:23:42 WARN  no build tool detected in workspace 'C:\Users\DELL\front\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+déc. 09, 2021 12:03:06 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFOS: Unsupported notification method: $/setTrace
+[0m2021.12.09 17:22:40 INFO  shutting down Metals[0m
+[0m2021.12.11 15:23:15 INFO  Started: Metals version 0.10.9 in workspace 'C:\Users\DELL\front\gu_frontEnd' for client Visual Studio Code 1.62.3.[0m
+[0m2021.12.11 15:23:16 INFO  time: initialize in 1.3s[0m
+[0m2021.12.11 15:23:18 WARN  Build server is not auto-connectable.[0m
+[0m2021.12.11 15:23:18 WARN  no build tool detected in workspace 'C:\Users\DELL\front\gu_frontEnd'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
