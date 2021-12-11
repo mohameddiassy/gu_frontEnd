@@ -3,9 +3,7 @@
         <div class="page-header">
             <div class="d-flex justify-content-between">
                 <h3 class="page-title mt-1">Ajouter une entree pour le {{item?.date|date:'dd MMMM YYYY'}}</h3>
-                <span (click)="api.bool.ajouterentree=!api.bool.ajouterentree" class="material-icons croix">
-                  {{api.bool.ajouterentree?"close":"add"}}
-              </span>
+                <i  (click)="api.bool.ajouterentree=!api.bool.ajouterentree" class="fa fa-close fa-2x right croix text-danger"></i>
             </div>
         </div>
         <hr>
@@ -37,11 +35,10 @@
             </div>
             <div class="form-group col-md-3">
                 <label>Fournisseur</label>
-                <select name="option" [(ngModel)]="entree.id_fournisseur"  class="form-control form-select" aria-label="Default select example">
-                <!-- <option [value]="0" >Sélectionnez un fournisseur </option> -->
+                <select  (change)="changement_fourniseur()" name="option" [(ngModel)]="entree.id_fournisseur"  class="form-control form-select" aria-label="Default select example">
                 <option  class="d-flex justify-content-between" [value]="item.id_fournisseur" *ngFor="let item of api.global.les_fournisseurs ;let i=index;let f=first">{{item.nom}} </option>
                 <hr>
-                <option   value="nouveau_fournisseur">Nouveau fournisseur</option>
+                <option value="nouveau_fournisseur">Nouveau fournisseur</option>
             </select>
                 <p class="d-flex justify-content-center text-danger">{{fournisseur_vide}}</p>
 

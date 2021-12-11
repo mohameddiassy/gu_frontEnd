@@ -14,6 +14,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./entree.component.css']
 })
 export class EntreeComponent implements OnInit {
+  page=1
+  pageSize=10
   les_entree:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
@@ -24,7 +26,7 @@ export class EntreeComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   recherche=""
   closeResult = '';
-  id_produit_supprime:any
+  produit_supprime:any
 
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
@@ -39,7 +41,7 @@ export class EntreeComponent implements OnInit {
     api.getEvent().subscribe((data)=>{
       if(data.code=="entree_par_jours_par_enregistreur"){
         this.item=data.data
-        this.recevoir_entree(data.data.date)
+        this.recevoir_entree(this.item.date)
       }
     })
   }
@@ -98,8 +100,8 @@ export class EntreeComponent implements OnInit {
   }
 
 
-  open(content:any,sortie:any) {
-    this.id_produit_supprime=sortie
+  open(content:any,entree:any) {
+    this.produit_supprime=entree
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -109,13 +111,17 @@ export class EntreeComponent implements OnInit {
     });
   }
 
-  suppression(id_entree:any)
+  suppression(produit:any)
   {
-    console.log("donnee send",id_entree);
-    this.api.post_utilisateur_connecte({delete_entree:true,id_entree:id_entree}).subscribe((data:any)=>{
-
-
-      console.log("status",data)
+    console.log("donnee send",produit);
+    this.api.post_utilisateur_connecte({delete_entree:true,id_entree:produit.id_entree}).subscribe((data:any)=>{
+        if (data.status) {
+          alert("Produit supprimé avec succes")
+          this.recevoir_entree(this.item.date)
+        } else {
+          alert("Echec de suppression")
+        }
+        console.log("status",data)
     })
   }
 
@@ -128,4 +134,5 @@ export class EntreeComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
 }

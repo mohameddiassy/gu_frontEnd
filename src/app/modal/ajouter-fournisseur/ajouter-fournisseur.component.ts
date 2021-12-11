@@ -15,9 +15,11 @@ export class AjouterFournisseurComponent implements OnInit {
   modifier_bool = false
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+      this.fournisseur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
+      this.succes = false
+      this.echec = false
       if (data.code == "ajouter_fournisseur") {
         this.modifier_bool=false
-        this.fournisseur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
       } else if (data.code == "modifier_fournisseur") {
         this.modifier_bool=true
         this.fournisseur = data.data

@@ -6,9 +6,7 @@
                 <div class="row material-icons">
                     <h1 class="text-center align-items-center text-danger"> {{stock_en_cour}}</h1>
                 </div>
-                <span (click)="api.bool.ajoutersortie=!api.bool.ajoutersortie" class="material-icons croix">
-                    {{api.bool.ajoutersortie?"close":"add"}}
-                </span>
+                <i  (click)="api.bool.ajoutersortie=!api.bool.ajoutersortie" class="fa fa-close fa-2x right croix text-danger"></i>
             </div>
         </div>
         <hr>

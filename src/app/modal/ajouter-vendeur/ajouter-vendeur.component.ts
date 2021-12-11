@@ -18,9 +18,9 @@ export class AjouterVendeurComponent implements OnInit {
     api.getEvent().subscribe((data) => {
       this.echec = false
       this.succes = false
+      this.vendeur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
       if (data.code == "ajouter_vendeur") {
         this.modifier_bool=false
-        this.vendeur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
       } else if (data.code == "modifier_vendeur") {
         this.modifier_bool=true
         this.vendeur = data.data

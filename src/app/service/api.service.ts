@@ -46,7 +46,6 @@ export class ApiService {
     ajouterconsommation:false,
     ajouterutilisteur:false
   }
-
   private subjectCode=new Subject<any>()
 
   constructor(private http:HttpClient) { }
@@ -94,13 +93,11 @@ export class ApiService {
   getEvent():Observable<any>{
     return this.subjectCode.asObservable()
   }
-
   closeAllBool(){
     for (const cle in this.bool) {
       this.bool[cle]=false;
     }
   }
-
   parse(quantite:any)
   {
     if(parseInt(quantite).toString()=='NaN'){
