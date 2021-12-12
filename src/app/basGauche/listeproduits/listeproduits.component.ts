@@ -11,14 +11,14 @@ export class ListeproduitsComponent implements OnInit {
   constructor(public api:ApiService) { }
 
   ngOnInit(): void {
-    this.recevoir_produit_entrant()
+    this.recevoir_produit_sortant()
   }
   clique(item:any){
     this.jour=item
     this.api.sendEvent("item_liste_produit",item)
     this.api.closeSidenav()
   }
-  recevoir_produit_entrant(){
+  recevoir_produit_sortant(){
     this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"sortant"}).subscribe((data:any)=>{
       this.api.global.les_produits_sortants=data.products
       this.jour=this.api.global.les_produits_sortants[0]
