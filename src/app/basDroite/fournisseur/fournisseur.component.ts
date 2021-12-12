@@ -185,7 +185,6 @@ export class FournisseurComponent implements OnInit {
       if(element.status==0){
         somme+=parseFloat(element.montant)
       }
-      
     });
     return somme
   }
