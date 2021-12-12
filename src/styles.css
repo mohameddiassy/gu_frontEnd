@@ -3,12 +3,17 @@
 .couleur_body{
     color: #fff;
     background-color: #0b5ed7;
-    border-color: rgb(99, 194, 222);}
+    border-color: rgb(99, 194, 222);
+}
 .couleurgrise{background-color: rgb(216, 228, 224);}
 .text_bleu_clair{color: rgb(99, 194, 222);}
 .bg_bleu_clair{background-color: rgb(99, 194, 222);}
 
-html, body { height: 100%; }
+html, body { 
+    height: 100%; 
+    --couleur_primary: #C4C4C4;;
+    /* background-color: var(--couleur_primary); */
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .right{
     float: right;

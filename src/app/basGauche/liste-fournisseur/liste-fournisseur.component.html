@@ -1,10 +1,21 @@
 <div class="list-group list-group-numbered">
-    <div (click)="clique(item)" *ngFor="let item of api.global.les_fournisseurs | filter:api.global.recherche_hautgauche;let isFirst=first;" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action" >
-      <div class="ms-2 me-auto" *ngIf="!isFirst">
-        <div class="fw-bold">{{item.nom}}</div>
-         {{item.description}}
-      </div>
-      <span  *ngIf="!isFirst" class="badge bg-primary rounded-pill">{{(item.dette==null?0:item.dette)+" f"}}</span>
+
+  <div class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action couleurgrise">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Fournisseur</div>
     </div>
+    <span class="badge bg-primary rounded-pill croix" (click)="ajouter_fournisseur()">
+      <i class="fa fa-add fa-2x"></i>
+    </span>
   </div>
-  
+  <div (click)="clique(item)"
+    *ngFor="let item of api.global.les_fournisseurs.slice(1) | filter:api.global.recherche_hautgauche;let isFirst=first;"
+    class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action" [ngClass]="{'active': item==fournisseur,'disabled_div':item.etat==-1}">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{item.nom}}</div>
+      {{item.description}}
+    </div>
+    <span *ngIf="item.etat==0" class="badge bg-primary rounded-pill" [ngClass]="item==fournisseur?'bg-white text-primary': ''">{{(item.dette==null?0:item.dette)+" f"}}</span>
+    <i (click)="refresh(item)" *ngIf="item.etat!=0" class=" fa fa-refresh"></i>
+  </div>
+</div>

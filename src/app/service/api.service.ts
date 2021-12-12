@@ -9,8 +9,10 @@ export class ApiService {
 
   // url="https://gu.h24code.com/nouveau/api.php"
   // url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
-  url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
+ // url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
   //url="http://localhost/gestionuniversel_back/nouveau/api.php"
+   url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
+ // url="http://localhost/gestionuniversel_back/nouveau/api.php"
 
   global:any={
     fenetres:[],
@@ -33,7 +35,7 @@ export class ApiService {
     production_par_jours_par_enregistreur:[],
     consommation_par_jours_par_enregistreur:[],
     les_privileges:[],
-    afficher_menu_sidenav:false
+    afficher_menu_sidenav:false,
   }
   bool:any={
     ajouterentree:false,
@@ -44,7 +46,9 @@ export class ApiService {
     ajoutervendeur:false,
     ajouterproduction:false,
     ajouterconsommation:false,
-    ajouterutilisteur:false
+    ajouterutilisteur:false,
+    ajoutercheque:false,
+    ajouterdette:false
   }
   private subjectCode=new Subject<any>()
 
