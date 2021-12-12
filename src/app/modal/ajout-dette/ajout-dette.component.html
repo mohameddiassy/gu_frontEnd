@@ -1,9 +1,9 @@
-<div *ngIf="api.bool.ajoutercheque">
+<div *ngIf="api.bool.ajouterdette">
     <div class="content container-fluid">
         <div class="page-header">
             <div class="d-flex justify-content-between">
-                <h3 class="page-title mt-1">{{modifier_bool?"Modifier le cheque < "+cheque.nom+">" :"Ajouter un cheque"}} </h3>
-                <i (click)="api.bool.ajoutercheque=!api.bool.ajoutercheque"
+                <h3 class="page-title mt-1">{{modifier_bool?"Modifier la dette < "+dette.nom+">" :"Ajouter une dette"}} </h3>
+                <i (click)="api.bool.ajouterdette=!api.bool.ajouterdette"
                     class="fa fa-close fa-2x right croix text-danger"></i>
             </div>
         </div>
@@ -11,18 +11,18 @@
         <form class="row">
             <div class="form-group col-md-4">
                 <label>Montant</label>
-                <input placeholder="montant" type="text" class="form-control" name="montant" [(ngModel)]="cheque.montant">
+                <input placeholder="montant" type="text" class="form-control" name="montant" [(ngModel)]="dette.montant">
             </div>
             <div class="form-group col-md-4">
                 <label>Echéance</label>
                 <input placeholder="numero de telephone" type="date" class="form-control" name="date_echeance"
-                    [(ngModel)]="cheque.date_echeance">
+                    [(ngModel)]="dette.date_echeance">
             </div>
             <div class="form-group col-md-4">
-                <label>Etat du cheque</label>
-                <select name="cheque" [(ngModel)]="cheque.status" class="form-control form-select" aria-label="Default select example">
-                    <option [value]="0">Non encaissé</option>
-                    <option [value]="1">Encaissé</option>
+                <label>Etat du dette</label>
+                <select name="dette" [(ngModel)]="dette.status" class="form-control form-select" aria-label="Default select example">
+                    <option [value]="0">Non remboursé</option>
+                    <option [value]="1">Remboursé</option>
                 </select>
             </div>
         </form>
@@ -33,8 +33,8 @@
             l'opération effectuée a échoué!
         </div>
         <div class="m-2 d-flex justify-content-evenly">
-            <button *ngIf="!modifier_bool" type="button" class="col-md-2 btn btn-primary" (click)="add_cheque()">Ajouter cheque </button>
-            <button *ngIf="modifier_bool" type="button" class="col-md-2 btn btn-warning" (click)="edit_cheque()">Modifier cheque</button>
+            <button *ngIf="!modifier_bool" type="button" class="col-md-2 btn btn-primary" (click)="add_dette()">Ajouter dette </button>
+            <button *ngIf="modifier_bool" type="button" class="col-md-2 btn btn-warning" (click)="edit_dette()">Modifier dette</button>
         </div>
     </div>
 </div>

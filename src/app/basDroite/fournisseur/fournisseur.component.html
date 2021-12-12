@@ -21,8 +21,13 @@
             </ul>
             <h1>Statistiques</h1>
             <ul class="list-group">
-                <li class="list-group-item"> Dette : <strong>{{get_dette()}}</strong> </li>
-                <li class="list-group-item"> <i class="fa fa-add fa-2x croix " (click)="ajouter_cheque()"></i> Cheque : <strong>{{"1 million: echéance le 29 01 2021"}}</strong> </li>
+                <li class="list-group-item"> 
+                    <span class="badge bg-primary rounded-pill" (click)="ajouter_cheque()"> <i class="fa fa-add fa-2x croix " ></i> </span>
+                    
+                    Cheque : <strong>{{get_cheque_non_rembourse()|number}} non encaissé</strong> </li>
+                <li class="list-group-item"> 
+                    <span class="badge bg-primary rounded-pill" (click)="ajouter_dette()"> <i class="fa fa-add fa-2x croix " ></i> </span>
+                    Dette : <strong>{{get_dette()|number}}</strong> </li>
                 <li class="list-group-item"> ..... : <strong>{{"......."}}</strong> </li>
             </ul>
         </div>
@@ -41,12 +46,12 @@
                 <li class="list-group-item" *ngIf="les_details?.attente.length==0">
                     pas d'approvisionnement en attente
                 </li>
-                <ngb-pagination [pageSize]="5" [collectionSize]="les_details?.attente.length"></ngb-pagination>
+                <ngb-pagination [pageSize]="page" [pageSize]="pageSize" [collectionSize]="les_details?.attente.length"></ngb-pagination>
             </ul>
             <h2 class="card-title"><span>Approvisonnement</span> <span
                     class="right bg-primary btn text-white"> {{get_sum_entree() | number}} fcfa</span></h2>
             <ul class="list-group">
-                <div *ngFor="let item of les_details?.entree  | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index "
+                <div *ngFor="let item of les_details?.entree  | slice: (page_entree-1) * pageSize_entree : page_entree * pageSize_entree | filter:recherche;let i=index "
                     class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
                     <div class="ms-2 me-auto">
                     <div class="fw-bold">{{item?.quantite+" "+item.unite+" "+item.nom}}</div>
@@ -57,7 +62,7 @@
                 <li class="list-group-item" *ngIf="les_details?.entree.length==0">
                     pas d'entrée
                 </li>
-                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_details?.entree.length"></ngb-pagination>
+                <ngb-pagination [(page)]="page_entree" [pageSize]="pageSize_entree" [collectionSize]="les_details?.entree.length"></ngb-pagination>
             </ul>
         </div>
         <div class="card col-md-6 p-2">
@@ -74,25 +79,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  *ngFor="let un_cheque of les_details.cheques | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index ">
+                        <tr  *ngFor="let un_cheque of les_details.cheques | slice: (p-1) * ps : p * ps | filter:recherche;let i=index ">
                             <th scope="row">{{i+1}}</th>
                             <td>{{un_cheque.montant}}</td>
                             <td>{{un_cheque.date_echeance}}</td>
-                            <td>{{un_cheque.status==0?"en cours":"payé"}}</td>
+                            <td>{{un_cheque.status==0?"Non encaissé":"encaissé"}}</td>
                             <td>
-                                <i  class="fa fa-pen fa-1x text-warning m-2 croix"></i>
-                                <i class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                                <i  (click)="modifier_cheque(un_cheque)"  class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                                <i  (click)="delete_cheque(un_cheque)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
                             </td>
                         </tr>
                     </tbody>
     
                     <tfoot>
                         <tr *ngIf="les_details.cheques==0" class="center">
-                            <td colspan="4">Pas de cheques pour cette date</td>
+                            Pas de cheque pour cette date
                         </tr>
                     </tfoot>
                 </table>
-                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_details.dettes.length"></ngb-pagination>
+                <ngb-pagination [(page)]="p" [pageSize]="ps" [collectionSize]="les_details.cheques.length"></ngb-pagination>
             </div>
         </div>
         <div class="card col-md-6 p-2">
@@ -109,14 +114,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  *ngFor="let une_dette of les_details.dettes | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index ">
+                        <tr  *ngFor="let une_dette of les_details.dettes | slice: (page_dette-1) * pageSize_dette : page_dette * pageSize_dette | filter:recherche;let i=index ">
                             <th scope="row">{{i+1}}</th>
                             <td>{{une_dette.montant}}</td>
-                            <td>{{une_dette.date}}</td>
-                            <td>{{une_dette.statut}}</td>
+                            <td>{{une_dette.date_echeance}}</td>
+                            <td>{{une_dette.status==0?"Non remboursé":"remboursé"}}</td>
                             <td>
-                                <i  class="fa fa-pen fa-1x text-warning m-2 croix"></i>
-                                <i class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                                <i  (click)="modifier_dette(une_dette)"  class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                                <i  (click)="delete_dette(une_dette)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -127,7 +132,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_details.dettes.length"></ngb-pagination>
+                <ngb-pagination [(page)]="page_dette" [pageSize]="pageSize_dette" [collectionSize]="les_details.dettes.length"></ngb-pagination>
             </div>
         </div>
     </div>
@@ -138,4 +143,7 @@
 </div>
 <div class="fixed-bottom couleurgrise">
     <ng-container *ngComponentOutlet="ajouterchequecomponent"></ng-container>
+</div>
+<div class="fixed-bottom couleurgrise">
+    <ng-container *ngComponentOutlet="ajouterdettecomponent"></ng-container>
 </div>

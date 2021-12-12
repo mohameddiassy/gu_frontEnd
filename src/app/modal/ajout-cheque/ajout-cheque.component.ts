@@ -23,7 +23,7 @@ export class AjoutChequeComponent implements OnInit {
         this.fournisseur=data.data
       } else if (data.code == "modifier_cheque") {
         this.modifier_bool=true
-        this.cheque = data.data.cheque
+        this.cheque = Object.assign({},data.data.cheque)
         this.fournisseur=data.data.fournisseur
       }
     })
@@ -59,6 +59,7 @@ status:'int(1)'
         console.log("Opération effectuée avec succés sur la table cheque. Réponse= ",reponse)
         this.cheque.id_cheque=reponse.id
         this.api.sendEvent("apres_ajouter_cheque",Object.assign({},this.cheque));
+        this.cheque={}
       }else{
         alert("L'opération sur la table cheque a échoué")
         console.log("L'opération sur la table cheque a échoué. Réponse= ",reponse)
@@ -81,6 +82,7 @@ status:'int(1)'
     }
     */
    this.cheque.id_entreprise=this.api.global.utilisateur_connecte.entreprise_selectionnee.id_entreprise
+   this.cheque.id_fournisseur=this.fournisseur.id_fournisseur
     //transformation des parametres à envoyer
     let formdata=new FormData()
     for (const key in this.cheque) {
@@ -91,7 +93,11 @@ status:'int(1)'
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
+        alert("Opération effectuée avec succés sur la table cheque")
         console.log("Opération effectuée avec succés sur la table cheque. Réponse= ",reponse)
+        this.api.sendEvent("item_liste_fournisseur",this.fournisseur);
+        this.cheque={}
+        this.api.closeAllBool()
       }else{
         console.log("L'opération sur la table cheque a échoué. Réponse= ",reponse)
       }
@@ -101,22 +107,5 @@ status:'int(1)'
       console.log("Erreur inconnue! ",error)
     })
   }
-  get_cheque(){
-    let api_url="http://localhost/gestionuniversel_back/amar_api/cheque/get"; // recevoir tout
-    //let api_url="http://localhost/gestionuniversel_back/amar_api/cheque/get?id_cheque=1"; // recevoir le(a) cheque d'identifiant 1
-
-    this.http.get(api_url).subscribe((reponse:any)=>{
-        //when success
-        if(reponse.status){
-            console.log("Opération effectuée avec succés sur la table cheque. Réponse= ",reponse);
-        }else{
-            console.log("L'opération sur la table cheque a échoué. Réponse= ",reponse);
-        }
-    },
-    (error:any)=>{
-        //when error
-        console.log("Erreur inconnue! ",error);
-    })
-}
 
 }

@@ -74,6 +74,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './basGauche/menu/menu.component';
 import { ProduitSortantComponent } from './basDroite/produit-sortant/produit-sortant.component';
 import { AjoutChequeComponent } from './modal/ajout-cheque/ajout-cheque.component';
+import { AjoutDetteComponent } from './modal/ajout-dette/ajout-dette.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -150,6 +151,7 @@ const routes: Routes = [
     MenuComponent,
     ProduitSortantComponent,
     AjoutChequeComponent,
+    AjoutDetteComponent,
 
   ],
   imports: [
