@@ -17,6 +17,8 @@ export class VendeurComponent implements OnInit {
   vendeur:any
   ajoutervendeurcomponent=AjouterVendeurComponent
   fermer_popup:boolean = false;
+  pageSize=5;
+  page=1;
   mon_versement:any;
   les_sorties = [];
   fileName= 'rapport_journalier.xlsx';
