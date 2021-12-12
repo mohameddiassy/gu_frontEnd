@@ -33,7 +33,7 @@ export class ApiService {
     production_par_jours_par_enregistreur:[],
     consommation_par_jours_par_enregistreur:[],
     les_privileges:[],
-    afficher_menu_sidenav:false
+    afficher_menu_sidenav:false,
   }
   bool:any={
     ajouterentree:false,
@@ -44,7 +44,9 @@ export class ApiService {
     ajoutervendeur:false,
     ajouterproduction:false,
     ajouterconsommation:false,
-    ajouterutilisteur:false
+    ajouterutilisteur:false,
+    ajoutercheque:false,
+    ajouterdette:false
   }
   private subjectCode=new Subject<any>()
 
