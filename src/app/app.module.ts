@@ -73,6 +73,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuComponent } from './basGauche/menu/menu.component';
 import { ProduitSortantComponent } from './basDroite/produit-sortant/produit-sortant.component';
+import { AjoutChequeComponent } from './modal/ajout-cheque/ajout-cheque.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -148,6 +149,7 @@ const routes: Routes = [
     MesEntreprisesComponent,
     MenuComponent,
     ProduitSortantComponent,
+    AjoutChequeComponent,
 
   ],
   imports: [

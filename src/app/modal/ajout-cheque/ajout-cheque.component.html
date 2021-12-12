@@ -1,0 +1,41 @@
+<div *ngIf="api.bool.ajoutercheque">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="d-flex justify-content-between">
+                <h3 class="page-title mt-1">{{modifier_bool?"Modifier le cheque < "+cheque.nom+">" :"Ajouter un cheque"}} </h3>
+                <i (click)="api.bool.ajoutercheque=!api.bool.ajoutercheque"
+                    class="fa fa-close fa-2x right croix text-danger"></i>
+            </div>
+        </div>
+        <hr>
+        <form class="row">
+            <div class="form-group col-md-4">
+                <label>Montant</label>
+                <input placeholder="montant" type="text" class="form-control" name="montant" [(ngModel)]="cheque.montant">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Echéance</label>
+                <input placeholder="numero de telephone" type="date" class="form-control" name="date_echeance"
+                    [(ngModel)]="cheque.date_echeance">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Etat du cheque</label>
+                <select name="cheque" [(ngModel)]="cheque.status" class="form-control form-select" aria-label="Default select example">
+                    <option [value]="0">Non payé</option>
+                    <option [value]="1">Payé</option>
+                    <option [value]="2">Invalidé</option>
+                </select>
+            </div>
+        </form>
+        <div *ngIf="succes" class="alert alert-success" role="alert">
+            Opération effectuée avec succés!
+        </div>
+        <div *ngIf="echec" class="alert alert-danger" role="alert">
+            l'opération effectuée a échoué!
+        </div>
+        <div class="m-2 d-flex justify-content-evenly">
+            <button *ngIf="!modifier_bool" type="button" class="col-md-2 btn btn-primary" (click)="add_cheque()">Ajouter cheque </button>
+            <button *ngIf="modifier_bool" type="button" class="col-md-2 btn btn-warning" (click)="edit_cheque()">Modifier cheque</button>
+        </div>
+    </div>
+</div>
