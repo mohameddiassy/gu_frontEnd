@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { AjouterProduitComponent } from 'src/app/modal/ajouter-produit/ajouter-produit.component';
 import { ApiService } from 'src/app/service/api.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-produit-sortant',
@@ -15,7 +17,9 @@ export class ProduitSortantComponent implements OnInit {
   les_details: any;
   les_statistiques:any=[]
   jour:any
-  constructor(public api:ApiService) { 
+  produit_supprime:any
+  closeResult = '';
+  constructor(public api:ApiService,private modalService: NgbModal) { 
     // this.produit=this.api.global.les_produits[0]
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit"){
@@ -29,6 +33,27 @@ export class ProduitSortantComponent implements OnInit {
     this.api.closeAllBool()
     this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
     this.api.sendEvent("ajouter_produit",this.produit);
+  }
+
+  open(content:any,entree:any) {
+    this.produit_supprime=entree
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
   
   modifier_produit(){

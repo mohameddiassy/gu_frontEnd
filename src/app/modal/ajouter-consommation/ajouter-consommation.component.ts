@@ -76,17 +76,19 @@ export class AjouterConsommationComponent implements OnInit {
       this.api.post_utilisateur_connecte({ update_consommation: true, consommation: JSON.stringify(this.consommation) }).subscribe((data: any) => {
        console.log(data)
         if (data.status) {
+          this.api.closeAllBool()
           this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
           this.succes = true
           this.consommation.quantite = "0"
           this.api.sendEvent("item_liste_consommation",this.item)
           this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
+          alert("Modification reussie !")
         } else {
           this.echec = true
+          alert("Echec de la modification !")
         }
       })
     }
-
   }
   changement() {
     if(this.consommation.id_produit=="nouveau_produit")

@@ -50,11 +50,14 @@ export class AjouterFournisseurComponent implements OnInit {
     this.api.post_utilisateur_connecte({ modifier_fournisseur: true, fournisseur: JSON.stringify(this.fournisseur) }).subscribe((data: any) => {
       console.log(data)
       if (data.status) {
+        this.api.closeAllBool()
         this.succes = true
         // this.api.sendEvent("ajouterfournisseur",this.item)
         this.recevoir_fournisseur()
+        alert("Modification reussie !")
       } else {
         this.echec = true
+        alert("Echec de la modification !")
       }
     })
   }

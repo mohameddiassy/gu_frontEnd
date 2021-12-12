@@ -26,7 +26,6 @@ export class AjouterSortieComponent implements OnInit {
     api.getEvent().subscribe((data) => {
       this.succes = false
       this.echec = false
-
       if (data.code == "ajoutersortie") {
         this.add=true;
         this.item = data.data
@@ -131,10 +130,13 @@ modifier()
 
     this.api.post_utilisateur_connecte({ update_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
       if (data.status) {
+        this.api.closeAllBool()
         this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
         this.succes=true;
+        alert("Modification reussie !")
       } else {
         this.echec = true
+        alert("Echec de la modification !")
       }
       console.log(data);
     })

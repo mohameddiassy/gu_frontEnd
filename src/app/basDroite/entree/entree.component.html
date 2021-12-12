@@ -1,7 +1,7 @@
 <!-- modal de supression -->
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Attention<i class="fa fa-exclamation-circle text-danger"></i>
+        <h4 class="modal-title" id="modal-basic-title">CONFIRMATION<i class="fa fa-exclamation-circle text-danger"></i>
         </h4>
         <i class="fa fa-close text-danger fa-2x" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
     </div>
@@ -9,9 +9,9 @@
         Voulez-vous supprimer l'entree "{{produit_supprime.nom}}"
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-default" (click)="modal.close('Save click')">annuler</button>
         <button type="button" class="btn btn-outline-danger"
-            (click)="suppression(produit_supprime);modal.close('Save click')">confirmer</button>
+            (click)="suppression(produit_supprime);modal.close('Save click')">Supprimer</button>
     </div>
 </ng-template>
 <!-- contenu -->

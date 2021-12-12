@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">confirmation</h4>
+        <h4 class="modal-title" id="modal-basic-title">CONFIRMATION</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
   <span aria-hidden="true">&times;</span>
 </button>
@@ -11,11 +11,11 @@
     </div>
     <div class="modal-footer">
 
-        <button type="button" class="btn btn-outline-warning" (click)="modifier_sortie(id_produit_supprime,item);modal.close('Save click')">modifier</button>
-        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
-        <button type="button" class="btn btn-outline-success" (click)="suppression(id_produit_supprime.id_sortie);modal.close('Save click')">confirmer</button>
+        <button type="button" class="btn btn-outline-default" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-danger" (click)="suppression(id_produit_supprime.id_sortie);modal.close('Save click')">Supprimer</button>
     </div>
 </ng-template>
+
 
 
 <!-- retour  -->
@@ -68,8 +68,6 @@
     </div>
     <div class="modal-footer">
 
-        <button type="button" class="btn btn-outline-warning" (click)="modal.close('Save click');verser(id_produit_supprime)">versement</button>
-        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
     </div>
 </ng-template>
 
@@ -118,10 +116,11 @@
                         <th scope="col">M. versé</th>
                         <th scope="col">Reliquat</th>
                         <th scope="col">Prix unitaire</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of les_sorties | filter:recherche;let i=index ">
+                    <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of les_sorties | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_sortie.vendeur}}</td>
                         <td>{{une_sortie.nom}}</td>
@@ -133,6 +132,10 @@
                         <td>{{une_sortie.verse}}</td>
                         <td>{{((une_sortie.quantite-une_sortie.restant-une_sortie.ration)*une_sortie.prix_unitaire)-une_sortie.verse}}<i (click)="open(content2,une_sortie)" class="fa fa-edit text-warning"></i></td>
                         <td>{{une_sortie.prix_unitaire}}</td>
+                        <td>
+                            <i (click)="modifier_sortie(une_sortie)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                            <i (click)="open(content,une_sortie)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -141,7 +144,7 @@
                     </tr>
                 </tfoot>
             </table>
-
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_sorties.length"></ngb-pagination>
         </div>
     </div>
     <div class="text-wrap">

@@ -116,7 +116,7 @@ export class ConsommationComponent implements OnInit {
     this.api.post_utilisateur_connecte({delete_consommation:true,id_consommation:produit.id_consommation}).subscribe((data:any)=>{
       if (data.status) {
         alert("Produit supprimé avec succes")
-        this.recevoir_consommations(this.item.date)
+        this.recevoir_consommations(this.item.date)  
       } else {
         alert("Echec de suppression")
       }
