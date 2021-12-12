@@ -1,10 +1,41 @@
 <div class="list-group list-group-numbered">
-    <div (click)="clique(item)" *ngFor="let item of api.global.les_vendeurs | filter:api.global.recherche_hautgauche" class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
-      <div class="ms-2 me-auto">
-        <div class="fw-bold">{{item.nom}}</div>
-        {{item.description}}
-      </div>
-      <span class="badge bg-primary rounded-pill">{{item.dette}}</span>
+  <div
+    class="
+      list-group-item
+      d-flex
+      justify-content-between
+      align-items-start
+      item_liste
+      list-group-item-action
+      couleurgrise
+    "
+  >
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Nouveau Vendeur</div>
     </div>
+    <span class="badge bg-primary rounded-pill" (click)="ajouter_vendeur()">
+      <i class="fa fa-add fa-2x"></i>
+    </span>
+  </div>
+  <div
+    (click)="clique(item)"
+    *ngFor="
+      let item of api.global.les_vendeurs
+        | filter: api.global.recherche_hautgauche
+    "
+    class="
+      list-group-item
+      d-flex
+      justify-content-between
+      align-items-start
+      item_liste
+      list-group-item-action
+    "
+  >
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">{{ item.nom }}</div>
+      {{ item.description }}
+    </div>
+    <span class="badge bg-primary rounded-pill">{{ item.dette }}</span>
+  </div>
 </div>
-  

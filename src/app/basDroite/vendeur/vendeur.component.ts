@@ -16,10 +16,16 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class VendeurComponent implements OnInit {
   vendeur:any
   ajoutervendeurcomponent=AjouterVendeurComponent
+  fermer_popup:boolean = false;
+  pageSize=5;
+  page=1;
+  mon_versement:any;
   les_sorties = [];
   fileName= 'rapport_journalier.xlsx';
   item:any={};
   mois_select: any;
+  restant:any;
+  message:any;
   ajoutersortiecomponent=AjouterSortieComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
@@ -33,7 +39,8 @@ export class VendeurComponent implements OnInit {
     {nom:"Montant total Reliquat",chiffre:0,bg:"ffffff"},
     {nom:"Total commission",chiffre:0,bg:"ffffff"},
   ]
-  id_produit_supprime: any;
+  
+  produit_supprime: any;
   
   constructor(public api:ApiService,private modalService: NgbModal) { 
     // this.produit=this.api.global.les_produits[0]
@@ -71,6 +78,7 @@ export class VendeurComponent implements OnInit {
   modifier_sortie(sortie:any,date:any){
     this.api.closeAllBool()
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
+    this.item.date = sortie.date_sortie
     this.api.sendEvent("modifiersortie",[this.item,sortie]);
 
   }
@@ -145,7 +153,7 @@ export class VendeurComponent implements OnInit {
 
   }
   open(content:any,sortie:any) {
-    this.id_produit_supprime=sortie
+    this.produit_supprime=sortie
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -159,28 +167,72 @@ export class VendeurComponent implements OnInit {
   {
     console.log("donnee send",id_sortie);
     this.api.post_utilisateur_connecte({delete_sortie:true,id_sortie:id_sortie}).subscribe((data:any)=>{
-
-
       console.log("status",data)
+      if(data.status)
+      {
+        alert("Sortie supprimer avec succès!")
+        this.recevoir_sorties()
+
+      }
+      else{
+
+        alert("Echec suppression !")
+      }
+
+      
     })
   }
 
   verser(verse:any)
   {
-    console.log("sendddd",verse)
+    var somme_total = (verse.quantite - verse.restant)*verse.prix_unitaire
 
-    this.api.post_utilisateur_connecte({add_versement: true,versement:JSON.stringify(verse) }).subscribe((data:any)=>{
-      console.log("retour",data)
-    })
+    console.log("somme total",somme_total)
+    var versement_total = this.api.parse(verse.verse) +  this.api.parse(this.mon_versement)
+    console.log("versement_total",versement_total)
+    if( versement_total > somme_total){
+      //this.message = "Votre dette est de: "+(somme_total - this.api.parse(verse.verse));
+      alert("Echec ! Votre dette est de: "+(somme_total - this.api.parse(verse.verse)));
+    }
+    else{
+      console.log("sendddd",verse)
+      verse.verse = this.mon_versement
+
+      this.api.post_utilisateur_connecte({add_versement: true,versement:JSON.stringify(verse) }).subscribe((data:any)=>{
+        console.log("retour",data)
+        if(data.status){
+          alert("Versement ajouter avec succes !")
+          this.recevoir_sorties()
+
+        }
+      })
+    }
   }
   retour(retour:any)
   {
-    console.log("sendddd",retour)
+    if(retour.quantite<this.restant)
+    {
+      this.message="erreur";
+    }
+    else
+    {
 
+  
+    retour.restant=this.restant
+    console.log("sendddd",retour)
     this.api.post_utilisateur_connecte({update_retour:true,sortie:JSON.stringify(retour) }).subscribe((data:any)=>{
-      console.log("retour",data)
+     
+      if(data.status)
+      {
+        alert('retour enregistré avec succès')
+        this.recevoir_sorties()
+        this.fermer_popup = true;
+      }
+      else{
+        alert('retour enregistré avec des erreurs')
+      }
     })
-  }
+  }}
 
 
   private getDismissReason(reason: any): string {
@@ -219,5 +271,9 @@ export class VendeurComponent implements OnInit {
   onDeactivate(data:any): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
+
+
+ 
+
   
 }

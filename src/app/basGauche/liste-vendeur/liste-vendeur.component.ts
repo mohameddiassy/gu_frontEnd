@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { AjouterVendeurComponent } from 'src/app/modal/ajouter-vendeur/ajouter-vendeur.component';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -8,6 +9,9 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./liste-vendeur.component.css']
 })
 export class ListeVendeurComponent implements OnInit {
+
+  vendeur:any
+  ajoutervendeurcomponent=AjouterVendeurComponent
 
   constructor(public api:ApiService) { }
 
@@ -28,5 +32,11 @@ export class ListeVendeurComponent implements OnInit {
         console.log("erreur de reception des fenetre")
       }
     })
+  }
+
+  ajouter_vendeur(){
+    this.api.closeAllBool()
+    this.api.bool.ajoutervendeur=!this.api.bool.ajoutervendeur
+    this.api.sendEvent("ajouter_vendeur",this.vendeur);
   }
 }

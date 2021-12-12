@@ -20,9 +20,12 @@ export class AjouterEntreeComponent implements OnInit {
   add=true;
   item: any
   constructor(public api: ApiService) {
-    this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
-
+    
     api.getEvent().subscribe((data) => {
+      
+      this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
+      this.succes = false
+      this.echec = false
       if (data.code == "ajouterentree") {
         this.add=true;
         this.item = data.data
@@ -96,13 +99,6 @@ export class AjouterEntreeComponent implements OnInit {
     })
   }
   changement() {
-    if(this.entree.id_fournisseur=="nouveau_fournisseur")
-    {
-      this.api.closeAllBool()
-      this.api.sendEvent("ajouterfournisseur",this.item)
-      this.api.bool.ajouterfournisseur=true
-    }
-
     this.api.global.les_produits_entrants .forEach((element:any) => {
       if(element.id_produit==this.entree.id_produit)
       {
@@ -111,7 +107,15 @@ export class AjouterEntreeComponent implements OnInit {
         return
       }
     });
+  }
+  changement_fourniseur(){
+    if(this.entree.id_fournisseur=="nouveau_fournisseur")
+    {
+      this.api.closeAllBool()
+      this.api.sendEvent("ajouterfournisseur",this.item)
+      this.api.bool.ajouterfournisseur=true
     }
+  }
   recevoir_produit_entrants() {
     this.api.post_utilisateur_connecte({get_products_by_id_entreprise: true, type: "entrant"}).subscribe((data: any) => {
       this.api.global.les_produits_entrants = data.products

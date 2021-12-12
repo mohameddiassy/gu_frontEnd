@@ -24,16 +24,21 @@ export class AjouterSortieComponent implements OnInit {
   item: any
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+      this.succes = false
+      this.echec = false
+      this.sortie = { quantite: "",restant: '0',verse:'0', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0',commission:'0'}
       if (data.code == "ajoutersortie") {
         this.add=true;
         this.item = data.data
-        this.recevoir_productions()
+         this.recevoir_productions()
+        // this.recevoir_produit_sortant()
       }
      else if (data.code == "modifiersortie") {
         this.add=false;
         this.sortie =Object.assign({}, data.data[1])// data.data[1]
         this.item =Object.assign({}, data.data[0])// data.data[0]
-        this.recevoir_productions()
+         this.recevoir_productions()
+        // this.recevoir_produit_sortant()
         console.log(this.sortie);
       }
     })
@@ -42,6 +47,7 @@ export class AjouterSortieComponent implements OnInit {
   ngOnInit(): void {
     this.recevoir_produit_sortant()
     this.recevoir_vendeur()
+  
   }
 
 
@@ -130,8 +136,13 @@ modifier()
       if (data.status) {
         this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
         this.succes=true;
+        alert("Produit modifier avec succes")
+        //this.api.closeAllBool()
+        this.api.sendEvent('item_list_vendeur',this.item)
+      
       } else {
         this.echec = true
+        alert("Echec de la modification")
       }
       console.log(data);
     })
@@ -156,9 +167,13 @@ modifier()
       }
     });
     }
+    changement_produit(){
+      console.log('ppppppppppppppppp')
+    }
   recevoir_produit_sortant() {
     this.api.post_utilisateur_connecte({ get_products_by_id_entreprise: true, type: "sortant"}).subscribe((data: any) => {
       this.api.global.les_produits_sortants = data.products
+      console.log("reception des produit sortant ",data)
     })
   }
   recevoir_sorties() {
@@ -177,8 +192,9 @@ modifier()
   }
 
   recevoir_productions(){
+    
     this.api.post_utilisateur_connecte({get_production_day:true,date:this.item?.date}).subscribe((data:any)=>{
-      console.log("production",data.les_produits)
+      console.log("production",this.item?.date);
 
       if (data.status) {
 

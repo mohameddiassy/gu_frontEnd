@@ -17,10 +17,12 @@ export class AjouterProductionComponent implements OnInit {
   les_productions: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+      this.succes = false
+      this.echec = false
+      this.production = { quantite: "0", id_produit: "0", date_production: ""}
       if (data.code == "ajouterproduction") {
         this.add=true;
         this.item = data.data
-
       }
       else if (data.code == "modifierproduction")
       {

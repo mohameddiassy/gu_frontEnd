@@ -3,9 +3,7 @@
         <div class="page-header">
             <div class="d-flex justify-content-between">
                 <h3 class="page-title mt-1">Ajouter une production pour le {{item?.date|date:'dd MMMM YYYY'}}</h3>
-                <span (click)="api.bool.ajouterproduction=!api.bool.ajouterproduction" class="material-icons croix">
-                    <img style="width: 30px;" src="../../assets/close.png" />
-                </span>
+                <i  (click)="api.bool.ajouterproduction=!api.bool.ajouterproduction" class="fa fa-close fa-2x right croix text-danger"></i>
             </div>
         </div>
         <hr>
