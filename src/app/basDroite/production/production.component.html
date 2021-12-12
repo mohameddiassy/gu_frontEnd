@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">confirmation</h4>
+        <h4 class="modal-title" id="modal-basic-title">CONFIRMATION</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -10,8 +10,7 @@
         <i class="fa fa-exclamation-circle" style.color="#ff0000"></i>: voulez vous supprimer l'entree {{id_produit_supprime.nom}}
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-warning" (click)="modifier_production(id_produit_supprime);modal.close('Save click')">modifier</button>
-        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">annuler</button>
+        <button type="button" class="btn btn-outline-default" (click)="modal.close('Save click')">annuler</button>
         <button type="button" class="btn btn-outline-danger" (click)="suppression(id_produit_supprime.id_production);modal.close('Save click')">supprimer</button>
     </div>
 </ng-template>
@@ -51,6 +50,7 @@
                         <th scope="col">Nom</th>
                         <th scope="col">Quantité</th>
                         <th scope="col">Date enregistrement</th>
+                        <th scope="col">Action</th>
 
                     </tr>
                 </thead>
@@ -60,6 +60,10 @@
                         <td>{{une_sortie.nom}}</td>
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.date_enregistrement | date:'hh :mm : ss a'}}</td>
+                        <td>
+                            <i (click)="modifier_production(une_sortie)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                            <i (click)="open(content,une_sortie)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -68,6 +72,7 @@
                     </tr>
                 </tfoot>
             </table>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="api.global.les_productions.length"></ngb-pagination>
         </div>
     </div>
     <div class="text-wrap">

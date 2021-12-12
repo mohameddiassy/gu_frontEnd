@@ -59,7 +59,6 @@ export class AjouterEntreeComponent implements OnInit {
     else if (this.entree.quantite =='0')
     {
       this.champ=true
-
     }
     else if (this.entree.prix_unitaire =='0')
     {
@@ -86,15 +85,16 @@ export class AjouterEntreeComponent implements OnInit {
     this.champ=false;
     this.api.post_utilisateur_connecte({update_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
       if (data.status) {
+        this.api.closeAllBool()
         this.succes = true
-
-
         // this.data.les_produits.push(data.produit)
         // let date=moment(this.item.date).format("YYYY-MM-DD")
         this.api.sendEvent("entree_par_jours_par_enregistreur",this.item)
+        alert("Modification reussi !")
 
       } else {
         this.echec = true
+        alert("Echec de la modification !")
       }
     })
   }

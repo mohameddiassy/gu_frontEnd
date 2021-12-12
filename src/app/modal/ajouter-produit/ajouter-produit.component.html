@@ -3,7 +3,7 @@
         <div class="page-header">
             <div class="d-flex justify-content-between">
                 <h3 class="page-title mt-1">{{modifier_bool?"Modifier le produit
-                    < "+produit.nom+">":"Ajouter un Produit"}}</h3>
+                    <"+produit.nom+">":"Ajouter un Produit"}}</h3>
                     <i (click)="close()" class="fa fa-close croix right fa-2x text-danger"></i>
             </div>
         </div>
@@ -16,6 +16,7 @@
                             <div class="form-group">
                                 <label>Nom Produit</label>
                                 <input required type="text" class="form-control" name="nom" [(ngModel)]="produit.nom">
+                                <!-- <span style="color: red;">Nom produit invalide !</span> -->
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -28,7 +29,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Prix Unitaire</label>
-                                <input type="text" class="form-control" name="prix_unitaire" [(ngModel)]="produit.prix_unitaire">
+                                <input type="number" class="form-control" name="prix_unitaire" [(ngModel)]="produit.prix_unitaire">
                             </div>
                         </div>
 
@@ -72,6 +73,9 @@
                     </div>
                     <div *ngIf="echec" class="alert alert-danger" role="alert">
                         l'opération effectuée a échoué!
+                    </div>
+                    <div *ngIf="notok" class="alert alert-warning" role="alert">
+                        Veuillez rensegner tous les champs !
                     </div>
                     <div class="d-flex justify-content-evenly mb-3 mt-1">
                         <button *ngIf="!modifier_bool" type="button" class="btn btn-primary float-right" (click)="ajouter()">Ajouter</button>

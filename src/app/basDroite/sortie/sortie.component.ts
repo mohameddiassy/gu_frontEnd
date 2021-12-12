@@ -18,6 +18,8 @@ export class SortieComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
   recherche=""
   closeResult = '';
+  pageSize=5
+  page=1
  les_stats:any
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:0,bg:"ffffff"},
@@ -47,11 +49,11 @@ export class SortieComponent implements OnInit {
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
     this.api.sendEvent("ajoutersortie",this.item);
   }
-  modifier_sortie(sortie:any,date:any){
+
+  modifier_sortie(sortie:any){
     this.api.closeAllBool()
     this.api.bool.ajoutersortie=!this.api.bool.ajoutersortie
     this.api.sendEvent("modifiersortie",[this.item,sortie]);
-
   }
 
   downloadFile(data: any) {
@@ -134,9 +136,12 @@ export class SortieComponent implements OnInit {
   {
     console.log("donnee send",id_sortie);
     this.api.post_utilisateur_connecte({delete_sortie:true,id_sortie:id_sortie}).subscribe((data:any)=>{
-
-
-      console.log("status",data)
+      if(data.status){
+        alert("Suppression reussie !")
+        this.recevoir_sorties(this.item.date)
+      }else{
+        alert("Echec de la suppression !")
+      }
     })
   }
 

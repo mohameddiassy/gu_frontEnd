@@ -10,6 +10,7 @@
             {{ stock_en_cour }}
           </h1>
         </div>
+<<<<<<< HEAD
         <i
           (click)="api.bool.ajoutersortie = !api.bool.ajoutersortie"
           class="fa fa-close fa-2x right croix text-danger"
@@ -83,6 +84,55 @@
           name="commission"
         />
       </div>
+=======
+        <hr>
+        <form class="row">
+        <div class="form-group required col-md-4">
+                <label>Produit</label>
+                <select name="id_produit" [(ngModel)]="sortie.id_produit" required class="form-control form-select" aria-label="Default select example">
+                    <option [value]="0" >Sélectionnez un produit</option>
+                    <option [value]="item.id_produit" *ngFor="let item of api.global.les_production_day;let i=index;let f=first">{{item.nom}}</option>
+                    <option [value]="-3" class="text-primary">ajouter un nouveau produit</option>
+                  </select>
+                <p class="d-flex justify-content-center text-danger ">{{produit_vide}}</p>
+            </div>
+            <div class="form-group required col-md-2">
+                <label>Quantité</label>
+                <input value="sortie.quantite" placeholder="quantité" [(ngModel)]="sortie.quantite" required type="number" class="form-control" name="quantite">
+                <p class="d-flex justify-content-center text-danger ">{{quantite_vide}}</p>
+
+            </div>
+            <div class="form-group required col-md-2">
+                <label>retour</label>
+                <input placeholder="restant" [(ngModel)]="sortie.restant" required type="number" class="form-control" name="restant">
+            </div>
+            <div class="form-group required col-md-2">
+                <label>Commission</label>
+                <input placeholder="restant" [(ngModel)]="sortie.commission" required type="number" class="form-control" name="commission">
+            </div>
+
+            
+            <div class="form-group required col-md-4">
+                <label> vendeur </label>
+                <select name="id_vendeur" [(ngModel)]="sortie.id_vendeur" (change)="changement()" class="form-control form-select" required aria-label="Default select example">
+                  <option [value]="0">Sélectionnez un produit</option>
+                  <option [value]="item.id_vendeur " *ngFor="let item of api.global.les_vendeurs;let i=index;let f=first">{{item.nom}}</option>
+                  <option [value]="-3" class="text-primary">ajouter un nouveau vendeur</option>
+                </select>
+                <p class="d-flex justify-content-center text-danger ">{{vendeur_vide}}</p>
+            </div>
+            <div class="form-group required col-md-4">
+                <label> prix unitaire </label>
+                <input required placeholder="prix_unitaire" [(ngModel)]="sortie.prix_unitaire" type="number" class="form-control" name="prix_unitaire">
+                <p class="d-flex justify-content-center text-danger ">{{prix_vide}}</p>
+            </div>
+            <div class="form-group required col-md-4">
+                <label> Versement </label>
+                <input required placeholder="verser" [(ngModel)]="sortie.verse" type="number" class="form-control" name="somme_verse">
+                <p class="d-flex justify-content-center text-danger ">{{prix_vide}}</p>
+
+            </div>
+>>>>>>> mamour_branch
 
       <div class="form-group required col-md-4">
         <label> vendeur </label>

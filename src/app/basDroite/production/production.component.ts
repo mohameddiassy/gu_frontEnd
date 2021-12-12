@@ -21,6 +21,8 @@ export class ProductionComponent implements OnInit {
   ajouterproductioncomponent=AjouterProductionComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
+  pageSize=5
+  page=1
   les_statistiques:any=[
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Stock initial",chiffre:12,bg:"secondary"},
@@ -49,6 +51,7 @@ export class ProductionComponent implements OnInit {
     this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
     this.api.sendEvent("ajouterproduction",this.item);
   }
+
   modifier_production(production:any){
     this.api.closeAllBool()
     this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
@@ -86,7 +89,6 @@ export class ProductionComponent implements OnInit {
      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
      /* save to file */
      XLSX.writeFile(wb, this.fileName);
-
   }
 
   recevoir_productions(date:string){
@@ -95,6 +97,7 @@ export class ProductionComponent implements OnInit {
       console.log("get_production_date",data)
     })
   }
+
   modifier_consommation(une_entree:any){
     this.api.bool.ajouterentree=!this.api.bool.ajouterentree
      this.api.sendEvent("modifierentree",une_entree);
@@ -116,7 +119,12 @@ export class ProductionComponent implements OnInit {
     console.log("donnee send",id_production);
     this.api.post_utilisateur_connecte({delete_production:true,id_production:id_production}).subscribe((data:any)=>{
 
-      console.log("status",data)
+      if(data.status){
+        alert("Suppression reussie !")
+        this.recevoir_productions(this.item.date)
+      }else{
+        alert("Echec de la suppression")
+      }
     })
   }
   private getDismissReason(reason: any): string {

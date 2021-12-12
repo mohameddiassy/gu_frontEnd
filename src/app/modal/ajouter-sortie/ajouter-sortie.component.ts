@@ -26,7 +26,6 @@ export class AjouterSortieComponent implements OnInit {
     api.getEvent().subscribe((data) => {
       this.succes = false
       this.echec = false
-      this.sortie = { quantite: "",restant: '0',verse:'0', id_produit: "0", id_enregistreur: 1, date_sortie: "" ,id_vendeur:"0",prix_unitaire:'0',commission:'0'}
       if (data.code == "ajoutersortie") {
         this.add=true;
         this.item = data.data
@@ -47,7 +46,7 @@ export class AjouterSortieComponent implements OnInit {
   ngOnInit(): void {
     this.recevoir_produit_sortant()
     this.recevoir_vendeur()
-  
+
   }
 
 
@@ -134,15 +133,13 @@ modifier()
 
     this.api.post_utilisateur_connecte({ update_sortie: true, sortie: JSON.stringify(this.sortie) }).subscribe((data: any) => {
       if (data.status) {
+        this.api.closeAllBool()
         this.api.sendEvent("sortie_par_jours_par_enregistreur",this.item)
         this.succes=true;
-        alert("Produit modifier avec succes")
-        //this.api.closeAllBool()
-        this.api.sendEvent('item_list_vendeur',this.item)
-      
+        alert("Modification reussie !")
       } else {
         this.echec = true
-        alert("Echec de la modification")
+        alert("Echec de la modification !")
       }
       console.log(data);
     })
@@ -192,7 +189,7 @@ modifier()
   }
 
   recevoir_productions(){
-    
+
     this.api.post_utilisateur_connecte({get_production_day:true,date:this.item?.date}).subscribe((data:any)=>{
       console.log("production",this.item?.date);
 
