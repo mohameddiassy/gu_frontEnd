@@ -25,6 +25,7 @@ export class ListeProduitEntrantComponent implements OnInit {
     this.api.closeSidenav()
   }
   ajouter_produit_entrant(){
+    this.api.closeSidenav()
       this.api.closeAllBool()
       this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
       this.api.sendEvent("ajouter_produit",{type:'entrant'});
