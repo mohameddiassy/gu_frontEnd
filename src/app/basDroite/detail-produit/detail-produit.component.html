@@ -6,9 +6,13 @@
             <span class="badge bg-primary">{{item.chiffre}}</span>
         </button>
     </div>
-    <div class="row">
+    <div class="" *ngIf="api.global.les_produits_entrants.length==0">
+        <p>pas d'activite sur cette page</p>
+        <img src="../../../assets/chaton.gif" />
+    </div>
+    <div class="row" *ngIf="api.global.les_produits_entrants.length!=0">
         <div class="card col-md-5 p-2">
-            <h1>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()" > </i><i class="fa fa-edit right croix m-2" (click)="modifier_produit()" ></i> </h1>
+            <h1>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()"> </i><i class="fa fa-edit right croix m-2" (click)="modifier_produit()"></i> </h1>
             <ul class="list-group">
                 <li class="list-group-item">
                     Libellé : <strong>{{produit?.nom}}</strong>
@@ -29,10 +33,10 @@
                     Consommation moyenne : <strong>{{produit?.moyenne|number}}</strong> {{produit?.unite}} / jour
                 </li>
                 <li class="list-group-item">
-                    Consommation minimale :  <strong>{{produit?.min|number}}</strong> {{produit?.unite}} / jour
+                    Consommation minimale : <strong>{{produit?.min|number}}</strong> {{produit?.unite}} / jour
                 </li>
                 <li class="list-group-item">
-                    Consommation maximale :  <strong>{{produit?.max|number}}</strong> {{produit?.unite}} / jour
+                    Consommation maximale : <strong>{{produit?.max|number}}</strong> {{produit?.unite}} / jour
                 </li>
                 <li class="list-group-item">
                     Jours restant : <strong>{{produit?.nb_jour|number}}</strong> jour
@@ -41,12 +45,10 @@
             </ul>
         </div>
         <div class="card col-md-7 p-2">
-            <h2 class="card-title"><span>Entrée</span> <span
-                    class="right bg-primary btn text-white">{{get_sum_entree()|number}} fcfa</span></h2>
+            <h2 class="card-title"><span>Entrée</span> <span class="right bg-primary btn text-white">{{get_sum_entree()|number}} fcfa</span></h2>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of les_details?.entree">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
-                        class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
                 <li class="list-group-item" *ngIf="les_details?.entree.length==0">
                     pas d'entrée
@@ -57,8 +59,7 @@
                     {{get_sum_consommation()|number}} fcfa</span></h2>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of les_details?.consommation">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
-                        class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
                 <li class="list-group-item" *ngIf="les_details?.consommation.length==0">
                     pas de consommation

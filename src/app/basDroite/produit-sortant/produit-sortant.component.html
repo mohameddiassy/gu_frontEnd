@@ -5,9 +5,13 @@
             <span class="badge bg-primary">{{item.chiffre}}</span>
         </button>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="api.global.les_produits_sortants.length==0">
+        <p> pas d'activié sur cette page</p>
+    </div>
+
+    <div class="row" *ngIf="api.global.les_produits_sortants.length!=0">
         <div class="card col-md-5 p-2">
-            <h4>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()" > </i>  <i class="fa fa-edit right croix m-2" (click)="modifier_produit()" ></i> </h4>
+            <h4>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()"> </i> <i class="fa fa-edit right croix m-2" (click)="modifier_produit()"></i> </h4>
             <ul class="list-group">
                 <li class="list-group-item">
                     Libellé : <strong>{{produit?.nom}}</strong>
@@ -36,12 +40,10 @@
             </ul>
         </div>
         <div class="card col-md-7 p-2">
-            <h2 class="card-title"><span>Consommation</span> <span
-                    class="right bg-primary btn text-white">{{get_sum_consommation()|number}} fcfa</span></h2>
+            <h2 class="card-title"><span>Consommation</span> <span class="right bg-primary btn text-white">{{get_sum_consommation()|number}} fcfa</span></h2>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of les_details?.consommation">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
-                        class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
                 <li class="list-group-item" *ngIf="les_details?.consommation.length==0">
                     pas de consommations
@@ -52,8 +54,7 @@
                     {{get_sum_production()|number}} fcfa</span></h2>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of les_details?.production">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
-                        class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
                 <li class="list-group-item" *ngIf="les_details?.production.length==0">
                     pas de productions

@@ -10,12 +10,12 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-default" (click)="modal.close('Save click')">annuler</button>
-        <button type="button" class="btn btn-outline-danger"
-            (click)="suppression(produit_supprime);modal.close('Save click')">Supprimer</button>
+        <button type="button" class="btn btn-outline-danger" (click)="suppression(produit_supprime);modal.close('Save click')">Supprimer</button>
     </div>
 </ng-template>
 <!-- contenu -->
-<div class="">
+
+<div class=" ">
     <h2>Les Entrées du {{item?.date | date:'dd MMMM YYYY'}}</h2>
     <hr>
     <div class="d-flex mb-2 les_statistiques">
@@ -36,8 +36,7 @@
             </div>
 
             <div class="form-group col-6 col-sm-4">
-                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1"
-                    placeholder="Chercher une sortie">
+                <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1" placeholder="Chercher une sortie">
             </div>
         </div>
         <div class="table-responsive">
@@ -55,8 +54,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr (dblclick)="open(content,une_entree)"
-                        *ngFor="let une_entree of les_entree | slice: (page-1) * pageSize : page * pageSize| filter:recherche;let i=index">
+                    <tr (dblclick)="open(content,une_entree)" *ngFor="let une_entree of les_entree | slice: (page-1) * pageSize : page * pageSize| filter:recherche;let i=index">
                         <th scope="row">{{i+1}}</th>
                         <td>{{une_entree.nom}}</td>
                         <td>{{une_entree.stock_avant}}</td>
