@@ -225,8 +225,11 @@
       <tbody>
         <tr
           (dblclick)="open(content, une_sortie)"
+          
           *ngFor="
-            let une_sortie of les_sorties | filter: recherche;
+            let une_sortie of les_sorties
+              | slice: (page - 1) * pageSize:page * pageSize
+              | filter: recherche;
             let i = index
           "
         >
@@ -285,6 +288,12 @@
         </tr>
       </tfoot>
     </table>
+    <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="les_sorties.length"
+      ></ngb-pagination>
+    
   </div>
 </div>
 <div class="fixed-bottom couleurgrise">
