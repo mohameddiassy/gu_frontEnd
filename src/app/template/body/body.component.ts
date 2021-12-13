@@ -21,6 +21,8 @@ import { ListeVendeurComponent } from 'src/app/basGauche/liste-vendeur/liste-ven
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
 import { MenuComponent } from 'src/app/basGauche/menu/menu.component';
+import { AjouterConsommationComponent } from 'src/app/modal/ajouter-consommation/ajouter-consommation.component';
+import { AjouterDepenseComponent } from 'src/app/modal/ajouter-depense/ajouter-depense.component';
 import { ApiService } from 'src/app/service/api.service';
 import { BasDroiteOptionnelComponent } from '../bas-droite-optionnel/bas-droite-optionnel.component';
 import { BasDroiteComponent } from '../bas-droite/bas-droite.component';
@@ -35,6 +37,8 @@ import { HautGaucheComponent } from '../haut-gauche/haut-gauche.component';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
+  ajouterconsommationcomponent=AjouterConsommationComponent
+  ajouterdepenseomponent=AjouterDepenseComponent
   les_components:any={
     hautgauche:HautGaucheComponent,
     hautdroite:HautDroiteComponent,

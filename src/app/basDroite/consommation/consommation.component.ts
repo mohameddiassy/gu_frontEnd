@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
 import { AjouterConsommationComponent } from 'src/app/modal/ajouter-consommation/ajouter-consommation.component';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { AjouterDepenseComponent } from 'src/app/modal/ajouter-depense/ajouter-depense.component';
 
 
 @Component({
@@ -14,12 +16,14 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ConsommationComponent implements OnInit {
   pageSize=5
   page=1
+  pageSize_depenses=5
+  page_depenses=1
   les_consommations:any=[]
+  les_depenses:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
   closeResult = '';
   produit_supprime:any
-  ajouterconsommationcomponent=AjouterConsommationComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
   les_statistiques:any=[
@@ -31,7 +35,7 @@ export class ConsommationComponent implements OnInit {
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
     {nom:"Nombre de Sorties",chiffre:12,bg:"primary"},
   ]
-  constructor(public api:ApiService,private modalService: NgbModal) {
+  constructor(public api:ApiService,private modalService: NgbModal,private http:HttpClient) {
     api.getEvent().subscribe((data)=>{
       if(data.code=="item_liste_consommation"){
         this.item=data.data
@@ -41,6 +45,7 @@ export class ConsommationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   ajouter(){
@@ -48,10 +53,20 @@ export class ConsommationComponent implements OnInit {
     this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
     this.api.sendEvent("ajouterconsommation",this.item);
   }
+  ajouter_depense(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterdepense=!this.api.bool.ajouterdepense
+    this.api.sendEvent("ajouter_depense",this.item);
+  }
   modifier_consommation(consommation:any){
     this.api.closeAllBool()
     this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
     this.api.sendEvent("modifierconsommation",[this.item,  consommation]);
+  }
+  modifier_depense(depense:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterdepense=!this.api.bool.ajouterdepense
+    this.api.sendEvent("modifier_depense",{jour:this.item,depense:depense});
   }
 
   downloadFile(data: any) {
@@ -91,14 +106,10 @@ export class ConsommationComponent implements OnInit {
   recevoir_consommations(date:string){
     this.api.post_utilisateur_connecte({get_consommation_date:true,date:date}).subscribe((data:any)=>{
       this.les_consommations=data.les_consommations
+      this.les_depenses=data.les_depenses
       console.log("get_consommation_date",data)
     })
   }
-
-
-
-
-
   open(content:any,sortie:any) {
     this.produit_supprime=sortie
 
@@ -131,6 +142,44 @@ export class ConsommationComponent implements OnInit {
       return 'by clicking on a backdrop';
     } else {
       return `with: ${reason}`;
+    }
+  }
+  delete_depense(depense:any){
+    //transformation des parametres à envoyer
+    let formdata=new FormData()
+    for (const key in depense) {
+      formdata.append(key,depense[key])
+    }
+
+    let api_url="http://localhost/gestionuniversel_back/amar_api/depense/delete" 
+    this.http.post(api_url,formdata).subscribe((reponse:any)=>{
+      //when success
+      if(reponse.status){
+        alert("Opération effectuée avec succés sur la table depense.")
+        this.les_depenses.splice(this.les_depenses.indexOf(depense),1)
+        console.log("Opération effectuée avec succés sur la table depense. Réponse= ",reponse)
+      }else{
+        alert("L'opération sur la table depense a échoué")
+        console.log("L'opération sur la table depense a échoué. Réponse= ",reponse)
+      }
+    },
+    (error:any)=>{
+      //when error
+      console.log("Erreur inconnue! ",error)
+    })
+  }
+  regulier(regulier:string){
+    switch (regulier) {
+      case '0':
+        return "non";
+      case '1':
+          return "chaque jour";
+      case '2':
+          return "chaque semaine";
+      case '3':
+          return "chaque mois";
+      default:
+        return "rien";
     }
   }
 }
