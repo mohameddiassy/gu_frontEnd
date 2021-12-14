@@ -22,9 +22,9 @@ export class AjouterProductionComponent implements OnInit {
       this.production = { quantite: "0", id_produit: "0", date_production: ""}
       if (data.code == "ajouterproduction") {
         this.add=true;
-        this.item = data.data
-      }
-      else if (data.code == "modifierproduction")
+        this.item = data.data.jour
+        this.production.id_produit=data.data.id_produit
+      }else if (data.code == "modifierproduction")
       {
         this.add=false;
         this.production=Object.assign({}, data.data[1])
@@ -52,7 +52,7 @@ export class AjouterProductionComponent implements OnInit {
 
           this.succes = true
           this.production.quantite = "0"
-          this.api.sendEvent("item_liste_production",this.item)
+          this.api.sendEvent("apres_ajout_production",this.item)
         } else {
           this.echec = true
         }

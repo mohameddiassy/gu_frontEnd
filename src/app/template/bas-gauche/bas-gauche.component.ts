@@ -5,6 +5,8 @@ import { ListeAnalyticsComponent } from 'src/app/basGauche/liste-analytics/liste
 import { ListejoursComponent } from 'src/app/basGauche/listejours/listejours.component';
 import { ListemoisComponent } from 'src/app/basGauche/listemois/listemois.component';
 import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listeproduits.component';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-bas-gauche',
@@ -13,7 +15,6 @@ import { ListeproduitsComponent } from 'src/app/basGauche/listeproduits/listepro
 })
 export class BasGaucheComponent implements OnInit {
   clicksuscription: Subscription = new Subscription;
-
   lecomponent=ListejoursComponent
   les_components:any=[
     ListejoursComponent,
@@ -22,7 +23,7 @@ export class BasGaucheComponent implements OnInit {
     ListeAnalyticsComponent
   ]
   // lecomponent=ListejoursComponent
-  constructor(public data:DataService){
+  constructor(public data:DataService,public api:ApiService){
     this.clicksuscription=data.recevoirClick().subscribe((data:any)=>{
       // on ecoute le changement du select depuis un component different
       console.log("on ecoute le changement du select depui un component different")
@@ -32,5 +33,4 @@ export class BasGaucheComponent implements OnInit {
     })
   }
   ngOnInit(){}
-
 }

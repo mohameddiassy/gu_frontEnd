@@ -1,16 +1,18 @@
-<div class="container"  [ngClass]="{'disabled_div_event':fournisseur?.etat==-1}">
-    <div class="row">
+<div class="container" [ngClass]="{'disabled_div_event':fournisseur?.etat==-1}">
+    <div class="" *ngIf="api.global.les_fournisseurs.slice(1).length==0">
+        <p> pas d'activtés sur cette page</p>
+        <img src="../../../assets/chaton.gif" />
+
+    </div>
+    <div class="row" *ngIf="api.global.les_fournisseurs.slice(1).length!=0">
         <div class="card col-md-5 p-2">
-            <h1>Détails <i class="fa fa-trash right croix m-2" (click)="supprimer_fournisseur()" > </i><i class="fa fa-edit right croix m-2" (click)="modifier_fournisseur()" ></i> </h1>
+            <h1>Détails <i class="fa fa-trash right croix m-2" (click)="supprimer_fournisseur()"> </i><i class="fa fa-edit right croix m-2" (click)="modifier_fournisseur()"></i> </h1>
             <ul class="list-group">
                 <li class="list-group-item">
                     Libellé : <strong>{{fournisseur?.nom}}</strong>
                 </li>
                 <li class="list-group-item">
                     Description : <strong>{{fournisseur?.description}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Dette : <strong>{{fournisseur?.dette}}</strong>
                 </li>
                 <li class="list-group-item">
                     Téléphone : <strong>{{fournisseur?.telephone}}</strong>
@@ -21,6 +23,13 @@
             </ul>
             <h1>Statistiques</h1>
             <ul class="list-group">
+<<<<<<< HEAD
+                <li class="list-group-item">
+                    <span class="badge bg-primary rounded-pill" (click)="ajouter_cheque()"> <i class="fa fa-add fa-2x croix " ></i> </span> Cheque : <strong>{{get_cheque_non_rembourse()|number}} non encaissé</strong> </li>
+                <li class="list-group-item">
+                    <span class="badge bg-primary rounded-pill" (click)="ajouter_dette()"> <i class="fa fa-add fa-2x croix " ></i> </span> Dette : <strong>{{get_dette()|number}}</strong> </li>
+                <li class="list-group-item"> ..... : <strong>{{"......."}}</strong> </li>
+=======
                 <li class="list-group-item"> 
                     <span class="badge bg-primary rounded-pill" (click)="ajouter_cheque()"> <i class="fa fa-add fa-2x croix " ></i> </span>
                     
@@ -28,18 +37,16 @@
                 <li class="list-group-item"> 
                     <span class="badge bg-primary rounded-pill" (click)="ajouter_dette()"> <i class="fa fa-add fa-2x croix " ></i> </span>
                     Dette : <strong>{{get_dette()|number}}</strong> </li>
-                <li class="list-group-item"> ..... : <strong>{{"......."}}</strong> </li>
+>>>>>>> version1.2
             </ul>
         </div>
         <div class="card col-md-7 p-2">
-            <h2 class="card-title"><span>En attente</span> <span
-                    class="right bg-primary btn text-white"> {{get_sum_attente() | number}} fcfa</span></h2>
+            <h2 class="card-title"><span>En attente</span> <span class="right bg-primary btn text-white"> {{get_sum_attente() | number}} fcfa</span></h2>
             <ul class="list-group">
-                <div *ngFor="let item of les_details?.attente  | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index "
-                    class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
+                <div *ngFor="let item of les_details?.attente  | slice: (page-1) * pageSize : page * pageSize | filter:recherche;let i=index " class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
                     <div class="ms-2 me-auto">
-                    <div class="fw-bold">{{item?.quantite+" "+item.unite+" "+item.nom}}</div>
-                    {{item.date_enregistrement | date :'dd MMMM YYYY'}}
+                        <div class="fw-bold">{{item?.quantite+" "+item.unite+" "+item.nom}}</div>
+                        {{item.date_enregistrement | date :'dd MMMM YYYY'}}
                     </div>
                     <span class="badge bg-primary rounded-pill">{{((item.quantite*item.prix_unitaire) | number)+" FCFA"}}</span>
                 </div>
@@ -48,14 +55,12 @@
                 </li>
                 <ngb-pagination [pageSize]="page" [pageSize]="pageSize" [collectionSize]="les_details?.attente.length"></ngb-pagination>
             </ul>
-            <h2 class="card-title"><span>Approvisonnement</span> <span
-                    class="right bg-primary btn text-white"> {{get_sum_entree() | number}} fcfa</span></h2>
+            <h2 class="card-title"><span>Approvisonnement</span> <span class="right bg-primary btn text-white"> {{get_sum_entree() | number}} fcfa</span></h2>
             <ul class="list-group">
-                <div *ngFor="let item of les_details?.entree  | slice: (page_entree-1) * pageSize_entree : page_entree * pageSize_entree | filter:recherche;let i=index "
-                    class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
+                <div *ngFor="let item of les_details?.entree  | slice: (page_entree-1) * pageSize_entree : page_entree * pageSize_entree | filter:recherche;let i=index " class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action">
                     <div class="ms-2 me-auto">
-                    <div class="fw-bold">{{item?.quantite+" "+item.unite+" "+item.nom}}</div>
-                    {{item.date_enregistrement | date :'dd MMMM YYYY'}}
+                        <div class="fw-bold">{{item?.quantite+" "+item.unite+" "+item.nom}}</div>
+                        {{item.date_enregistrement | date :'dd MMMM YYYY'}}
                     </div>
                     <span class="badge bg-primary rounded-pill">{{((item.quantite*item.prix_unitaire) | number)+" FCFA"}}</span>
                 </div>
@@ -79,18 +84,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  *ngFor="let un_cheque of les_details.cheques | slice: (p-1) * ps : p * ps | filter:recherche;let i=index ">
+                        <tr *ngFor="let un_cheque of les_details.cheques | slice: (p-1) * ps : p * ps | filter:recherche;let i=index ">
                             <th scope="row">{{i+1}}</th>
                             <td>{{un_cheque.montant}}</td>
                             <td>{{un_cheque.date_echeance}}</td>
                             <td>{{un_cheque.status==0?"Non encaissé":"encaissé"}}</td>
                             <td>
-                                <i  (click)="modifier_cheque(un_cheque)"  class="fa fa-pen fa-1x text-warning m-2 croix"></i>
-                                <i  (click)="delete_cheque(un_cheque)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                                <i (click)="modifier_cheque(un_cheque)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                                <i (click)="delete_cheque(un_cheque)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
                             </td>
                         </tr>
                     </tbody>
-    
+
                     <tfoot>
                         <tr *ngIf="les_details.cheques==0" class="center">
                             Pas de cheque pour cette date
@@ -114,18 +119,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  *ngFor="let une_dette of les_details.dettes | slice: (page_dette-1) * pageSize_dette : page_dette * pageSize_dette | filter:recherche;let i=index ">
+                        <tr *ngFor="let une_dette of les_details.dettes | slice: (page_dette-1) * pageSize_dette : page_dette * pageSize_dette | filter:recherche;let i=index ">
                             <th scope="row">{{i+1}}</th>
                             <td>{{une_dette.montant}}</td>
                             <td>{{une_dette.date_echeance}}</td>
                             <td>{{une_dette.status==0?"Non remboursé":"remboursé"}}</td>
                             <td>
-                                <i  (click)="modifier_dette(une_dette)"  class="fa fa-pen fa-1x text-warning m-2 croix"></i>
-                                <i  (click)="delete_dette(une_dette)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                                <i (click)="modifier_dette(une_dette)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                                <i (click)="delete_dette(une_dette)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
                             </td>
                         </tr>
                     </tbody>
-    
+
                     <tfoot>
                         <tr *ngIf="les_details.dettes==0" class="center">
                             Pas de dettes pour cette date

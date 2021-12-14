@@ -48,7 +48,8 @@ export class ApiService {
     ajouterconsommation:false,
     ajouterutilisteur:false,
     ajoutercheque:false,
-    ajouterdette:false
+    ajouterdette:false,
+    ajouterdepense:false,
   }
   private subjectCode=new Subject<any>()
 

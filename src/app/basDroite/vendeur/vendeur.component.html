@@ -1,305 +1,209 @@
 <!-- Debut model suppression -->
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-      Attention<i class="fa fa-exclamation-circle text-danger"></i>
-    </h4>
-    <i
-      class="fa fa-close text-danger fa-2x"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></i>
-  </div>
-  <div class="modal-body">
-    Voulez-vous supprimer la sortie du produit "{{ produit_supprime.nom }}"
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-success"
-      (click)="modal.close('Save click')"
-    >
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Attention<i class="fa fa-exclamation-circle text-danger"></i>
+        </h4>
+        <i class="fa fa-close text-danger fa-2x" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
+    </div>
+    <div class="modal-body">
+        Voulez-vous supprimer la sortie du produit "{{ produit_supprime.nom }}"
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">
       annuler
     </button>
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="
+        <button type="button" class="btn btn-outline-danger" (click)="
         suppression(produit_supprime.id_sortie); modal.close('Save click')
-      "
-    >
+      ">
       confirmer
     </button>
-  </div>
+    </div>
 </ng-template>
 <!-- Fin model suppression -->
 <!-- retour  -->
 <ng-template #content1 let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-      Ajouter le restant {{ produit_supprime.nom }}
-    </h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            Ajouter le restant {{ produit_supprime.nom }}
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    vous voulez ajouter le restant du {{ produit_supprime.nom }} à la date
-    {{ item?.date | date: "dd MMMM YYYY" }}
+    </div>
+    <div class="modal-body">
+        vous voulez ajouter le restant du {{ produit_supprime.nom }} à la date {{ item?.date | date: "dd MMMM YYYY" }}
 
-    <form class="row">
-      <div class="form-group required col">
-        <label>retour</label>
-        <input
-          placeholder="restant"
-          [(ngModel)]="restant"
-          required
-          type="number"
-          class="form-control"
-          name="restant"
-        />
-        <label>{{ message }}</label>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-warning"
-      (click)="retour(produit_supprime)"
-    >
+        <form class="row">
+            <div class="form-group required col">
+                <label>retour</label>
+                <input placeholder="restant" [(ngModel)]="restant" required type="number" class="form-control" name="restant" />
+                <label>{{ message }}</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" (click)="retour(produit_supprime)">
       >
 
       <i class="fa fa-save"></i>
     </button>
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="modal.close('Save click')"
-    >
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">
       annuler
     </button>
-  </div>
+    </div>
 </ng-template>
 
 <!-- nouveau versement -->
 
 <ng-template #content2 let-modal id="pop">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">nouveau versement</h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">nouveau versement</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    vous voulez faire un nouveau versement pour la sortie
-    {{ produit_supprime.nom }} à la date
-    {{ item?.date | date: "dd MMMM YYYY" }}
+    </div>
+    <div class="modal-body">
+        vous voulez faire un nouveau versement pour la sortie {{ produit_supprime.nom }} à la date {{ item?.date | date: "dd MMMM YYYY" }}
 
-    <form class="row">
-      <div class="form-group required col">
-        <label>somme a verser</label>
-        <input
-          placeholder="verse"
-          [(ngModel)]="mon_versement"
-          required
-          type="number"
-          class="form-control"
-          name="verse"
-        />
-        <label>{{ message }}</label>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-warning"
-      (click)="verser(produit_supprime); modal.close('Save click')"
-    >
+        <form class="row">
+            <div class="form-group required col">
+                <label>somme a verser</label>
+                <input placeholder="verse" [(ngModel)]="mon_versement" required type="number" class="form-control" name="verse" />
+                <label>{{ message }}</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-warning" (click)="verser(produit_supprime); modal.close('Save click')">
       versement
     </button>
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="modal.close('Save click')"
-    >
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">
       annuler
     </button>
-  </div>
-</ng-template>
-
-<div class="">
-  <div class="row">
-    <div class="col m-10 fixed-right">
-      <i
-        class="fa fa-pen fa-3x text-warning m-2 croix"
-        (click)="modifier_vendeur()"
-      ></i>
-      <i class="fa fa-trash fa-3x text-danger m-2 croix"></i>
     </div>
-    <div class="col m-2">
-      <div class="form-group">
-        <select
-          (change)="changement_mois()"
-          [(ngModel)]="mois_select"
-          class="form-control form-select"
-          aria-label="Default select example"
-          name="type"
-        >
+</ng-template>
+<div *ngIf="api.global.les_vendeurs.length==0">
+    <p>pas d'activiés sur cette page</p>
+
+    <img src="../../../assets/chaton.gif" />
+</div>
+<div class="" *ngIf="api.global.les_vendeurs.length!=0">
+    <div class="row">
+        <div class="col m-10 fixed-right">
+            <i class="fa fa-pen fa-3x text-warning m-2 croix" (click)="modifier_vendeur()"></i>
+            <i class="fa fa-trash fa-3x text-danger m-2 croix"></i>
+        </div>
+        <div class="col m-2">
+            <div class="form-group">
+                <select (change)="changement_mois()" [(ngModel)]="mois_select" class="form-control form-select" aria-label="Default select example" name="type">
           <option *ngFor="let un_mois of les_mois" value="{{ un_mois.mois }}">
             {{ un_mois.mois }}
           </option>
         </select>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col-md-4">
-      <ul class="list-group">
-        <li class="list-group-item">
-          Libellé : <strong>{{ vendeur?.nom }}</strong>
-        </li>
-        <li class="list-group-item">
-          Description : <strong>{{ vendeur?.description }}</strong>
-        </li>
-        <li class="list-group-item">
-          Dette : <strong>{{ vendeur?.dette }}</strong>
-        </li>
-        <li class="list-group-item">
-          Téléphone : <strong>{{ vendeur?.telephone }}</strong>
-        </li>
-        <li class="list-group-item">
-          Adresse : <strong>{{ vendeur?.adresse }}</strong>
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-8 les_statistiques">
-      <div class="row">
-        <button
-          *ngFor="let item of les_statistiques"
-          type="button"
-          class="btn bg-{{ item.bg }} text-white col m-1"
-        >
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Libellé : <strong>{{ vendeur?.nom }}</strong>
+                </li>
+                <li class="list-group-item">
+                    Description : <strong>{{ vendeur?.description }}</strong>
+                </li>
+                <li class="list-group-item">
+                    Dette : <strong>{{ vendeur?.dette }}</strong>
+                </li>
+                <li class="list-group-item">
+                    Téléphone : <strong>{{ vendeur?.telephone }}</strong>
+                </li>
+                <li class="list-group-item">
+                    Adresse : <strong>{{ vendeur?.adresse }}</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 les_statistiques">
+            <div class="row">
+                <button *ngFor="let item of les_statistiques" type="button" class="btn bg-{{ item.bg }} text-white col m-1">
           {{ item.nom }} <br />
           <span class="badge bg-gradient-pink">{{ item.nom_vendeur }}</span>
           <span class="badge bg-success">{{ item.chiffre }} </span><br />
           <span class="badge bg-success">{{ item.chiffre2 }}</span
           ><br />
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="table-responsive mt-4">
-    <table
-      id="excel-table"
-      class="table table-stripped table table-hover table-center mb-0 bg-light"
-    >
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Vendeur</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Quantite</th>
-          <th scope="col">Q. vendue</th>
-          <th scope="col">Q. Restante</th>
-          <th scope="col">Rations</th>
-          <th scope="col">M. vendu</th>
-          <th scope="col">M. versé</th>
-          <th scope="col">Reliquat</th>
-          <th scope="col">PrixU</th>
-          <th scope="col">Com</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          (dblclick)="open(content, une_sortie)"
-          
-          *ngFor="
+    <div class="table-responsive mt-4">
+        <table id="excel-table" class="table table-stripped table table-hover table-center mb-0 bg-light">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Vendeur</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Q. vendue</th>
+                    <th scope="col">Q. Restante</th>
+                    <th scope="col">Rations</th>
+                    <th scope="col">M. vendu</th>
+                    <th scope="col">M. versé</th>
+                    <th scope="col">Reliquat</th>
+                    <th scope="col">PrixU</th>
+                    <th scope="col">Com</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr (dblclick)="open(content, une_sortie)" *ngFor="
             let une_sortie of les_sorties
               | slice: (page - 1) * pageSize:page * pageSize
               | filter: recherche;
             let i = index
-          "
-        >
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ une_sortie.vendeur }}</td>
-          <td>{{ une_sortie.nom }}</td>
-          <td>{{ une_sortie.quantite }}</td>
-          <td>{{ une_sortie.quantite - une_sortie.restant }}</td>
-          <td>
-            {{ une_sortie.restant
-            }}<i
-              (click)="open(content1, une_sortie)"
-              class="fa fa-edit text-warning"
-            ></i>
-          </td>
-          <td>{{ une_sortie.ration }}</td>
-          <td>
-            {{
-              (une_sortie.quantite - une_sortie.restant - une_sortie.ration) *
-                une_sortie.prix_unitaire
-            }}
-          </td>
-          <td>{{ une_sortie.verse }}</td>
-          <td>
-            {{
-              (une_sortie.quantite - une_sortie.restant - une_sortie.ration) *
-                une_sortie.prix_unitaire -
-                une_sortie.verse
-            }}<i
-              (click)="open(content2, une_sortie)"
-              class="fa fa-edit text-warning"
-            ></i>
-          </td>
-          <td>{{ une_sortie.prix_unitaire }}</td>
-          <td>
-            {{
-              une_sortie.commission *
-                (une_sortie.quantite - une_sortie.restant - une_sortie.ration)
-            }}
-          </td>
-          <td>
-            <i
-              (click)="modifier_sortie(une_sortie, item)"
-              class="fa fa-pen fa-1x text-warning m-2 croix"
-            ></i>
-            <i
-              (click)="open(content, une_sortie)"
-              class="fa fa-trash fa-1x text-danger m-2 croix"
-            ></i>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr *ngIf="les_sorties.length == 0" class="center">
-          Pas de vendeur
-        </tr>
-      </tfoot>
-    </table>
-    <ngb-pagination
-        [(page)]="page"
-        [pageSize]="pageSize"
-        [collectionSize]="les_sorties.length"
-      ></ngb-pagination>
-    
-  </div>
+          ">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ une_sortie.vendeur }}</td>
+                    <td>{{ une_sortie.nom }}</td>
+                    <td>{{ une_sortie.quantite }}</td>
+                    <td>{{ une_sortie.quantite - une_sortie.restant }}</td>
+                    <td>
+                        {{ une_sortie.restant }}
+                        <i (click)="open(content1, une_sortie)" class="fa fa-edit text-warning"></i>
+                    </td>
+                    <td>{{ une_sortie.ration }}</td>
+                    <td>
+                        {{ (une_sortie.quantite - une_sortie.restant - une_sortie.ration) * une_sortie.prix_unitaire }}
+                    </td>
+                    <td>{{ une_sortie.verse }}</td>
+                    <td>
+                        {{ (une_sortie.quantite - une_sortie.restant - une_sortie.ration) * une_sortie.prix_unitaire - une_sortie.verse }}
+                        <i (click)="open(content2, une_sortie)" class="fa fa-edit text-warning"></i>
+                    </td>
+                    <td>{{ une_sortie.prix_unitaire }}</td>
+                    <td>
+                        {{ une_sortie.commission * (une_sortie.quantite - une_sortie.restant - une_sortie.ration) }}
+                    </td>
+                    <td>
+                        <i (click)="modifier_sortie(une_sortie, item)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+                        <i (click)="open(content, une_sortie)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr *ngIf="les_sorties.length == 0" class="center">
+                    Pas de vendeur
+                </tr>
+            </tfoot>
+        </table>
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_sorties.length"></ngb-pagination>
+
+    </div>
 </div>
 <div class="fixed-bottom couleurgrise">
-  <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
+    <ng-container *ngComponentOutlet="ajoutervendeurcomponent"></ng-container>
 </div>
 
 <div class="fixed-bottom couleurgrise">
-  <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
+    <ng-container *ngComponentOutlet="ajoutersortiecomponent"></ng-container>
 </div>

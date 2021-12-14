@@ -40,8 +40,8 @@ export class ListeproduitsComponent implements OnInit {
   }
   
   ajouter_produit_sortant(){
-    this.api.closeAllBool()
-    this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
-    this.api.sendEvent("ajouter_produit",{type:'sortant'});
-}
+      this.api.closeAllBool()
+      this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
+      this.api.sendEvent("ajouter_produit",{type:'sortant'});
+  }
 }
