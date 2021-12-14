@@ -75,6 +75,7 @@ import { MenuComponent } from './basGauche/menu/menu.component';
 import { ProduitSortantComponent } from './basDroite/produit-sortant/produit-sortant.component';
 import { AjoutChequeComponent } from './modal/ajout-cheque/ajout-cheque.component';
 import { AjoutDetteComponent } from './modal/ajout-dette/ajout-dette.component';
+import { AjouterDepenseComponent } from './modal/ajouter-depense/ajouter-depense.component';
 
 const routes: Routes = [
   { path: "", component: ConnexionComponent },
@@ -152,6 +153,7 @@ const routes: Routes = [
     ProduitSortantComponent,
     AjoutChequeComponent,
     AjoutDetteComponent,
+    AjouterDepenseComponent,
 
   ],
   imports: [

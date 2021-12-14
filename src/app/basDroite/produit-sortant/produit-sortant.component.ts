@@ -11,7 +11,15 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./produit-sortant.component.css']
 })
 export class ProduitSortantComponent implements OnInit {
-
+  recherche_consommation=""
+  recherche_depense=""
+  recherche_production=""
+  page_consommation=1
+  pageSize_consommation=2
+  page_depense=1
+  pageSize_depense=2
+  page_production=1
+  pageSize_production=2
   produit:any
   ajouterproduitcomponent=AjouterProduitComponent
   les_details: any;
@@ -24,6 +32,10 @@ export class ProduitSortantComponent implements OnInit {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit"){
         this.produit=data.data
+        this.recevoir_production_par_jours_par_enregistreur()
+      }else if(data.code=="apres_ajout_consommation"){
+        this.recevoir_production_par_jours_par_enregistreur()
+      }else if(data.code=="apres_ajout_production"){
         this.recevoir_production_par_jours_par_enregistreur()
       }
     })
@@ -115,6 +127,13 @@ export class ProduitSortantComponent implements OnInit {
     });
     return somme
   }
+  get_sum_depense(){
+    var somme=0
+    this.les_details?.depense.forEach((element:any) => {
+      somme+=parseFloat(element.montant)
+    });
+    return somme
+  }
   get_quantite_totale_production(){
     var somme=0
     this.les_details?.production.forEach((element:any) => {
@@ -123,12 +142,56 @@ export class ProduitSortantComponent implements OnInit {
     return somme
   }
   get_prix_revient(){
-    console.log(this.get_sum_consommation()+" et  "+this.get_quantite_totale_production())
+    if(this.get_quantite_totale_production()==0){
+      return 0
+    }
     return this.get_sum_consommation()/this.get_quantite_totale_production()
+  }
+  get_prix_revient_avec_depense(){
+    if(this.get_quantite_totale_production()==0){
+      return 0
+    }
+    return (this.get_sum_consommation()+this.get_sum_depense())/this.get_quantite_totale_production()
   }
   choisir_jour(item:any){
     this.jour=item
     this.recevoir_details(this.jour["date"])
+  }
+  regulier(regulier:string){
+    switch (regulier) {
+      case '0':
+        return "non régulier";
+      case '1':
+          return "chaque jour";
+      case '2':
+          return "chaque semaine";
+      case '3':
+          return "chaque mois";
+      default:
+        return "rien";
+    }
+  }
+  
+  ajouter_consommation(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
+    this.api.sendEvent("ajouterconsommation",{jour:this.jour,id_produit:this.produit.id_produit});
+  }
+  ajouter_depense(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterdepense=!this.api.bool.ajouterdepense
+    this.api.sendEvent("ajouter_depense",this.jour);
+  }
+  ajouter_production(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
+    this.api.sendEvent("ajouterproduction",{jour:this.jour,id_produit:this.produit.id_produit});
+  }
+
+  modifier_production(production:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
+    this.api.sendEvent("modifierproduction",[this.jour,production]);
   }
 }
 

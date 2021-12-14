@@ -10,9 +10,6 @@
                     Description : <strong>{{fournisseur?.description}}</strong>
                 </li>
                 <li class="list-group-item">
-                    Dette : <strong>{{fournisseur?.dette}}</strong>
-                </li>
-                <li class="list-group-item">
                     Téléphone : <strong>{{fournisseur?.telephone}}</strong>
                 </li>
                 <li class="list-group-item">
@@ -28,7 +25,6 @@
                 <li class="list-group-item"> 
                     <span class="badge bg-primary rounded-pill" (click)="ajouter_dette()"> <i class="fa fa-add fa-2x croix " ></i> </span>
                     Dette : <strong>{{get_dette()|number}}</strong> </li>
-                <li class="list-group-item"> ..... : <strong>{{"......."}}</strong> </li>
             </ul>
         </div>
         <div class="card col-md-7 p-2">

@@ -23,7 +23,8 @@ export class AjouterConsommationComponent implements OnInit {
       
       if (data.code == "ajouterconsommation") {
         this.add=true;
-        this.item = data.data
+        this.item = data.data.jour
+        this.consommation.id_produit_destination=data.data.id_produit
       }
       else if (data.code == "modifierconsommation")
       {
@@ -54,7 +55,7 @@ export class AjouterConsommationComponent implements OnInit {
         if (data.status) {
           this.succes = true
           this.consommation.quantite = "0"
-          this.api.sendEvent("item_liste_consommation",this.item)
+          this.api.sendEvent("apres_ajout_consommation",this.item)
           this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         } else {
           this.echec = true

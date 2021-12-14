@@ -3,79 +3,50 @@
     <h4 class="modal-title" id="modal-basic-title">
       Attention<i class="fa fa-exclamation-circle text-danger"></i>
     </h4>
-    <i
-      class="fa fa-close text-danger fa-2x"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></i>
+    <i class="fa fa-close text-danger fa-2x" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
   </div>
   <div class="modal-body">
     Voulez-vous supprimer la consommation du produit "{{
-      produit_supprime.nom
+    produit_supprime.nom
     }}"
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-success"
-      (click)="modal.close('Save click')"
-    >
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">
       annuler
     </button>
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="suppression(produit_supprime); modal.close('Save click')"
-    >
+    <button type="button" class="btn btn-outline-danger"
+      (click)="suppression(produit_supprime); modal.close('Save click')">
       confirmer
     </button>
   </div>
 </ng-template>
 
 <div class="">
-  <h2>Les consommations du {{ item?.date | date: "dd MMMM YYYY" }}</h2>
-  <hr />
-  <div class="d-flex mb-2 les_statistiques">
-    <button
-      *ngFor="let item of les_statistiques"
-      type="button"
-      class="btn bg-{{ item.bg }} text-white"
-    >
-      {{ item.nom }} <br />
-      <span class="badge bg-primary">{{ item.chiffre }}</span>
-    </button>
-  </div>
-
   <div class="bg-light shadow-lg rounded p-1">
     <div class="row">
-      <div class="col-6 col-sm-4 _add_produit_btn">
-        <button class="btn btn-success" (click)="ajouter()">
-          Ajouter consommation
-        </button>
-        <button class="btn btn-warning mx-2 float-left" (click)="exportexcel()">
-          <i class="fa fa-download"></i>
-        </button>
-      </div>
+      <button class="col-4 btn btn-success" (click)="ajouter()">
+        Ajouter consommation
+      </button>
+      <button class="col-1 btn btn-warning" (click)="exportexcel()">
+        <i class="fa fa-download"></i>
+      </button>
       <div class="form-group col-6 col-sm-4">
-        <input
-          [(ngModel)]="recherche"
-          type="search"
-          aria-label="Search"
-          class="form-control me-1"
-          placeholder="Chercher une sortie"
-        />
+        <input [(ngModel)]="recherche" type="search" aria-label="Search" class="form-control me-1"
+          placeholder="Chercher une sortie" />
       </div>
     </div>
     <div class="table-responsive">
-      <table
-        id="excel-table"
-        class="
+      <table id="excel-table" class="
           table table-stripped table table-hover table-center
           mb-0
           bg-light
-        "
-      >
+        ">
         <thead>
+          <tr>
+            <td colspan="6">
+              <h1>Les consommations du {{ item?.date | date: "dd MMMM YYYY" }}</h1>
+            </td>
+          </tr>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nom</th>
@@ -88,15 +59,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            (dblclick)="open(content, une_consommation)"
-            *ngFor="
+          <tr (dblclick)="open(content, une_consommation)" *ngFor="
               let une_consommation of les_consommations
                 | slice: (page - 1) * pageSize:page * pageSize
                 | filter: recherche;
               let i = index
-            "
-          >
+            ">
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ une_consommation.nom }}</td>
             <td>{{ une_consommation.stock_avant }}</td>
@@ -105,40 +73,85 @@
             <td>{{ une_consommation.prix_unitaire | number: "1.0-2" }}</td>
             <td>
               {{
-                une_consommation.prix_unitaire * une_consommation.quantite
-                  | number: "1.0-2"
+              une_consommation.prix_unitaire * une_consommation.quantite
+              | number: "1.0-2"
               }}
             </td>
             <td>
-              <i
-                (click)="modifier_consommation(une_consommation)"
-                class="fa fa-pen fa-1x text-warning m-2 croix"
-              ></i>
-              <i
-                (click)="open(content, une_consommation)"
-                class="fa fa-trash fa-1x text-danger m-2 croix"
-              ></i>
+              <i (click)="modifier_consommation(une_consommation)" class="fa fa-pen fa-1x text-warning m-2 croix"></i>
+              <i (click)="open(content, une_consommation)" class="fa fa-trash fa-1x text-danger m-2 croix"></i>
             </td>
           </tr>
         </tbody>
 
         <tfoot>
           <tr *ngIf="les_consommations == 0" class="center">
-            Pas de consommation pour cette date
+            <td colspan="5">
+              Pas de consommation pour cette date
+            </td>
           </tr>
         </tfoot>
       </table>
-      <ngb-pagination
-        [(page)]="page"
-        [pageSize]="pageSize"
-        [collectionSize]="les_consommations.length"
-      ></ngb-pagination>
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="les_consommations.length">
+      </ngb-pagination>
     </div>
   </div>
-  <div class="text-wrap"></div>
-</div>
-<div class="fixed-bottom couleurgrise">
-  <ng-container
-    *ngComponentOutlet="ajouterconsommationcomponent"
-  ></ng-container>
+  <div class="bg-light shadow-lg rounded mt-3">
+    <div class="table-responsive">
+      <table id="excel-table" class="
+          table table-stripped table table-hover table-center
+          mb-0
+          bg-light
+        ">
+        <thead>
+          <tr>
+            <td colspan="6">
+              <h1>Les depenses
+                <span class="badge bg-primary rounded-pill" (click)="ajouter_depense()"><i class="fa fa-add fa-1x " ></i> </span>
+              </h1>
+            </td>
+          </tr>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Montant</th>
+            <th scope="col">Description</th>
+            <th scope="col">D.début</th>
+            <th scope="col">D.fin</th>
+            <th scope="col">Régulier</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="
+              let une_depense of les_depenses
+                | slice: (page_depenses - 1) * pageSize_depenses:page_depenses * pageSize_depenses
+                | filter: recherche;
+              let i = index
+            ">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ une_depense.montant|number }}</td>
+            <td>{{ une_depense.description }}</td>
+            <td>{{ une_depense.date_debut | date: "dd MMMM" }}</td>
+            <td>{{ une_depense.date_fin| date: "dd MMMM"  }}</td>
+            <td>{{ regulier(une_depense.regulier) }}</td>
+            <td>
+              <i class="fa fa-pen fa-1x text-warning m-2 croix" (click)="modifier_depense(une_depense)"></i>
+              <i class="fa fa-trash fa-1x text-danger m-2 croix" (click)="delete_depense(une_depense)"></i>
+            </td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr *ngIf="les_depenses.length == 0" class="center">
+            <td colspan="5">
+              Pas de depenses pour cette date
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <ngb-pagination [(page)]="page_depenses" [pageSize]="pageSize_depenses" [collectionSize]="les_depenses.length">
+      </ngb-pagination>
+    </div>
+  </div>
+  
 </div>

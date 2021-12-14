@@ -22,7 +22,7 @@
                     Catégorie : <strong>{{produit?.categorie}}</strong>
                 </li>
             </ul>
-            <h4>Statistiques</h4>
+            <h4>Statistiques sans dépenses</h4>
             <ul class="list-group">
                 <li class="list-group-item">
                     Prix de revient : <strong>{{get_prix_revient()|number}}</strong> fcfa
@@ -34,12 +34,26 @@
                     Bénéfice total : <strong>{{(get_sum_production()-get_sum_consommation())|number}}</strong> fcfa
                 </li>
             </ul>
+            <h4>Statistiques avec les dépenses</h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    Prix de revient : <strong>{{get_prix_revient_avec_depense()|number}}</strong> fcfa
+                </li>
+                <li class="list-group-item">
+                    Bénéfice unitaire : <strong>{{(produit?.prix_unitaire-get_prix_revient_avec_depense())|number}}</strong> fcfa
+                </li>
+                <li class="list-group-item">
+                    Bénéfice total : <strong>{{(get_sum_production()-get_sum_consommation() - get_sum_depense())|number}}</strong> fcfa
+                </li>
+            </ul>
         </div>
         <div class="card col-md-7 p-2">
-            <h2 class="card-title"><span>Consommation</span> <span
-                    class="right bg-primary btn text-white">{{get_sum_consommation()|number}} fcfa</span></h2>
+            <h2 class="card-title"><span>Consommation</span>
+                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_consommation()"></i>
+                <span class="right bg-warning btn">{{get_sum_consommation()|number}} fcfa</span>
+            </h2>
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of les_details?.consommation">
+                <li class="list-group-item" *ngFor="let item of les_details?.consommation | slice: (page_consommation-1) * pageSize_consommation : page_consommation * pageSize_consommation | filter:recherche_consommation ">
                     {{item.quantite+" "+item.unite+" "+item.nom}} <strong
                         class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
@@ -47,11 +61,30 @@
                     pas de consommations
                 </li>
             </ul>
+            <ngb-pagination [pageSize]="page_consommation" [pageSize]="pageSize_consommation" [collectionSize]="les_details?.consommation.length"></ngb-pagination>
             <hr>
-            <h2 class="card-title">Production <span class="right bg-primary btn text-white">
+            <h2 class="card-title"><span>Dépense</span> 
+                <i class="fa fa-add fa-1x icone_ajouter"  (click)="ajouter_depense()"></i>
+                <span class="right bg-warning btn ">{{get_sum_depense()|number}} fcfa</span>
+            </h2>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of les_details?.depense | slice: (page_depense-1) * pageSize_depense : page_depense * pageSize_depense | filter:recherche_depense">
+                    <strong>{{regulier(item.regulier)+": "}}</strong>
+                    {{item.description}} <strong
+                        class="right">{{item.montant}} fcfa</strong>
+                </li>
+                <li class="list-group-item" *ngIf="les_details?.depense.length==0">
+                    pas de depenses
+                </li>
+            </ul>
+            <ngb-pagination [pageSize]="page_depense" [pageSize]="pageSize_depense" [collectionSize]="les_details?.depense.length"></ngb-pagination>
+            <hr>
+            <h2 class="card-title">Production 
+                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_production()"></i>
+                <span class="right bg-success btn text-white">
                     {{get_sum_production()|number}} fcfa</span></h2>
             <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of les_details?.production">
+                <li class="list-group-item" *ngFor="let item of les_details?.production | slice: (page_production-1) * pageSize_production : page_production * pageSize_production | filter:recherche_production">
                     {{item.quantite+" "+item.unite+" "+item.nom}} <strong
                         class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
@@ -59,6 +92,7 @@
                     pas de productions
                 </li>
             </ul>
+            <ngb-pagination [pageSize]="page_production" [pageSize]="pageSize_production" [collectionSize]="les_details?.production.length"></ngb-pagination>
         </div>
     </div>
 </div>
