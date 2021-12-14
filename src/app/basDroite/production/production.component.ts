@@ -18,7 +18,6 @@ export class ProductionComponent implements OnInit {
   les_productions:any=[]
   fileName= 'rapport_journalier.xlsx';
   item:any={}
-  ajouterproductioncomponent=AjouterProductionComponent
   clicksuscription: Subscription = new Subscription;
   recherche=""
   pageSize=5
@@ -38,6 +37,8 @@ export class ProductionComponent implements OnInit {
       if(data.code=="item_liste_production"){
         this.item=data.data
         this.recevoir_productions(data.data.date)
+      }else if(data.code=="apres_ajout_production"){
+        this.recevoir_productions(data.data.date)
       }
 
     })
@@ -49,7 +50,7 @@ export class ProductionComponent implements OnInit {
   ajouter(){
     this.api.closeAllBool()
     this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
-    this.api.sendEvent("ajouterproduction",this.item);
+    this.api.sendEvent("ajouterproduction",{jour:this.item,id_produit:0});
   }
 
   modifier_production(production:any){

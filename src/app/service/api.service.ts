@@ -9,9 +9,9 @@ export class ApiService {
 
   // url="https://gu.h24code.com/nouveau/api.php"
   // url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
- // url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
-  //url="http://localhost/gestionuniversel_back/nouveau/api.php"
-   url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
+ url="http://192.168.1.3/gestionuniversel_back/nouveau/api.php"
+  ///url="http://localhost/gestionuniversel_back/nouveau/api.php"
+  //  url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
  // url="http://localhost/gestionuniversel_back/nouveau/api.php"
 
   global:any={
@@ -48,7 +48,8 @@ export class ApiService {
     ajouterconsommation:false,
     ajouterutilisteur:false,
     ajoutercheque:false,
-    ajouterdette:false
+    ajouterdette:false,
+    ajouterdepense:false,
   }
   private subjectCode=new Subject<any>()
 
