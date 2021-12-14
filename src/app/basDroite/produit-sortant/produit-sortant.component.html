@@ -85,10 +85,8 @@
                 <span class="right bg-success btn text-white">
                     {{get_sum_production()|number}} fcfa</span></h2>
             <ul class="list-group">
-                <<<<<<< HEAD <li class="list-group-item" *ngFor="let item of les_details?.production">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong> =======
-                    <li class="list-group-item" *ngFor="let item of les_details?.production | slice: (page_production-1) * pageSize_production : page_production * pageSize_production | filter:recherche_production">
-                        {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong> >>>>>>> version1.2
+                <li class="list-group-item" *ngFor="let item of les_details?.production | slice: (page_production-1) * pageSize_production : page_production * pageSize_production | filter:recherche_production">
+                        {{item.quantite+" "+item.unite+" "+item.nom}} <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                     </li>
                     <li class="list-group-item" *ngIf="les_details?.production.length==0">
                         pas de productions
