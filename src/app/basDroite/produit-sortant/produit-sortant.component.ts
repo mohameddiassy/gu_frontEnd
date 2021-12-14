@@ -11,7 +11,15 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./produit-sortant.component.css']
 })
 export class ProduitSortantComponent implements OnInit {
-
+  recherche_consommation=""
+  recherche_depense=""
+  recherche_production=""
+  page_consommation=1
+  pageSize_consommation=2
+  page_depense=1
+  pageSize_depense=2
+  page_production=1
+  pageSize_production=2
   produit:any
   ajouterproduitcomponent=AjouterProduitComponent
   les_details: any;
@@ -24,6 +32,10 @@ export class ProduitSortantComponent implements OnInit {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit"){
         this.produit=data.data
+        this.recevoir_production_par_jours_par_enregistreur()
+      }else if(data.code=="apres_ajout_consommation"){
+        this.recevoir_production_par_jours_par_enregistreur()
+      }else if(data.code=="apres_ajout_production"){
         this.recevoir_production_par_jours_par_enregistreur()
       }
     })
@@ -163,12 +175,23 @@ export class ProduitSortantComponent implements OnInit {
   ajouter_consommation(){
     this.api.closeAllBool()
     this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
-    this.api.sendEvent("ajouterconsommation",this.jour);
+    this.api.sendEvent("ajouterconsommation",{jour:this.jour,id_produit:this.produit.id_produit});
   }
   ajouter_depense(){
     this.api.closeAllBool()
     this.api.bool.ajouterdepense=!this.api.bool.ajouterdepense
     this.api.sendEvent("ajouter_depense",this.jour);
+  }
+  ajouter_production(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
+    this.api.sendEvent("ajouterproduction",{jour:this.jour,id_produit:this.produit.id_produit});
+  }
+
+  modifier_production(production:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
+    this.api.sendEvent("modifierproduction",[this.jour,production]);
   }
 }
 

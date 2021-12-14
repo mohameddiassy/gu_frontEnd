@@ -40,6 +40,8 @@ export class ConsommationComponent implements OnInit {
       if(data.code=="item_liste_consommation"){
         this.item=data.data
         this.recevoir_consommations(data.data.date)
+      }else if(data.code=="apres_ajout_consommation"){
+        this.recevoir_consommations(data.data.date)
       }
     })
   }
@@ -51,7 +53,7 @@ export class ConsommationComponent implements OnInit {
   ajouter(){
     this.api.closeAllBool()
     this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
-    this.api.sendEvent("ajouterconsommation",this.item);
+    this.api.sendEvent("ajouterconsommation",{jour:this.item,id_produit:0});
   }
   ajouter_depense(){
     this.api.closeAllBool()
