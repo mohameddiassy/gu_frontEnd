@@ -16,13 +16,16 @@ export class AjouterDepenseComponent implements OnInit {
   echec=false
   constructor(public api:ApiService,private http:HttpClient) {
     api.getEvent().subscribe((data) => {
-      this.succes = false
-      this.echec = false
-      this.depense={}
       if (data.code == "ajouter_depense") {
+        this.succes = false
+        this.echec = false
+        this.depense={}
         this.modifier_bool=false
         this.jour=data.data
       } else if (data.code == "modifier_depense") {
+        this.succes = false
+        this.echec = false
+        this.depense={}
         this.modifier_bool=true
         this.depense = Object.assign({},data.data.depense)
         this.jour=data.data.jour
@@ -51,7 +54,7 @@ export class AjouterDepenseComponent implements OnInit {
         alert("Opération effectuée avec succés sur la table depense")
         console.log("Opération effectuée avec succés sur la table depense. Réponse= ",reponse)
         this.depense.id_depense=reponse.id
-        this.api.sendEvent("item_liste_consommation",this.jour);
+        this.api.sendEvent("apres_ajout_depense",this.jour);
         this.depense={}
       }else{
         alert("L'opération sur la table depense a échoué")

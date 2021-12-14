@@ -17,17 +17,20 @@ export class AjouterConsommationComponent implements OnInit {
   les_type: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
-      this.succes = false
-      this.echec = false
-      this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
       
       if (data.code == "ajouterconsommation") {
+        this.succes = false
+        this.echec = false
+        this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.add=true;
         this.item = data.data.jour
         this.consommation.id_produit_destination=data.data.id_produit
       }
       else if (data.code == "modifierconsommation")
       {
+        this.succes = false
+        this.echec = false
+        this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.add = false;
         this.consommation = Object.assign({}, data.data[1])
         this.item = Object.assign({}, data.data[0])
@@ -54,9 +57,9 @@ export class AjouterConsommationComponent implements OnInit {
        console.log(data)
         if (data.status) {
           this.succes = true
-          this.consommation.quantite = "0"
           this.api.sendEvent("apres_ajout_consommation",this.item)
-          this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
+          this.consommation.quantite = "0"
+          this.consommation.id_produit=0
         } else {
           this.echec = true
         }

@@ -42,6 +42,8 @@ export class ConsommationComponent implements OnInit {
         this.recevoir_consommations(data.data.date)
       }else if(data.code=="apres_ajout_consommation"){
         this.recevoir_consommations(data.data.date)
+      }else if(data.code=="apres_ajout_depense"){
+        this.recevoir_consommations(data.data.date)
       }
     })
   }

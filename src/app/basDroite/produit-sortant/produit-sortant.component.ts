@@ -34,9 +34,11 @@ export class ProduitSortantComponent implements OnInit {
         this.produit=data.data
         this.recevoir_production_par_jours_par_enregistreur()
       }else if(data.code=="apres_ajout_consommation"){
-        this.recevoir_production_par_jours_par_enregistreur()
+        this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_ajout_production"){
-        this.recevoir_production_par_jours_par_enregistreur()
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_ajout_depense"){
+        this.recevoir_details(this.jour["date"])
       }
     })
   }
