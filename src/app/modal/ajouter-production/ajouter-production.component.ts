@@ -17,15 +17,17 @@ export class AjouterProductionComponent implements OnInit {
   les_productions: any;
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
-      this.succes = false
-      this.echec = false
-      this.production = { quantite: "0", id_produit: "0", date_production: ""}
       if (data.code == "ajouterproduction") {
+        this.succes = false
+        this.echec = false
+        this.production = { quantite: "0", id_produit: "0", date_production: ""}
         this.add=true;
         this.item = data.data.jour
         this.production.id_produit=data.data.id_produit
-      }else if (data.code == "modifierproduction")
-      {
+      }else if (data.code == "modifierproduction"){
+        this.succes = false
+        this.echec = false
+        this.production = { quantite: "0", id_produit: "0", date_production: ""}
         this.add=false;
         this.production=Object.assign({}, data.data[1])
         this.item = Object.assign({}, data.data[0])
