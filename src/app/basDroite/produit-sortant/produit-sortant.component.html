@@ -1,4 +1,4 @@
-<div class="container" [ngClass]="{'disabled_div_event':produit?.etat==-1}">
+<div class="" [ngClass]="{'disabled_div_event':produit?.etat==-1}">
     <div class="d-flex mb-2 les_statistiques">
         <button (click)="choisir_jour(item)"
             *ngFor="let item of api.global.production_par_jours_par_enregistreur;let first = first;" type="button"
@@ -7,128 +7,139 @@
             <span class="badge bg-primary">{{item.chiffre}}</span>
         </button>
     </div>
-    <div class="row">
-        <div class="card col-md-5 p-2">
-            <h4>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()"> </i> <i
-                    class="fa fa-edit right croix m-2" (click)="modifier_produit()"></i> </h4>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Libellé : <strong>{{produit?.nom}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Unité : <strong>{{produit?.unite}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Prix de vente : <strong>{{produit?.prix_unitaire}}</strong>
-                </li>
-                <li class="list-group-item">
-                    Catégorie : <strong>{{produit?.categorie}}</strong>
-                </li>
-            </ul>
-            <h4>Statistiques sans dépenses</h4>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Prix de revient : <strong>{{get_prix_revient()|number}}</strong> fcfa
-                </li>
-                <li class="list-group-item">
-                    Bénéfice unitaire : <strong>{{get_benefice_unitaire()|number}}</strong> fcfa
-                </li>
-                <li class="list-group-item">
-                    Bénéfice total : <strong>{{get_benefice_total()|number}}</strong> fcfa
-                </li>
-            </ul>
-            <h4>Statistiques avec les dépenses</h4>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    Prix de revient : <strong>{{get_prix_revient_avec_depense()|number}}</strong> fcfa
-                </li>
-                <li class="list-group-item">
-                    Bénéfice unitaire :
-                    <strong>{{get_benefice_unitaire_avec_depense()|number}}</strong> fcfa
-                </li>
-                <li class="list-group-item">
-                    Bénéfice total : <strong>{{get_benefice_total_avec_depense()|number}}</strong> fcfa
-                </li>
-            </ul>
-        </div>
-        <div class="card col-md-7 p-2">
-            <h2 class="card-title"><span class="lien" (click)="api.redirect_to('fenetre_consommation')">Consommation</span>
-                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_consommation()"></i>
-                <span class="right bg-warning btn">{{get_sum_consommation()|number}} fcfa</span>
-            </h2>
-            <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of les_details?.consommation">
-                    {{item.quantite+" "+item.unite+" "+item.nom}}
-                    <div class="row voir_plus">
-                        <div class="col">
-                            <div ngbDropdown class="d-inline-block">
-                                <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem (click)="modifier_consommation(item)">Modifier <i class="fa fa-pen right text-warning"></i> </button>
-                                    <button ngbDropdownItem (click)="supprimer_consommation(item)">Supprimer <i class="fa fa-trash text-danger right"></i></button>
+    <div class="container">
+        <div class="row">
+            <div class="card col-md-5 p-2">
+                <h4>Détails <i class="fa fa-trash right croix m-2" (click)="supression_produit()"> </i> <i
+                        class="fa fa-edit right croix m-2" (click)="modifier_produit()"></i> </h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Libellé : <strong>{{produit?.nom}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Unité : <strong>{{produit?.unite}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Prix de vente : <strong>{{produit?.prix_unitaire}}</strong>
+                    </li>
+                    <li class="list-group-item">
+                        Catégorie : <strong>{{produit?.categorie}}</strong>
+                    </li>
+                </ul>
+                <h4>Statistiques sans dépenses</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Prix de revient : <strong>{{get_prix_revient()|number}}</strong> fcfa
+                    </li>
+                    <li class="list-group-item">
+                        Bénéfice unitaire : <strong>{{get_benefice_unitaire()|number}}</strong> fcfa
+                    </li>
+                    <li class="list-group-item">
+                        Bénéfice total : <strong>{{get_benefice_total()|number}}</strong> fcfa
+                    </li>
+                </ul>
+                <h4>Statistiques avec les dépenses</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Prix de revient : <strong>{{get_prix_revient_avec_depense()|number}}</strong> fcfa
+                    </li>
+                    <li class="list-group-item">
+                        Bénéfice unitaire :
+                        <strong>{{get_benefice_unitaire_avec_depense()|number}}</strong> fcfa
+                    </li>
+                    <li class="list-group-item">
+                        Bénéfice total : <strong>{{get_benefice_total_avec_depense()|number}}</strong> fcfa
+                    </li>
+                </ul>
+            </div>
+            <div class="card col-md-7 p-2">
+                <h2 class="card-title"><span class="lien"
+                        (click)="api.redirect_to('fenetre_consommation')">Consommation</span>
+                    <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_consommation()"></i>
+                    <span class="right bg-warning btn">{{get_sum_consommation()|number}} fcfa</span>
+                </h2>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let item of les_details?.consommation">
+                        {{item.quantite+" "+item.unite+" "+item.nom}}
+                        <div class="row voir_plus">
+                            <div class="col">
+                                <div ngbDropdown class="d-inline-block">
+                                    <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem (click)="modifier_consommation(item)">Modifier <i
+                                                class="fa fa-pen right text-warning"></i> </button>
+                                        <button ngbDropdownItem (click)="supprimer_consommation(item)">Supprimer <i
+                                                class="fa fa-trash text-danger right"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
-                </li>
-                <li class="list-group-item" *ngIf="les_details?.consommation.length==0">
-                    pas de consommations
-                </li>
-            </ul>
-            <hr>
-            <h2 class="card-title"><span class="lien" (click)="api.redirect_to('fenetre_consommation')">Dépense</span>
-                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_depense()"></i>
-                <span class="right bg-warning btn ">{{get_sum_depense()|number}} fcfa</span>
-            </h2>
-            <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of les_details?.depense">
-                    <strong>{{regulier(item.regulier)+": "}}</strong>
-                    {{item.description}} 
-                    <div class="row voir_plus">
-                        <div class="col">
-                            <div ngbDropdown class="d-inline-block">
-                                <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem (click)="modifier_depense(item)">Modifier <i class="fa fa-pen right text-warning"></i> </button>
-                                    <button ngbDropdownItem (click)="delete_depense(item)">Supprimer <i class="fa fa-trash text-danger right"></i></button>
+                        <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                    </li>
+                    <li class="list-group-item" *ngIf="les_details?.consommation.length==0">
+                        pas de consommations
+                    </li>
+                </ul>
+                <hr>
+                <h2 class="card-title"><span class="lien"
+                        (click)="api.redirect_to('fenetre_consommation')">Dépense</span>
+                    <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_depense()"></i>
+                    <span class="right bg-warning btn ">{{get_sum_depense()|number}} fcfa</span>
+                </h2>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let item of les_details?.depense">
+                        <strong>{{regulier(item.regulier)+": "}}</strong>
+                        {{item.description}}
+                        <div class="row voir_plus">
+                            <div class="col">
+                                <div ngbDropdown class="d-inline-block">
+                                    <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem (click)="modifier_depense(item)">Modifier <i
+                                                class="fa fa-pen right text-warning"></i> </button>
+                                        <button ngbDropdownItem (click)="delete_depense(item)">Supprimer <i
+                                                class="fa fa-trash text-danger right"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <strong class="right">{{item.montant}} fcfa</strong>
-                </li>
-                <li class="list-group-item" *ngIf="les_details?.depense.length==0">
-                    pas de depenses
-                </li>
-            </ul>
-            <hr>
-            <h2 class="card-title"> <span  class="lien" (click)="api.redirect_to('fenetre_production')">Production</span> 
-                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_production()"></i>
-                <span class="right bg-success btn text-white">
-                    {{get_sum_production()|number}} fcfa</span>
-            </h2>
-            <ul class="list-group">
-                <li class="list-group-item" *ngFor="let item of les_details?.production">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} 
-                    
-                    <div class="row voir_plus">
-                        <div class="col">
-                            <div ngbDropdown class="d-inline-block">
-                                <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
-                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem (click)="modifier_production(item)">Modifier <i class="fa fa-pen right text-warning"></i> </button>
-                                    <button ngbDropdownItem (click)="supprimer_production(item)">Supprimer <i class="fa fa-trash text-danger right"></i></button>
+                        <strong class="right">{{item.montant}} fcfa</strong>
+                    </li>
+                    <li class="list-group-item" *ngIf="les_details?.depense.length==0">
+                        pas de depenses
+                    </li>
+                </ul>
+                <hr>
+                <h2 class="card-title"> <span class="lien"
+                        (click)="api.redirect_to('fenetre_production')">Production</span>
+                    <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_production()"></i>
+                    <span class="right bg-success btn text-white">
+                        {{get_sum_production()|number}} fcfa</span>
+                </h2>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let item of les_details?.production">
+                        {{item.quantite+" "+item.unite+" "+item.nom}}
+
+                        <div class="row voir_plus">
+                            <div class="col">
+                                <div ngbDropdown class="d-inline-block">
+                                    <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem (click)="modifier_production(item)">Modifier <i
+                                                class="fa fa-pen right text-warning"></i> </button>
+                                        <button ngbDropdownItem (click)="supprimer_production(item)">Supprimer <i
+                                                class="fa fa-trash text-danger right"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
-                </li>
-                <li class="list-group-item" *ngIf="les_details?.production.length==0">
-                    pas de productions
-                </li>
-            </ul>
+                        <strong class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
+                    </li>
+                    <li class="list-group-item" *ngIf="les_details?.production.length==0">
+                        pas de productions
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

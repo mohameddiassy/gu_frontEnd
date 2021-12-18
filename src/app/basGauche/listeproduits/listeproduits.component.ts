@@ -25,7 +25,7 @@ export class ListeproduitsComponent implements OnInit {
       this.api.global.les_produits_sortants=data.products
 
       this.jour=this.api.get_selected_item_by_id(this.api.global.les_produits_sortants,"id_produit",this.api.global.selected_item.bas_gauche_selected_item)
-      this.jour?this.api.sendEvent("item_liste_produit_sortant",Object.assign({},this.jour)):alert("Produit inexistant dans votre entreprise")
+      this.jour?this.api.sendEvent("item_liste_produit_sortant",this.jour):alert("Produit inexistant dans votre entreprise")
       this.api.global.selected_item.bas_gauche_selected_item=this.jour.id_produit
     })
   }
@@ -47,5 +47,6 @@ export class ListeproduitsComponent implements OnInit {
       this.api.closeAllBool()
       this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
       this.api.sendEvent("ajouter_produit",{type:'sortant'});
+      this.api.closeSidenav()
   }
 }

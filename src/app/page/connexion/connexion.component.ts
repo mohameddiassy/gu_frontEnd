@@ -39,7 +39,7 @@ export class ConnexionComponent implements OnInit {
       this.api.global.utilisateur_connecte=u
       // sauvegarder les informations de l'utilisateur sur le local_storage
       localStorage.setItem('utilisateur', JSON.stringify(data.utilisateur));
-      this.route.navigate(["/accueil/"+u.entreprise_selectionnee.id_entreprise+"/fenetre_sortie"])
+      this.route.navigate(["/accueil/"+u.entreprise_selectionnee.id_entreprise+"/"+this.api.global.fenetre_selectionnee])
       console.log("l'utilisateur connecté est le propriétaite de l'entreprise ",e)
     } else if (u.agent_entreprises.length>0) {
       let e=u.agent_entreprises[0]
@@ -48,7 +48,7 @@ export class ConnexionComponent implements OnInit {
       this.api.global.utilisateur_connecte=u
       // sauvegarder les informations de l'utilisateur sur le local_storage
       localStorage.setItem('utilisateur', JSON.stringify(data.utilisateur));
-      this.route.navigate(["/accueil/"+u.entreprise_selectionnee.id_entreprise+"/fenetre_sortie"])
+      this.route.navigate(["/accueil/"+u.entreprise_selectionnee.id_entreprise+"/"+this.api.global.fenetre_selectionnee])
     }else {
       console.log("L'utilisateur connecté n'est ni un agent ni propriétaire d'entreprise")
       alert("Votre compte n'est pas encore activé. Veuillez contacter le propriétaire de l'entreprise")

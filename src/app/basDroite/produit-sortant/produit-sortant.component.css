@@ -2,7 +2,7 @@
     overflow: auto;
   }
   .les_statistiques button {
-    min-width: 100px;
+    max-width: 100px;
     margin: 3px;
   }
   

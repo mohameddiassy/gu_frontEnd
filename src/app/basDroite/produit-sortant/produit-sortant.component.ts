@@ -24,7 +24,7 @@ export class ProduitSortantComponent implements OnInit {
     // this.produit=this.api.global.les_produits[0]
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit_sortant"){
-        this.produit=Object.assign({},data.data)
+        this.produit=data.data
       }else if(data.code=="apres_ajout_consommation"){
         this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_modification_consommation"){

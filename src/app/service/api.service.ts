@@ -20,7 +20,7 @@ export class ApiService {
     fenetres:[],
     sidenavbool:false,
     utilisateur_connecte:{},
-    fenetre_selectionnee:"fenetre_dashbord",
+    fenetre_selectionnee:"fenetre_produit_sortant",
     les_fenetres:[],
     les_production_day:[],
     get_produit_day_left_list:[],
