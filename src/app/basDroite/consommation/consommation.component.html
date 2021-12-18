@@ -63,8 +63,7 @@
               let une_consommation of les_consommations
                 | slice: (page - 1) * pageSize:page * pageSize
                 | filter: recherche;
-              let i = index
-            ">
+              let i = index">
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ une_consommation.nom }}</td>
             <td>{{ une_consommation.stock_avant }}</td>
@@ -152,6 +151,5 @@
       <ngb-pagination [(page)]="page_depenses" [pageSize]="pageSize_depenses" [collectionSize]="les_depenses.length">
       </ngb-pagination>
     </div>
-  </div>
-  
+  </div> 
 </div>

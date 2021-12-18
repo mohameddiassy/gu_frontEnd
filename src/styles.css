@@ -66,3 +66,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-align: center!important;
     cursor: pointer;
 }
+.dropdown-toggle::after {
+    display: none!important;
+}
+.voir_plus{
+    float: right;
+    padding-left: 15px!important;
+    padding-right: 5px!important;
+}
+.voir_plus i{
+    cursor: pointer;
+    font-size: 20px;
+}
+.voir_plus i:hover{
+    color:  #0d6efd!important;
+}
+.lien{
+    cursor: pointer;
+    text-decoration: none;
+    color:  #0d6efd!important;
+}

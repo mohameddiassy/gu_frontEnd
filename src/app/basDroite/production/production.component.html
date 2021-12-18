@@ -57,7 +57,7 @@
                 <tbody>
                     <tr (dblclick)="open(content,une_sortie)" *ngFor="let une_sortie of api.global.les_productions | filter:recherche;let i=index ">
                         <th scope="row">{{i+1}}</th>
-                        <td>{{une_sortie.nom}}</td>
+                        <td> <a class="lien" (click)="api.redirect_to('fenetre_produit_sortant')">{{une_sortie.nom}}</a> </td>
                         <td>{{une_sortie.quantite}}</td>
                         <td>{{une_sortie.date_enregistrement | date:'hh :mm : ss a'}}</td>
                         <td>

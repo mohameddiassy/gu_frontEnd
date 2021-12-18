@@ -14,10 +14,10 @@ export class AjoutUtilisateurComponent implements OnInit {
   item: any
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
+    if (data.code == "ajouterutilisateur") {
       this.succes = false
       this.echec = false
       this.utilisateur= { prenom: "", nom: "", email: "", telephone: "", profession: "", login: "", mot_de_pass: "", id_privilege: "0" }
-    if (data.code == "ajouterutilisateur") {
         this.item = data.data
         this.recevoir_privilege()
       }

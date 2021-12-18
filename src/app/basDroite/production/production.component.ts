@@ -39,6 +39,8 @@ export class ProductionComponent implements OnInit {
         this.recevoir_productions(data.data.date)
       }else if(data.code=="apres_ajout_production"){
         this.recevoir_productions(data.data.date)
+      }else if(data.code=="apres_modification_production"){
+        this.recevoir_productions(data.data.date)
       }
 
     })

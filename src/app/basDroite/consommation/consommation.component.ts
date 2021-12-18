@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { ApiService } from 'src/app/service/api.service';
-import { AjouterConsommationComponent } from 'src/app/modal/ajouter-consommation/ajouter-consommation.component';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
-import { AjouterDepenseComponent } from 'src/app/modal/ajouter-depense/ajouter-depense.component';
 
 
 @Component({
@@ -42,7 +40,11 @@ export class ConsommationComponent implements OnInit {
         this.recevoir_consommations(data.data.date)
       }else if(data.code=="apres_ajout_consommation"){
         this.recevoir_consommations(data.data.date)
+      }else if(data.code=="apres_modification_consommation"){
+        this.recevoir_consommations(data.data.date)
       }else if(data.code=="apres_ajout_depense"){
+        this.recevoir_consommations(data.data.date)
+      }else if(data.code=="apres_modification_depense"){
         this.recevoir_consommations(data.data.date)
       }
     })

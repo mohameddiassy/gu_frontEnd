@@ -24,15 +24,17 @@ export class AjouterSortieComponent implements OnInit {
   item: any
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
-      this.succes = false
-      this.echec = false
       if (data.code == "ajoutersortie") {
+        this.succes = false
+        this.echec = false
         this.add=true;
         this.item = data.data
          this.recevoir_productions()
         // this.recevoir_produit_sortant()
       }
      else if (data.code == "modifiersortie") {
+      this.succes = false
+      this.echec = false
         this.add=false;
         this.sortie =Object.assign({}, data.data[1])// data.data[1]
         this.item =Object.assign({}, data.data[0])// data.data[0]

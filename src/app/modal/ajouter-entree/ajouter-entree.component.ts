@@ -22,17 +22,18 @@ export class AjouterEntreeComponent implements OnInit {
   constructor(public api: ApiService) {
     
     api.getEvent().subscribe((data) => {
-      
-      this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
-      this.succes = false
-      this.echec = false
       if (data.code == "ajouterentree") {
+        this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
+        this.succes = false
+        this.echec = false
         this.add=true;
         this.item = data.data
         this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
-      }
-      else if (data.code == "modifierentree")
+      }else if (data.code == "modifierentree")
         {
+          this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
+          this.succes = false
+          this.echec = false
           this.add=false;
           this.entree = Object.assign({}, data.data[0])
           this.item = Object.assign({}, data.data[1])//this.entree=data.data

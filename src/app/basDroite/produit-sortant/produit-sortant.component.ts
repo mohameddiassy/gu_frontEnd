@@ -11,14 +11,6 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./produit-sortant.component.css']
 })
 export class ProduitSortantComponent implements OnInit {
-  recherche_consommation=""
-  recherche_depense=""
-  recherche_production=""
-  page_consommation=1
-  pageSize_consommation=2
-  page_depense=1
-  pageSize_depense=2
-  page_production=1
   pageSize_production=2
   produit:any
   ajouterproduitcomponent=AjouterProduitComponent
@@ -27,22 +19,31 @@ export class ProduitSortantComponent implements OnInit {
   jour:any
   produit_supprime:any
   closeResult = '';
+  http: any;
   constructor(public api:ApiService,private modalService: NgbModal) { 
     // this.produit=this.api.global.les_produits[0]
     api.getEvent().subscribe((data:any)=>{
-      if(data.code=="item_liste_produit"){
-        this.produit=data.data
-        this.recevoir_production_par_jours_par_enregistreur()
+      if(data.code=="item_liste_produit_sortant"){
+        this.produit=Object.assign({},data.data)
       }else if(data.code=="apres_ajout_consommation"){
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_modification_consommation"){
         this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_ajout_production"){
         this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_modification_production"){
+        this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_ajout_depense"){
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_modification_depense"){
         this.recevoir_details(this.jour["date"])
       }
     })
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.recevoir_production_par_jours_par_enregistreur()
+  }
+  
   ajouter_produit(){
     this.api.closeAllBool()
     this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
@@ -108,8 +109,8 @@ export class ProduitSortantComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.jour=this.api.global.production_par_jours_par_enregistreur[0]
-        this.recevoir_details(this.jour["date"])
+        this.jour=this.api.get_selected_item_by_date(this.api.global.production_par_jours_par_enregistreur,"date",this.api.global.selected_item.bas_droite_selected_item)
+        this.jour?this.recevoir_details(this.jour["date"]):alert("date inexistante")
       } else {
         console.log("erreur de reception des fenetre")
       }
@@ -158,6 +159,9 @@ export class ProduitSortantComponent implements OnInit {
   choisir_jour(item:any){
     this.jour=item
     this.recevoir_details(this.jour["date"])
+    this.api.global.selected_item.bas_gauche_selected_item=this.produit.id_produit
+    this.api.global.selected_item.bas_droite_selected_item=item.date
+    this.api.redirect_to("fenetre_produit_sortant")
   }
   regulier(regulier:string){
     switch (regulier) {
@@ -194,6 +198,90 @@ export class ProduitSortantComponent implements OnInit {
     this.api.closeAllBool()
     this.api.bool.ajouterproduction=!this.api.bool.ajouterproduction
     this.api.sendEvent("modifierproduction",[this.jour,production]);
+  }
+  modifier_consommation(consommation:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
+    this.api.sendEvent("modifierconsommation",[this.jour,  consommation]);
+  }
+  supprimer_consommation(produit:any)
+  {
+    console.log("donnee send",produit);
+    this.api.post_utilisateur_connecte({delete_consommation:true,id_consommation:produit.id_consommation}).subscribe((data:any)=>{
+      if (data.status) {
+        alert("Produit supprimé avec succes")
+        this.les_details.consommation.splice(this.les_details.consommation.indexOf(produit),1)  
+      } else {
+        alert("Echec de suppression")
+      }
+      console.log("status",data)
+    })
+  }
+  modifier_depense(depense:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterdepense=!this.api.bool.ajouterdepense
+    this.api.sendEvent("modifier_depense",{jour:this.jour,depense:depense});
+  }
+  
+  delete_depense(depense:any){
+    //transformation des parametres à envoyer
+    let formdata=new FormData()
+    for (const key in depense) {
+      formdata.append(key,depense[key])
+    }
+
+    let api_url="http://localhost/gestionuniversel_back/amar_api/depense/delete" 
+    this.http.post(api_url,formdata).subscribe((reponse:any)=>{
+      //when success
+      if(reponse.status){
+        alert("Opération effectuée avec succés sur la table depense.")
+        this.les_details.depenses.splice(this.les_details.depenses.indexOf(depense),1)
+        console.log("Opération effectuée avec succés sur la table depense. Réponse= ",reponse)
+      }else{
+        alert("L'opération sur la table depense a échoué")
+        console.log("L'opération sur la table depense a échoué. Réponse= ",reponse)
+      }
+    },
+    (error:any)=>{
+      //when error
+      console.log("Erreur inconnue! ",error)
+    })
+  }
+  supprimer_production(production:any)
+  {
+    this.api.post_utilisateur_connecte({delete_production:true,id_production:production.id_production}).subscribe((data:any)=>{
+
+      if(data.status){
+        alert("Suppression reussie !")
+        this.les_details.production.splice(this.les_details.production.indexOf(production),1)
+      }else{
+        alert("Echec de la suppression")
+      }
+    })
+  }
+  get_benefice_unitaire(){
+    if(this.get_sum_production()==0){
+      return 0
+    }
+    return this.produit?.prix_unitaire-this.get_prix_revient()
+  }
+  get_benefice_total(){
+    if(this.get_sum_production()==0){
+      return 0
+    }
+    return this.get_sum_production()-this.get_sum_consommation()
+  }
+  get_benefice_total_avec_depense(){
+    if(this.get_sum_production()==0){
+      return 0
+    }
+    return this.get_sum_production()-this.get_sum_consommation() -this.get_sum_depense()
+  }
+  get_benefice_unitaire_avec_depense(){
+    if(this.get_sum_production()==0){
+      return 0
+    }
+    return this.produit?.prix_unitaire-this.get_prix_revient_avec_depense()
   }
 }
 

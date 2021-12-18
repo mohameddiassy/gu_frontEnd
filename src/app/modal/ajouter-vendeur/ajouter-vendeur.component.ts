@@ -16,12 +16,15 @@ export class AjouterVendeurComponent implements OnInit {
   modifier_bool = false
   constructor(public api: ApiService) {
     api.getEvent().subscribe((data) => {
-      this.echec = false
-      this.succes = false
-      this.vendeur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
       if (data.code == "ajouter_vendeur") {
+        this.echec = false
+        this.succes = false
+        this.vendeur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
         this.modifier_bool=false
       } else if (data.code == "modifier_vendeur") {
+        this.echec = false
+        this.succes = false
+        this.vendeur = { nom: "", adresse: "", telephone: "", description: "" ,dette:0}
         this.modifier_bool=true
         this.vendeur = data.data
       }

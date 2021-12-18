@@ -38,8 +38,9 @@ export class ListeConsommationComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.jour=this.api.global.consommation_par_jours_par_enregistreur[0]
-        this.api.sendEvent("item_liste_consommation",this.jour)
+        this.jour=this.api.get_selected_item_by_date(this.api.global.consommation_par_jours_par_enregistreur,"date",this.api.global.selected_item.bas_gauche_selected_item)
+        // this.jour=this.api.global.consommation_par_jours_par_enregistreur[0]
+        this.jour?this.api.sendEvent("item_liste_consommation",this.jour):alert("date inexistante")
       } else {
         alert("erreur coté serveur")
       }

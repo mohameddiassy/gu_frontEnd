@@ -16,12 +16,14 @@ export class AjoutDetteComponent implements OnInit {
   echec=false
   constructor(public api:ApiService,private http:HttpClient) {
     api.getEvent().subscribe((data) => {
-      this.succes = false
-      this.echec = false
       if (data.code == "ajouter_dette") {
+        this.succes = false
+        this.echec = false
         this.modifier_bool=false
         this.fournisseur=data.data
       } else if (data.code == "modifier_dette") {
+        this.succes = false
+        this.echec = false
         this.modifier_bool=true
         this.dette = Object.assign({},data.data.dette)
         this.fournisseur=data.data.fournisseur

@@ -83,6 +83,8 @@ const routes: Routes = [
   { path: "accueil", component: BodyComponent },
   { path: "accueil/:id_entreprise", component: BodyComponent },
   { path: "accueil/:id_entreprise/:fenetre", component: BodyComponent },
+  { path: "accueil/:id_entreprise/:fenetre/:bas_gauche_selected_item", component: BodyComponent },
+  { path: "accueil/:id_entreprise/:fenetre/:bas_gauche_selected_item/:bas_droite_selected_item", component: BodyComponent },
   { path: "mes_entreprises", component: MesEntreprisesComponent },
 
 ];

@@ -16,12 +16,14 @@ export class AjoutChequeComponent implements OnInit {
   echec=false
   constructor(public api:ApiService,private http:HttpClient) {
     api.getEvent().subscribe((data) => {
-      this.succes = false
-      this.echec = false
       if (data.code == "ajouter_cheque") {
+        this.succes = false
+        this.echec = false
         this.modifier_bool=false
         this.fournisseur=data.data
       } else if (data.code == "modifier_cheque") {
+        this.succes = false
+        this.echec = false
         this.modifier_bool=true
         this.cheque = Object.assign({},data.data.cheque)
         this.fournisseur=data.data.fournisseur

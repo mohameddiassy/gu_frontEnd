@@ -16,19 +16,27 @@ export class AjouterProduitComponent implements OnInit {
   modifier_bool=false
   constructor(public api:ApiService) { 
     api.getEvent().subscribe((data:any)=>{
-      this.succes=false
-      this.echec=false
-      this.notok=false;
-      this.produit={}
       
       if (data.code=="modifier_produit") {
+        this.succes=false
+        this.echec=false
+        this.notok=false;
+        this.produit={}
         this.produit=Object.assign({},data.data)
         this.modifier_bool=true
       } else if (data.code=="ajouter_produit") {
+        this.succes=false
+        this.echec=false
+        this.notok=false;
+        this.produit={}
         var type=Object.assign({},data.data)
         this.produit.type=type.type
         this.modifier_bool=false
       } else {
+        this.succes=false
+        this.echec=false
+        this.notok=false;
+        this.produit={}
         this.initialiser_formulaire()
       }
     })

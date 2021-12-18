@@ -84,7 +84,7 @@ export class AjouterConsommationComponent implements OnInit {
           this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
           this.succes = true
           this.consommation.quantite = "0"
-          this.api.sendEvent("item_liste_consommation",this.item)
+          this.api.sendEvent("apres_modification_consommation",this.item)
           this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
           alert("Modification reussie !")
         } else {

@@ -79,7 +79,7 @@ export class AjouterProductionComponent implements OnInit {
           // this.production.quantite = "0"
           // // this.data.les_produits.push(data.produit)
           // // let date=moment(this.item.date).format("YYYY-MM-DD")
-          this.api.sendEvent("item_liste_production",this.item)
+          this.api.sendEvent("apres_modification_production",this.item)
           alert("Modification reussie !")
         } else {
           this.echec = true

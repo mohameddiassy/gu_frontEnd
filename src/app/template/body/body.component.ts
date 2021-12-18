@@ -108,19 +108,19 @@ export class BodyComponent implements OnInit {
     router.params.subscribe((params:any)=>{
       let e=params["id_entreprise"]
       let f=params["fenetre"]
+      api.global.selected_item.bas_gauche_selected_item=params["bas_gauche_selected_item"]
+      api.global.selected_item.bas_droite_selected_item=params["bas_droite_selected_item"]
       if (f && e) {
-        console.log("id_entreprise=",f)
         if(api.global.fenetre_selectionnee!=f){
           api.global.fenetre_selectionnee=f
         }
-
       } else {
-        console.log("pas de parametre fenentre ",f,params)
+        console.log("pas de parametre fenentre ",params)
       }
     })
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="bouton_menu_sidenav"){
-        this.fenetres
+        // this.fenetres
       }
     })
    }
