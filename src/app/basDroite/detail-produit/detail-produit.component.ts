@@ -19,7 +19,7 @@ export class DetailProduitComponent implements OnInit {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit"){
         this.produit=data.data
-        this.recevoir_details(this.jour["date"])
+        this.recevoir_entree_par_jours_par_enregistreur()
       }else if(data.code=="apres_ajout_consommation"){
         this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_modification_consommation"){
@@ -32,7 +32,7 @@ export class DetailProduitComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.recevoir_entree_par_jours_par_enregistreur()
+    
   }
   ajouter_produit(){
     this.api.closeAllBool()
@@ -103,9 +103,6 @@ export class DetailProduitComponent implements OnInit {
   choisir_jour(item:any){
     this.jour=item
     this.recevoir_details(this.jour["date"])
-    this.api.global.selected_item.bas_gauche_selected_item=this.produit.id_produit
-    this.api.global.selected_item.bas_droite_selected_item=item.date
-    this.api.redirect_to("fenetre_produit_entrant")
   }
   
   supression_produit(){

@@ -7,12 +7,12 @@
   </div>
     <div (click)="clique(item)" *ngFor="let item of api.global.les_produits_sortants| filter:api.global.recherche_hautgauche"
     class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action"
-    [ngClass]="{'disabled_div':item.etat==-1,'text-white bg-primary':item.id_produit==api.global.selected_item.bas_gauche_selected_item}"> 
+    [ngClass]="{'disabled_div':item.etat==-1,'text-white bg-primary':item==selected_produit_sortant}"> 
     <div class="ms-2 me-auto"  >
         <div class="fw-bold">{{item.nom}}</div>
         {{item.description}}
       </div>
-      <span *ngIf="item.etat==0"  class="badge bg-primary rounded-pill" [ngClass]="item==jour?'bg-white text-primary': ''">{{item.prix_unitaire}}</span>
+      <span *ngIf="item.etat==0"  class="badge bg-primary rounded-pill" [ngClass]="item==selected_produit_sortant?'bg-white text-primary': ''">{{item.prix_unitaire}}</span>
       <i (click)="refresh(item)" *ngIf="item.etat!=0" class="fa fa-refresh"></i>
     </div>
 </div>

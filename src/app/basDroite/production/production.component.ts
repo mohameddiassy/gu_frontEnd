@@ -45,6 +45,9 @@ export class ProductionComponent implements OnInit {
 
     })
   }
+  clique_nom(){
+    console.log("cique sur le nom du produit")
+  }
 
   ngOnInit(): void {
   }

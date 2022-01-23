@@ -25,7 +25,7 @@ export class ProduitSortantComponent implements OnInit {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit_sortant"){
         this.produit=data.data
-        this.recevoir_details(this.jour["date"])
+        this.recevoir_production_par_jours_par_enregistreur()
       }else if(data.code=="apres_ajout_consommation"){
         this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_modification_consommation"){
@@ -42,7 +42,7 @@ export class ProduitSortantComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.recevoir_production_par_jours_par_enregistreur()
+    
   }
   
   ajouter_produit(){
@@ -110,8 +110,8 @@ export class ProduitSortantComponent implements OnInit {
               "montant": "0"
           })
         }
-        this.jour=this.api.get_selected_item_by_date(this.api.global.production_par_jours_par_enregistreur,"date",this.api.global.selected_item.bas_droite_selected_item)
-        this.jour?this.recevoir_details(this.jour["date"]):alert("date inexistante")
+        this.jour=this.api.global.production_par_jours_par_enregistreur[0];
+        this.jour?this.recevoir_details(this.jour["date"]):alert("Pas de date")
       } else {
         console.log("erreur de reception des fenetre")
       }
@@ -160,9 +160,6 @@ export class ProduitSortantComponent implements OnInit {
   choisir_jour(item:any){
     this.jour=item
     this.recevoir_details(this.jour["date"])
-    this.api.global.selected_item.bas_gauche_selected_item=this.produit.id_produit
-    this.api.global.selected_item.bas_droite_selected_item=item.date
-    this.api.redirect_to("fenetre_produit_sortant")
   }
   regulier(regulier:string){
     switch (regulier) {

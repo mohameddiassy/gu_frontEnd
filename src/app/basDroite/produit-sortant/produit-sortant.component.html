@@ -2,7 +2,7 @@
     <div class="d-flex mb-2 les_statistiques">
         <button (click)="choisir_jour(item)"
             *ngFor="let item of api.global.production_par_jours_par_enregistreur;let first = first;" type="button"
-            [ngClass]="item.date==api.global.selected_item.bas_droite_selected_item?'btn bg-white text-primary': 'btn bg-primary text-white'">
+            [ngClass]="item.date==jour.date?'btn bg-white text-primary': 'btn bg-primary text-white'">
             {{item.date| date :'dd MMMM YYYY'}} <br>
             <span class="badge bg-primary">{{item.chiffre}}</span>
         </button>
