@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./liste-produit-entrant.component.css']
 })
 export class ListeProduitEntrantComponent implements OnInit {
-  jour:any
+  selected_produit_entrant:any
   constructor(public api:ApiService) {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="update_liste_produit_entrant"){
@@ -21,7 +21,7 @@ export class ListeProduitEntrantComponent implements OnInit {
     
   }
   clique(item:any){
-    this.jour=item
+    this.selected_produit_entrant=item
     this.api.sendEvent("item_liste_produit",item)
     this.api.closeSidenav()
   }
@@ -36,8 +36,8 @@ export class ListeProduitEntrantComponent implements OnInit {
       console.log("produits entrants",data)
       this.api.global.les_produits_entrants=data.products
       if(data.products.length>0){
-        this.jour=this.api.global.les_produits_entrants[0]
-        this.api.sendEvent("item_liste_produit",this.jour)
+        this.selected_produit_entrant=this.api.global.les_produits_entrants[0]
+        this.api.sendEvent("item_liste_produit",this.selected_produit_entrant)
       }      
     })
   }
