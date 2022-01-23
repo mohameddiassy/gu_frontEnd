@@ -109,6 +109,17 @@ export class BodyComponent implements OnInit {
   }
   menu=MenuComponent
   constructor(public api:ApiService,public route:Router,private router:ActivatedRoute) {
+    router.params.subscribe((params:any)=>{
+      let e=params["id_entreprise"]
+      let f=params["fenetre"]
+      if (f && e) {
+        if(api.global.fenetre_selectionnee!=f){
+          api.global.fenetre_selectionnee=f
+        }
+      } else {
+        console.log("pas de parametre fenentre ",params)
+      }
+    })
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="bouton_menu_sidenav"){
         // this.fenetres
