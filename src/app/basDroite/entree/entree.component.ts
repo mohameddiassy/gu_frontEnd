@@ -42,6 +42,10 @@ export class EntreeComponent implements OnInit {
       if(data.code=="entree_par_jours_par_enregistreur"){
         this.item=data.data
         this.recevoir_entree(this.item.date)
+      }else if(data.code=="apres_ajout_entree"){
+        this.recevoir_entree(this.item.date)
+      }else if(data.code=="apres_modification_entree"){
+        this.recevoir_entree(this.item.date)
       }
     })
   }
@@ -51,12 +55,12 @@ export class EntreeComponent implements OnInit {
 
   ajouterentree(){
     this.api.bool.ajouterentree=!this.api.bool.ajouterentree
-    this.api.sendEvent("ajouterentree",this.item);
+    this.api.sendEvent("ajouterentree",{jour:this.item,id_produit:0});
   }
   modifier_entree(une_entree:any){
+    this.api.closeAllBool()
     this.api.bool.ajouterentree=!this.api.bool.ajouterentree
      this.api.sendEvent("modifierentree",[une_entree, this.item]);
-    
   }
 
   downloadFile(data: any) {

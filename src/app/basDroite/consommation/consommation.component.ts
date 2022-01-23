@@ -157,7 +157,7 @@ export class ConsommationComponent implements OnInit {
       formdata.append(key,depense[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/depense/delete" 
+    let api_url=this.api.host+"amar_api/depense/delete" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){

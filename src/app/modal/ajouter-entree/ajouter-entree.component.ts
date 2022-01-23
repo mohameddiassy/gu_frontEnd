@@ -23,12 +23,14 @@ export class AjouterEntreeComponent implements OnInit {
     
     api.getEvent().subscribe((data) => {
       if (data.code == "ajouterentree") {
-        this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
+        this.entree = {}
         this.succes = false
         this.echec = false
         this.add=true;
-        this.item = data.data
-        this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
+        this.item = data.data.jour
+        this.entree.id_fournisseur=1
+        this.entree.id_produit=data.data.id_produit
+        this.changement()
       }else if (data.code == "modifierentree")
         {
           this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
@@ -71,7 +73,7 @@ export class AjouterEntreeComponent implements OnInit {
       this.api.post_utilisateur_connecte({ add_entree: true, entree: JSON.stringify(this.entree) }).subscribe((data: any) => {
         if (data.status) {
           this.succes = true
-          this.api.sendEvent("entree_par_jours_par_enregistreur",this.item)
+          this.api.sendEvent("apres_ajout_entree",this.item)
           this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
         } else {
           this.echec = true
@@ -90,7 +92,7 @@ export class AjouterEntreeComponent implements OnInit {
         this.succes = true
         // this.data.les_produits.push(data.produit)
         // let date=moment(this.item.date).format("YYYY-MM-DD")
-        this.api.sendEvent("entree_par_jours_par_enregistreur",this.item)
+        this.api.sendEvent("apres_modification_entree",this.item)
         alert("Modification reussi !")
 
       } else {

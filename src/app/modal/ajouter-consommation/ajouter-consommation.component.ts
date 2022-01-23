@@ -24,7 +24,8 @@ export class AjouterConsommationComponent implements OnInit {
         this.consommation = { quantite: "0", id_produit: "0", date_consommation: "",id_type_consommation:""}
         this.add=true;
         this.item = data.data.jour
-        this.consommation.id_produit_destination=data.data.id_produit
+        this.consommation.id_produit=data.data.id_produit
+        this.consommation.id_produit_destination=data.data.id_produit_destination
       }
       else if (data.code == "modifierconsommation")
       {

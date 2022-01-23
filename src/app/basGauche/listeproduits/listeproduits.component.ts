@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { ApiService } from 'src/app/service/api.service';
-
 @Component({
   selector: 'app-listeproduits',
   templateUrl: './listeproduits.component.html',
@@ -18,6 +18,7 @@ export class ListeproduitsComponent implements OnInit {
     this.api.sendEvent("item_liste_produit_sortant",item)
     this.api.closeSidenav()
     this.api.global.selected_item.bas_gauche_selected_item=item.id_produit
+    this.api.global.selected_item.bas_droite_selected_item=moment().format("YYYY-MM-DD")
     this.api.redirect_to("fenetre_produit_sortant");
   }
   recevoir_produit_sortant(){

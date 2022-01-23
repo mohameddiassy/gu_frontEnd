@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { AjouterProduitComponent } from 'src/app/modal/ajouter-produit/ajouter-produit.component';
 import { ApiService } from 'src/app/service/api.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -19,12 +20,12 @@ export class ProduitSortantComponent implements OnInit {
   jour:any
   produit_supprime:any
   closeResult = '';
-  http: any;
-  constructor(public api:ApiService,private modalService: NgbModal) { 
+  constructor(public api:ApiService,private modalService: NgbModal,private http:HttpClient  ) { 
     // this.produit=this.api.global.les_produits[0]
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit_sortant"){
         this.produit=data.data
+        this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_ajout_consommation"){
         this.recevoir_details(this.jour["date"])
       }else if(data.code=="apres_modification_consommation"){
@@ -181,7 +182,7 @@ export class ProduitSortantComponent implements OnInit {
   ajouter_consommation(){
     this.api.closeAllBool()
     this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
-    this.api.sendEvent("ajouterconsommation",{jour:this.jour,id_produit:this.produit.id_produit});
+    this.api.sendEvent("ajouterconsommation",{jour:this.jour,id_produit:this.produit.id_produit,id_produit_destination:0});
   }
   ajouter_depense(){
     this.api.closeAllBool()
@@ -230,12 +231,12 @@ export class ProduitSortantComponent implements OnInit {
       formdata.append(key,depense[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/depense/delete" 
+    let api_url=this.api.host+"amar_api/depense/delete" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
         alert("Opération effectuée avec succés sur la table depense.")
-        this.les_details.depenses.splice(this.les_details.depenses.indexOf(depense),1)
+        this.les_details.depense.splice(this.les_details.depense.indexOf(depense),1)
         console.log("Opération effectuée avec succés sur la table depense. Réponse= ",reponse)
       }else{
         alert("L'opération sur la table depense a échoué")
