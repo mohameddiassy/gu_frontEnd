@@ -24,9 +24,6 @@ export class ListeProduitEntrantComponent implements OnInit {
     this.jour=item
     this.api.sendEvent("item_liste_produit",item)
     this.api.closeSidenav()
-    this.api.global.selected_item.bas_gauche_selected_item=item.id_produit
-    this.api.global.selected_item.bas_droite_selected_item= moment().format("YYYY-MM-DD")
-    this.api.redirect_to("fenetre_produit_entrant")
   }
   ajouter_produit_entrant(){
     this.api.closeSidenav()
