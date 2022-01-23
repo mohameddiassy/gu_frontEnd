@@ -9,12 +9,13 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ApiService {
 
-  // url="https://gu.h24code.com/nouveau/api.php"
+  url="https://gu.h24code.com/nouveau/api.php"
+  host="https://gu.h24code.com/"
   // url="http://192.168.1.19/gestionuniversel_back/nouveau/api.php"
 //  url="http://192.168.1.3/gestionuniversel_back/nouveau/api.php"
   ///url="http://localhost/gestionuniversel_back/nouveau/api.php"
   //  url="http://192.168.1.5/gestionuniversel_back/nouveau/api.php"
- url="http://localhost/gestionuniversel_back/nouveau/api.php"
+//  url="http://localhost/gestionuniversel_back/nouveau/api.php"
 
   global:any={
     fenetres:[],
@@ -134,6 +135,9 @@ export class ApiService {
       this.route.navigate(['/accueil/'+this.global.utilisateur_connecte.entreprise_selectionnee.id_entreprise+"/"+fenetre+"/"+bas_gauche_selected_item+"/"+bas_droite_selected_item])
     }
     
+  }
+  navigate_fenetre(cle:string){
+    this.route.navigate(['/accueil/'+this.global.utilisateur_connecte.entreprise_selectionnee.id_entreprise+"/"+cle])
   }
   get_selected_item_by_id(array:any,nom_id:string,selected_item_id:number){
     if(array.length==0){

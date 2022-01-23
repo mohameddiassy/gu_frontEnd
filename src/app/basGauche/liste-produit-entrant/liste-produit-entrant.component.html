@@ -8,7 +8,7 @@
   <div (click)="clique(item)"
     *ngFor="let item of api.global.les_produits_entrants| filter:api.global.recherche_hautgauche"
     class="list-group-item d-flex justify-content-between align-items-start item_liste list-group-item-action"
-    [ngClass]="{'couleur_body':item==jour,'disabled_div':item.etat==-1}">
+    [ngClass]="{'couleur_body':item.id_produit==api.global.selected_item.bas_gauche_selected_item,'disabled_div':item.etat==-1}">
     <div class="ms-2 me-auto">
       <div class="fw-bold">{{item.nom}}</div>
       {{item.description}}

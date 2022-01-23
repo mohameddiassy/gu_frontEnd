@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AjouterProduitComponent } from '../../modal/ajouter-produit/ajouter-produit.component';
 import { ApiService } from 'src/app/service/api.service';
-import { multi } from './data';
 import * as moment from 'moment';
 
 @Component({
@@ -20,11 +19,21 @@ export class DetailProduitComponent implements OnInit {
     api.getEvent().subscribe((data:any)=>{
       if(data.code=="item_liste_produit"){
         this.produit=data.data
-        this.recevoir_entree_par_jours_par_enregistreur()
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_ajout_consommation"){
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_modification_consommation"){
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_ajout_entree"){
+        this.recevoir_details(this.jour["date"])
+      }else if(data.code=="apres_modification_entree"){
+        this.recevoir_details(this.jour["date"])
       }
     })
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.recevoir_entree_par_jours_par_enregistreur()
+  }
   ajouter_produit(){
     this.api.closeAllBool()
     this.api.bool.ajouterproduit=!this.api.bool.ajouterproduit
@@ -94,6 +103,9 @@ export class DetailProduitComponent implements OnInit {
   choisir_jour(item:any){
     this.jour=item
     this.recevoir_details(this.jour["date"])
+    this.api.global.selected_item.bas_gauche_selected_item=this.produit.id_produit
+    this.api.global.selected_item.bas_droite_selected_item=item.date
+    this.api.redirect_to("fenetre_produit_entrant")
   }
   
   supression_produit(){
@@ -105,6 +117,41 @@ export class DetailProduitComponent implements OnInit {
       }else{
         alert("Echec de supression")
       }
+    })
+  }
+  ajouter_consommation(){
+    this.api.closeAllBool()
+    this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
+    this.api.sendEvent("ajouterconsommation",{jour:this.jour,id_produit:this.produit.id_produit,id_produit_destination:0});
+  }
+  ajouter_entree(){
+      this.api.bool.ajouterentree=!this.api.bool.ajouterentree
+      this.api.sendEvent("ajouterentree",{jour:this.jour,id_produit:this.produit.id_produit});
+  }
+  supprimer_entree(item:any){
+
+  }
+  modifier_entree(une_entree:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterentree=!this.api.bool.ajouterentree
+    this.api.sendEvent("modifierentree",[une_entree, this.jour]);
+  }
+  modifier_consommation(consommation:any){
+    this.api.closeAllBool()
+    this.api.bool.ajouterconsommation=!this.api.bool.ajouterconsommation
+    this.api.sendEvent("modifierconsommation",[this.jour, consommation]);
+  }
+  supprimer_consommation(produit:any)
+  {
+    console.log("donnee send",produit);
+    this.api.post_utilisateur_connecte({delete_consommation:true,id_consommation:produit.id_consommation}).subscribe((data:any)=>{
+      if (data.status) {
+        alert("Produit supprimé avec succes")
+        this.les_details.consommation.splice(this.les_details.consommation.indexOf(produit),1)  
+      } else {
+        alert("Echec de suppression")
+      }
+      console.log("status",data)
     })
   }
 }

@@ -47,7 +47,7 @@ export class AjouterDepenseComponent implements OnInit {
       formdata.append(key,this.depense[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/depense/add" 
+    let api_url=this.api.host+"amar_api/depense/add" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
@@ -75,13 +75,13 @@ export class AjouterDepenseComponent implements OnInit {
       formdata.append(key,this.depense[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/depense/edit" 
+    let api_url=this.api.host+"amar_api/depense/edit" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
         alert("Opération effectuée avec succés sur la table depense")
         console.log("Opération effectuée avec succés sur la table depense. Réponse= ",reponse)
-        this.api.sendEvent("item_liste_consommation",this.jour);
+        this.api.sendEvent("apres_modification_depense",this.jour);
         this.depense={}
         this.api.closeAllBool()
       }else{

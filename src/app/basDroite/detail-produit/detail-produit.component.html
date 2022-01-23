@@ -41,11 +41,28 @@
             </ul>
         </div>
         <div class="card col-md-7 p-2">
-            <h2 class="card-title"><span>Entrée</span> <span
+            <h2 class="card-title"><span class="lien" (click)="api.navigate_fenetre('fenetre_entree')">Entrée</span> 
+                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_entree()"></i>
+                <span
                     class="right bg-primary btn text-white">{{get_sum_entree()|number}} fcfa</span></h2>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of les_details?.entree">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
+                    {{item.quantite+" "+item.unite+" "+item.nom}} 
+                    
+                <div class="row voir_plus">
+                    <div class="col">
+                        <div ngbDropdown class="d-inline-block">
+                            <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <button ngbDropdownItem (click)="modifier_entree(item)">Modifier <i
+                                        class="fa fa-pen right text-warning"></i> </button>
+                                <button ngbDropdownItem (click)="supprimer_entree(item)">Supprimer <i
+                                        class="fa fa-trash text-danger right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <strong
                         class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
                 <li class="list-group-item" *ngIf="les_details?.entree.length==0">
@@ -53,11 +70,28 @@
                 </li>
             </ul>
             <hr>
-            <h2 class="card-title">Consommation <span class="right bg-primary btn text-white">
+            <h2 class="card-title"> <span class="lien" (click)="api.navigate_fenetre('fenetre_consommation')"> Consommation</span>
+                <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_consommation()"></i>
+                 <span class="right bg-primary btn text-white">
                     {{get_sum_consommation()|number}} fcfa</span></h2>
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let item of les_details?.consommation">
-                    {{item.quantite+" "+item.unite+" "+item.nom}} <strong
+                    {{item.quantite+" "+item.unite+" "+item.nom}} 
+                    
+                <div class="row voir_plus">
+                    <div class="col">
+                        <div ngbDropdown class="d-inline-block">
+                            <i class="fa-ellipsis-v fa 2x right" ngbDropdownToggle></i>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <button ngbDropdownItem (click)="modifier_consommation(item)">Modifier <i
+                                        class="fa fa-pen right text-warning"></i> </button>
+                                <button ngbDropdownItem (click)="supprimer_consommation(item)">Supprimer <i
+                                        class="fa fa-trash text-danger right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <strong
                         class="right">{{item.quantite*item.prix_unitaire}} fcfa</strong>
                 </li>
                 <li class="list-group-item" *ngIf="les_details?.consommation.length==0">

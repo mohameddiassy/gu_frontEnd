@@ -54,7 +54,7 @@
             </div>
             <div class="card col-md-7 p-2">
                 <h2 class="card-title"><span class="lien"
-                        (click)="api.redirect_to('fenetre_consommation')">Consommation</span>
+                        (click)="api.navigate_fenetre('fenetre_consommation')">Consommation</span>
                     <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_consommation()"></i>
                     <span class="right bg-warning btn">{{get_sum_consommation()|number}} fcfa</span>
                 </h2>
@@ -82,7 +82,7 @@
                 </ul>
                 <hr>
                 <h2 class="card-title"><span class="lien"
-                        (click)="api.redirect_to('fenetre_consommation')">Dépense</span>
+                        (click)="api.navigate_fenetre('fenetre_consommation')">Dépense</span>
                     <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_depense()"></i>
                     <span class="right bg-warning btn ">{{get_sum_depense()|number}} fcfa</span>
                 </h2>
@@ -111,7 +111,7 @@
                 </ul>
                 <hr>
                 <h2 class="card-title"> <span class="lien"
-                        (click)="api.redirect_to('fenetre_production')">Production</span>
+                        (click)="api.navigate_fenetre('fenetre_production')">Production</span>
                     <i class="fa fa-add fa-1x icone_ajouter" (click)="ajouter_production()"></i>
                     <span class="right bg-success btn text-white">
                         {{get_sum_production()|number}} fcfa</span>

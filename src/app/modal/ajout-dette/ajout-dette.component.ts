@@ -53,7 +53,7 @@ status:'int(1)'
       formdata.append(key,this.dette[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/dette/add" 
+    let api_url=this.api.host+"amar_api/dette/add" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
@@ -91,7 +91,7 @@ status:'int(1)'
       formdata.append(key,this.dette[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/dette/edit" 
+    let api_url=this.api.host+"amar_api/dette/edit" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
