@@ -44,6 +44,26 @@ export class AjouterConsommationComponent implements OnInit {
     this.recevoir_produit_sortant();
     // this.recevoir_produit_entrants()
   }
+  submit(){
+    if (this.get_stock_from_product_id(this.consommation.id_produit)>=this.consommation.quantite) {
+       this.ajouter()
+    } else {
+      alert("Stock insuffisant");
+    }
+  }
+  get_stock_from_product_id(id_produit:number):number{
+    var res=0
+    console.log(id_produit)
+    console.log(this.api.global.les_produits_entrants)
+    this.api.global.les_produits_entrants.forEach((un_produit:any) => {
+      if(un_produit.id_produit==id_produit){
+        console.log("stock= "+un_produit.stock)
+        res=un_produit.stock
+      }
+    });
+    console.log("pasde if")
+    return res
+  }
   ajouter() {
     this.echec = false
     this.succes = false

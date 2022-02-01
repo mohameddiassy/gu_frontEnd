@@ -74,6 +74,7 @@ export class AjouterEntreeComponent implements OnInit {
         if (data.status) {
           this.succes = true
           this.api.sendEvent("apres_ajout_entree",this.item)
+          
           this.entree = { quantite: "0", id_produit: 0,prix_unitaire:'0', id_enregistreur: 1, date_entree: "",id_fournisseur:1,stock_avant:''}
         } else {
           this.echec = true

@@ -1,6 +1,8 @@
 <h2>Les productions du {{item?.date | date:'dd MMMM YYYY'}}</h2>
 <hr>
+
 <div class="row">
+  
     <div class="col-6 col-md-4 col-xl-3" *ngFor="let item of les_statistiques_backend.depense_mois_en_cours">
         <div class="card p-2 ">
             <div class="row align-items-center ">
@@ -149,7 +151,7 @@
     <!-- chiffre d' affaire -->
     <div class="card col-md-6 pt-2 ">
         <div class="card-body ">
-            <h5 class="card-title ">Résumé consommation</h5>
+            <h5 class="card-title ">Consommations </h5>
         </div>
         <ul class="list-group ">
             <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.resume_consommation ">
@@ -166,7 +168,7 @@
     <!-- produits mieux vendu par mois -->
     <div class="card col-md-6 pt-2 ">
         <div class="card-body ">
-            <h5 class="card-title ">resumé production</h5>
+            <h5 class="card-title ">Productions</h5>
         </div>
         <ul class="list-group ">
             <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.resume_production ">
@@ -178,10 +180,10 @@
             <a class="btn border ">voir plus</a>
         </div>
     </div>
-    <!-- Les meilleurs agents -->
+    <!-- Les sorties -->
     <div class="card col-md-6 pt-2 ">
         <div class="card-body ">
-            <h5 class="card-title ">Les meilleurs agents</h5>
+            <h5 class="card-title ">Ventes</h5>
         </div>
         <ul class="list-group ">
             <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.les_agents ">
@@ -193,11 +195,44 @@
             <a class="btn border ">voir plus</a>
         </div>
     </div>
-    <!-- Les depese des quatres derniers mois  -->
+    <!-- Les depenses  -->
 
     <div class="card col-md-6 pt-2 ">
         <div class="card-body ">
-            <h5 class="card-title ">depenses des quatrs derniers mois</h5>
+            <h5 class="card-title ">Depenses</h5>
+        </div>
+        <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.depense_des_quatres_mois ">
+                <span> {{(item_liste.mois|date: "MMMM ")}}</span>
+                <span class="badge bg-secondary ">{{item_liste.CA}} FCFA</span>
+            </li>
+        </ul>
+        <div class="card-body ">
+            <a class="btn border ">voir plus</a>
+        </div>
+    </div>
+    <!-- Dettes  -->
+
+    <div class="card col-md-6 pt-2 ">
+        <div class="card-body ">
+            <h5 class="card-title ">Dette</h5>
+        </div>
+        <ul class="list-group ">
+            <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.depense_des_quatres_mois ">
+                <span> {{(item_liste?.mois|date: "MMMM")}}</span>
+                <span class="badge bg-secondary ">{{item_liste?.CA}} FCFA</span>
+            </li>
+            <ngb-pagination [(page)]="page_entree" [pageSize]="pageSize_entree" [collectionSize]="les_statistiques_backend.depense_des_quatres_mois?.length"></ngb-pagination>
+        </ul>
+        <div class="card-body ">
+            <a class="btn border ">voir plus</a>
+        </div>
+    </div>
+    <!-- les entrees  -->
+
+    <div class="card col-md-6 pt-2 ">
+        <div class="card-body ">
+            <h5 class="card-title ">Depenses</h5>
         </div>
         <ul class="list-group ">
             <li class="list-group-item d-flex justify-content-between " *ngFor="let item_liste of les_statistiques_backend.depense_des_quatres_mois ">

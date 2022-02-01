@@ -20,13 +20,17 @@ export class DetailProduitComponent implements OnInit {
       if(data.code=="item_liste_produit"){
         this.produit=data.data
         this.recevoir_entree_par_jours_par_enregistreur()
-      }else if(data.code=="apres_ajout_consommation"){
+      }
+      // else if(data.code=="apres_ajout_consommation"){
+      //   this.recevoir_details(this.jour["date"])
+      // }
+      else if(data.code=="apres_modification_consommation"){
         this.recevoir_details(this.jour["date"])
-      }else if(data.code=="apres_modification_consommation"){
-        this.recevoir_details(this.jour["date"])
-      }else if(data.code=="apres_ajout_entree"){
-        this.recevoir_details(this.jour["date"])
-      }else if(data.code=="apres_modification_entree"){
+      }
+      // else if(data.code=="apres_ajout_entree"){
+      //   this.recevoir_details(this.jour["date"])
+      // }
+      else if(data.code=="apres_modification_entree"){
         this.recevoir_details(this.jour["date"])
       }
     })

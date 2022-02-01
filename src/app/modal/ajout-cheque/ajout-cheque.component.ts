@@ -53,7 +53,7 @@ status:'int(1)'
       formdata.append(key,this.cheque[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/cheque/add" 
+    let api_url="https://gu.h24code.com/amar_api/cheque/add" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
@@ -91,7 +91,7 @@ status:'int(1)'
       formdata.append(key,this.cheque[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/cheque/edit" 
+    let api_url="https://gu.h24code.com/amar_api/cheque/edit" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){

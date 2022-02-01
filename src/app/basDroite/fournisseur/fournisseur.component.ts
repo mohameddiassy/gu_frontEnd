@@ -130,7 +130,7 @@ export class FournisseurComponent implements OnInit {
       formdata.append(key,cheque[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/cheque/delete" 
+    let api_url="https://gu.h24code.com/amar_api/cheque/delete" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){
@@ -163,7 +163,7 @@ export class FournisseurComponent implements OnInit {
       formdata.append(key,dette[key])
     }
 
-    let api_url="http://localhost/gestionuniversel_back/amar_api/dette/delete" 
+    let api_url="https://gu.h24code.com/amar_api/dette/delete" 
     this.http.post(api_url,formdata).subscribe((reponse:any)=>{
       //when success
       if(reponse.status){

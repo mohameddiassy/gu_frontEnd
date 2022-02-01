@@ -25,8 +25,12 @@ export class DashbordComponent implements OnInit {
   ]
   single: any[]=[];
   multi: any[]=[];
-
-  view:any= [400, 400];
+  les_mois:any[]=[]
+  mois_select: any;  view:any= [400, 400];
+  page=1
+  pageSize=4
+  page_entree=1
+  pageSize_entree=4
 
   // options
   showXAxis = true;
@@ -63,6 +67,16 @@ export class DashbordComponent implements OnInit {
 
   onSelect(event:any) {
     console.log(event);
+  }
+  recevoir_mois(){
+    this.api.post_utilisateur_connecte({les_mois:true}).subscribe((data:any)=>{
+      this.les_mois=data.les_mois
+      this.mois_select = this.les_mois[0].mois;
+      
+      //this.les_stats=data.les_statistiques
+      console.log("get_sortie_date",data)
+    
+    })
   }
   recevoir_dashboard(date:any) {
     this.api.post_utilisateur_connecte({dashboard:true,date:date}).subscribe((data:any)=>{

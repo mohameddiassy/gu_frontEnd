@@ -14,6 +14,12 @@ export class ListeProduitEntrantComponent implements OnInit {
       if(data.code=="update_liste_produit_entrant"){
         this.recevoir_produit_entrnt()
       }
+      else if(data.code=="apres_ajout_entree"){
+        this.refresh_produit_entrnt();
+      }
+      else if(data.code=="apres_ajout_consommation"){
+        this.refresh_produit_entrnt();
+        }
     })
   }
   ngOnInit(): void {
@@ -37,6 +43,21 @@ export class ListeProduitEntrantComponent implements OnInit {
       this.api.global.les_produits_entrants=data.products
       if(data.products.length>0){
         this.selected_produit_entrant=this.api.global.les_produits_entrants[0]
+        this.api.sendEvent("item_liste_produit",this.selected_produit_entrant)
+      }      
+    })
+  }
+  refresh_produit_entrnt(){
+    this.api.post_utilisateur_connecte({get_products_by_id_entreprise:true,type:"entrant"}).subscribe((data:any)=>{
+      console.log("produits entrants",data)
+      this.api.global.les_produits_entrants=data.products
+      if(data.products.length>0){
+        for (let i = 0; i < this.api.global.les_produits_entrants.length; i++) {
+          const un_produit = this.api.global.les_produits_entrants[i];
+          if(un_produit.id_produit==this.selected_produit_entrant.id_produit){
+            this.selected_produit_entrant=this.api.global.les_produits_entrants[i]
+          }
+        }
         this.api.sendEvent("item_liste_produit",this.selected_produit_entrant)
       }      
     })

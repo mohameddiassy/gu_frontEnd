@@ -86,3 +86,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-decoration: none;
     color:  #0d6efd!important;
 }
+.scroll_form{
+    overflow-y: auto;
+    max-height: 100vh;
+}
+body
+{
+    background-image: url(./assets/jant1.jpeg),url(./assets/jant4.jpeg);
+
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position:  left, right;
+
+}

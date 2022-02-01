@@ -204,5 +204,8 @@ modifier()
       }
     })
   }
+  close(){
+    this.api.bool.ajoutersortie=false
+  }
 
 }
